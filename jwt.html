@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JWT Decoder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/jwt.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>jwt decoder</span></span>
+    </div>
+    <div id="algoDisplay" class="algo-badge">alg: —</div>
+  </nav>
+
+  <main>
+
+    <!-- ── LEFT: Input ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">encoded token</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">load sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <!-- Raw textarea (hidden, used for input) -->
+        <textarea
+          id="jwtInput"
+          class="jwt-textarea"
+          placeholder="Paste your JWT here...&#10;&#10;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...."
+          spellcheck="false"
+          oninput="handleInput()"
+        ></textarea>
+
+        <!-- Coloured display -->
+        <div id="jwtColoured" class="jwt-display" style="display:none"></div>
+
+        <!-- Verify block -->
+        <div class="verify-block">
+          <div class="verify-header">
+            <span>verify signature</span>
+            <span id="verifyAlgo" class="verify-algo"></span>
+          </div>
+          <textarea
+            id="secretInput"
+            class="verify-input"
+            placeholder="Enter secret (HMAC) or paste public key (RSA/EC)..."
+            spellcheck="false"
+          ></textarea>
+          <div class="verify-footer">
+            <div class="key-format-tabs">
+              <button class="tab active" id="tabRaw" onclick="setKeyFormat('raw')">raw</button>
+              <button class="tab" id="tabB64" onclick="setKeyFormat('base64')">base64</button>
+              <button class="tab" id="tabPem" onclick="setKeyFormat('pem')">PEM</button>
+            </div>
+            <button class="btn-verify" onclick="verifySignature()">verify →</button>
+          </div>
+        </div>
+
+        <div id="verifyResult" class="verify-result hidden"></div>
+      </div>
+
+      <!-- Algo support -->
+      <div class="algo-grid">
+        <span class="algo-tag hmac">HS256</span>
+        <span class="algo-tag hmac">HS384</span>
+        <span class="algo-tag hmac">HS512</span>
+        <span class="algo-tag rsa">RS256</span>
+        <span class="algo-tag rsa">RS384</span>
+        <span class="algo-tag rsa">RS512</span>
+        <span class="algo-tag ec">ES256</span>
+        <span class="algo-tag ec">ES384</span>
+        <span class="algo-tag ec">ES512</span>
+        <span class="algo-tag pss">PS256</span>
+        <span class="algo-tag pss">PS384</span>
+        <span class="algo-tag pss">PS512</span>
+        <span class="algo-tag none">none</span>
+      </div>
+    </div>
+
+    <!-- ── RIGHT: Decoded ── -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">decoded</span>
+        <div id="statusBar" class="panel-actions"></div>
+      </div>
+
+      <div class="decoded-area" id="decodedArea">
+        <div class="empty-state">
+          <div class="empty-icon">🔐</div>
+          <div>Paste a JWT on the left to decode it</div>
+          <div style="font-size:0.65rem;margin-top:4px">Supports all standard algorithms</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — jwt decoder</span>
+    <span>all decoding happens in your browser · no data sent to server</span>
+  </footer>
+
+</div>
+
+  <script defer src="js/jwt.js"></script>
+</body>
+</html>
