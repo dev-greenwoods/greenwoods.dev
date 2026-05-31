@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>URL Encoder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/url.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>url encoder</span></span>
+    </div>
+    <div class="tool-badge">encode</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">load sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="input-area">
+        <div class="mode-tabs">
+          <button id="tabEncode" class="tab active" onclick="setMode('encode')">Encode</button>
+          <button id="tabDecode" class="tab" onclick="setMode('decode')">Decode</button>
+          <button id="tabQuery" class="tab" onclick="setMode('query')">Query</button>
+        </div>
+        <textarea
+          id="urlInput"
+          class="url-textarea"
+          placeholder="Enter text or query string here..."
+          spellcheck="false"
+          oninput="handleInput()"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="copyButton" onclick="copyOutput()">copy</button>
+        </div>
+      </div>
+      <div class="output-area">
+        <div class="status-bar" id="statusBar">
+          <span id="statusText">Paste text to encode, decode, or inspect query strings.</span>
+        </div>
+        <div class="output-block" id="outputBlock">
+          <div class="empty-state">
+            <div class="empty-icon">🔗</div>
+            <div>Paste text to see the encoded or decoded result.</div>
+            <div style="font-size:0.7rem;margin-top:6px;color:var(--muted);">Query mode parses query strings and converts JSON to query format.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — url encoder</span>
+    <span>browser-native encoding · no data sent to server</span>
+  </footer>
+
+</div>
+<script defer src="js/url.js"></script>
+</body>
+</html>
