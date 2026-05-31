@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON Formatter — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/json.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>json formatter</span></span>
+    </div>
+    <div class="tool-badge">format</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">load sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <div class="mode-tabs">
+          <button id="tabFormat" class="tab active" onclick="setMode('format')">Format</button>
+          <button id="tabDiff" class="tab" onclick="setMode('diff')">Diff</button>
+        </div>
+
+        <div id="formatPane" class="mode-pane">
+          <textarea
+            id="jsonInput"
+            class="json-textarea"
+            placeholder="Paste or type JSON here..."
+            spellcheck="false"
+            oninput="handleInput()"
+          ></textarea>
+        </div>
+
+        <div id="diffPane" class="mode-pane hidden">
+          <textarea
+            id="jsonInputA"
+            class="json-textarea"
+            placeholder="Original JSON"
+            spellcheck="false"
+            oninput="handleInput()"
+          ></textarea>
+          <textarea
+            id="jsonInputB"
+            class="json-textarea"
+            placeholder="Compare against this JSON"
+            spellcheck="false"
+            oninput="handleInput()"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="copyButton" onclick="copyOutput()">copy</button>
+        </div>
+      </div>
+
+      <div class="output-area">
+        <div id="statusBar" class="status-bar">
+          <span id="statusText">Paste JSON to validate and format it.</span>
+        </div>
+
+        <div id="outputBlock" class="output-block">
+          <div class="empty-state">
+            <div class="empty-icon">{ }</div>
+            <div>Start by pasting JSON on the left.</div>
+            <div style="font-size:0.7rem;margin-top:6px;color:var(--muted);">Supports JSON validation, pretty-printing, and diff mode.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — json formatter</span>
+    <span>browser-first formatting · no data sent to server</span>
+  </footer>
+
+</div>
+
+<script defer src="js/json.js"></script>
+</body>
+</html>
