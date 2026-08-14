@@ -1,0 +1,85 @@
+.base-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.base-label-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.base-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+}
+
+.base-badge.dec { background: rgba(0,184,255,0.15); color: var(--accent2); border: 1px solid rgba(0,184,255,0.3); }
+.base-badge.hex { background: rgba(0,255,159,0.12); color: var(--accent);  border: 1px solid rgba(0,255,159,0.3); }
+.base-badge.oct { background: rgba(255,209,102,0.12); color: var(--warn);  border: 1px solid rgba(255,209,102,0.3); }
+.base-badge.bin { background: rgba(255,77,109,0.12); color: var(--accent3); border: 1px solid rgba(255,77,109,0.3); }
+.base-badge.cus { background: rgba(160,100,255,0.12); color: #b080ff; border: 1px solid rgba(160,100,255,0.3); }
+
+.base-name { font-size: 0.68rem; color: var(--muted); }
+
+.info-output {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.info-section {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+  margin-bottom: 12px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.78rem;
+  align-items: center;
+}
+.info-row:last-child { border-bottom: none; }
+
+.info-key { font-size: 0.68rem; color: var(--muted); }
+.info-val { color: var(--text); word-break: break-all; }
+.info-val.accent { color: var(--accent); }
+.info-val.accent2 { color: var(--accent2); }
+.info-val.warn { color: var(--warn); }
+.info-val.err { color: var(--accent3); }
+
+.bit-grid {
+  padding: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.bit {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  border: 1px solid var(--border);
+}
+
+.bit.one  { background: rgba(0,255,159,0.15); color: var(--accent); border-color: rgba(0,255,159,0.3); }
+.bit.zero { background: var(--surface); color: var(--muted); }
+
+.bit-sep { width: 6px; }

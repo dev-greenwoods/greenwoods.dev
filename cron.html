@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRON Parser — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/cron.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>cron parser</span></span>
+    </div>
+    <div class="nav-badge">5-field · 6-field</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">expression</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field-group">
+          <input id="cronInput" class="tool-input cron-input" type="text" placeholder="e.g. */5 * * * *" oninput="parseCron()" />
+          <div class="cron-fields-label">
+            <span>MIN</span><span>HOUR</span><span>DOM</span><span>MON</span><span>DOW</span>
+          </div>
+        </div>
+
+        <div id="cronError" class="error-msg hidden"></div>
+
+        <div id="humanReadable" class="human-readable hidden"></div>
+
+        <div class="field-group">
+          <span class="field-label">common expressions</span>
+          <div class="presets">
+            <button class="preset-btn" onclick="setPreset('* * * * *')">every minute</button>
+            <button class="preset-btn" onclick="setPreset('*/5 * * * *')">every 5 min</button>
+            <button class="preset-btn" onclick="setPreset('0 * * * *')">every hour</button>
+            <button class="preset-btn" onclick="setPreset('0 0 * * *')">daily midnight</button>
+            <button class="preset-btn" onclick="setPreset('0 9 * * 1-5')">weekdays 9am</button>
+            <button class="preset-btn" onclick="setPreset('0 0 * * 0')">weekly sunday</button>
+            <button class="preset-btn" onclick="setPreset('0 0 1 * *')">monthly</button>
+            <button class="preset-btn" onclick="setPreset('0 0 1 1 *')">yearly</button>
+            <button class="preset-btn" onclick="setPreset('0 2 * * 6,0')">weekends 2am</button>
+            <button class="preset-btn" onclick="setPreset('30 8 1,15 * *')">1st &amp; 15th 8:30</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">next runs</span>
+        <div class="panel-actions">
+          <span class="field-label" style="text-transform:none">next 10 executions</span>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="nextRuns" class="next-runs">
+          <div class="empty-state">
+            <div class="empty-icon">⏰</div>
+            <div>Enter a cron expression</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — cron parser</span>
+    <span>all parsing happens in your browser · no data sent to server</span>
+  </footer>
+</div>
+<script defer src="js/cron.js"></script>
+</body>
+</html>

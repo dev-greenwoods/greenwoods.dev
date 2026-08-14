@@ -1,0 +1,104 @@
+.drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 40px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.drop-zone:hover, .drop-zone.drag-over {
+  border-color: var(--accent);
+  background: rgba(0,255,159,0.03);
+}
+
+.drop-icon { font-size: 2rem; opacity: 0.4; }
+.drop-label { font-size: 0.8rem; color: var(--text); }
+.drop-sub { font-size: 0.68rem; color: var(--muted); }
+
+.file-info {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hash-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.1s;
+  width: 0;
+}
+
+.hash-output {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.hash-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  border-radius: 0;
+  animation: fadeIn 0.2s ease;
+}
+
+.hash-row:first-child { border-radius: 6px 6px 0 0; }
+.hash-row:last-child { border-bottom: none; border-radius: 0 0 6px 6px; }
+.hash-row:first-child:last-child { border-radius: 6px; }
+
+.hash-algo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hash-algo {
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.hash-val {
+  font-size: 0.75rem;
+  color: var(--accent);
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.hash-val.loading {
+  color: var(--muted);
+}
+
+.hidden { display: none !important; }

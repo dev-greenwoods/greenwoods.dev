@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Entities — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/entities.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>html entities</span></span>
+    </div>
+    <div id="modeBadge" class="nav-badge">mode: encode</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="tab active" id="tabEncode" onclick="setMode('encode')">encode</button>
+          <button class="tab" id="tabDecode" onclick="setMode('decode')">decode</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="encodeOpts" class="options-col">
+          <span class="field-label">encode options</span>
+          <label class="opt-label"><input type="checkbox" id="chkAll" onchange="run()" /> Encode all non-ASCII chars (not just HTML special)</label>
+          <label class="opt-label"><input type="checkbox" id="chkNamed" checked onchange="run()" /> Use named entities (&amp;amp; vs &amp;#38;)</label>
+        </div>
+
+        <textarea id="entityInput" class="tool-input" placeholder="Paste text here..." oninput="run()"></textarea>
+      </div>
+      <div class="status-bar">
+        <span id="statusText" class="status-text">Paste text to encode or decode HTML entities.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="copyBtn" onclick="copyOutput()">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="entityOutput" class="output-block">
+          <div class="empty-state">
+            <div class="empty-icon">&amp;</div>
+            <div>Output will appear here</div>
+          </div>
+        </div>
+
+        <div id="cheatSheet" class="cheat-sheet">
+          <span class="field-label">common entities</span>
+          <div class="entity-grid">
+            <div class="entity-item" onclick="insertEntity('&amp;')"><span class="e-char">&amp;</span><span class="e-code">&amp;amp;</span></div>
+            <div class="entity-item" onclick="insertEntity('<')"  ><span class="e-char">&lt;</span><span class="e-code">&amp;lt;</span></div>
+            <div class="entity-item" onclick="insertEntity('>')"  ><span class="e-char">&gt;</span><span class="e-code">&amp;gt;</span></div>
+            <div class="entity-item" onclick="insertEntity('\"')" ><span class="e-char">"</span><span class="e-code">&amp;quot;</span></div>
+            <div class="entity-item" onclick="insertEntity('\'')" ><span class="e-char">'</span><span class="e-code">&amp;apos;</span></div>
+            <div class="entity-item" onclick="insertEntity('\u00a0')"><span class="e-char">·</span><span class="e-code">&amp;nbsp;</span></div>
+            <div class="entity-item" onclick="insertEntity('©')"  ><span class="e-char">©</span><span class="e-code">&amp;copy;</span></div>
+            <div class="entity-item" onclick="insertEntity('®')"  ><span class="e-char">®</span><span class="e-code">&amp;reg;</span></div>
+            <div class="entity-item" onclick="insertEntity('™')"  ><span class="e-char">™</span><span class="e-code">&amp;trade;</span></div>
+            <div class="entity-item" onclick="insertEntity('€')"  ><span class="e-char">€</span><span class="e-code">&amp;euro;</span></div>
+            <div class="entity-item" onclick="insertEntity('£')"  ><span class="e-char">£</span><span class="e-code">&amp;pound;</span></div>
+            <div class="entity-item" onclick="insertEntity('→')"  ><span class="e-char">→</span><span class="e-code">&amp;rarr;</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — html entities</span>
+    <span>all encoding happens in your browser · no data sent to server</span>
+  </footer>
+</div>
+<script defer src="js/entities.js"></script>
+</body>
+</html>

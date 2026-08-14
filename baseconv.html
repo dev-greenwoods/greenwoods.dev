@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Number Base Converter — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/baseconv.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>base converter</span></span>
+    </div>
+    <div class="nav-badge">bin · oct · dec · hex</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="base-field" id="fieldDec">
+          <div class="base-label-row">
+            <span class="base-badge dec">DEC</span>
+            <span class="base-name">Decimal · base 10</span>
+          </div>
+          <input id="inputDec" class="tool-input" type="text" placeholder="e.g. 255" oninput="convert('dec')" />
+        </div>
+
+        <div class="base-field" id="fieldHex">
+          <div class="base-label-row">
+            <span class="base-badge hex">HEX</span>
+            <span class="base-name">Hexadecimal · base 16</span>
+          </div>
+          <input id="inputHex" class="tool-input" type="text" placeholder="e.g. FF" oninput="convert('hex')" />
+        </div>
+
+        <div class="base-field" id="fieldOct">
+          <div class="base-label-row">
+            <span class="base-badge oct">OCT</span>
+            <span class="base-name">Octal · base 8</span>
+          </div>
+          <input id="inputOct" class="tool-input" type="text" placeholder="e.g. 377" oninput="convert('oct')" />
+        </div>
+
+        <div class="base-field" id="fieldBin">
+          <div class="base-label-row">
+            <span class="base-badge bin">BIN</span>
+            <span class="base-name">Binary · base 2</span>
+          </div>
+          <input id="inputBin" class="tool-input" type="text" placeholder="e.g. 11111111" oninput="convert('bin')" />
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">custom base (2–36)</span>
+          <div class="row">
+            <input id="customBase" class="tool-input" type="number" min="2" max="36" value="32" style="width:80px;min-height:auto;height:36px" />
+            <input id="inputCustom" class="tool-input" type="text" placeholder="value in custom base" oninput="convert('custom')" style="flex:1;min-height:auto;height:36px" />
+          </div>
+        </div>
+
+        <div id="convError" class="error-msg hidden"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">info</span>
+      </div>
+      <div class="panel-body">
+        <div id="infoOutput" class="info-output">
+          <div class="empty-state">
+            <div class="empty-icon">🔢</div>
+            <div>Enter a number in any base</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — base converter</span>
+    <span>all conversion happens in your browser · no data sent to server</span>
+  </footer>
+</div>
+<script defer src="js/baseconv.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UUID Generator — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/uuid.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>uuid generator</span></span>
+    </div>
+    <div class="nav-badge">crypto.randomUUID</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">options</span>
+      </div>
+      <div class="panel-body">
+        <div class="field-group">
+          <span class="field-label">version</span>
+          <div class="row">
+            <button class="tab active" id="tabV4" onclick="setVersion(4)">v4 (random)</button>
+            <button class="tab" id="tabV7" onclick="setVersion(7)">v7 (time-ordered)</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">count</span>
+          <div class="count-row">
+            <button class="count-btn" onclick="setCount(1)">1</button>
+            <button class="count-btn" onclick="setCount(5)">5</button>
+            <button class="count-btn" onclick="setCount(10)">10</button>
+            <button class="count-btn" onclick="setCount(25)">25</button>
+            <button class="count-btn" onclick="setCount(100)">100</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">format</span>
+          <div class="row">
+            <button class="tab active" id="tabFmtStd" onclick="setFormat('standard')">standard</button>
+            <button class="tab" id="tabFmtUpper" onclick="setFormat('upper')">UPPER</button>
+            <button class="tab" id="tabFmtNoBraces" onclick="setFormat('nobraces')">no hyphens</button>
+            <button class="tab" id="tabFmtBraces" onclick="setFormat('braces')">{braces}</button>
+          </div>
+        </div>
+
+        <div class="options-check">
+          <label class="opt-label">
+            <input type="checkbox" id="chkQuote" onchange="renderUUIDs()" />
+            Wrap in quotes
+          </label>
+          <label class="opt-label">
+            <input type="checkbox" id="chkComma" onchange="renderUUIDs()" />
+            Trailing comma
+          </label>
+        </div>
+
+        <button class="btn-primary" onclick="generate()" style="align-self:flex-start">generate →</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title" id="outputTitle">output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="copyAll()">copy all</button>
+          <button class="btn-sm" onclick="regenerate()">↺ regenerate</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="uuidOutput" class="uuid-output">
+          <div class="empty-state">
+            <div class="empty-icon">🆔</div>
+            <div>Click generate to create UUIDs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — uuid generator</span>
+    <span>uses crypto.randomUUID · cryptographically secure · no server</span>
+  </footer>
+</div>
+<script defer src="js/uuid.js"></script>
+</body>
+</html>

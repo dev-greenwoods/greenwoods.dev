@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regex Tester — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/regex.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>regex tester</span></span>
+    </div>
+    <div id="matchCount" class="nav-badge">0 matches</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">pattern</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="regex-input-wrap">
+          <span class="regex-slash">/</span>
+          <input id="patternInput" class="tool-input regex-pattern" type="text" placeholder="your pattern" oninput="runRegex()" />
+          <span class="regex-slash">/</span>
+          <input id="flagsInput" class="tool-input regex-flags" type="text" value="gm" placeholder="flags" oninput="runRegex()" maxlength="8" />
+        </div>
+
+        <div class="flags-help">
+          <span class="flag-chip" onclick="toggleFlag('g')">g <span class="fc-desc">global</span></span>
+          <span class="flag-chip" onclick="toggleFlag('i')">i <span class="fc-desc">ignore case</span></span>
+          <span class="flag-chip" onclick="toggleFlag('m')">m <span class="fc-desc">multiline</span></span>
+          <span class="flag-chip" onclick="toggleFlag('s')">s <span class="fc-desc">dotAll</span></span>
+          <span class="flag-chip" onclick="toggleFlag('u')">u <span class="fc-desc">unicode</span></span>
+        </div>
+
+        <div class="field-group" style="flex:1">
+          <span class="field-label">test string</span>
+          <textarea id="testInput" class="tool-input" style="flex:1; min-height:180px" placeholder="Paste your test string here..." oninput="runRegex()"></textarea>
+        </div>
+
+        <div id="regexError" class="error-msg hidden"></div>
+      </div>
+      <div class="status-bar">
+        <span id="statusText" class="status-text">Enter a pattern and test string.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">matches</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="copyMatches()">copy all</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="highlightBlock" class="highlight-block">
+          <div class="empty-state">
+            <div class="empty-icon">📐</div>
+            <div>Matches will be highlighted here</div>
+          </div>
+        </div>
+
+        <div id="matchList" class="match-list hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — regex tester</span>
+    <span>all matching happens in your browser · no data sent to server</span>
+  </footer>
+
+</div>
+<script defer src="js/regex.js"></script>
+</body>
+</html>

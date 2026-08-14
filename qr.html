@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Code Generator — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/qr.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>qr code</span></span>
+    </div>
+    <div class="nav-badge">in-browser · no upload</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field-group">
+          <span class="field-label">type</span>
+          <div class="type-row">
+            <button class="tab active" onclick="setType('text')">text / url</button>
+            <button class="tab" onclick="setType('email')">email</button>
+            <button class="tab" onclick="setType('tel')">phone</button>
+            <button class="tab" onclick="setType('wifi')">wifi</button>
+            <button class="tab" onclick="setType('vcard')">vCard</button>
+          </div>
+        </div>
+
+        <div id="paneText" class="input-pane">
+          <textarea id="qrInput" class="tool-input" placeholder="Enter URL or text..." oninput="scheduleGenerate()" style="min-height:100px"></textarea>
+        </div>
+
+        <div id="paneEmail" class="input-pane hidden">
+          <input class="tool-input" id="emailTo" type="text" placeholder="To: email@example.com" oninput="buildEmail()" style="min-height:auto;height:40px" />
+          <input class="tool-input" id="emailSubject" type="text" placeholder="Subject" oninput="buildEmail()" style="min-height:auto;height:40px" />
+          <textarea class="tool-input" id="emailBody" placeholder="Body" oninput="buildEmail()" style="min-height:80px"></textarea>
+        </div>
+
+        <div id="paneTel" class="input-pane hidden">
+          <input class="tool-input" id="telInput" type="tel" placeholder="+1 555 000 0000" oninput="scheduleGenerate(document.getElementById('telInput').value)" style="min-height:auto;height:40px" />
+        </div>
+
+        <div id="paneWifi" class="input-pane hidden">
+          <input class="tool-input" id="wifiSsid"  type="text"     placeholder="Network name (SSID)" oninput="buildWifi()" style="min-height:auto;height:40px" />
+          <input class="tool-input" id="wifiPass"  type="password" placeholder="Password"            oninput="buildWifi()" style="min-height:auto;height:40px" />
+          <div class="row" style="gap:8px">
+            <button class="tab active" id="wifiWpa" onclick="setWifiType('WPA')">WPA/WPA2</button>
+            <button class="tab" id="wifiWep"        onclick="setWifiType('WEP')">WEP</button>
+            <button class="tab" id="wifiNone"       onclick="setWifiType('nopass')">None</button>
+          </div>
+        </div>
+
+        <div id="paneVcard" class="input-pane hidden">
+          <input class="tool-input" id="vcName"    type="text" placeholder="Full name"    oninput="buildVcard()" style="min-height:auto;height:40px" />
+          <input class="tool-input" id="vcPhone"   type="text" placeholder="Phone"        oninput="buildVcard()" style="min-height:auto;height:40px" />
+          <input class="tool-input" id="vcEmail"   type="text" placeholder="Email"        oninput="buildVcard()" style="min-height:auto;height:40px" />
+          <input class="tool-input" id="vcOrg"     type="text" placeholder="Company"      oninput="buildVcard()" style="min-height:auto;height:40px" />
+          <input class="tool-input" id="vcUrl"     type="text" placeholder="Website"      oninput="buildVcard()" style="min-height:auto;height:40px" />
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">size</span>
+          <div class="row" style="gap:8px">
+            <button class="tab" onclick="setSize(128)">128</button>
+            <button class="tab active" onclick="setSize(256)">256</button>
+            <button class="tab" onclick="setSize(512)">512</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">error correction</span>
+          <div class="row" style="gap:8px">
+            <button class="tab active" onclick="setEC('L')">L · 7%</button>
+            <button class="tab" onclick="setEC('M')">M · 15%</button>
+            <button class="tab" onclick="setEC('Q')">Q · 25%</button>
+            <button class="tab" onclick="setEC('H')">H · 30%</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">qr code</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="downloadQR('png')">download png</button>
+          <button class="btn-sm" onclick="downloadQR('svg')">download svg</button>
+        </div>
+      </div>
+      <div class="panel-body" style="align-items:center;justify-content:center">
+        <div id="qrWrap" class="qr-wrap">
+          <div class="empty-state"><div class="empty-icon">▦</div><div>Enter text to generate QR code</div></div>
+        </div>
+        <div id="qrData" class="qr-data hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — qr code generator</span>
+    <span>generated in-browser · no data sent to server</span>
+  </footer>
+</div>
+<script defer src="js/qr.js"></script>
+</body>
+</html>

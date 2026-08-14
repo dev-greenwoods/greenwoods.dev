@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lorem Ipsum — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    .count-row { display:flex; gap:6px; flex-wrap:wrap; }
+    .count-btn { font-family:'JetBrains Mono',monospace; font-size:.7rem; padding:5px 14px; background:transparent; border:1px solid var(--border); color:var(--muted); border-radius:4px; cursor:pointer; transition:.15s; }
+    .count-btn:hover, .count-btn.active { border-color:var(--accent); color:var(--accent); }
+    .opt-label { display:flex; align-items:center; gap:8px; font-size:.72rem; color:var(--muted); cursor:pointer; }
+    .opt-label input { accent-color:var(--accent); }
+    .lorem-output { flex:1; background:var(--surface2); border:1px solid var(--border); border-radius:6px; padding:18px; font-size:.82rem; line-height:1.8; color:var(--text); overflow-y:auto; white-space:pre-wrap; word-break:break-word; animation:fadeIn .2s ease; }
+    .lorem-output::-webkit-scrollbar { width:4px; }
+    .lorem-output::-webkit-scrollbar-thumb { background:var(--dim); border-radius:2px; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>lorem ipsum</span></span>
+    </div>
+    <div id="statBadge" class="nav-badge">0 words</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">options</span>
+      </div>
+      <div class="panel-body">
+        <div class="field-group">
+          <span class="field-label">type</span>
+          <div class="count-row">
+            <button class="count-btn active" id="typeParagraphs" onclick="setType('paragraphs')">paragraphs</button>
+            <button class="count-btn" id="typeSentences" onclick="setType('sentences')">sentences</button>
+            <button class="count-btn" id="typeWords"     onclick="setType('words')">words</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">count</span>
+          <div class="count-row">
+            <button class="count-btn" onclick="setCount(1)">1</button>
+            <button class="count-btn active" onclick="setCount(3)">3</button>
+            <button class="count-btn" onclick="setCount(5)">5</button>
+            <button class="count-btn" onclick="setCount(10)">10</button>
+            <button class="count-btn" onclick="setCount(25)">25</button>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">options</span>
+          <label class="opt-label"><input type="checkbox" id="chkClassic" checked onchange="generate()" /> Start with "Lorem ipsum dolor sit amet..."</label>
+          <label class="opt-label"><input type="checkbox" id="chkHtml" onchange="generate()" /> Wrap in &lt;p&gt; tags</label>
+        </div>
+
+        <button class="btn-primary" onclick="generate()" style="align-self:flex-start">generate →</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="copyOutput()">copy</button>
+          <button class="btn-sm" onclick="generate()">↺ regenerate</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="loremOutput" class="lorem-output">
+          <div class="empty-state"><div class="empty-icon">📝</div><div>Click generate</div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — lorem ipsum</span>
+    <span>all generation happens in your browser · no data sent to server</span>
+  </footer>
+</div>
+<script>
+const WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure reprehenderit voluptate velit esse cillum eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum viverra justo integer vitae accumsan interdum dui ligula volutpat pellentesque habitant morbi tristique senectus netus malesuada fames turpis egestas nam eget dui vel quam elementum pulvinar etiam rhoncus maecenas pharetra convallis posuere morbi leo urna.'.split(' ');
+
+let genType = 'paragraphs', genCount = 3;
+let currentOutput = '';
+
+function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+function makeSentence() {
+  const len = 6 + Math.floor(Math.random() * 12);
+  return cap(Array.from({length: len}, () => rand(WORDS)).join(' ')) + '.';
+}
+
+function makeParagraph() {
+  const count = 4 + Math.floor(Math.random() * 5);
+  return Array.from({length: count}, () => makeSentence()).join(' ');
+}
+
+function setType(t) {
+  genType = t;
+  ['Paragraphs','Sentences','Words'].forEach(id =>
+    document.getElementById('type' + id).classList.toggle('active', id.toLowerCase() === t));
+  generate();
+}
+
+function setCount(n) {
+  genCount = n;
+  document.querySelectorAll('.count-row:nth-of-type(2) .count-btn').forEach(b =>
+    b.classList.toggle('active', b.textContent === String(n)));
+  generate();
+}
+
+function generate() {
+  const classic = document.getElementById('chkClassic').checked;
+  const wrapHtml = document.getElementById('chkHtml').checked;
+
+  let parts = [];
+  if (genType === 'paragraphs') {
+    for (let i = 0; i < genCount; i++) {
+      let p = makeParagraph();
+      if (i === 0 && classic) p = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' + makeSentence() + ' ' + makeSentence();
+      parts.push(wrapHtml ? `<p>${p}</p>` : p);
+    }
+  } else if (genType === 'sentences') {
+    const sents = Array.from({length: genCount}, (_, i) => {
+      if (i === 0 && classic) return 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+      return makeSentence();
+    });
+    currentOutput = wrapHtml ? `<p>${sents.join(' ')}</p>` : sents.join(' ');
+    finalize([currentOutput]);
+    return;
+  } else {
+    const wList = classic
+      ? ['Lorem','ipsum','dolor','sit','amet'].concat(Array.from({length: Math.max(0, genCount-5)}, () => rand(WORDS)))
+      : Array.from({length: genCount}, () => rand(WORDS));
+    currentOutput = wrapHtml ? `<p>${wList.join(' ')}</p>` : wList.join(' ');
+    finalize([currentOutput]);
+    return;
+  }
+
+  finalize(parts);
+}
+
+function finalize(parts) {
+  currentOutput = parts.join('\n\n');
+  const wordCount = currentOutput.replace(/<[^>]+>/g,'').split(/\s+/).filter(Boolean).length;
+  document.getElementById('loremOutput').textContent = currentOutput;
+  document.getElementById('statBadge').textContent = wordCount + ' words';
+}
+
+function copyOutput() {
+  if (!currentOutput) return;
+  navigator.clipboard.writeText(currentOutput).then(() => {
+    const btn = event.target;
+    btn.textContent = 'copied!';
+    setTimeout(() => { btn.textContent = 'copy'; }, 1400);
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => { generate(); });
+</script>
+</body>
+</html>

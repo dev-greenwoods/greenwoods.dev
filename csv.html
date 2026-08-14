@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSV → JSON — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/csv.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>csv → json</span></span>
+    </div>
+    <div id="statBadge" class="nav-badge">0 rows</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">csv input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="options-row">
+          <div class="opt-group">
+            <span class="field-label">delimiter</span>
+            <div class="row" style="gap:6px">
+              <button class="tab active" id="delimComma" onclick="setDelim(',')">comma</button>
+              <button class="tab" id="delimTab"   onclick="setDelim('\t')">tab</button>
+              <button class="tab" id="delimSemi"  onclick="setDelim(';')">semicolon</button>
+              <button class="tab" id="delimPipe"  onclick="setDelim('|')">pipe</button>
+            </div>
+          </div>
+          <div class="opt-group">
+            <span class="field-label">options</span>
+            <label class="opt-label"><input type="checkbox" id="chkHeader" checked onchange="parse()" /> First row is header</label>
+            <label class="opt-label"><input type="checkbox" id="chkTrim" checked onchange="parse()" /> Trim whitespace</label>
+            <label class="opt-label"><input type="checkbox" id="chkNumbers" checked onchange="parse()" /> Auto-detect numbers</label>
+            <label class="opt-label"><input type="checkbox" id="chkNulls" onchange="parse()" /> Empty strings as null</label>
+          </div>
+          <div class="opt-group">
+            <span class="field-label">output format</span>
+            <div class="row" style="gap:6px">
+              <button class="tab active" id="fmtArray" onclick="setOutputFmt('array')">array</button>
+              <button class="tab" id="fmtKeyed" onclick="setOutputFmt('keyed')">keyed by col</button>
+            </div>
+          </div>
+        </div>
+        <textarea id="csvInput" class="tool-input" placeholder="Paste CSV here..." oninput="parse()" style="flex:1;min-height:220px"></textarea>
+      </div>
+      <div class="status-bar">
+        <span id="statusText" class="status-text">Paste CSV to convert.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">json output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="copyBtn" onclick="copyOutput()">copy</button>
+          <button class="btn-sm" onclick="downloadJSON()">download</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="jsonOutput" class="output-block">
+          <div class="empty-state">
+            <div class="empty-icon">{ }</div>
+            <div>JSON output will appear here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — csv → json</span>
+    <span>all conversion happens in your browser · no data sent to server</span>
+  </footer>
+</div>
+<script defer src="js/csv.js"></script>
+</body>
+</html>

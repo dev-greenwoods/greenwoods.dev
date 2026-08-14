@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Base64 Encoder/Decoder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/base64.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>base64</span></span>
+    </div>
+    <div id="modeDisplay" class="nav-badge">mode: encode</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="tab active" id="tabEncode" onclick="setMode('encode')">encode</button>
+          <button class="tab" id="tabDecode" onclick="setMode('decode')">decode</button>
+          <button class="tab" id="tabFile" onclick="setMode('file')">file</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="textPane">
+          <textarea id="b64Input" class="tool-input" placeholder="Paste text here to encode or decode..." oninput="handleInput()"></textarea>
+          <div class="options-row">
+            <label class="opt-label">
+              <input type="checkbox" id="urlSafe" onchange="handleInput()" />
+              URL-safe (- and _ instead of + and /)
+            </label>
+            <label class="opt-label">
+              <input type="checkbox" id="wrapLines" onchange="handleInput()" />
+              Wrap at 76 chars
+            </label>
+          </div>
+        </div>
+
+        <div id="filePane" class="hidden">
+          <div id="dropZone" class="drop-zone" ondragover="onDragOver(event)" ondrop="onDrop(event)" onclick="document.getElementById('fileInput').click()">
+            <div class="drop-icon">📁</div>
+            <div class="drop-label">Drop a file here or click to browse</div>
+            <div class="drop-sub">Any file type · encoded in browser</div>
+            <input type="file" id="fileInput" onchange="onFileSelect(event)" style="display:none" />
+          </div>
+          <div id="fileInfo" class="file-info hidden"></div>
+        </div>
+      </div>
+      <div class="status-bar">
+        <span class="status-text" id="statusText">Paste text to encode or decode.</span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="copyBtn" onclick="copyOutput()">copy</button>
+          <button class="btn-sm" id="downloadBtn" class="hidden" onclick="downloadOutput()">download</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="outputBlock" class="output-block">
+          <div class="empty-state">
+            <div class="empty-icon">📦</div>
+            <div>Output will appear here</div>
+          </div>
+        </div>
+
+        <div id="imagePreview" class="image-preview hidden">
+          <div class="field-label">image preview</div>
+          <img id="previewImg" src="" alt="preview" />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — base64</span>
+    <span>all encoding happens in your browser · no data sent to server</span>
+  </footer>
+
+</div>
+<script defer src="js/base64.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+.ts-unit-row {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.ts-output {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  animation: fadeIn 0.2s ease;
+}
+
+.ts-output.hidden { display: none; }
+
+.ts-row {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.78rem;
+}
+
+.ts-row:last-child { border-bottom: none; }
+
+.ts-key {
+  color: var(--muted);
+  font-size: 0.7rem;
+  flex-shrink: 0;
+}
+
+.ts-val {
+  color: var(--text);
+  word-break: break-all;
+}
+
+.ts-val.accent { color: var(--accent); }
+
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+input[type="datetime-local"].tool-input {
+  color-scheme: dark;
+}
+
+input.tool-input {
+  height: 44px;
+  padding: 10px 14px;
+}

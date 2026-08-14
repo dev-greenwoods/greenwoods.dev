@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Epoch Converter — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/epoch.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>epoch converter</span></span>
+    </div>
+    <div id="liveClock" class="nav-badge">--:--:--</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: Timestamp → Date -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">timestamp → date</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="useNowTs()">now</button>
+          <button class="btn-sm" onclick="clearTs()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field-group">
+          <span class="field-label">unix timestamp</span>
+          <div class="row">
+            <input id="tsInput" class="tool-input" type="text" placeholder="e.g. 1700000000" oninput="convertTs()" />
+          </div>
+          <div class="ts-unit-row">
+            <button class="tab active" id="tabSeconds" onclick="setTsUnit('s')">seconds</button>
+            <button class="tab" id="tabMs" onclick="setTsUnit('ms')">milliseconds</button>
+          </div>
+        </div>
+
+        <div id="tsOutput" class="ts-output hidden">
+          <div class="ts-row"><span class="ts-key">UTC</span><span class="ts-val" id="outUtc"></span></div>
+          <div class="ts-row"><span class="ts-key">Local</span><span class="ts-val" id="outLocal"></span></div>
+          <div class="ts-row"><span class="ts-key">ISO 8601</span><span class="ts-val" id="outIso"></span></div>
+          <div class="ts-row"><span class="ts-key">RFC 2822</span><span class="ts-val" id="outRfc"></span></div>
+          <div class="ts-row"><span class="ts-key">Relative</span><span class="ts-val accent" id="outRelative"></span></div>
+          <div class="ts-row"><span class="ts-key">Day of week</span><span class="ts-val" id="outDay"></span></div>
+          <div class="ts-row"><span class="ts-key">Week #</span><span class="ts-val" id="outWeek"></span></div>
+        </div>
+
+        <div id="tsError" class="error-msg hidden"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Date → Timestamp -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">date → timestamp</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="useNowDate()">now</button>
+          <button class="btn-sm" onclick="clearDate()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field-group">
+          <span class="field-label">date / time</span>
+          <input id="dateInput" class="tool-input" type="datetime-local" oninput="convertDate()" />
+          <div class="ts-unit-row" style="margin-top:4px">
+            <button class="tab active" id="tabUtcDate" onclick="setDateTz('utc')">UTC</button>
+            <button class="tab" id="tabLocalDate" onclick="setDateTz('local')">local</button>
+          </div>
+        </div>
+
+        <div id="dateOutput" class="ts-output hidden">
+          <div class="ts-row"><span class="ts-key">Seconds</span><span class="ts-val accent" id="outDateS"></span><button class="copy-btn" onclick="copyVal('outDateS')">copy</button></div>
+          <div class="ts-row"><span class="ts-key">Milliseconds</span><span class="ts-val" id="outDateMs"></span><button class="copy-btn" onclick="copyVal('outDateMs')">copy</button></div>
+          <div class="ts-row"><span class="ts-key">ISO 8601</span><span class="ts-val" id="outDateIso"></span></div>
+          <div class="ts-row"><span class="ts-key">UTC String</span><span class="ts-val" id="outDateUtc"></span></div>
+        </div>
+
+        <div id="dateError" class="error-msg hidden"></div>
+
+        <div class="divider"></div>
+
+        <div class="field-group">
+          <span class="field-label">quick parse</span>
+          <input id="quickInput" class="tool-input" type="text" placeholder="e.g. 2024-01-15, Jan 15 2024, tomorrow..." oninput="quickParse()" />
+        </div>
+        <div id="quickOutput" class="ts-output hidden">
+          <div class="ts-row"><span class="ts-key">Parsed</span><span class="ts-val accent" id="outQuickTs"></span></div>
+          <div class="ts-row"><span class="ts-key">UTC</span><span class="ts-val" id="outQuickUtc"></span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — epoch converter</span>
+    <span>all conversions happen in your browser · no data sent to server</span>
+  </footer>
+
+</div>
+<script defer src="js/epoch.js"></script>
+</body>
+</html>

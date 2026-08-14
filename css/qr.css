@@ -1,0 +1,38 @@
+.type-row { display:flex; flex-wrap:wrap; gap:6px; }
+
+.input-pane { display:flex; flex-direction:column; gap:8px; }
+.input-pane.hidden { display:none !important; }
+
+.qr-wrap {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 180px;
+  min-height: 180px;
+}
+
+.qr-wrap canvas, .qr-wrap img {
+  display: block;
+}
+
+.qr-data {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 12px;
+  word-break: break-all;
+  max-width: 300px;
+}
+.qr-data.hidden { display: none; }
+
+/* override empty state inside white box */
+.qr-wrap .empty-state {
+  color: #aaa;
+}
+.qr-wrap .empty-icon {
+  opacity: 0.3;
+  color: #333;
+}

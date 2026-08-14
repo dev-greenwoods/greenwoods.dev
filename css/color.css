@@ -1,0 +1,145 @@
+.color-swatch-nav {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: #00ff9f;
+  transition: background 0.2s;
+}
+
+.color-picker-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.color-picker-wrap input[type="color"] {
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.picker-label {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.color-preview {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: fadeIn 0.2s ease;
+}
+
+.color-preview.hidden { display: none; }
+
+.swatch-large {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+
+.swatch-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.swatch-hex {
+  font-size: 1.2rem;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+}
+
+.swatch-named {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.conv-output {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.conv-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+  font-size: 0.78rem;
+  animation: fadeIn 0.2s ease;
+}
+
+.conv-row:first-child { border-radius: 6px 6px 0 0; }
+.conv-row:last-child { border-bottom: none; border-radius: 0 0 6px 6px; }
+
+.conv-key {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.conv-val {
+  color: var(--accent);
+  word-break: break-all;
+  cursor: pointer;
+}
+
+.conv-val:hover { opacity: 0.8; }
+
+.palette-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.palette-section.hidden { display: none; }
+
+.palette {
+  display: flex;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 60px;
+}
+
+.palette-swatch {
+  flex: 1;
+  cursor: pointer;
+  transition: transform 0.15s;
+  position: relative;
+}
+
+.palette-swatch:hover {
+  transform: scaleY(1.1);
+  z-index: 1;
+}
+
+.palette-swatch-label {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.55rem;
+  opacity: 0;
+  transition: opacity 0.15s;
+  white-space: nowrap;
+  background: rgba(0,0,0,0.7);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.palette-swatch:hover .palette-swatch-label { opacity: 1; }

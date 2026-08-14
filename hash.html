@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hash Generator — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/hash.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>hash generator</span></span>
+    </div>
+    <div class="nav-badge">in-browser · web crypto</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="tab active" id="tabText" onclick="setInputMode('text')">text</button>
+          <button class="tab" id="tabFile" onclick="setInputMode('file')">file</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="textPane">
+          <textarea id="hashInput" class="tool-input" placeholder="Enter text to hash..." oninput="computeHashes()"></textarea>
+        </div>
+        <div id="filePane" class="hidden">
+          <div id="dropZone" class="drop-zone" ondragover="onDragOver(event)" ondrop="onDrop(event)" onclick="document.getElementById('fileInput').click()">
+            <div class="drop-icon">📁</div>
+            <div class="drop-label">Drop a file here or click to browse</div>
+            <div class="drop-sub">Hash any file · in browser · no upload</div>
+            <input type="file" id="fileInput" onchange="onFileSelect(event)" style="display:none" />
+          </div>
+          <div id="fileInfo" class="file-info hidden"></div>
+          <div id="hashProgress" class="hash-progress hidden">
+            <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+            <span id="progressText">Hashing...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">hashes</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="copyAll()">copy all</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="hashOutput" class="hash-output">
+          <div class="empty-state">
+            <div class="empty-icon">#</div>
+            <div>Enter text or a file to generate hashes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — hash generator</span>
+    <span>uses the Web Crypto API · no data sent to server</span>
+  </footer>
+
+</div>
+<script defer src="js/hash.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Converter — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/color.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>color converter</span></span>
+    </div>
+    <div id="colorSwatch" class="color-swatch-nav"></div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="pickRandom()">random</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="color-picker-wrap">
+          <input type="color" id="colorPicker" value="#00ff9f" oninput="fromPicker()" />
+          <div class="picker-label">click to pick</div>
+        </div>
+
+        <div class="field-group">
+          <span class="field-label">any format</span>
+          <input id="colorInput" class="tool-input" type="text" placeholder="e.g. #00ff9f, rgb(0,255,159), hsl(152,100%,50%)" oninput="parseInput()" />
+        </div>
+
+        <div id="parseError" class="error-msg hidden"></div>
+
+        <div id="colorPreview" class="color-preview hidden">
+          <div id="swatchLarge" class="swatch-large"></div>
+          <div class="swatch-info">
+            <span id="swatchHex" class="swatch-hex"></span>
+            <span id="swatchName" class="swatch-named"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">conversions</span>
+        <div class="panel-actions"></div>
+      </div>
+      <div class="panel-body">
+        <div id="convOutput" class="conv-output">
+          <div class="empty-state">
+            <div class="empty-icon">🎨</div>
+            <div>Enter a color to see conversions</div>
+          </div>
+        </div>
+
+        <div id="paletteSection" class="palette-section hidden">
+          <span class="field-label" style="margin-bottom:8px;display:block">shades &amp; tints</span>
+          <div id="palette" class="palette"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — color converter</span>
+    <span>all conversion happens in your browser · no data sent to server</span>
+  </footer>
+
+</div>
+<script defer src="js/color.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.options-col { display: flex; flex-direction: column; gap: 6px; }
+.opt-label { display: flex; align-items: center; gap: 8px; font-size: 0.72rem; color: var(--muted); cursor: pointer; }
+.opt-label input { accent-color: var(--accent); }
+
+.cheat-sheet { display: flex; flex-direction: column; gap: 8px; }
+.entity-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+
+.entity-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.entity-item:hover { border-color: var(--accent2); }
+
+.e-char { font-size: 1rem; color: var(--text); }
+.e-code { font-size: 0.58rem; color: var(--muted); }
