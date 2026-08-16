@@ -1,0 +1,60 @@
+.hidden { display: none !important; }
+
+/* Options strip */
+.options-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 0 2px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.options-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.options-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.root-input {
+  flex: 1;
+  min-height: auto !important;
+  padding: 4px 10px !important;
+  font-size: 0.75rem !important;
+}
+
+/* Output */
+.ts-output {
+  font-size: 0.79rem;
+  line-height: 1.75;
+  word-break: break-word;
+}
+
+.ts-output pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* TS icon in empty state */
+.ts-icon {
+  font-size: 1.6rem !important;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  color: var(--accent2);
+  opacity: 0.35;
+  letter-spacing: -0.04em;
+}
+
+/* Syntax highlighting */
+.hl-kw    { color: var(--accent2); }           /* export / interface / type */
+.hl-prim  { color: var(--accent); }            /* string / number / boolean / null */
+.hl-iface { color: var(--warn); font-weight: 500; }  /* PascalCase type names */

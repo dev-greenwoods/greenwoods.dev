@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON → TypeScript — greenwoods.dev</title>
+  <meta name="description" content="Generate TypeScript interfaces from any JSON. Handles nested objects, arrays, null types, and more — all in your browser." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/json-ts.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>json → typescript</span></span>
+    </div>
+    <div class="nav-badge">json → ts</div>
+  </nav>
+
+  <main>
+
+    <!-- LEFT: Input + options -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">json input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea
+          id="jsonInput"
+          class="tool-input"
+          placeholder='Paste JSON here…'
+          spellcheck="false"
+          oninput="convert()"
+        ></textarea>
+        <div id="inputError" class="error-msg hidden"></div>
+
+        <div class="options-section">
+          <span class="options-label">output options</span>
+          <div class="options-row">
+            <button class="btn-sm" id="opt_useInterface"  onclick="toggleOption('useInterface')">interface</button>
+            <button class="btn-sm" id="opt_addExport"     onclick="toggleOption('addExport')">export</button>
+            <button class="btn-sm" id="opt_optionalFields" onclick="toggleOption('optionalFields')">optional fields</button>
+          </div>
+          <div class="options-row">
+            <span class="label">root name</span>
+            <input
+              id="rootName"
+              type="text"
+              class="tool-input root-input"
+              value="Root"
+              placeholder="Root"
+              spellcheck="false"
+              oninput="convert()"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="status-bar">
+        <span id="statusText">Paste JSON to generate TypeScript types.</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: TypeScript output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">typescript output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="copyBtn" onclick="copyOutput()">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="tsOutput" class="output-block ts-output">
+          <div class="empty-state">
+            <div class="empty-icon ts-icon">TS</div>
+            <div>Output will appear here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — json → typescript</span>
+    <span>all conversion in browser · no data sent · no telemetry</span>
+  </footer>
+
+</div>
+<script defer src="js/json-ts.js"></script>
+</body>
+</html>
