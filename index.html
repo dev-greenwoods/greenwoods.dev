@@ -16,7 +16,7 @@
       <span class="logo-dot"></span>
       greenwoods.dev
     </div>
-    <div class="nav-tag">19 tools</div>
+    <div class="nav-tag">20 tools</div>
   </nav>
 
   <main class="hero">
@@ -27,7 +27,7 @@
     </h1>
 
     <p class="sub">
-      19 browser-native utilities — no sign-up, no telemetry, no server. Everything runs in your browser.
+      20 browser-native utilities — no sign-up, no telemetry, no server. Everything runs in your browser.
     </p>
 
     <div class="terminal">
@@ -38,28 +38,16 @@
         <span class="term-title">terminal — zsh</span>
       </div>
       <div class="term-body">
-        <div class="line"><span class="prompt">~$</span><span class="cmd">curl greenwoods.dev/status</span></div>
-        <div class="line"><span class="out">▸ site:     <strong style="color:#e0e0f0">online</strong></span></div>
-        <div class="line"><span class="out">▸ jwt:      <strong style="color:#00ff9f">live → /jwt</strong></span></div>
-        <div class="line"><span class="out">▸ json:     <strong style="color:#00ff9f">live → /json</strong></span></div>
-        <div class="line"><span class="out">▸ url:      <strong style="color:#00ff9f">live → /url</strong></span></div>
-        <div class="line"><span class="out">▸ epoch:    <strong style="color:#00ff9f">live → /epoch</strong></span></div>
-        <div class="line"><span class="out">▸ base64:   <strong style="color:#00ff9f">live → /base64</strong></span></div>
-        <div class="line"><span class="out">▸ regex:    <strong style="color:#00ff9f">live → /regex</strong></span></div>
-        <div class="line"><span class="out">▸ hash:     <strong style="color:#00ff9f">live → /hash</strong></span></div>
-        <div class="line"><span class="out">▸ color:    <strong style="color:#00ff9f">live → /color</strong></span></div>
-        <div class="line"><span class="out">▸ uuid:     <strong style="color:#00ff9f">live → /uuid</strong></span></div>
-        <div class="line"><span class="out">▸ password: <strong style="color:#00ff9f">live → /password</strong></span></div>
-        <div class="line"><span class="out">▸ baseconv: <strong style="color:#00ff9f">live → /baseconv</strong></span></div>
-        <div class="line"><span class="out">▸ csv:      <strong style="color:#00ff9f">live → /csv</strong></span></div>
-        <div class="line"><span class="out">▸ cron:     <strong style="color:#00ff9f">live → /cron</strong></span></div>
-        <div class="line"><span class="out">▸ entities: <strong style="color:#00ff9f">live → /entities</strong></span></div>
-        <div class="line"><span class="out">▸ lorem:    <strong style="color:#00ff9f">live → /lorem</strong></span></div>
-        <div class="line"><span class="out">▸ markdown: <strong style="color:#00ff9f">live → /markdown</strong></span></div>
-        <div class="line"><span class="out">▸ yaml:     <strong style="color:#00ff9f">live → /yaml</strong></span></div>
-        <div class="line"><span class="out">▸ qr:       <strong style="color:#00ff9f">live → /qr</strong></span></div>
-        <div class="line"><span class="out">▸ json-ts:  <strong style="color:#00ff9f">live → /json-ts</strong></span></div>
-        <div class="line" style="margin-top:8px"><span class="prompt">~$</span><span class="cmd"><span class="cursor"></span></span></div>
+        <div class="line"><span class="prompt">~$</span><span class="cmd">curl -s greenwoods.dev/status | jq .</span></div>
+        <div class="line"><span class="out t-brace">{</span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"status"</span><span class="t-colon">:</span>     <span class="t-str">"online"</span><span class="t-comma">,</span></span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"tools"</span><span class="t-colon">:</span>      <span class="t-num">20</span><span class="t-comma">,</span></span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"categories"</span><span class="t-colon">:</span> <span class="t-num">4</span><span class="t-comma">,</span></span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"auth"</span><span class="t-colon">:</span>       <span class="t-bool">false</span><span class="t-comma">,</span></span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"telemetry"</span><span class="t-colon">:</span>  <span class="t-bool">false</span><span class="t-comma">,</span></span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"latest"</span><span class="t-colon">:</span>     <span class="t-arr">[<span class="t-str">"regex-explainer"</span><span class="t-comma">,</span> <span class="t-str">"json-ts"</span><span class="t-comma">,</span> <span class="t-str">"qr"</span>]</span></span></div>
+        <div class="line"><span class="out t-brace">}</span></div>
+        <div class="line" style="margin-top:4px"><span class="prompt">~$</span><span class="cmd"><span class="cursor"></span></span></div>
       </div>
     </div>
 
@@ -136,6 +124,13 @@
         <div class="tool-icon">⇄</div>
         <div class="tool-name">YAML ↔ JSON</div>
         <div class="tool-desc">Convert between YAML and JSON instantly in your browser</div>
+      </a>
+
+      <a href="/regex-explainer" class="tool-card tool-card--live">
+        <span class="badge live">live</span>
+        <div class="tool-icon">🔍</div>
+        <div class="tool-name">Regex Explainer</div>
+        <div class="tool-desc">Plain-English breakdown of every regex token — groups, quantifiers, lookaheads and more</div>
       </a>
 
       <a href="/json-ts" class="tool-card tool-card--live">
@@ -237,7 +232,7 @@
       <span class="logo-dot" style="width:6px;height:6px"></span>
       greenwoods.dev
     </span>
-    <span>19 tools live · more shipping soon · everything runs in your browser</span>
+    <span>20 tools live · more shipping soon · everything runs in your browser</span>
   </footer>
 
 </div>

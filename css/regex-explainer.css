@@ -1,0 +1,227 @@
+.hidden { display: none !important; }
+
+/* ── Token colours ── */
+.c-anchor  { color: #ff6b8a; background: rgba(255,77,109,0.12); }
+.c-dot     { color: var(--accent); background: rgba(0,255,159,0.1); }
+.c-escape  { color: var(--accent2); background: rgba(0,184,255,0.1); }
+.c-class   { color: #c792ea; background: rgba(199,146,234,0.1); }
+.c-group   { color: #ffd166; background: rgba(255,209,102,0.1); }
+.c-literal { color: var(--text); background: rgba(255,255,255,0.05); }
+.c-alt     { color: var(--muted); background: transparent; }
+
+/* ── Visual breakdown ── */
+.visual-wrap {
+  padding: 18px;
+  border-bottom: 1px solid var(--border);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  flex-shrink: 0;
+}
+
+.tok {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  cursor: default;
+  transition: filter 0.15s, box-shadow 0.15s;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.tok:hover, .tok.hl {
+  filter: brightness(1.35);
+  box-shadow: 0 0 0 1px currentColor;
+}
+
+.tok-q {
+  color: #ffd166;
+  font-size: 0.78rem;
+  margin-left: 1px;
+  opacity: 0.85;
+}
+
+.empty-visual {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+/* ── Flags strip ── */
+.flags-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.flag-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 4px;
+}
+
+.flag-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.flag-toggle.on {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(0,184,255,0.08);
+}
+
+/* ── Explanation list ── */
+.exp-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exp-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 7px 8px;
+  border-radius: 5px;
+  transition: background 0.12s;
+  cursor: default;
+}
+
+.exp-row:hover, .exp-row.hl {
+  background: rgba(255,255,255,0.04);
+}
+
+.exp-num {
+  font-size: 0.6rem;
+  color: var(--muted);
+  min-width: 16px;
+  text-align: right;
+  padding-top: 3px;
+  flex-shrink: 0;
+}
+
+.tok-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.exp-text {
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.55;
+  padding-top: 2px;
+}
+
+.exp-text strong { color: var(--text); }
+.exp-text em     { color: var(--accent); font-style: normal; }
+.exp-text code   { color: var(--accent2); font-size: 0.72rem; }
+.exp-q           { color: #ffd166; }
+
+/* ── Flags panel ── */
+.flags-panel {
+  padding: 10px 16px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.flag-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.72rem;
+}
+
+.flag-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  padding: 1px 7px;
+  border-radius: 3px;
+  background: rgba(0,184,255,0.1);
+  color: var(--accent2);
+  border: 1px solid rgba(0,184,255,0.25);
+  flex-shrink: 0;
+}
+
+.flag-desc { color: var(--muted); }
+
+/* ── Test area ── */
+.test-section {
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.test-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.test-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.test-input {
+  resize: none;
+  height: 76px;
+  font-size: 0.8rem;
+  border: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.test-output {
+  padding: 12px 16px;
+  font-size: 0.8rem;
+  line-height: 1.75;
+  min-height: 56px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--muted);
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+mark.match {
+  background: rgba(255,209,102,0.25);
+  color: #ffd166;
+  border-radius: 2px;
+  padding: 0 1px;
+  border-bottom: 1px solid rgba(255,209,102,0.5);
+}

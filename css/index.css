@@ -210,6 +210,17 @@ nav {
   animation: blink 1s infinite;
 }
 
+/* Compact JSON terminal */
+.t-brace  { color: var(--muted); padding-left: 0 !important; }
+.t-row    { padding-left: 20px; display: inline-block; }
+.t-key    { color: var(--accent2); }
+.t-colon  { color: var(--muted); margin-right: 4px; }
+.t-str    { color: var(--accent); }
+.t-num    { color: #ffd166; }
+.t-bool   { color: #ff4d6d; }
+.t-arr    { color: var(--text); }
+.t-comma  { color: var(--muted); }
+
 .chips {
   display: flex;
   gap: 12px;
