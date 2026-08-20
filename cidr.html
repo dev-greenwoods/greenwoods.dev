@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIDR Calculator — greenwoods.dev</title>
+  <meta name="description" content="Calculate subnet mask, network address, broadcast, usable hosts, and binary breakdown from any IP/CIDR notation." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/cidr.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>cidr calculator</span></span>
+    </div>
+    <div class="nav-badge">cidr</div>
+  </nav>
+
+  <main>
+
+    <!-- LEFT: Input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">ip / cidr</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body" style="gap:0;padding:0;">
+        <div class="ip-input-wrap">
+          <span class="ip-prefix">IP</span>
+          <input
+            id="cidrInput"
+            type="text"
+            class="tool-input ip-input"
+            placeholder="192.168.1.0/24"
+            spellcheck="false"
+          />
+        </div>
+        <div id="inputError" class="error-msg hidden" style="margin:10px 16px;"></div>
+
+        <div style="padding:16px;flex:1;">
+          <div style="font-size:0.7rem;color:var(--muted);line-height:1.8;">
+            <div>Accepts: <code style="color:var(--accent2)">192.168.1.0/24</code></div>
+            <div>Host:    <code style="color:var(--accent2)">10.0.0.1/32</code></div>
+            <div>Class A: <code style="color:var(--accent2)">10.0.0.0/8</code></div>
+            <div>VLSM:    <code style="color:var(--accent2)">172.16.5.128/25</code></div>
+          </div>
+
+          <div style="margin-top:24px;">
+            <div class="res-label" style="margin-bottom:12px;">quick reference</div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:0.7rem;">
+              <span style="color:var(--accent2)">/24</span><span style="color:var(--muted)">256 IPs · 254 hosts</span>
+              <span style="color:var(--accent2)">/25</span><span style="color:var(--muted)">128 IPs · 126 hosts</span>
+              <span style="color:var(--accent2)">/26</span><span style="color:var(--muted)">64 IPs · 62 hosts</span>
+              <span style="color:var(--accent2)">/27</span><span style="color:var(--muted)">32 IPs · 30 hosts</span>
+              <span style="color:var(--accent2)">/28</span><span style="color:var(--muted)">16 IPs · 14 hosts</span>
+              <span style="color:var(--accent2)">/29</span><span style="color:var(--muted)">8 IPs · 6 hosts</span>
+              <span style="color:var(--accent2)">/30</span><span style="color:var(--muted)">4 IPs · 2 hosts</span>
+              <span style="color:var(--accent2)">/31</span><span style="color:var(--muted)">2 IPs · point-to-point</span>
+              <span style="color:var(--accent2)">/16</span><span style="color:var(--muted)">65 536 IPs · 65 534 hosts</span>
+              <span style="color:var(--accent2)">/8</span><span style="color:var(--muted)">16 777 216 IPs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="status-bar">
+        <span id="statusText">Enter an IP or CIDR address above.</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Results -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">results</span>
+      </div>
+      <div class="panel-body" style="padding:0;overflow:hidden;">
+        <div class="output-area" id="output">
+          <div class="empty-state">
+            <div class="empty-icon" style="font-size:2rem;opacity:0.2">⧸</div>
+            <div>Enter a CIDR address to calculate</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — cidr calculator</span>
+    <span>all calculation in browser · no data sent · no telemetry</span>
+  </footer>
+
+</div>
+<script defer src="js/cidr.js"></script>
+</body>
+</html>
