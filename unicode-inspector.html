@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unicode Inspector — greenwoods.dev</title>
+  <meta name="description" content="Inspect every character in a string — code points, names, categories, zero-width chars, confusables, and bidi overrides." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/unicode-inspector.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>unicode inspector</span></span>
+    </div>
+    <div class="nav-badge">unicode</div>
+  </nav>
+
+  <main>
+
+    <!-- LEFT: Input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">text input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea
+          id="textInput"
+          class="tool-input"
+          placeholder="Paste any text to inspect its Unicode characters — invisible chars, look-alike confusables, bidi overrides will be flagged…"
+          spellcheck="false"
+          oninput="inspect()"
+        ></textarea>
+      </div>
+      <div class="stats-bar" id="stats"></div>
+      <div class="status-bar">
+        <span id="statusText">Paste any text to inspect its characters.</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Table -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">character breakdown</span>
+        <div class="panel-actions">
+          <span style="font-size:0.65rem;color:var(--muted)">⚠ = suspicious</span>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0; overflow:hidden;">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>char</th>
+                <th>code point</th>
+                <th>decimal</th>
+                <th>name</th>
+                <th>category</th>
+                <th>warnings</th>
+              </tr>
+            </thead>
+            <tbody id="charTable">
+              <tr><td colspan="7" class="empty-cell">Paste text above to inspect characters</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — unicode inspector</span>
+    <span>all analysis in browser · no data sent · no telemetry</span>
+  </footer>
+
+</div>
+<script defer src="js/unicode-inspector.js"></script>
+</body>
+</html>
