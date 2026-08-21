@@ -1,0 +1,69 @@
+.hidden { display: none !important; }
+
+.output-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  padding: 14px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.case-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 12px 14px;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.case-card:hover {
+  border-color: var(--accent2);
+  background: rgba(0,184,255,0.04);
+}
+
+.case-card:active { transform: scale(0.98); }
+
+.case-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.case-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--accent);
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.case-value.is-example {
+  color: var(--muted);
+  opacity: 0.5;
+}
+
+.case-copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 3px;
+  padding: 2px 8px;
+  font-size: 0.6rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s, color 0.12s, border-color 0.12s;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.case-card:hover .case-copy { opacity: 1; }
+.case-copy.active { color: var(--accent); border-color: var(--accent); }
