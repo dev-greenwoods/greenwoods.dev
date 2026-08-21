@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSON Diff — greenwoods.dev</title>
+  <meta name="description" content="Semantic JSON diff — compare two JSON objects and see exactly what changed, was added, or was removed at every path." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/json-diff.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>json diff</span></span>
+    </div>
+    <div class="nav-badge">diff</div>
+  </nav>
+
+  <main style="display:block; overflow:hidden;">
+  <div style="display:flex; flex-direction:column; height:100%; overflow:hidden;">
+
+    <!-- Side-by-side JSON inputs -->
+    <div class="input-row">
+      <div class="json-pane">
+        <div class="pane-header">
+          <span class="pane-label">left (original)</span>
+        </div>
+        <textarea id="leftInput" class="json-textarea" placeholder='{"name":"app","version":"1.0"}' spellcheck="false"></textarea>
+        <div id="leftError" class="pane-error hidden"></div>
+      </div>
+      <div class="json-pane">
+        <div class="pane-header">
+          <span class="pane-label">right (modified)</span>
+        </div>
+        <textarea id="rightInput" class="json-textarea" placeholder='{"name":"app","version":"2.0","new":true}' spellcheck="false"></textarea>
+        <div id="rightError" class="pane-error hidden"></div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="diff-toolbar">
+      <div id="summary"></div>
+      <div style="flex:1"></div>
+      <button class="btn-sm" onclick="loadSample()">sample</button>
+      <button class="btn-sm" onclick="clearAll()">clear</button>
+    </div>
+
+    <!-- Results -->
+    <div class="diff-wrap">
+      <div id="diffOutput">
+        <div class="empty-state" style="padding:48px 16px;">
+          <div class="empty-icon" style="opacity:.2;font-family:'JetBrains Mono',monospace;font-size:1.1rem">{}</div>
+          <div>Paste JSON in both panels to compare</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-bar"><span id="statusText">Paste JSON in both panels to compare.</span></div>
+
+  </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — json diff</span>
+    <span>semantic diff · all processing in browser · no data sent</span>
+  </footer>
+
+</div>
+<script defer src="js/json-diff.js"></script>
+</body>
+</html>
