@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Semver Calculator — greenwoods.dev</title>
+  <meta name="description" content="Bump semantic versions, compare two versions, and test whether a version satisfies a range like ^1.2.3 or ~2.0." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/semver.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>semver</span></span>
+    </div>
+    <div class="nav-badge">semver</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: inputs -->
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">semver calculator</span></div>
+      <div class="panel-body" style="gap:0;padding:0;overflow-y:auto;">
+        <div class="semver-sections">
+
+          <!-- Version A + bump -->
+          <div class="sv-section">
+            <div class="sv-label">version</div>
+            <input id="versionA" class="v-input" type="text" placeholder="1.4.2 or v2.0.0-beta.1" spellcheck="false" />
+            <div id="versionError" class="error-msg hidden" style="margin-top:6px;"></div>
+            <div class="pre-row">
+              <span class="pre-label">pre-release tag</span>
+              <input id="preInput" class="v-input" type="text" placeholder="alpha" style="max-width:120px;" spellcheck="false" />
+            </div>
+          </div>
+
+          <!-- Compare -->
+          <div class="sv-section">
+            <div class="sv-label">compare with</div>
+            <input id="versionB" class="v-input" type="text" placeholder="2.0.0" spellcheck="false" />
+          </div>
+
+          <!-- Range tester -->
+          <div class="sv-section">
+            <div class="sv-label">range test</div>
+            <input id="rangeInput" class="v-input" type="text" placeholder="^1.2.3 or ~2.0 or >=1.0.0 <2.0.0" spellcheck="false" style="margin-bottom:8px;" />
+            <input id="testVersion" class="v-input" type="text" placeholder="version to test (e.g. 1.5.0)" spellcheck="false" />
+          </div>
+
+        </div>
+      </div>
+      <div class="status-bar"><span id="statusText"></span></div>
+    </div>
+
+    <!-- RIGHT: results -->
+    <div class="panel">
+      <div class="panel-header"><span class="panel-title">results</span></div>
+      <div class="panel-body" style="gap:0;padding:0;overflow-y:auto;">
+        <div class="semver-sections">
+
+          <div class="sv-section">
+            <div class="sv-label">bump — click to apply</div>
+            <div id="bumpOutput" class="bump-list">
+              <div class="empty-bump">Enter a version on the left</div>
+            </div>
+          </div>
+
+          <div class="sv-section">
+            <div class="sv-label">comparison</div>
+            <div id="compareOutput"><div class="empty-bump">Enter both versions to compare</div></div>
+          </div>
+
+          <div class="sv-section">
+            <div class="sv-label">range result</div>
+            <div id="rangeOutput"><span class="range-hint">Enter a range and a test version</span></div>
+          </div>
+
+          <div class="sv-section" style="opacity:0.7;">
+            <div class="sv-label">range cheat sheet</div>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:0.68rem;">
+              <span style="color:var(--accent2)">^1.2.3</span><span style="color:var(--muted)">≥1.2.3 &lt;2.0.0 (same major)</span>
+              <span style="color:var(--accent2)">~1.2.3</span><span style="color:var(--muted)">≥1.2.3 &lt;1.3.0 (same minor)</span>
+              <span style="color:var(--accent2)">>=1.0 &lt;2</span><span style="color:var(--muted)">explicit range</span>
+              <span style="color:var(--accent2)">1.2.3 - 2.0.0</span><span style="color:var(--muted)">hyphen range (inclusive)</span>
+              <span style="color:var(--accent2)">*</span><span style="color:var(--muted)">any version</span>
+              <span style="color:var(--accent2)">1.0.0 || 2.0.0</span><span style="color:var(--muted)">OR — either range</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — semver calculator</span>
+    <span>all calculation in browser · no data sent · no telemetry</span>
+  </footer>
+</div>
+<script defer src="js/semver.js"></script>
+</body>
+</html>

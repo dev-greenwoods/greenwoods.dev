@@ -1,0 +1,104 @@
+.hidden { display: none !important; }
+
+.semver-sections { display: flex; flex-direction: column; gap: 0; }
+
+.sv-section {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sv-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+/* Version inputs */
+.v-input {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.v-input:focus { border-color: var(--accent2); }
+.v-input::placeholder { color: var(--muted); }
+
+/* Bump rows */
+.bump-list { display: flex; flex-direction: column; gap: 4px; }
+
+.bump-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.12s;
+  border: 1px solid transparent;
+}
+
+.bump-row:hover { background: rgba(0,184,255,0.06); border-color: rgba(0,184,255,0.2); }
+
+.bump-type {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.06);
+  color: var(--muted);
+  min-width: 80px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bump-result {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.76rem;
+  color: var(--accent);
+}
+
+.empty-bump {
+  font-size: 0.72rem;
+  color: var(--muted);
+  padding: 8px 4px;
+}
+
+/* Compare */
+.cmp-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+.cmp-v { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: var(--text); }
+.cmp-op { font-size: 1.4rem; font-weight: 700; }
+.cmp-op.eq { color: var(--muted); }
+.cmp-op.gt { color: var(--accent2); }
+.cmp-op.lt { color: #ffd166; }
+.cmp-diff { font-size: 0.7rem; color: var(--muted); }
+
+/* Range */
+.range-yes     { color: var(--accent); font-size: 0.78rem; }
+.range-no      { color: #ff6b8a; font-size: 0.78rem; }
+.range-invalid { color: #ffd166; font-size: 0.75rem; }
+.range-hint    { color: var(--muted); font-size: 0.72rem; }
+
+/* Pre input row */
+.pre-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.pre-label { font-size: 0.68rem; color: var(--muted); flex-shrink: 0; }
