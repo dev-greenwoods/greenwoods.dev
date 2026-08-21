@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTTP Status Codes — greenwoods.dev</title>
+  <meta name="description" content="Searchable HTTP status code reference — every code from 100 to 511 with plain-English descriptions and curl examples." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/http-status.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>http status</span></span>
+    </div>
+    <div class="nav-badge">http</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: searchable list -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">status codes</span>
+      </div>
+      <div class="panel-body" style="padding:0; gap:0; overflow:hidden;">
+        <div class="search-bar">
+          <input id="searchInput" class="search-input" type="text" placeholder="search by code, name, or keyword…" autocomplete="off" />
+        </div>
+        <div class="filter-row">
+          <button class="cat-btn active" data-cat="all" onclick="setFilter('all')">all</button>
+          <button class="cat-btn" data-cat="1xx" onclick="setFilter('1xx')">1xx</button>
+          <button class="cat-btn" data-cat="2xx" onclick="setFilter('2xx')">2xx</button>
+          <button class="cat-btn" data-cat="3xx" onclick="setFilter('3xx')">3xx</button>
+          <button class="cat-btn" data-cat="4xx" onclick="setFilter('4xx')">4xx</button>
+          <button class="cat-btn" data-cat="5xx" onclick="setFilter('5xx')">5xx</button>
+        </div>
+        <div id="statusList" class="status-list"></div>
+      </div>
+      <div class="status-bar"><span id="statusText">Loading…</span></div>
+    </div>
+
+    <!-- RIGHT: detail -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">detail</span>
+        <div class="panel-actions"><span style="font-size:.65rem;color:var(--muted)">click a code to inspect</span></div>
+      </div>
+      <div class="panel-body" style="padding:0; overflow:hidden;">
+        <div id="detail" class="detail-panel">
+          <div class="empty-state"><div class="empty-icon" style="opacity:.15;font-size:1rem">HTTP</div><div>Click any status code to see details</div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — http status reference</span>
+    <span>63 status codes · RFC 7231 + extensions</span>
+  </footer>
+</div>
+<script defer src="js/http-status.js"></script>
+</body>
+</html>
