@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>.env Diff — greenwoods.dev</title>
+  <meta name="description" content="Compare two .env files side by side — see added, removed, and changed keys without exposing full secret values." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/env-diff.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>.env diff</span></span>
+    </div>
+    <div class="nav-badge">.env</div>
+  </nav>
+
+  <!-- Full-width single panel layout -->
+  <main style="display:block; padding:0; overflow:hidden;">
+  <div class="env-layout">
+
+    <!-- Input row -->
+    <div class="input-row">
+      <div class="env-pane">
+        <div class="env-pane-header">
+          <span class="env-pane-label">left (.env · staging / old)</span>
+        </div>
+        <textarea id="leftInput" class="env-textarea" placeholder="NODE_ENV=staging&#10;PORT=3000&#10;DATABASE_URL=postgres://...&#10;API_KEY=sk-abc123" spellcheck="false"></textarea>
+      </div>
+      <div class="env-pane">
+        <div class="env-pane-header">
+          <span class="env-pane-label">right (.env · production / new)</span>
+        </div>
+        <textarea id="rightInput" class="env-textarea" placeholder="NODE_ENV=production&#10;PORT=8080&#10;DATABASE_URL=postgres://...&#10;API_KEY=sk-xyz789" spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <!-- Options + actions bar -->
+    <div class="options-bar">
+      <label>
+        <input type="checkbox" id="showSame" />
+        show identical keys
+      </label>
+      <button class="btn-sm" id="maskBtn" onclick="toggleMask()">show values</button>
+      <div style="flex:1"></div>
+      <button class="btn-sm" onclick="loadSample()">sample</button>
+      <button class="btn-sm" onclick="clearAll()">clear</button>
+    </div>
+
+    <!-- Summary pills -->
+    <div class="summary-bar" id="summary"></div>
+
+    <!-- Diff table -->
+    <div class="diff-wrap">
+      <div id="diffOutput" style="height:100%;">
+        <div class="empty-state" style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+          <div style="font-size:1rem;opacity:0.2;font-family:'JetBrains Mono',monospace">.env</div>
+          <div style="font-size:0.8rem;color:var(--muted)">Paste .env files above to compare</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="status-bar">
+      <span id="statusText">Paste .env files in both panels to compare.</span>
+    </div>
+
+  </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — .env diff</span>
+    <span>values masked by default · all processing in browser · no data sent</span>
+  </footer>
+
+</div>
+<script defer src="js/env-diff.js"></script>
+</body>
+</html>

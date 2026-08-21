@@ -1,0 +1,179 @@
+.hidden { display: none !important; }
+
+/* Top split layout override — 3 rows: inputs | summary | diff */
+.env-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Input row */
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  height: 200px;
+}
+
+.env-pane {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.env-pane:first-child { border-right: 1px solid var(--border); }
+
+.env-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.env-pane-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.env-textarea {
+  flex: 1;
+  resize: none;
+  background: transparent;
+  border: none;
+  padding: 10px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text);
+  outline: none;
+  line-height: 1.7;
+  overflow-y: auto;
+}
+
+.env-textarea::placeholder { color: var(--muted); }
+
+/* Summary bar */
+.summary-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.sum-pill {
+  font-size: 0.65rem;
+  padding: 2px 9px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.sum-changed { background: rgba(255,209,102,0.12); color: #ffd166; }
+.sum-added   { background: rgba(0,255,159,0.10);   color: var(--accent); }
+.sum-removed { background: rgba(255,77,109,0.12);  color: #ff6b8a; }
+.sum-same    { background: rgba(255,255,255,0.05); color: var(--muted); }
+
+/* Options row */
+.options-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.options-bar label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.options-bar input[type="checkbox"] { accent-color: var(--accent2); }
+
+/* Diff table */
+.diff-wrap {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.diff-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.75rem;
+}
+
+.diff-table thead th {
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 8px 10px;
+  text-align: left;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.diff-table tbody tr {
+  border-bottom: 1px solid rgba(30,30,46,0.5);
+  transition: background 0.1s;
+}
+
+.diff-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+
+.row-changed { background: rgba(255,209,102,0.04); }
+.row-added   { background: rgba(0,255,159,0.03); }
+.row-removed { background: rgba(255,77,109,0.04); }
+.row-same    { opacity: 0.6; }
+
+.diff-table td { padding: 8px 10px; vertical-align: middle; }
+
+.col-key    { width: 35%; }
+.col-val    { width: 27%; }
+.col-status { width: 80px; }
+
+.key-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--text);
+  word-break: break-all;
+}
+
+.val-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.val-old { color: #ff6b8a; }
+.val-new { color: var(--accent); }
+.val-absent { color: var(--border); }
+.val-empty  { color: var(--muted); font-style: italic; font-size: 0.65rem; }
+
+/* Status badges */
+.badge-changed { font-size: 0.6rem; padding: 2px 7px; border-radius: 3px; background: rgba(255,209,102,0.12); color: #ffd166; }
+.badge-added   { font-size: 0.6rem; padding: 2px 7px; border-radius: 3px; background: rgba(0,255,159,0.10); color: var(--accent); }
+.badge-removed { font-size: 0.6rem; padding: 2px 7px; border-radius: 3px; background: rgba(255,77,109,0.12); color: #ff6b8a; }
+.badge-same    { font-size: 0.6rem; padding: 2px 7px; border-radius: 3px; background: rgba(255,255,255,0.05); color: var(--muted); }
+
+.diff-empty {
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--accent);
+  font-size: 0.8rem;
+}
