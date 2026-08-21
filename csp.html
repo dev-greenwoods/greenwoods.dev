@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSP Header Builder — greenwoods.dev</title>
+  <meta name="description" content="Build a Content-Security-Policy header with a guided UI. Toggle directives, pick source keywords, get instant warnings about misconfigurations." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/csp.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>csp builder</span></span>
+    </div>
+    <div class="nav-badge">csp</div>
+  </nav>
+
+  <main>
+
+    <!-- LEFT: Directive controls -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">directives</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="applyTemplate('strict')">strict</button>
+          <button class="btn-sm" onclick="applyTemplate('moderate')">moderate</button>
+          <button class="btn-sm" onclick="applyTemplate('report')">report-only</button>
+        </div>
+      </div>
+      <div class="panel-body scroll">
+        <div id="directives" class="directives-list"></div>
+      </div>
+      <div class="status-bar">
+        <span id="statusText">Enable directives on the left to build your policy.</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">generated header</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="copyBtn" onclick="copyHeader()">copy header</button>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0; overflow:hidden;">
+        <div class="output-section">
+
+          <div class="header-block" id="headerOutput">
+            <div class="empty-state">
+              <div class="empty-icon" style="opacity:.2;font-size:1.4rem;font-family:'Syne',sans-serif;font-weight:800;">CSP</div>
+              <div>Enable directives to build the header</div>
+            </div>
+          </div>
+
+          <div>
+            <div class="header-name">meta tag equivalent</div>
+            <div class="meta-block" id="metaOutput"></div>
+          </div>
+
+          <div class="warnings-block" id="warnings"></div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — csp builder</span>
+    <span>all processing in browser · no data sent · no telemetry</span>
+  </footer>
+
+</div>
+<script defer src="js/csp.js"></script>
+</body>
+</html>
