@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JWT Inspector — greenwoods.dev</title>
+  <meta name="description" content="Decode any JWT — header, payload, all claims, expiry countdown, and known claim labels. No secret required." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/jwt-inspector.css" />
+</head>
+<body>
+<div class="wrapper">
+
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>jwt inspector</span></span>
+    </div>
+    <div class="nav-badge">jwt</div>
+  </nav>
+
+  <main>
+
+    <!-- LEFT: Input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">token input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" onclick="loadSample()">sample</button>
+          <button class="btn-sm" onclick="clearAll()">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea
+          id="tokenInput"
+          class="tool-input"
+          placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.signature"
+          spellcheck="false"
+          oninput="inspect()"
+        ></textarea>
+        <div id="tokenError" class="error-msg hidden"></div>
+      </div>
+      <div class="status-bar"><span id="statusText">Paste a JWT token above to inspect.</span></div>
+    </div>
+
+    <!-- RIGHT: Output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">decoded</span>
+        <div class="panel-actions">
+          <span style="font-size:0.65rem;color:var(--muted)">read-only · no secret needed</span>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0; overflow:hidden;">
+        <div id="output" style="flex:1;overflow-y:auto;">
+          <div class="empty-state">
+            <div class="empty-icon" style="opacity:.2;font-size:0.9rem;font-family:'JetBrains Mono',monospace">JWT</div>
+            <div>Paste a token above to inspect</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — jwt inspector</span>
+    <span>read-only decode · no secret required · no data sent</span>
+  </footer>
+
+</div>
+<script defer src="js/jwt-inspector.js"></script>
+</body>
+</html>
