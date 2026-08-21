@@ -1,0 +1,55 @@
+.hidden { display: none !important; }
+
+/* Options strip */
+.opts-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.opts-row label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.opts-row input[type="checkbox"] { accent-color: var(--accent2); }
+
+.opts-row select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-size: 0.72rem;
+  font-family: 'JetBrains Mono', monospace;
+  outline: none;
+  cursor: pointer;
+}
+
+/* SQL output */
+.sql-pre {
+  margin: 0;
+  padding: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Syntax highlighting */
+.sql-major   { color: var(--accent2); font-weight: 600; }
+.sql-minor   { color: #c792ea; }
+.sql-func    { color: #ffd166; }
+.sql-str     { color: var(--accent); }
+.sql-num     { color: #ff9a5c; }
+.sql-comment { color: var(--muted); font-style: italic; }
+.sql-op      { color: var(--muted); }
