@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Text Diff — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/diff.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>text diff</span></span>
+    </div>
+    <div class="nav-badge">line-by-line · char diff</div>
+  </nav>
+
+  <main class="three-panel">
+    <!-- Panel A -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">original</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="clearA">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="textA" class="tool-input" placeholder="Paste original text here…" style="flex:1;min-height:300px" spellcheck="false"></textarea>
+        <div class="diff-stats" id="statsA"></div>
+      </div>
+    </div>
+
+    <!-- Panel B -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">modified</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="clearB">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="textB" class="tool-input" placeholder="Paste modified text here…" style="flex:1;min-height:300px" spellcheck="false"></textarea>
+        <div class="diff-stats" id="statsB"></div>
+      </div>
+    </div>
+
+    <!-- Panel C: Output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">diff</span>
+        <div class="panel-actions">
+          <div class="view-toggle">
+            <button class="tab active" data-view="unified">unified</button>
+            <button class="tab" data-view="split">split</button>
+          </div>
+          <button class="btn-sm" id="btnCopyDiff">copy</button>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0">
+        <div id="summaryBar" class="summary-bar" style="display:none"></div>
+        <div id="diffOutput" class="diff-output">
+          <div class="empty-state">
+            <div class="empty-icon">⟷</div>
+            <div>Paste text in both panels to see the diff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — text diff</span>
+    <span>Myers diff algorithm · char-level inline diffs · no server</span>
+  </footer>
+</div>
+<script defer src="js/diff.js"></script>
+</body>
+</html>
