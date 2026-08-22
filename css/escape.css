@@ -1,0 +1,104 @@
+.lang-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.lang-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.15s;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+.lang-btn:hover {
+  border-color: var(--dim);
+  color: var(--text);
+}
+
+.lang-btn.active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(0,184,255,0.06);
+}
+
+.stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+  color: var(--muted);
+  padding: 8px 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.stat-delta {
+  font-weight: 700;
+}
+.stat-delta.grow { color: var(--accent3); }
+.stat-delta.shrink { color: var(--accent); }
+.stat-delta.same { color: var(--muted); }
+
+.cheatsheet {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+  font-size: 0.68rem;
+}
+
+.cs-title {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.cs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 5px 14px;
+}
+
+.cs-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-raw {
+  color: var(--accent3);
+  font-weight: 600;
+  min-width: 28px;
+}
+
+.cs-esc {
+  color: var(--accent);
+}
+
+.cs-desc {
+  color: var(--muted);
+  font-size: 0.6rem;
+}
+
+/* Output block highlighted tokens */
+.esc-token {
+  color: var(--accent);
+  background: rgba(0,255,159,0.08);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+@media (max-width: 768px) {
+  .lang-grid { grid-template-columns: repeat(2, 1fr); }
+}

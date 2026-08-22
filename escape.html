@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>String Escape — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/escape.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>string escape</span></span>
+    </div>
+    <div class="nav-badge">escape / unescape</div>
+  </nav>
+
+  <main>
+    <!-- Left: Input + controls -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnClear">clear</button>
+          <button class="btn-sm" id="btnSample">sample</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <!-- Mode -->
+        <div class="field-group">
+          <span class="field-label">mode</span>
+          <div class="row" style="flex-wrap:wrap;gap:6px">
+            <button class="tab active" data-mode="escape">escape</button>
+            <button class="tab" data-mode="unescape">unescape</button>
+          </div>
+        </div>
+
+        <!-- Language -->
+        <div class="field-group">
+          <span class="field-label">target language / format</span>
+          <div class="lang-grid">
+            <button class="lang-btn active" data-lang="js">JavaScript</button>
+            <button class="lang-btn" data-lang="json">JSON</button>
+            <button class="lang-btn" data-lang="python">Python</button>
+            <button class="lang-btn" data-lang="sql">SQL</button>
+            <button class="lang-btn" data-lang="shell">Shell</button>
+            <button class="lang-btn" data-lang="regex">Regex</button>
+            <button class="lang-btn" data-lang="html">HTML</button>
+            <button class="lang-btn" data-lang="xml">XML</button>
+          </div>
+        </div>
+
+        <!-- JS-specific options -->
+        <div class="field-group" id="jsOpts">
+          <span class="field-label">quote style</span>
+          <div class="row">
+            <button class="tab active" data-quote="double">double "…"</button>
+            <button class="tab" data-quote="single">single '…'</button>
+            <button class="tab" data-quote="backtick">template `…`</button>
+          </div>
+        </div>
+
+        <textarea id="inputArea" class="tool-input" placeholder="Paste your string here…" style="flex:1;min-height:220px" spellcheck="false"></textarea>
+
+      </div>
+    </div>
+
+    <!-- Right: Output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title" id="outputLabel">escaped output</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnCopy">copy</button>
+          <button class="btn-sm" id="btnSwap" title="Swap input/output">⇄ swap</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <div id="outputArea" class="output-block" style="flex:1;font-size:0.8rem">
+          <div class="empty-state">
+            <div class="empty-icon">✂</div>
+            <div>Start typing to see escaped output</div>
+          </div>
+        </div>
+
+        <!-- Diff view: show which chars were changed -->
+        <div id="statsBar" class="stats-bar" style="display:none">
+          <span id="statCharsIn"></span>
+          <span>→</span>
+          <span id="statCharsOut"></span>
+          <span id="statDelta" class="stat-delta"></span>
+        </div>
+
+        <!-- Cheatsheet -->
+        <div class="cheatsheet" id="cheatsheet"></div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — string escape</span>
+    <span>JS · JSON · Python · SQL · Shell · Regex · HTML · XML · all client-side</span>
+  </footer>
+</div>
+<script defer src="js/escape.js"></script>
+</body>
+</html>
