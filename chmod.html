@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>chmod Calculator — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/chmod.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>chmod calculator</span></span>
+    </div>
+    <div class="nav-badge">unix permissions</div>
+  </nav>
+
+  <main class="single-panel">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">permission builder</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnReset">reset</button>
+        </div>
+      </div>
+      <div class="panel-body chmod-body">
+
+        <!-- Octal Input Row -->
+        <div class="octal-row">
+          <div class="octal-input-group">
+            <span class="field-label">octal</span>
+            <input id="octalInput" class="tool-input octal-input" type="text" maxlength="4" placeholder="755" spellcheck="false" />
+          </div>
+          <div class="octal-input-group">
+            <span class="field-label">symbolic</span>
+            <input id="symbolicInput" class="tool-input symbolic-input" type="text" maxlength="9" placeholder="rwxr-xr-x" spellcheck="false" />
+          </div>
+          <div class="octal-input-group">
+            <span class="field-label">command</span>
+            <div class="cmd-display" id="cmdDisplay">
+              <span class="cmd-text" id="cmdText">chmod 755 &lt;file&gt;</span>
+              <button class="copy-btn" id="copyCmd">copy</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Permission Grid -->
+        <div class="perm-grid">
+          <div class="perm-header-row">
+            <div class="perm-col-label"></div>
+            <div class="perm-col-label perm-r">Read</div>
+            <div class="perm-col-label perm-w">Write</div>
+            <div class="perm-col-label perm-x">Execute</div>
+            <div class="perm-col-label perm-oct">Octal</div>
+          </div>
+
+          <div class="perm-row" data-who="owner">
+            <div class="perm-who">
+              <span class="who-icon">👤</span>
+              <span class="who-label">Owner</span>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="owner" data-bit="r" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="owner" data-bit="w" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="owner" data-bit="x" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-octal-cell" id="octal-owner">7</div>
+          </div>
+
+          <div class="perm-row" data-who="group">
+            <div class="perm-who">
+              <span class="who-icon">👥</span>
+              <span class="who-label">Group</span>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="group" data-bit="r" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="group" data-bit="w" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="group" data-bit="x" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-octal-cell" id="octal-group">5</div>
+          </div>
+
+          <div class="perm-row" data-who="other">
+            <div class="perm-who">
+              <span class="who-icon">🌍</span>
+              <span class="who-label">Others</span>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="other" data-bit="r" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="other" data-bit="w" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-check">
+              <label class="toggle"><input type="checkbox" data-who="other" data-bit="x" /><span class="slider"></span></label>
+            </div>
+            <div class="perm-octal-cell" id="octal-other">5</div>
+          </div>
+
+          <!-- Special Bits -->
+          <div class="perm-divider"><span>special bits</span></div>
+
+          <div class="perm-row perm-row--special">
+            <div class="perm-who">
+              <span class="who-icon">⚡</span>
+              <span class="who-label">setuid</span>
+            </div>
+            <div class="perm-check perm-check--wide" style="grid-column: span 3">
+              <label class="toggle"><input type="checkbox" id="chkSuid" /><span class="slider"></span></label>
+              <span class="perm-special-desc">Run as file owner (not caller). Common on <code>passwd</code>, <code>sudo</code>.</span>
+            </div>
+            <div class="perm-octal-cell" id="octal-suid">0</div>
+          </div>
+
+          <div class="perm-row perm-row--special">
+            <div class="perm-who">
+              <span class="who-icon">⚡</span>
+              <span class="who-label">setgid</span>
+            </div>
+            <div class="perm-check perm-check--wide" style="grid-column: span 3">
+              <label class="toggle"><input type="checkbox" id="chkSgid" /><span class="slider"></span></label>
+              <span class="perm-special-desc">Run as group owner. New files in dir inherit parent group.</span>
+            </div>
+            <div class="perm-octal-cell" id="octal-sgid">0</div>
+          </div>
+
+          <div class="perm-row perm-row--special">
+            <div class="perm-who">
+              <span class="who-icon">📌</span>
+              <span class="who-label">sticky</span>
+            </div>
+            <div class="perm-check perm-check--wide" style="grid-column: span 3">
+              <label class="toggle"><input type="checkbox" id="chkSticky" /><span class="slider"></span></label>
+              <span class="perm-special-desc">Only file owner can delete in shared dirs (e.g. <code>/tmp</code>).</span>
+            </div>
+            <div class="perm-octal-cell" id="octal-sticky">0</div>
+          </div>
+        </div>
+
+        <!-- Quick presets -->
+        <div class="presets">
+          <span class="field-label" style="margin-right:6px">presets</span>
+          <button class="preset-btn" data-val="644">644 — file</button>
+          <button class="preset-btn" data-val="755">755 — executable</button>
+          <button class="preset-btn" data-val="700">700 — private</button>
+          <button class="preset-btn" data-val="777">777 — open</button>
+          <button class="preset-btn" data-val="600">600 — ssh key</button>
+          <button class="preset-btn" data-val="640">640 — group read</button>
+          <button class="preset-btn" data-val="1777">1777 — /tmp</button>
+        </div>
+
+        <!-- Reference table -->
+        <div class="ref-table">
+          <div class="field-label" style="margin-bottom:10px">bit reference</div>
+          <table class="ref">
+            <thead>
+              <tr><th>Bit</th><th>Octal</th><th>Symbolic</th><th>Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Read</td><td>4</td><td>r</td><td>View file contents / list directory</td></tr>
+              <tr><td>Write</td><td>2</td><td>w</td><td>Modify file / create/delete in directory</td></tr>
+              <tr><td>Execute</td><td>1</td><td>x</td><td>Run as program / enter directory</td></tr>
+              <tr><td>setuid</td><td>4000</td><td>s (owner x)</td><td>Execute as file owner</td></tr>
+              <tr><td>setgid</td><td>2000</td><td>s (group x)</td><td>Execute as group / inherit group</td></tr>
+              <tr><td>sticky</td><td>1000</td><td>t</td><td>Only owner can delete in shared dir</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — chmod calculator</span>
+    <span>client-side · no server · zero telemetry</span>
+  </footer>
+</div>
+<script defer src="js/chmod.js"></script>
+</body>
+</html>
