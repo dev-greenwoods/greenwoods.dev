@@ -11,12 +11,35 @@
 <body>
 <div class="wrapper">
 
+  <!-- Command Palette Overlay -->
+  <div class="cmd-backdrop" id="cmdBackdrop">
+    <div class="cmd-box" id="cmdBox">
+      <div class="cmd-search-row">
+        <span class="cmd-icon">⌘</span>
+        <input id="cmdInput" type="text" placeholder="Search tools…" autocomplete="off" spellcheck="false" />
+        <span class="cmd-shortcut-hint">ESC</span>
+      </div>
+      <div class="cmd-results" id="cmdResults"></div>
+      <div class="cmd-footer">
+        <span class="cmd-hint"><span class="cmd-key">↑</span><span class="cmd-key">↓</span> navigate</span>
+        <span class="cmd-hint"><span class="cmd-key">↵</span> open</span>
+        <span class="cmd-hint"><span class="cmd-key">ESC</span> close</span>
+      </div>
+    </div>
+  </div>
+
   <nav>
     <div class="logo">
       <span class="logo-dot"></span>
       greenwoods.dev
     </div>
-    <div class="nav-tag">30 tools</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="cmd-trigger" id="cmdTrigger" aria-label="Open command palette">
+        <span>Search tools…</span>
+        <span class="trigger-shortcut">⌘K</span>
+      </button>
+      <div class="nav-tag">32 tools</div>
+    </div>
   </nav>
 
   <main class="hero">
@@ -27,7 +50,7 @@
     </h1>
 
     <p class="sub">
-      30 browser-native utilities — no sign-up, no telemetry, no server. Everything runs in your browser.
+      32 browser-native utilities — no sign-up, no telemetry, no server. Everything runs in your browser.
     </p>
 
     <div class="terminal">
@@ -41,11 +64,11 @@
         <div class="line"><span class="prompt">~$</span><span class="cmd">curl -s greenwoods.dev/status | jq .</span></div>
         <div class="line"><span class="out t-brace">{</span></div>
         <div class="line"><span class="out t-row"><span class="t-key">"status"</span><span class="t-colon">:</span>     <span class="t-str">"online"</span><span class="t-comma">,</span></span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"tools"</span><span class="t-colon">:</span>      <span class="t-num">20</span><span class="t-comma">,</span></span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"tools"</span><span class="t-colon">:</span>      <span class="t-num">32</span><span class="t-comma">,</span></span></div>
         <div class="line"><span class="out t-row"><span class="t-key">"categories"</span><span class="t-colon">:</span> <span class="t-num">4</span><span class="t-comma">,</span></span></div>
         <div class="line"><span class="out t-row"><span class="t-key">"auth"</span><span class="t-colon">:</span>       <span class="t-bool">false</span><span class="t-comma">,</span></span></div>
         <div class="line"><span class="out t-row"><span class="t-key">"telemetry"</span><span class="t-colon">:</span>  <span class="t-bool">false</span><span class="t-comma">,</span></span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"latest"</span><span class="t-colon">:</span>     <span class="t-arr">[<span class="t-str">"regex-explainer"</span><span class="t-comma">,</span> <span class="t-str">"json-ts"</span><span class="t-comma">,</span> <span class="t-str">"qr"</span>]</span></span></div>
+        <div class="line"><span class="out t-row"><span class="t-key">"latest"</span><span class="t-colon">:</span>     <span class="t-arr">[<span class="t-str">"chmod"</span><span class="t-comma">,</span> <span class="t-str">"escape"</span><span class="t-comma">,</span> <span class="t-str">"cmd-palette"</span>]</span></span></div>
         <div class="line"><span class="out t-brace">}</span></div>
         <div class="line" style="margin-top:4px"><span class="prompt">~$</span><span class="cmd"><span class="cursor"></span></span></div>
       </div>
@@ -294,6 +317,20 @@
         <div class="tool-desc">Generate QR codes for URLs, WiFi, vCards, and more</div>
       </a>
 
+      <a href="/chmod" class="tool-card tool-card--live">
+        <span class="badge live">live</span>
+        <div class="tool-icon">🔒</div>
+        <div class="tool-name">chmod Calculator</div>
+        <div class="tool-desc">Visual permission builder — octal, symbolic, and chmod command. Parse any existing permission string</div>
+      </a>
+
+      <a href="/escape" class="tool-card tool-card--live">
+        <span class="badge live">live</span>
+        <div class="tool-icon">✂</div>
+        <div class="tool-name">String Escape</div>
+        <div class="tool-desc">Escape/unescape strings for JS, Python, SQL, Shell, Regex, JSON — all in one place</div>
+      </a>
+
     </div>
   </section>
 
@@ -302,9 +339,141 @@
       <span class="logo-dot" style="width:6px;height:6px"></span>
       greenwoods.dev
     </span>
-    <span>30 tools live · more shipping soon · everything runs in your browser</span>
+    <span>32 tools live · ⌘K to search · everything runs in your browser</span>
   </footer>
 
 </div>
+<script>
+(function(){
+  const TOOLS = [
+    { name:'JWT Decoder',       icon:'🔐', href:'/jwt',              cat:'encoding',   desc:'Decode & verify JWT tokens. HS, RS, ES, PS algorithms' },
+    { name:'Base64',            icon:'📦', href:'/base64',           cat:'encoding',   desc:'Encode/decode strings and files to Base64, URL-safe mode' },
+    { name:'URL Encoder',       icon:'🔗', href:'/url',              cat:'encoding',   desc:'Encode/decode URLs and query strings' },
+    { name:'HTML Entities',     icon:'&',  href:'/entities',         cat:'encoding',   desc:'Encode and decode HTML entities, named and numeric' },
+    { name:'Hash Generator',    icon:'#',  href:'/hash',             cat:'encoding',   desc:'MD5, SHA-1, SHA-256, SHA-384, SHA-512 — text or file' },
+    { name:'JSON Formatter',    icon:'{}', href:'/json',             cat:'data',       desc:'Pretty-print, diff, and validate JSON payloads' },
+    { name:'CSV → JSON',        icon:'⊞',  href:'/csv',              cat:'data',       desc:'Convert CSV to JSON with header detection and type coercion' },
+    { name:'YAML ↔ JSON',       icon:'⇄',  href:'/yaml',             cat:'data',       desc:'Convert between YAML and JSON instantly in your browser' },
+    { name:'Semver Calculator', icon:'🔢', href:'/semver',           cat:'data',       desc:'Bump versions, compare semvers, test version ranges' },
+    { name:'HTTP Status Codes', icon:'🌐', href:'/http-status',      cat:'data',       desc:'Searchable reference for all 63 HTTP status codes' },
+    { name:'SQL Formatter',     icon:'🗄', href:'/sql-format',       cat:'data',       desc:'Format messy SQL with indentation and syntax highlighting' },
+    { name:'JWT Inspector',     icon:'🔑', href:'/jwt-inspector',    cat:'data',       desc:'Decode any JWT — header, payload, expiry countdown' },
+    { name:'JSON Diff',         icon:'⟷',  href:'/json-diff',        cat:'data',       desc:'Semantic diff — compare two JSON objects' },
+    { name:'Case Converter',    icon:'Aa', href:'/caseconv',         cat:'data',       desc:'camelCase · PascalCase · snake_case · kebab-case · 8 more' },
+    { name:'.env Diff',         icon:'📋', href:'/env-diff',         cat:'data',       desc:'Compare two .env files — added, removed, changed keys' },
+    { name:'CSP Builder',       icon:'🛡', href:'/csp',              cat:'data',       desc:'Build Content-Security-Policy headers with guided toggles' },
+    { name:'CIDR Calculator',   icon:'🌐', href:'/cidr',             cat:'data',       desc:'Network address, broadcast, usable hosts, subnet mask' },
+    { name:'Unicode Inspector', icon:'🔬', href:'/unicode-inspector',cat:'data',       desc:'Reveal invisible chars, zero-width spaces, bidi overrides' },
+    { name:'Regex Explainer',   icon:'🔍', href:'/regex-explainer',  cat:'data',       desc:'Plain-English breakdown of every regex token' },
+    { name:'JSON → TypeScript', icon:'TS', href:'/json-ts',          cat:'data',       desc:'Generate TypeScript interfaces from any JSON' },
+    { name:'Markdown Preview',  icon:'📄', href:'/markdown',         cat:'data',       desc:'Live Markdown preview with GFM support — tables, tasks, code' },
+    { name:'Lorem Ipsum',       icon:'📝', href:'/lorem',            cat:'data',       desc:'Generate placeholder text by paragraphs, sentences, or words' },
+    { name:'Epoch Converter',   icon:'⏱', href:'/epoch',            cat:'time',       desc:'Unix timestamps ↔ human-readable dates. UTC, ISO, relative' },
+    { name:'Base Converter',    icon:'🔢', href:'/baseconv',         cat:'time',       desc:'Convert between binary, octal, decimal, hex and any base 2-36' },
+    { name:'CRON Parser',       icon:'⏰', href:'/cron',             cat:'time',       desc:'Parse cron expressions to plain English, preview next 10 runs' },
+    { name:'Regex Tester',      icon:'📐', href:'/regex',            cat:'text',       desc:'Live regex matching with highlighted matches and groups' },
+    { name:'UUID Generator',    icon:'🆔', href:'/uuid',             cat:'text',       desc:'Generate v4 and v7 UUIDs in bulk with format options' },
+    { name:'Password Generator',icon:'🔑', href:'/password',         cat:'text',       desc:'Cryptographically secure passwords with entropy meter' },
+    { name:'Color Converter',   icon:'🎨', href:'/color',            cat:'text',       desc:'HEX ↔ RGB ↔ HSL ↔ CMYK with shade palette generation' },
+    { name:'QR Generator',      icon:'▦',  href:'/qr',               cat:'text',       desc:'Generate QR codes for URLs, WiFi, vCards, and more' },
+    { name:'chmod Calculator',  icon:'🔒', href:'/chmod',            cat:'text',       desc:'Visual permission builder — octal, symbolic, chmod command' },
+    { name:'String Escape',     icon:'✂',  href:'/escape',           cat:'text',       desc:'Escape/unescape strings for JS, Python, SQL, Shell, Regex' },
+  ];
+
+  let filteredTools = TOOLS.slice();
+  let focusedIndex = 0;
+
+  const backdrop = document.getElementById('cmdBackdrop');
+  const input    = document.getElementById('cmdInput');
+  const results  = document.getElementById('cmdResults');
+  const trigger  = document.getElementById('cmdTrigger');
+
+  function open(){
+    backdrop.classList.add('open');
+    input.value = '';
+    render(TOOLS);
+    focusedIndex = 0;
+    setTimeout(() => input.focus(), 50);
+  }
+
+  function close(){
+    backdrop.classList.remove('open');
+  }
+
+  function render(tools){
+    filteredTools = tools;
+    focusedIndex = 0;
+    if(!tools.length){
+      results.innerHTML = '<div class="cmd-no-results">No tools match — try a different keyword</div>';
+      return;
+    }
+    results.innerHTML = tools.map((t,i) => `
+      <a class="cmd-item${i===0?' focused':''}" href="${t.href}" data-idx="${i}">
+        <span class="cmd-item-icon">${t.icon}</span>
+        <span class="cmd-item-body">
+          <div class="cmd-item-name">${highlight(t.name, input.value)}</div>
+          <div class="cmd-item-desc">${t.desc}</div>
+        </span>
+        <span class="cmd-item-cat">${t.cat}</span>
+      </a>`).join('');
+  }
+
+  function highlight(str, q){
+    if(!q) return str;
+    const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+    return str.replace(re, '<mark style="background:rgba(0,255,159,0.22);color:var(--accent);border-radius:2px">$1</mark>');
+  }
+
+  function moveFocus(delta){
+    if(!filteredTools.length) return;
+    const items = results.querySelectorAll('.cmd-item');
+    items[focusedIndex]?.classList.remove('focused');
+    focusedIndex = (focusedIndex + delta + filteredTools.length) % filteredTools.length;
+    const el = items[focusedIndex];
+    el?.classList.add('focused');
+    el?.scrollIntoView({ block:'nearest' });
+  }
+
+  function filterTools(q){
+    if(!q.trim()){ render(TOOLS); return; }
+    const lower = q.toLowerCase();
+    const scored = TOOLS.map(t => {
+      const n = t.name.toLowerCase();
+      const d = t.desc.toLowerCase();
+      const c = t.cat.toLowerCase();
+      let score = 0;
+      if(n.startsWith(lower)) score = 100;
+      else if(n.includes(lower)) score = 80;
+      else if(d.includes(lower)) score = 50;
+      else if(c.includes(lower)) score = 30;
+      return { t, score };
+    }).filter(x => x.score > 0).sort((a,b) => b.score - a.score);
+    render(scored.map(x => x.t));
+  }
+
+  trigger?.addEventListener('click', open);
+  backdrop.addEventListener('click', e => { if(e.target === backdrop) close(); });
+
+  input.addEventListener('input', () => filterTools(input.value));
+
+  input.addEventListener('keydown', e => {
+    if(e.key === 'ArrowDown'){ e.preventDefault(); moveFocus(1); }
+    else if(e.key === 'ArrowUp'){ e.preventDefault(); moveFocus(-1); }
+    else if(e.key === 'Enter'){
+      const focused = filteredTools[focusedIndex];
+      if(focused) window.location.href = focused.href;
+    }
+    else if(e.key === 'Escape') close();
+  });
+
+  document.addEventListener('keydown', e => {
+    if((e.metaKey || e.ctrlKey) && e.key === 'k'){
+      e.preventDefault();
+      backdrop.classList.contains('open') ? close() : open();
+    }
+    if(e.key === 'Escape' && backdrop.classList.contains('open')) close();
+  });
+})();
+</script>
 </body>
 </html>
