@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context Planner — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    .ai-badge{color:var(--accent);border-color:rgba(0,255,159,.3);background:rgba(0,255,159,.06);}
+
+    main.three-panel{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:0;
+      flex:1;
+      overflow:hidden;
+    }
+    main.three-panel .panel{border-right:1px solid var(--border);}
+    main.three-panel .panel:last-child{border-right:none;}
+
+    /* Slots */
+    .slots{display:flex;flex-direction:column;gap:8px;overflow-y:auto;flex:1;}
+    .slots::-webkit-scrollbar{width:3px;}
+    .slots::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px;}
+
+    .slot{
+      background:var(--surface);border:1px solid var(--border);border-radius:7px;
+      overflow:hidden;flex-shrink:0;
+    }
+    .slot-hd{
+      display:flex;align-items:center;gap:8px;
+      padding:7px 10px;background:var(--surface2);border-bottom:1px solid var(--border);
+    }
+    .slot-label-input{
+      flex:1;background:transparent;border:none;outline:none;
+      font-family:'JetBrains Mono',monospace;font-size:.67rem;font-weight:500;
+      color:var(--text);
+    }
+    .slot-tokens{
+      font-size:.62rem;color:var(--accent);font-weight:700;white-space:nowrap;
+    }
+    .slot-del{
+      background:transparent;border:1px solid var(--border);color:var(--muted);
+      border-radius:3px;font-size:.62rem;padding:1px 5px;cursor:pointer;transition:.12s;
+    }
+    .slot-del:hover{border-color:var(--accent3);color:var(--accent3);}
+    .slot textarea{
+      width:100%;background:transparent;border:none;outline:none;resize:none;
+      font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--text);
+      line-height:1.6;padding:8px 10px;min-height:80px;max-height:180px;
+    }
+    .slot textarea::placeholder{color:var(--muted);}
+
+    .btn-add-slot{
+      font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:8px;
+      background:transparent;border:1px dashed var(--dim);color:var(--muted);
+      border-radius:6px;cursor:pointer;transition:.12s;width:100%;flex-shrink:0;
+    }
+    .btn-add-slot:hover{border-color:var(--accent);color:var(--accent);}
+
+    /* Total bar */
+    .total-bar{
+      background:var(--surface2);border:1px solid var(--border);border-radius:6px;
+      padding:12px 14px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;
+    }
+    .total-row{display:flex;align-items:baseline;gap:8px;}
+    .total-num{font-size:1.6rem;font-weight:700;color:var(--accent);letter-spacing:-0.02em;}
+    .total-label{font-size:.65rem;color:var(--muted);}
+    .total-breakdown{
+      display:flex;gap:3px;height:8px;border-radius:4px;overflow:hidden;
+    }
+    .breakdown-seg{height:100%;transition:width .3s;border-radius:2px;}
+
+    /* Model fits */
+    .model-fits{display:flex;flex-direction:column;overflow-y:auto;flex:1;}
+    .model-fits::-webkit-scrollbar{width:3px;}
+    .model-fits::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px;}
+
+    .fit-group-label{
+      font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+      padding:9px 14px 5px;background:var(--surface2);border-bottom:1px solid var(--border);
+      position:sticky;top:0;
+    }
+    .fit-row{
+      display:grid;grid-template-columns:1fr 70px 1fr 60px;
+      align-items:center;gap:10px;
+      padding:10px 14px;border-bottom:1px solid var(--border);
+    }
+    .fit-row:last-child{border-bottom:none;}
+    .fit-name{font-size:.71rem;font-weight:500;color:var(--text);}
+    .fit-ctx{font-size:.6rem;color:var(--muted);}
+    .fit-bar-wrap{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+    .fit-bar{height:100%;border-radius:3px;transition:width .3s;}
+    .bar-ok{background:var(--accent);}
+    .bar-warn{background:var(--warn);}
+    .bar-over{background:var(--accent3);}
+    .fit-pct{font-size:.65rem;text-align:right;font-weight:600;}
+    .fit-ok  .fit-pct{color:var(--accent);}
+    .fit-warn.fit-pct{color:var(--warn);}
+    .fit-over .fit-pct{color:var(--accent3);}
+    .fit-icon{font-size:.8rem;}
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>context planner</span></span>
+    </div>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main class="three-panel">
+    <!-- Panel 1: Slots -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">content slots</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnAddSlot">+ add slot</button>
+          <button class="btn-sm" id="btnClearAll">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="slots" id="slotsList"></div>
+        <button class="btn-add-slot" id="btnAddSlot2">+ add content slot</button>
+      </div>
+    </div>
+
+    <!-- Panel 2: Breakdown -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">token breakdown</span>
+      </div>
+      <div class="panel-body">
+        <div class="total-bar">
+          <div class="total-row">
+            <div class="total-num" id="totalTokens">0</div>
+            <div class="total-label">total tokens</div>
+          </div>
+          <div class="total-breakdown" id="totalBreakdown"></div>
+        </div>
+
+        <div id="slotSummary" style="display:flex;flex-direction:column;gap:6px;overflow-y:auto;flex:1">
+          <div style="color:var(--muted);font-size:.68rem;padding:8px 2px">Add content slots to see breakdown</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel 3: Model fits -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">model fit</span>
+        <div class="panel-actions">
+          <span class="panel-hint">which models fit?</span>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0">
+        <div class="model-fits" id="modelFits"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — context planner</span>
+    <span>~4 chars/token approximation · client-side</span>
+  </footer>
+</div>
+<script>
+const MODELS = [
+  {group:'OpenAI',    name:'GPT-4o',          ctx:128_000},
+  {group:'OpenAI',    name:'GPT-4o mini',      ctx:128_000},
+  {group:'OpenAI',    name:'o3 / o4-mini',     ctx:200_000},
+  {group:'Anthropic', name:'Claude Sonnet 4',  ctx:200_000},
+  {group:'Anthropic', name:'Claude Opus 4',    ctx:200_000},
+  {group:'Anthropic', name:'Claude Haiku 4.5', ctx:200_000},
+  {group:'Google',    name:'Gemini 2.5 Pro',   ctx:1_000_000},
+  {group:'Google',    name:'Gemini 2.5 Flash', ctx:1_000_000},
+  {group:'Meta/Open', name:'Llama 3.1 70B',    ctx:128_000},
+  {group:'Meta/Open', name:'Llama 3.1 405B',   ctx:128_000},
+  {group:'Meta/Open', name:'DeepSeek R1',       ctx:64_000},
+  {group:'Meta/Open', name:'Mistral Large',     ctx:128_000},
+];
+
+const SEG_COLORS = ['var(--accent)','var(--accent2)','var(--warn)','var(--accent3)','#c084fc','#fb923c','#34d399','#f472b6'];
+
+let slots = [];
+let nextId = 1;
+
+function approxTokens(text) { return Math.round((text||'').length / 4); }
+
+function fmt(n) {
+  if (n >= 1_000_000) return (n/1_000_000).toFixed(1) + 'M';
+  if (n >= 1_000)     return (n/1_000).toFixed(1)     + 'k';
+  return String(n);
+}
+
+function addSlot(label='', content='') {
+  const id = nextId++;
+  slots.push({ id, label: label || `Slot ${id}`, content });
+  renderSlots();
+  recalculate();
+}
+
+function removeSlot(id) {
+  slots = slots.filter(s => s.id !== id);
+  renderSlots();
+  recalculate();
+}
+
+function updateSlot(id, field, val) {
+  const s = slots.find(s => s.id === id);
+  if (s) s[field] = val;
+  recalculate();
+}
+
+function renderSlots() {
+  const list = document.getElementById('slotsList');
+  list.innerHTML = slots.map((s, i) => `
+    <div class="slot">
+      <div class="slot-hd">
+        <input class="slot-label-input" value="${s.label.replace(/"/g,'&quot;')}"
+          oninput="updateSlot(${s.id},'label',this.value)" placeholder="label…" />
+        <span class="slot-tokens" id="slot-tok-${s.id}">${fmt(approxTokens(s.content))}</span>
+        <button class="slot-del" onclick="removeSlot(${s.id})">✕</button>
+      </div>
+      <textarea
+        oninput="updateSlotContent(${s.id}, this)"
+        placeholder="Paste text, code, or document content here…"
+      >${s.content}</textarea>
+    </div>`).join('');
+}
+
+function updateSlotContent(id, el) {
+  updateSlot(id, 'content', el.value);
+  const tokEl = document.getElementById('slot-tok-' + id);
+  if (tokEl) tokEl.textContent = fmt(approxTokens(el.value));
+}
+
+function recalculate() {
+  const total = slots.reduce((sum, s) => sum + approxTokens(s.content), 0);
+  document.getElementById('totalTokens').textContent = total.toLocaleString();
+
+  // Breakdown bar
+  const breakdownEl = document.getElementById('totalBreakdown');
+  if (!total) { breakdownEl.innerHTML=''; }
+  else {
+    breakdownEl.innerHTML = slots.map((s, i) => {
+      const pct = (approxTokens(s.content) / total) * 100;
+      return `<div class="breakdown-seg" title="${s.label}: ${fmt(approxTokens(s.content))}"
+        style="width:${pct}%;background:${SEG_COLORS[i % SEG_COLORS.length]};min-width:${pct>0?2:0}px"></div>`;
+    }).join('');
+  }
+
+  // Slot summary
+  const summaryEl = document.getElementById('slotSummary');
+  if (!slots.length) {
+    summaryEl.innerHTML = '<div style="color:var(--muted);font-size:.68rem;padding:8px 2px">Add content slots to see breakdown</div>';
+  } else {
+    summaryEl.innerHTML = `
+      <div style="font-size:.57rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:4px 0">Per slot</div>
+      ${slots.map((s, i) => {
+        const tok = approxTokens(s.content);
+        const pct = total ? (tok/total*100).toFixed(1) : '0';
+        return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)">
+          <div style="width:8px;height:8px;border-radius:2px;background:${SEG_COLORS[i%SEG_COLORS.length]};flex-shrink:0"></div>
+          <div style="flex:1;font-size:.68rem;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${s.label}</div>
+          <div style="font-size:.68rem;color:var(--accent);font-weight:600;flex-shrink:0">${fmt(tok)}</div>
+          <div style="font-size:.6rem;color:var(--muted);flex-shrink:0;min-width:36px;text-align:right">${pct}%</div>
+        </div>`;
+      }).join('')}`;
+  }
+
+  // Model fits
+  const fitsEl = document.getElementById('modelFits');
+  let lastGroup = '';
+  let html = '';
+  for (const m of MODELS) {
+    if (m.group !== lastGroup) {
+      html += `<div class="fit-group-label">${m.group}</div>`;
+      lastGroup = m.group;
+    }
+    const pct = total ? (total / m.ctx) * 100 : 0;
+    const over = total > m.ctx;
+    const warnLevel = pct > 80 ? 'over' : pct > 60 ? 'warn' : 'ok';
+    const barCls = over ? 'bar-over' : pct > 80 ? 'bar-warn' : 'bar-ok';
+    const icon = over ? '✗' : pct > 80 ? '⚠' : '✓';
+    const iconColor = over ? 'var(--accent3)' : pct > 80 ? 'var(--warn)' : 'var(--accent)';
+    html += `
+      <div class="fit-row">
+        <div>
+          <div class="fit-name">${m.name}</div>
+          <div class="fit-ctx">${fmt(m.ctx)} ctx</div>
+        </div>
+        <div style="color:${iconColor};font-size:.9rem;font-weight:700;text-align:center">${total ? icon : '—'}</div>
+        <div class="fit-bar-wrap">
+          <div class="fit-bar ${barCls}" style="width:${total ? Math.min(pct,100) : 0}%"></div>
+        </div>
+        <div style="font-size:.65rem;font-weight:600;text-align:right;color:${iconColor}">
+          ${total ? (over ? 'exceeds' : pct.toFixed(1)+'%') : '—'}
+        </div>
+      </div>`;
+  }
+  fitsEl.innerHTML = html;
+}
+
+// Wire up buttons
+document.getElementById('btnAddSlot').addEventListener('click', () => addSlot());
+document.getElementById('btnAddSlot2').addEventListener('click', () => addSlot());
+document.getElementById('btnClearAll').addEventListener('click', () => {
+  slots = [];
+  renderSlots();
+  recalculate();
+});
+
+// Default slots
+addSlot('System prompt', 'You are an expert software engineer…');
+addSlot('Codebase context', '');
+addSlot('User message', '');
+</script>
+</body>
+</html>
