@@ -3,10 +3,12 @@
 :root {
   --bg: #0a0a0f;
   --surface: #11111a;
+  --surface2: #16161f;
   --border: #1e1e2e;
   --accent: #00ff9f;
   --accent2: #00b8ff;
   --accent3: #ff4d6d;
+  --warn: #ffd166;
   --text: #e0e0f0;
   --muted: #555577;
   --dim: #2a2a3e;
@@ -58,7 +60,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 12px 28px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -343,7 +345,7 @@ a.tool-card { text-decoration: none; color: inherit; }
 
 footer {
   border-top: 1px solid var(--border);
-  padding: 20px 40px;
+  padding: 10px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -359,10 +361,12 @@ footer span { display: flex; align-items: center; gap: 6px; }
 }
 
 @media (max-width: 600px) {
-  nav { padding: 16px 20px; }
-  .hero { padding: 60px 20px 40px; }
-  .tools-section { padding: 0 20px 60px; }
-  footer { flex-direction: column; gap: 8px; text-align: center; }
+  nav { padding: 10px 16px; }
+  .cmd-trigger { min-width: 0; }
+  .cmd-trigger-count { display: none; }
+  .hero { padding: 40px 20px 30px; }
+  .tools-section { padding: 0 20px 40px; }
+  footer { flex-direction: column; gap: 6px; text-align: center; padding: 10px 16px; }
 }
 
 /* ─── Command Palette ─────────────────────────────────────────── */
@@ -525,23 +529,41 @@ footer span { display: flex; align-items: center; gap: 6px; }
 .cmd-trigger {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  padding: 5px 12px;
+  font-size: 0.68rem;
+  padding: 6px 14px;
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--muted);
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.15s;
+  transition: border-color 0.15s, color 0.15s;
+  min-width: 230px;
 }
 .cmd-trigger:hover { border-color: var(--dim); color: var(--text); }
-.cmd-trigger .trigger-shortcut {
+
+.cmd-trigger-icon { color: var(--muted); flex-shrink: 0; }
+.cmd-trigger:hover .cmd-trigger-icon { color: var(--text); }
+
+.cmd-trigger-text { flex: 1; text-align: left; }
+
+.cmd-trigger-kbd { display: flex; gap: 3px; }
+
+.trigger-shortcut {
   font-size: 0.55rem;
   background: var(--surface2);
   border: 1px solid var(--dim);
   border-radius: 3px;
-  padding: 1px 4px;
+  padding: 1px 5px;
   color: var(--muted);
+}
+
+.cmd-trigger-count {
+  font-size: 0.6rem;
+  color: var(--accent);
+  opacity: 0.65;
+  border-left: 1px solid var(--border);
+  padding-left: 10px;
+  white-space: nowrap;
 }
