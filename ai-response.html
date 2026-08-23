@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Response Inspector — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    .ai-badge { color:var(--accent); border-color:rgba(0,255,159,.3); background:rgba(0,255,159,.06); }
+
+    .provider-tabs { display:flex; gap:4px; margin-bottom:0; }
+    .ptab {
+      font-family:'JetBrains Mono',monospace; font-size:.65rem;
+      padding:4px 12px; background:transparent; border:1px solid var(--border);
+      color:var(--muted); border-radius:4px; cursor:pointer; transition:.12s;
+    }
+    .ptab.active { color:var(--accent); border-color:var(--accent); background:rgba(0,255,159,.06); }
+
+    /* Inspector output */
+    .inspector {
+      flex:1; overflow-y:auto; display:flex; flex-direction:column; gap:12px;
+    }
+    .inspector::-webkit-scrollbar { width:3px; }
+    .inspector::-webkit-scrollbar-thumb { background:var(--dim); border-radius:2px; }
+
+    .insp-section {
+      background:var(--surface); border:1px solid var(--border); border-radius:8px;
+      overflow:hidden;
+    }
+    .insp-section-hd {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:8px 14px; background:var(--surface2); border-bottom:1px solid var(--border);
+      font-size:.6rem; letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
+    }
+    .insp-badge {
+      font-size:.55rem; padding:1px 7px; border-radius:10px; border:1px solid;
+    }
+    .badge-text    { color:var(--accent2); border-color:rgba(0,184,255,.3); background:rgba(0,184,255,.08); }
+    .badge-tool    { color:var(--warn);    border-color:rgba(255,209,102,.3); background:rgba(255,209,102,.08); }
+    .badge-result  { color:var(--accent);  border-color:rgba(0,255,159,.3); background:rgba(0,255,159,.08); }
+    .badge-error   { color:var(--accent3); border-color:rgba(255,77,109,.3); background:rgba(255,77,109,.08); }
+
+    .insp-body { padding:12px 14px; font-size:.74rem; line-height:1.7; color:var(--text); }
+    .insp-body pre { font-family:'JetBrains Mono',monospace; white-space:pre-wrap; word-break:break-all; }
+
+    .meta-grid {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:8px;
+      padding:12px 14px;
+    }
+    .meta-item { display:flex; flex-direction:column; gap:3px; }
+    .meta-key { font-size:.57rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+    .meta-val { font-size:.78rem; font-weight:600; color:var(--text); }
+    .meta-val.accent  { color:var(--accent); }
+    .meta-val.accent2 { color:var(--accent2); }
+    .meta-val.warn    { color:var(--warn); }
+    .meta-val.red     { color:var(--accent3); }
+
+    .usage-row {
+      display:flex; gap:24px; padding:12px 14px; flex-wrap:wrap;
+    }
+    .usage-item { display:flex; flex-direction:column; gap:4px; flex:1; min-width:80px; }
+    .usage-label { font-size:.57rem; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+    .usage-val { font-size:1.1rem; font-weight:700; color:var(--accent); }
+    .usage-sub { font-size:.6rem; color:var(--muted); }
+
+    .cost-estimate {
+      display:flex; align-items:center; gap:10px;
+      padding:8px 14px; background:rgba(0,255,159,.04);
+      border-top:1px solid var(--border); font-size:.7rem;
+    }
+    .cost-label { color:var(--muted); }
+    .cost-val { color:var(--accent); font-weight:700; font-size:.85rem; }
+
+    .empty-inspector {
+      flex:1; display:flex; flex-direction:column; align-items:center;
+      justify-content:center; color:var(--muted); gap:8px;
+    }
+    .empty-inspector .ei-icon { font-size:2rem; }
+    .empty-inspector .ei-text { font-size:.73rem; }
+
+    .insp-error {
+      padding:14px; color:var(--accent3); font-size:.73rem; line-height:1.6;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>AI response inspector</span></span>
+    </div>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">raw API response (JSON)</span>
+        <div class="panel-actions">
+          <div class="provider-tabs">
+            <button class="ptab active" data-provider="anthropic">Anthropic</button>
+            <button class="ptab" data-provider="openai">OpenAI</button>
+          </div>
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="jsonInput" class="tool-input" style="flex:1;min-height:220px;font-size:.72rem" placeholder='Paste your API response JSON here…' spellcheck="false"></textarea>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">inspection</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnRaw" style="display:none">raw JSON</button>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0">
+        <div id="inspector" class="inspector" style="padding:12px">
+          <div class="empty-inspector">
+            <div class="ei-icon">🔬</div>
+            <div class="ei-text">Paste an API response to inspect</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — AI response inspector</span>
+    <span>OpenAI &amp; Anthropic formats · client-side · nothing stored</span>
+  </footer>
+</div>
+<script>
+// ── Pricing (per 1M tokens) ────────────────────────────────────────
+const PRICES = {
+  // Anthropic
+  'claude-opus-4':           { in:15,   out:75  },
+  'claude-opus-4-5':         { in:15,   out:75  },
+  'claude-sonnet-4':         { in:3,    out:15  },
+  'claude-sonnet-4-6':       { in:3,    out:15  },
+  'claude-haiku-4-5':        { in:0.80, out:4   },
+  'claude-3-5-sonnet':       { in:3,    out:15  },
+  'claude-3-opus':           { in:15,   out:75  },
+  'claude-3-haiku':          { in:0.25, out:1.25},
+  // OpenAI
+  'gpt-4o':                  { in:5,    out:20  },
+  'gpt-4o-mini':             { in:0.15, out:0.60},
+  'o1':                      { in:15,   out:60  },
+  'o3':                      { in:10,   out:40  },
+  'o3-mini':                 { in:1.10, out:4.40},
+  'gpt-4-turbo':             { in:10,   out:30  },
+};
+
+function getCost(model, inTok, outTok) {
+  if (!model) return null;
+  const key = Object.keys(PRICES).find(k => model.toLowerCase().includes(k));
+  if (!key) return null;
+  const p = PRICES[key];
+  return (inTok / 1e6) * p.in + (outTok / 1e6) * p.out;
+}
+
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function fmtUSD(n) {
+  if (n < 0.0001) return '<$0.0001';
+  if (n < 0.01)   return '$' + n.toFixed(4);
+  return '$' + n.toFixed(4);
+}
+
+// ── Samples ────────────────────────────────────────────────────────
+const SAMPLES = {
+  anthropic: JSON.stringify({
+    id: 'msg_01XFDUDYJgAACzvnptvVoYEL',
+    type: 'message', role: 'assistant',
+    model: 'claude-sonnet-4-6',
+    content: [
+      { type: 'text', text: 'Here\'s the refactored function:\n\n```typescript\nexport async function fetchUser(id: string): Promise<User> {\n  const res = await fetch(`/api/users/${id}`);\n  if (!res.ok) throw new Error(`HTTP ${res.status}`);\n  return res.json();\n}\n```\n\nKey changes: added error handling, typed return value, used template literals.' },
+      { type: 'tool_use', id: 'toolu_01A09q90qw90lq917835lq9', name: 'search_codebase', input: { query: 'fetchUser implementation', path: 'src/api' } }
+    ],
+    stop_reason: 'tool_use', stop_sequence: null,
+    usage: { input_tokens: 847, output_tokens: 312, cache_creation_input_tokens: 0, cache_read_input_tokens: 0 }
+  }, null, 2),
+
+  openai: JSON.stringify({
+    id: 'chatcmpl-9vAr6ABCD1234',
+    object: 'chat.completion', created: 1724000000,
+    model: 'gpt-4o-2024-08-06',
+    choices: [{
+      index: 0,
+      message: {
+        role: 'assistant',
+        content: 'Here\'s the optimised SQL query:\n\n```sql\nSELECT u.id, u.name, COUNT(o.id) as order_count\nFROM users u\nLEFT JOIN orders o ON u.id = o.user_id\nWHERE u.created_at > NOW() - INTERVAL \'30 days\'\nGROUP BY u.id, u.name\nHAVING COUNT(o.id) > 5\nORDER BY order_count DESC;\n```',
+        tool_calls: [{ id: 'call_abc123', type: 'function', function: { name: 'execute_query', arguments: '{"query":"SELECT COUNT(*) FROM users","timeout":30}' } }]
+      },
+      finish_reason: 'tool_calls',
+      logprobs: null
+    }],
+    usage: { prompt_tokens: 523, completion_tokens: 178, total_tokens: 701 },
+    system_fingerprint: 'fp_abc123'
+  }, null, 2)
+};
+
+// ── Inspector renderers ────────────────────────────────────────────
+function stopReasonBadge(reason) {
+  const map = { end_turn:'accent', stop:'accent', tool_use:'warn', tool_calls:'warn', length:'red', max_tokens:'red', content_filter:'red' };
+  const cls = map[reason] || '';
+  return `<span class="meta-val ${cls}">${esc(reason || '—')}</span>`;
+}
+
+function renderAnthropic(data) {
+  let html = '';
+
+  // Meta strip
+  const usage = data.usage || {};
+  const inTok  = usage.input_tokens || 0;
+  const outTok = usage.output_tokens || 0;
+  const cost = getCost(data.model, inTok, outTok);
+
+  html += `<div class="insp-section">
+    <div class="insp-section-hd"><span>metadata</span></div>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="meta-key">model</div><div class="meta-val accent2">${esc(data.model||'—')}</div></div>
+      <div class="meta-item"><div class="meta-key">stop reason</div>${stopReasonBadge(data.stop_reason)}</div>
+      <div class="meta-item"><div class="meta-key">message ID</div><div class="meta-val" style="font-size:.62rem">${esc(data.id||'—')}</div></div>
+      <div class="meta-item"><div class="meta-key">role</div><div class="meta-val">${esc(data.role||'—')}</div></div>
+    </div>
+  </div>`;
+
+  // Usage
+  const cacheCreate = usage.cache_creation_input_tokens || 0;
+  const cacheRead   = usage.cache_read_input_tokens     || 0;
+  html += `<div class="insp-section">
+    <div class="insp-section-hd"><span>token usage</span></div>
+    <div class="usage-row">
+      <div class="usage-item"><div class="usage-label">input</div><div class="usage-val">${inTok.toLocaleString()}</div></div>
+      <div class="usage-item"><div class="usage-label">output</div><div class="usage-val accent2" style="color:var(--accent2)">${outTok.toLocaleString()}</div></div>
+      <div class="usage-item"><div class="usage-label">total</div><div class="usage-val">${(inTok+outTok).toLocaleString()}</div></div>
+      ${cacheCreate ? `<div class="usage-item"><div class="usage-label">cache write</div><div class="usage-val warn" style="color:var(--warn)">${cacheCreate.toLocaleString()}</div></div>` : ''}
+      ${cacheRead   ? `<div class="usage-item"><div class="usage-label">cache read</div><div class="usage-val" style="color:var(--accent)">${cacheRead.toLocaleString()}</div></div>` : ''}
+    </div>
+    ${cost !== null ? `<div class="cost-estimate"><span class="cost-label">estimated cost</span><span class="cost-val">${fmtUSD(cost)}</span><span class="cost-label">(verify at console.anthropic.com)</span></div>` : ''}
+  </div>`;
+
+  // Content blocks
+  const blocks = data.content || [];
+  for (const b of blocks) {
+    if (b.type === 'text') {
+      html += `<div class="insp-section">
+        <div class="insp-section-hd"><span>content block</span><span class="insp-badge badge-text">text</span></div>
+        <div class="insp-body"><pre>${esc(b.text)}</pre></div>
+      </div>`;
+    } else if (b.type === 'tool_use') {
+      html += `<div class="insp-section">
+        <div class="insp-section-hd"><span>${esc(b.name)}</span><span class="insp-badge badge-tool">tool_use</span></div>
+        <div class="insp-body">
+          <div style="font-size:.6rem;color:var(--muted);margin-bottom:6px">ID: ${esc(b.id)}</div>
+          <pre>${esc(JSON.stringify(b.input, null, 2))}</pre>
+        </div>
+      </div>`;
+    } else {
+      html += `<div class="insp-section">
+        <div class="insp-section-hd"><span>content block</span><span class="insp-badge badge-result">${esc(b.type)}</span></div>
+        <div class="insp-body"><pre>${esc(JSON.stringify(b, null, 2))}</pre></div>
+      </div>`;
+    }
+  }
+  return html;
+}
+
+function renderOpenAI(data) {
+  let html = '';
+  const usage  = data.usage || {};
+  const inTok  = usage.prompt_tokens     || 0;
+  const outTok = usage.completion_tokens || 0;
+  const cost   = getCost(data.model, inTok, outTok);
+  const choice = (data.choices || [])[0] || {};
+  const msg    = choice.message || {};
+
+  html += `<div class="insp-section">
+    <div class="insp-section-hd"><span>metadata</span></div>
+    <div class="meta-grid">
+      <div class="meta-item"><div class="meta-key">model</div><div class="meta-val accent2">${esc(data.model||'—')}</div></div>
+      <div class="meta-item"><div class="meta-key">finish reason</div>${stopReasonBadge(choice.finish_reason)}</div>
+      <div class="meta-item"><div class="meta-key">ID</div><div class="meta-val" style="font-size:.62rem">${esc(data.id||'—')}</div></div>
+      <div class="meta-item"><div class="meta-key">created</div><div class="meta-val">${data.created ? new Date(data.created*1000).toISOString() : '—'}</div></div>
+    </div>
+  </div>`;
+
+  html += `<div class="insp-section">
+    <div class="insp-section-hd"><span>token usage</span></div>
+    <div class="usage-row">
+      <div class="usage-item"><div class="usage-label">prompt</div><div class="usage-val">${inTok.toLocaleString()}</div></div>
+      <div class="usage-item"><div class="usage-label">completion</div><div class="usage-val" style="color:var(--accent2)">${outTok.toLocaleString()}</div></div>
+      <div class="usage-item"><div class="usage-label">total</div><div class="usage-val">${(usage.total_tokens||0).toLocaleString()}</div></div>
+    </div>
+    ${cost !== null ? `<div class="cost-estimate"><span class="cost-label">estimated cost</span><span class="cost-val">${fmtUSD(cost)}</span><span class="cost-label">(verify at platform.openai.com)</span></div>` : ''}
+  </div>`;
+
+  if (msg.content) {
+    html += `<div class="insp-section">
+      <div class="insp-section-hd"><span>message content</span><span class="insp-badge badge-text">text</span></div>
+      <div class="insp-body"><pre>${esc(msg.content)}</pre></div>
+    </div>`;
+  }
+
+  for (const tc of (msg.tool_calls || [])) {
+    let args = tc.function?.arguments || '';
+    try { args = JSON.stringify(JSON.parse(args), null, 2); } catch {}
+    html += `<div class="insp-section">
+      <div class="insp-section-hd"><span>${esc(tc.function?.name||'tool_call')}</span><span class="insp-badge badge-tool">tool_call</span></div>
+      <div class="insp-body">
+        <div style="font-size:.6rem;color:var(--muted);margin-bottom:6px">ID: ${esc(tc.id)}</div>
+        <pre>${esc(args)}</pre>
+      </div>
+    </div>`;
+  }
+  return html;
+}
+
+// ── Main logic ─────────────────────────────────────────────────────
+let provider = 'anthropic';
+const inEl    = document.getElementById('jsonInput');
+const inspEl  = document.getElementById('inspector');
+
+function inspect() {
+  const raw = inEl.value.trim();
+  if (!raw) {
+    inspEl.innerHTML = `<div class="empty-inspector"><div class="ei-icon">🔬</div><div class="ei-text">Paste an API response to inspect</div></div>`;
+    return;
+  }
+  let data;
+  try { data = JSON.parse(raw); }
+  catch(e) {
+    inspEl.innerHTML = `<div class="insp-section"><div class="insp-error">JSON parse error: ${esc(e.message)}</div></div>`;
+    return;
+  }
+
+  try {
+    const html = provider === 'anthropic' ? renderAnthropic(data) : renderOpenAI(data);
+    inspEl.innerHTML = html || `<div class="insp-section"><div class="insp-body">No recognised content in response.</div></div>`;
+  } catch(e) {
+    inspEl.innerHTML = `<div class="insp-section"><div class="insp-error">Render error: ${esc(e.message)}</div></div>`;
+  }
+}
+
+inEl.addEventListener('input', inspect);
+
+document.querySelectorAll('.ptab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    provider = btn.dataset.provider;
+    document.querySelectorAll('.ptab').forEach(b => b.classList.toggle('active', b === btn));
+    inspect();
+  });
+});
+
+document.getElementById('btnSample').addEventListener('click', () => {
+  inEl.value = SAMPLES[provider];
+  inspect();
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  inEl.value = '';
+  inspect();
+});
+</script>
+</body>
+</html>
