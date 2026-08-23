@@ -11,11 +11,11 @@
 <body>
 <div class="wrapper">
 
-  <!-- Command Palette Overlay -->
+  <!-- Command Palette -->
   <div class="cmd-backdrop" id="cmdBackdrop">
-    <div class="cmd-box" id="cmdBox">
+    <div class="cmd-box">
       <div class="cmd-search-row">
-        <span class="cmd-icon">⌘</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="cmd-icon"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <input id="cmdInput" type="text" placeholder="Search tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
@@ -28,319 +28,106 @@
     </div>
   </div>
 
+  <!-- Nav -->
   <nav>
     <div class="logo">
       <span class="logo-dot"></span>
       greenwoods.dev
     </div>
     <button class="cmd-trigger" id="cmdTrigger" aria-label="Open command palette">
-      <svg class="cmd-trigger-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="cmd-trigger-text">Search tools…</span>
-      <span class="cmd-trigger-kbd">
-        <span class="trigger-shortcut">⌘K</span>
-      </span>
+      <span class="trigger-shortcut">⌘K</span>
       <span class="cmd-trigger-count">32 tools</span>
     </button>
   </nav>
 
-  <main class="hero">
-    <p class="eyebrow">// your one-stop dev toolkit</p>
+  <!-- App body -->
+  <div class="app-body">
 
-    <h1 class="headline">
-      Every dev tool you keep googling,<br>in <em>one place</em>
-    </h1>
-
-    <p class="sub">
-      32 browser-native utilities — no sign-up, no telemetry, no server. Everything runs in your browser.
-    </p>
-
-    <div class="terminal">
-      <div class="term-bar">
-        <span class="dot r"></span>
-        <span class="dot y"></span>
-        <span class="dot g"></span>
-        <span class="term-title">terminal — zsh</span>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-filters">
+        <button class="filter-btn active" data-cat="all">All <span class="filter-count">32</span></button>
+        <button class="filter-btn" data-cat="encoding">Encoding <span class="filter-count">5</span></button>
+        <button class="filter-btn" data-cat="data">Data <span class="filter-count">17</span></button>
+        <button class="filter-btn" data-cat="time">Time <span class="filter-count">3</span></button>
+        <button class="filter-btn" data-cat="text">Text <span class="filter-count">7</span></button>
       </div>
-      <div class="term-body">
-        <div class="line"><span class="prompt">~$</span><span class="cmd">curl -s greenwoods.dev/status | jq .</span></div>
-        <div class="line"><span class="out t-brace">{</span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"status"</span><span class="t-colon">:</span>     <span class="t-str">"online"</span><span class="t-comma">,</span></span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"tools"</span><span class="t-colon">:</span>      <span class="t-num">32</span><span class="t-comma">,</span></span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"categories"</span><span class="t-colon">:</span> <span class="t-num">4</span><span class="t-comma">,</span></span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"auth"</span><span class="t-colon">:</span>       <span class="t-bool">false</span><span class="t-comma">,</span></span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"telemetry"</span><span class="t-colon">:</span>  <span class="t-bool">false</span><span class="t-comma">,</span></span></div>
-        <div class="line"><span class="out t-row"><span class="t-key">"latest"</span><span class="t-colon">:</span>     <span class="t-arr">[<span class="t-str">"chmod"</span><span class="t-comma">,</span> <span class="t-str">"escape"</span><span class="t-comma">,</span> <span class="t-str">"cmd-palette"</span>]</span></span></div>
-        <div class="line"><span class="out t-brace">}</span></div>
-        <div class="line" style="margin-top:4px"><span class="prompt">~$</span><span class="cmd"><span class="cursor"></span></span></div>
+
+      <div class="sidebar-meta">
+        <div class="meta-row">
+          <span class="meta-dot" style="background:var(--accent)"></span>
+          <span>No auth required</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-dot" style="background:var(--accent2)"></span>
+          <span>Zero telemetry</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-dot" style="background:var(--accent3)"></span>
+          <span>Runs in browser</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-dot" style="background:var(--warn)"></span>
+          <span>Open source</span>
+        </div>
       </div>
-    </div>
 
-    <div class="chips">
-      <div class="chip"><span class="chip-dot" style="background:#28c840"></span>No sign-up needed</div>
-      <div class="chip"><span class="chip-dot" style="background:#00b8ff"></span>Browser-native</div>
-      <div class="chip"><span class="chip-dot" style="background:#ff4d6d"></span>Open source</div>
-      <div class="chip"><span class="chip-dot" style="background:#ffd166"></span>Zero telemetry</div>
-    </div>
-  </main>
+      <div class="sidebar-status">
+        <span class="status-dot"></span>
+        <span>32 tools live</span>
+      </div>
+    </aside>
 
-  <section class="tools-section">
-    <p class="section-label">encoding &amp; data</p>
-    <div class="tools-grid">
+    <!-- Tool grid -->
+    <main class="grid-area">
+      <div class="tools-grid" id="toolsGrid">
 
-      <a href="/jwt" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔐</div>
-        <div class="tool-name">JWT Decoder</div>
-        <div class="tool-desc">Decode &amp; verify JWT tokens. Supports HS, RS, ES, PS algorithms</div>
-      </a>
+        <a href="/jwt"              class="tool-card" data-cat="encoding"><span class="tc-icon">🔐</span><span class="tc-name">JWT Decoder</span><span class="tc-desc">Decode &amp; verify JWT tokens, HS/RS/ES/PS algorithms</span></a>
+        <a href="/base64"           class="tool-card" data-cat="encoding"><span class="tc-icon">📦</span><span class="tc-name">Base64</span><span class="tc-desc">Encode/decode strings and files, URL-safe mode</span></a>
+        <a href="/url"              class="tool-card" data-cat="encoding"><span class="tc-icon">🔗</span><span class="tc-name">URL Encoder</span><span class="tc-desc">Encode/decode URLs and query strings</span></a>
+        <a href="/entities"         class="tool-card" data-cat="encoding"><span class="tc-icon tc-text">&amp;</span><span class="tc-name">HTML Entities</span><span class="tc-desc">Encode and decode HTML entities, named and numeric</span></a>
+        <a href="/hash"             class="tool-card" data-cat="encoding"><span class="tc-icon tc-text">#</span><span class="tc-name">Hash Generator</span><span class="tc-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512 — text or file</span></a>
 
-      <a href="/base64" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">📦</div>
-        <div class="tool-name">Base64</div>
-        <div class="tool-desc">Encode/decode strings and files to Base64, with URL-safe mode</div>
-      </a>
+        <a href="/json"             class="tool-card" data-cat="data"><span class="tc-icon tc-text">{}</span><span class="tc-name">JSON Formatter</span><span class="tc-desc">Pretty-print, diff, and validate JSON payloads</span></a>
+        <a href="/csv"              class="tool-card" data-cat="data"><span class="tc-icon">⊞</span><span class="tc-name">CSV → JSON</span><span class="tc-desc">Convert CSV to JSON with header detection</span></a>
+        <a href="/yaml"             class="tool-card" data-cat="data"><span class="tc-icon">⇄</span><span class="tc-name">YAML ↔ JSON</span><span class="tc-desc">Convert between YAML and JSON instantly</span></a>
+        <a href="/semver"           class="tool-card" data-cat="data"><span class="tc-icon">⚙</span><span class="tc-name">Semver Calc</span><span class="tc-desc">Bump versions, compare, test version ranges</span></a>
+        <a href="/http-status"      class="tool-card" data-cat="data"><span class="tc-icon">🌐</span><span class="tc-name">HTTP Status</span><span class="tc-desc">Searchable reference — all 63 HTTP status codes</span></a>
+        <a href="/sql-format"       class="tool-card" data-cat="data"><span class="tc-icon">🗄</span><span class="tc-name">SQL Formatter</span><span class="tc-desc">Format messy SQL with indentation and highlighting</span></a>
+        <a href="/jwt-inspector"    class="tool-card" data-cat="data"><span class="tc-icon">🔑</span><span class="tc-name">JWT Inspector</span><span class="tc-desc">Decode header, payload, expiry — no secret needed</span></a>
+        <a href="/json-diff"        class="tool-card" data-cat="data"><span class="tc-icon">⟷</span><span class="tc-name">JSON Diff</span><span class="tc-desc">Semantic diff — changed, added, removed paths</span></a>
+        <a href="/caseconv"         class="tool-card" data-cat="data"><span class="tc-icon tc-text">Aa</span><span class="tc-name">Case Converter</span><span class="tc-desc">camelCase · snake_case · kebab-case · 8 more</span></a>
+        <a href="/env-diff"         class="tool-card" data-cat="data"><span class="tc-icon">📋</span><span class="tc-name">.env Diff</span><span class="tc-desc">Compare .env files — added, removed, changed keys</span></a>
+        <a href="/csp"              class="tool-card" data-cat="data"><span class="tc-icon">🛡</span><span class="tc-name">CSP Builder</span><span class="tc-desc">Build Content-Security-Policy with guided toggles</span></a>
+        <a href="/cidr"             class="tool-card" data-cat="data"><span class="tc-icon">🔌</span><span class="tc-name">CIDR Calc</span><span class="tc-desc">Network address, broadcast, usable hosts, mask</span></a>
+        <a href="/unicode-inspector" class="tool-card" data-cat="data"><span class="tc-icon">🔬</span><span class="tc-name">Unicode Inspector</span><span class="tc-desc">Reveal invisible chars, zero-width, bidi overrides</span></a>
+        <a href="/regex-explainer"  class="tool-card" data-cat="data"><span class="tc-icon">🔍</span><span class="tc-name">Regex Explainer</span><span class="tc-desc">Plain-English breakdown of every regex token</span></a>
+        <a href="/json-ts"          class="tool-card" data-cat="data"><span class="tc-icon tc-text" style="color:var(--accent2)">TS</span><span class="tc-name">JSON → TypeScript</span><span class="tc-desc">Generate TypeScript interfaces from any JSON</span></a>
+        <a href="/markdown"         class="tool-card" data-cat="data"><span class="tc-icon">📄</span><span class="tc-name">Markdown</span><span class="tc-desc">Live preview with GFM — tables, tasks, code</span></a>
+        <a href="/lorem"            class="tool-card" data-cat="data"><span class="tc-icon">📝</span><span class="tc-name">Lorem Ipsum</span><span class="tc-desc">Placeholder text by paragraphs, sentences, or words</span></a>
 
-      <a href="/url" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔗</div>
-        <div class="tool-name">URL Encoder</div>
-        <div class="tool-desc">Encode/decode URLs and query strings</div>
-      </a>
+        <a href="/epoch"            class="tool-card" data-cat="time"><span class="tc-icon">⏱</span><span class="tc-name">Epoch Converter</span><span class="tc-desc">Unix timestamps ↔ dates. UTC, ISO, relative</span></a>
+        <a href="/baseconv"         class="tool-card" data-cat="time"><span class="tc-icon tc-text">0x</span><span class="tc-name">Base Converter</span><span class="tc-desc">Binary, octal, decimal, hex and any base 2–36</span></a>
+        <a href="/cron"             class="tool-card" data-cat="time"><span class="tc-icon">⏰</span><span class="tc-name">CRON Parser</span><span class="tc-desc">Parse cron to plain English, preview next 10 runs</span></a>
 
-      <a href="/entities" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">&amp;</div>
-        <div class="tool-name">HTML Entities</div>
-        <div class="tool-desc">Encode and decode HTML entities, named and numeric</div>
-      </a>
+        <a href="/regex"            class="tool-card" data-cat="text"><span class="tc-icon">📐</span><span class="tc-name">Regex Tester</span><span class="tc-desc">Live matching with highlighted groups</span></a>
+        <a href="/uuid"             class="tool-card" data-cat="text"><span class="tc-icon">🆔</span><span class="tc-name">UUID Generator</span><span class="tc-desc">Generate v4 and v7 UUIDs in bulk</span></a>
+        <a href="/password"         class="tool-card" data-cat="text"><span class="tc-icon">🔑</span><span class="tc-name">Password Gen</span><span class="tc-desc">Cryptographically secure with entropy meter</span></a>
+        <a href="/color"            class="tool-card" data-cat="text"><span class="tc-icon">🎨</span><span class="tc-name">Color Converter</span><span class="tc-desc">HEX ↔ RGB ↔ HSL ↔ CMYK + shade palette</span></a>
+        <a href="/qr"               class="tool-card" data-cat="text"><span class="tc-icon">▦</span><span class="tc-name">QR Generator</span><span class="tc-desc">QR codes for URLs, WiFi, vCards and more</span></a>
+        <a href="/chmod"            class="tool-card" data-cat="text"><span class="tc-icon">🔒</span><span class="tc-name">chmod Calc</span><span class="tc-desc">Visual permission builder, octal ↔ symbolic</span></a>
+        <a href="/escape"           class="tool-card" data-cat="text"><span class="tc-icon">✂</span><span class="tc-name">String Escape</span><span class="tc-desc">JS, Python, SQL, Shell, Regex, HTML, XML</span></a>
 
-      <a href="/hash" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">#</div>
-        <div class="tool-name">Hash Generator</div>
-        <div class="tool-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512 — text or file input</div>
-      </a>
-
-    </div>
-  </section>
-
-  <section class="tools-section">
-    <p class="section-label">data &amp; format</p>
-    <div class="tools-grid">
-
-      <a href="/json" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">{}</div>
-        <div class="tool-name">JSON Formatter</div>
-        <div class="tool-desc">Pretty-print, diff, and validate JSON payloads</div>
-      </a>
-
-      <a href="/csv" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">⊞</div>
-        <div class="tool-name">CSV → JSON</div>
-        <div class="tool-desc">Convert CSV to JSON with header detection and type coercion</div>
-      </a>
-
-      <a href="/yaml" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">⇄</div>
-        <div class="tool-name">YAML ↔ JSON</div>
-        <div class="tool-desc">Convert between YAML and JSON instantly in your browser</div>
-      </a>
-
-                        <a href="/semver" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔢</div>
-        <div class="tool-name">Semver Calculator</div>
-        <div class="tool-desc">Bump versions, compare two semvers, and test whether a version satisfies a range</div>
-      </a>
-
-      <a href="/http-status" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🌐</div>
-        <div class="tool-name">HTTP Status Codes</div>
-        <div class="tool-desc">Searchable reference for all 63 HTTP status codes with plain-English descriptions</div>
-      </a>
-
-      <a href="/sql-format" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🗄</div>
-        <div class="tool-name">SQL Formatter</div>
-        <div class="tool-desc">Format messy SQL with proper indentation, keyword casing, and syntax highlighting</div>
-      </a>
-
-      <a href="/jwt-inspector" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔑</div>
-        <div class="tool-name">JWT Inspector</div>
-        <div class="tool-desc">Decode any JWT — header, payload, expiry countdown, known claim labels. No secret needed.</div>
-      </a>
-
-      <a href="/json-diff" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">⟷</div>
-        <div class="tool-name">JSON Diff</div>
-        <div class="tool-desc">Semantic diff — compare two JSON objects and see changed, added, and removed paths</div>
-      </a>
-
-      <a href="/caseconv" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">Aa</div>
-        <div class="tool-name">Case Converter</div>
-        <div class="tool-desc">camelCase · PascalCase · snake_case · kebab-case · SCREAMING_SNAKE · Title Case and 8 more</div>
-      </a>
-
-      <a href="/env-diff" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">📋</div>
-        <div class="tool-name">.env Diff</div>
-        <div class="tool-desc">Compare two .env files — added, removed, changed keys with values masked by default</div>
-      </a>
-
-      <a href="/csp" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🛡</div>
-        <div class="tool-name">CSP Builder</div>
-        <div class="tool-desc">Build Content-Security-Policy headers with guided toggles and instant misconfiguration warnings</div>
-      </a>
-
-      <a href="/cidr" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🌐</div>
-        <div class="tool-name">CIDR Calculator</div>
-        <div class="tool-desc">Network address, broadcast, usable hosts, subnet mask, wildcard, and binary breakdown</div>
-      </a>
-
-      <a href="/unicode-inspector" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔬</div>
-        <div class="tool-name">Unicode Inspector</div>
-        <div class="tool-desc">Reveal invisible chars, zero-width spaces, bidi overrides, and confusable look-alikes</div>
-      </a>
-
-      <a href="/regex-explainer" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔍</div>
-        <div class="tool-name">Regex Explainer</div>
-        <div class="tool-desc">Plain-English breakdown of every regex token — groups, quantifiers, lookaheads and more</div>
-      </a>
-
-      <a href="/json-ts" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon" style="font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;color:var(--accent2)">TS</div>
-        <div class="tool-name">JSON → TypeScript</div>
-        <div class="tool-desc">Generate TypeScript interfaces from any JSON — nested objects, arrays, null types</div>
-      </a>
-
-      <a href="/markdown" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">📄</div>
-        <div class="tool-name">Markdown</div>
-        <div class="tool-desc">Live Markdown preview with GFM support — tables, tasks, code</div>
-      </a>
-
-      <a href="/lorem" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">📝</div>
-        <div class="tool-name">Lorem Ipsum</div>
-        <div class="tool-desc">Generate placeholder text by paragraphs, sentences, or words</div>
-      </a>
-
-    </div>
-  </section>
-
-  <section class="tools-section">
-    <p class="section-label">numbers &amp; time</p>
-    <div class="tools-grid">
-
-      <a href="/epoch" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">⏱</div>
-        <div class="tool-name">Epoch Converter</div>
-        <div class="tool-desc">Unix timestamps ↔ human-readable dates. UTC, local, ISO, relative</div>
-      </a>
-
-      <a href="/baseconv" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔢</div>
-        <div class="tool-name">Base Converter</div>
-        <div class="tool-desc">Convert between binary, octal, decimal, hex and any base 2–36</div>
-      </a>
-
-      <a href="/cron" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">⏰</div>
-        <div class="tool-name">CRON Parser</div>
-        <div class="tool-desc">Parse cron expressions to plain English, preview next 10 runs</div>
-      </a>
-
-    </div>
-  </section>
-
-  <section class="tools-section">
-    <p class="section-label">text &amp; dev</p>
-    <div class="tools-grid">
-
-      <a href="/regex" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">📐</div>
-        <div class="tool-name">Regex Tester</div>
-        <div class="tool-desc">Live regex matching with highlighted matches and capture groups</div>
-      </a>
-
-      <a href="/uuid" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🆔</div>
-        <div class="tool-name">UUID Generator</div>
-        <div class="tool-desc">Generate v4 and v7 UUIDs in bulk with format options</div>
-      </a>
-
-      <a href="/password" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔑</div>
-        <div class="tool-name">Password Generator</div>
-        <div class="tool-desc">Cryptographically secure passwords with entropy meter</div>
-      </a>
-
-      <a href="/color" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🎨</div>
-        <div class="tool-name">Color Converter</div>
-        <div class="tool-desc">HEX ↔ RGB ↔ HSL ↔ CMYK with shade palette generation</div>
-      </a>
-
-      <a href="/qr" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">▦</div>
-        <div class="tool-name">QR Generator</div>
-        <div class="tool-desc">Generate QR codes for URLs, WiFi, vCards, and more</div>
-      </a>
-
-      <a href="/chmod" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">🔒</div>
-        <div class="tool-name">chmod Calculator</div>
-        <div class="tool-desc">Visual permission builder — octal, symbolic, and chmod command. Parse any existing permission string</div>
-      </a>
-
-      <a href="/escape" class="tool-card tool-card--live">
-        <span class="badge live">live</span>
-        <div class="tool-icon">✂</div>
-        <div class="tool-name">String Escape</div>
-        <div class="tool-desc">Escape/unescape strings for JS, Python, SQL, Shell, Regex, JSON — all in one place</div>
-      </a>
-
-    </div>
-  </section>
+      </div>
+      <div class="no-results" id="noResults" style="display:none">No tools match that filter.</div>
+    </main>
+  </div>
 
   <footer>
-    <span>
-      <span class="logo-dot" style="width:6px;height:6px"></span>
-      greenwoods.dev
-    </span>
-    <span>32 tools live · ⌘K to search · everything runs in your browser</span>
+    <span><span class="logo-dot" style="width:5px;height:5px;display:inline-block;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>⌘K to search · zero telemetry · everything in your browser</span>
   </footer>
 
 </div>
@@ -355,7 +142,7 @@
     { name:'JSON Formatter',    icon:'{}', href:'/json',             cat:'data',       desc:'Pretty-print, diff, and validate JSON payloads' },
     { name:'CSV → JSON',        icon:'⊞',  href:'/csv',              cat:'data',       desc:'Convert CSV to JSON with header detection and type coercion' },
     { name:'YAML ↔ JSON',       icon:'⇄',  href:'/yaml',             cat:'data',       desc:'Convert between YAML and JSON instantly in your browser' },
-    { name:'Semver Calculator', icon:'🔢', href:'/semver',           cat:'data',       desc:'Bump versions, compare semvers, test version ranges' },
+    { name:'Semver Calculator', icon:'⚙',  href:'/semver',           cat:'data',       desc:'Bump versions, compare semvers, test version ranges' },
     { name:'HTTP Status Codes', icon:'🌐', href:'/http-status',      cat:'data',       desc:'Searchable reference for all 63 HTTP status codes' },
     { name:'SQL Formatter',     icon:'🗄', href:'/sql-format',       cat:'data',       desc:'Format messy SQL with indentation and syntax highlighting' },
     { name:'JWT Inspector',     icon:'🔑', href:'/jwt-inspector',    cat:'data',       desc:'Decode any JWT — header, payload, expiry countdown' },
@@ -363,14 +150,14 @@
     { name:'Case Converter',    icon:'Aa', href:'/caseconv',         cat:'data',       desc:'camelCase · PascalCase · snake_case · kebab-case · 8 more' },
     { name:'.env Diff',         icon:'📋', href:'/env-diff',         cat:'data',       desc:'Compare two .env files — added, removed, changed keys' },
     { name:'CSP Builder',       icon:'🛡', href:'/csp',              cat:'data',       desc:'Build Content-Security-Policy headers with guided toggles' },
-    { name:'CIDR Calculator',   icon:'🌐', href:'/cidr',             cat:'data',       desc:'Network address, broadcast, usable hosts, subnet mask' },
+    { name:'CIDR Calculator',   icon:'🔌', href:'/cidr',             cat:'data',       desc:'Network address, broadcast, usable hosts, subnet mask' },
     { name:'Unicode Inspector', icon:'🔬', href:'/unicode-inspector',cat:'data',       desc:'Reveal invisible chars, zero-width spaces, bidi overrides' },
     { name:'Regex Explainer',   icon:'🔍', href:'/regex-explainer',  cat:'data',       desc:'Plain-English breakdown of every regex token' },
     { name:'JSON → TypeScript', icon:'TS', href:'/json-ts',          cat:'data',       desc:'Generate TypeScript interfaces from any JSON' },
     { name:'Markdown Preview',  icon:'📄', href:'/markdown',         cat:'data',       desc:'Live Markdown preview with GFM support — tables, tasks, code' },
     { name:'Lorem Ipsum',       icon:'📝', href:'/lorem',            cat:'data',       desc:'Generate placeholder text by paragraphs, sentences, or words' },
     { name:'Epoch Converter',   icon:'⏱', href:'/epoch',            cat:'time',       desc:'Unix timestamps ↔ human-readable dates. UTC, ISO, relative' },
-    { name:'Base Converter',    icon:'🔢', href:'/baseconv',         cat:'time',       desc:'Convert between binary, octal, decimal, hex and any base 2-36' },
+    { name:'Base Converter',    icon:'0x', href:'/baseconv',         cat:'time',       desc:'Convert between binary, octal, decimal, hex and any base 2-36' },
     { name:'CRON Parser',       icon:'⏰', href:'/cron',             cat:'time',       desc:'Parse cron expressions to plain English, preview next 10 runs' },
     { name:'Regex Tester',      icon:'📐', href:'/regex',            cat:'text',       desc:'Live regex matching with highlighted matches and groups' },
     { name:'UUID Generator',    icon:'🆔', href:'/uuid',             cat:'text',       desc:'Generate v4 and v7 UUIDs in bulk with format options' },
@@ -381,98 +168,92 @@
     { name:'String Escape',     icon:'✂',  href:'/escape',           cat:'text',       desc:'Escape/unescape strings for JS, Python, SQL, Shell, Regex' },
   ];
 
-  let filteredTools = TOOLS.slice();
-  let focusedIndex = 0;
-
+  // ── Command palette ────────────────────────────────────────────
+  let filteredTools = TOOLS.slice(), focusedIndex = 0;
   const backdrop = document.getElementById('cmdBackdrop');
   const input    = document.getElementById('cmdInput');
   const results  = document.getElementById('cmdResults');
-  const trigger  = document.getElementById('cmdTrigger');
 
-  function open(){
+  function openPalette(){
     backdrop.classList.add('open');
     input.value = '';
-    render(TOOLS);
-    focusedIndex = 0;
-    setTimeout(() => input.focus(), 50);
+    renderPalette(TOOLS);
+    setTimeout(() => input.focus(), 30);
   }
+  function closePalette(){ backdrop.classList.remove('open'); }
 
-  function close(){
-    backdrop.classList.remove('open');
-  }
-
-  function render(tools){
-    filteredTools = tools;
-    focusedIndex = 0;
-    if(!tools.length){
-      results.innerHTML = '<div class="cmd-no-results">No tools match — try a different keyword</div>';
-      return;
-    }
+  function renderPalette(tools){
+    filteredTools = tools; focusedIndex = 0;
+    if(!tools.length){ results.innerHTML = '<div class="cmd-no-results">No tools match</div>'; return; }
     results.innerHTML = tools.map((t,i) => `
-      <a class="cmd-item${i===0?' focused':''}" href="${t.href}" data-idx="${i}">
+      <a class="cmd-item${i===0?' focused':''}" href="${t.href}">
         <span class="cmd-item-icon">${t.icon}</span>
         <span class="cmd-item-body">
-          <div class="cmd-item-name">${highlight(t.name, input.value)}</div>
+          <div class="cmd-item-name">${hl(t.name)}</div>
           <div class="cmd-item-desc">${t.desc}</div>
         </span>
         <span class="cmd-item-cat">${t.cat}</span>
       </a>`).join('');
   }
 
-  function highlight(str, q){
+  function hl(str){
+    const q = input.value;
     if(!q) return str;
-    const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
-    return str.replace(re, '<mark style="background:rgba(0,255,159,0.22);color:var(--accent);border-radius:2px">$1</mark>');
+    return str.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),
+      '<mark style="background:rgba(0,255,159,.22);color:var(--accent);border-radius:2px">$1</mark>');
   }
 
-  function moveFocus(delta){
+  function moveFocus(d){
     if(!filteredTools.length) return;
     const items = results.querySelectorAll('.cmd-item');
     items[focusedIndex]?.classList.remove('focused');
-    focusedIndex = (focusedIndex + delta + filteredTools.length) % filteredTools.length;
+    focusedIndex = (focusedIndex + d + filteredTools.length) % filteredTools.length;
     const el = items[focusedIndex];
     el?.classList.add('focused');
-    el?.scrollIntoView({ block:'nearest' });
+    el?.scrollIntoView({block:'nearest'});
   }
 
-  function filterTools(q){
-    if(!q.trim()){ render(TOOLS); return; }
-    const lower = q.toLowerCase();
-    const scored = TOOLS.map(t => {
-      const n = t.name.toLowerCase();
-      const d = t.desc.toLowerCase();
-      const c = t.cat.toLowerCase();
-      let score = 0;
-      if(n.startsWith(lower)) score = 100;
-      else if(n.includes(lower)) score = 80;
-      else if(d.includes(lower)) score = 50;
-      else if(c.includes(lower)) score = 30;
-      return { t, score };
-    }).filter(x => x.score > 0).sort((a,b) => b.score - a.score);
-    render(scored.map(x => x.t));
+  function filterPalette(q){
+    if(!q.trim()){ renderPalette(TOOLS); return; }
+    const lq = q.toLowerCase();
+    renderPalette(TOOLS.map(t => {
+      const n = t.name.toLowerCase(), d = t.desc.toLowerCase(), c = t.cat.toLowerCase();
+      let s = n.startsWith(lq)?100:n.includes(lq)?80:d.includes(lq)?50:c.includes(lq)?30:0;
+      return {t,s};
+    }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.t));
   }
 
-  trigger?.addEventListener('click', open);
-  backdrop.addEventListener('click', e => { if(e.target === backdrop) close(); });
-
-  input.addEventListener('input', () => filterTools(input.value));
-
+  document.getElementById('cmdTrigger').addEventListener('click', openPalette);
+  backdrop.addEventListener('click', e => { if(e.target===backdrop) closePalette(); });
+  input.addEventListener('input', () => filterPalette(input.value));
   input.addEventListener('keydown', e => {
-    if(e.key === 'ArrowDown'){ e.preventDefault(); moveFocus(1); }
-    else if(e.key === 'ArrowUp'){ e.preventDefault(); moveFocus(-1); }
-    else if(e.key === 'Enter'){
-      const focused = filteredTools[focusedIndex];
-      if(focused) window.location.href = focused.href;
-    }
-    else if(e.key === 'Escape') close();
+    if(e.key==='ArrowDown'){e.preventDefault();moveFocus(1);}
+    else if(e.key==='ArrowUp'){e.preventDefault();moveFocus(-1);}
+    else if(e.key==='Enter'){ const t=filteredTools[focusedIndex]; if(t) location.href=t.href; }
+    else if(e.key==='Escape') closePalette();
+  });
+  document.addEventListener('keydown', e => {
+    if((e.metaKey||e.ctrlKey)&&e.key==='k'){ e.preventDefault(); backdrop.classList.contains('open')?closePalette():openPalette(); }
+    if(e.key==='Escape'&&backdrop.classList.contains('open')) closePalette();
   });
 
-  document.addEventListener('keydown', e => {
-    if((e.metaKey || e.ctrlKey) && e.key === 'k'){
-      e.preventDefault();
-      backdrop.classList.contains('open') ? close() : open();
-    }
-    if(e.key === 'Escape' && backdrop.classList.contains('open')) close();
+  // ── Category filter ────────────────────────────────────────────
+  const cards = document.querySelectorAll('.tool-card');
+  const noResults = document.getElementById('noResults');
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      let visible = 0;
+      cards.forEach(c => {
+        const show = cat === 'all' || c.dataset.cat === cat;
+        c.style.display = show ? '' : 'none';
+        if(show) visible++;
+      });
+      noResults.style.display = visible ? 'none' : 'flex';
+    });
   });
 })();
 </script>
