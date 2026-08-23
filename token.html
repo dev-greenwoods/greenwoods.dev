@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Token Counter — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/token.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>token counter</span></span>
+    </div>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input text</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="quick-stats" id="quickStats">
+          <div class="qs-item"><span id="qsChars">0</span><span class="qs-label">chars</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><span id="qsWords">0</span><span class="qs-label">words</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><span id="qsLines">0</span><span class="qs-label">lines</span></div>
+          <div class="qs-divider"></div>
+          <div class="qs-item"><span id="qsTokens" class="qs-accent">0</span><span class="qs-label">tokens (gpt-4)</span></div>
+        </div>
+        <textarea id="inputArea" class="tool-input" style="flex:1;min-height:180px" placeholder="Paste your prompt, code, or document here…" spellcheck="false"></textarea>
+        <div class="tokenizer-note" id="tokenizerStatus">Loading tokenizer…</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">model breakdown</span>
+        <div class="panel-actions">
+          <span class="panel-hint">tokens = cost units</span>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0;gap:0">
+        <div id="modelCards" class="model-cards"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — token counter</span>
+    <span>cl100k_base tokenizer · client-side · no data sent</span>
+  </footer>
+</div>
+<script type="module" src="js/token.js"></script>
+</body>
+</html>
