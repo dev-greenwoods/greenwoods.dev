@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Builder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    .ai-badge{color:var(--accent);border-color:rgba(0,255,159,.3);background:rgba(0,255,159,.06);}
+    .panel-body{gap:12px;}
+
+    .section-block{
+      background:var(--surface);border:1px solid var(--border);border-radius:8px;
+      overflow:hidden;flex-shrink:0;
+    }
+    .section-block.optional{border-left:3px solid var(--dim);}
+    .section-block.optional.enabled{border-left-color:var(--accent);}
+
+    .section-hd{
+      display:flex;align-items:center;gap:10px;
+      padding:9px 14px;background:var(--surface2);border-bottom:1px solid var(--border);
+      cursor:pointer;user-select:none;
+    }
+    .section-hd-left{display:flex;align-items:center;gap:8px;flex:1;}
+    .section-icon{font-size:1rem;width:22px;text-align:center;flex-shrink:0;}
+    .section-title{font-size:.72rem;font-weight:600;color:var(--text);}
+    .section-desc{font-size:.6rem;color:var(--muted);}
+    .section-toggle{
+      font-size:.58rem;padding:2px 8px;border-radius:3px;border:1px solid var(--border);
+      background:transparent;color:var(--muted);cursor:pointer;transition:.12s;
+      font-family:'JetBrains Mono',monospace;
+    }
+    .section-toggle.on{color:var(--accent);border-color:rgba(0,255,159,.3);}
+    .section-body{padding:10px 14px;display:none;}
+    .section-body.open{display:block;}
+    .section-body textarea{
+      width:100%;background:transparent;border:none;outline:none;resize:none;
+      font-family:'JetBrains Mono',monospace;font-size:.73rem;color:var(--text);
+      line-height:1.7;min-height:80px;
+    }
+    .section-body textarea::placeholder{color:var(--muted);}
+
+    /* Examples */
+    .examples-list{display:flex;flex-direction:column;gap:8px;}
+    .example-pair{
+      display:grid;grid-template-columns:1fr 1fr;gap:6px;
+      padding:8px;background:var(--surface2);border-radius:5px;border:1px solid var(--border);
+      position:relative;
+    }
+    .example-pair textarea{
+      width:100%;background:transparent;border:1px solid var(--border);border-radius:4px;
+      outline:none;resize:none;font-family:'JetBrains Mono',monospace;
+      font-size:.67rem;color:var(--text);line-height:1.6;padding:6px 8px;min-height:60px;
+    }
+    .example-pair textarea:focus{border-color:var(--dim);}
+    .example-pair textarea::placeholder{color:var(--muted);}
+    .ex-label{font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+    .ex-del{
+      position:absolute;top:6px;right:6px;background:transparent;
+      border:1px solid var(--border);color:var(--muted);border-radius:3px;
+      font-size:.65rem;padding:1px 5px;cursor:pointer;transition:.12s;
+    }
+    .ex-del:hover{border-color:var(--accent3);color:var(--accent3);}
+    .btn-add-ex{
+      font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:5px 12px;
+      background:transparent;border:1px dashed var(--dim);color:var(--muted);
+      border-radius:5px;cursor:pointer;width:100%;transition:.12s;margin-top:4px;
+    }
+    .btn-add-ex:hover{border-color:var(--accent);color:var(--accent);}
+
+    /* Output */
+    .output-controls{
+      display:flex;gap:4px;margin-bottom:8px;
+    }
+    .fmt-tab{
+      font-family:'JetBrains Mono',monospace;font-size:.63rem;
+      padding:4px 10px;background:transparent;border:1px solid var(--border);
+      color:var(--muted);border-radius:4px;cursor:pointer;transition:.12s;
+    }
+    .fmt-tab.active{color:var(--accent2);border-color:var(--accent2);background:rgba(0,184,255,.06);}
+    .output-area{
+      flex:1;overflow-y:auto;background:var(--surface2);border:1px solid var(--border);
+      border-radius:6px;padding:14px;font-size:.72rem;line-height:1.8;
+      white-space:pre-wrap;word-break:break-all;color:var(--text);
+    }
+    .output-area::-webkit-scrollbar{width:3px;}
+    .output-area::-webkit-scrollbar-thumb{background:var(--dim);border-radius:2px;}
+    .out-tag{color:var(--muted);}
+    .out-key{color:var(--accent2);}
+    .out-content{color:var(--text);}
+
+    .token-badge{
+      font-size:.6rem;color:var(--muted);
+      display:flex;align-items:center;gap:6px;flex-shrink:0;
+    }
+    .token-badge span{color:var(--accent);}
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>prompt builder</span></span>
+    </div>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- Left: builder -->
+    <div class="panel" style="overflow-y:auto">
+      <div class="panel-header">
+        <span class="panel-title">structure</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnLoad">load example</button>
+          <button class="btn-sm" id="btnClear">clear all</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <!-- System -->
+        <div class="section-block">
+          <div class="section-hd">
+            <div class="section-hd-left">
+              <span class="section-icon">⚙</span>
+              <div>
+                <div class="section-title">System prompt</div>
+                <div class="section-desc">Role, persona, rules, constraints</div>
+              </div>
+            </div>
+          </div>
+          <div class="section-body open">
+            <textarea id="system" rows="5" placeholder="You are an expert software engineer who reviews code for bugs, performance issues, and security vulnerabilities. You provide concise, actionable feedback.&#10;&#10;Rules:&#10;- Be specific, not vague&#10;- Prioritize critical issues first&#10;- Always explain WHY something is a problem"></textarea>
+          </div>
+        </div>
+
+        <!-- Context -->
+        <div class="section-block optional" id="blockCtx">
+          <div class="section-hd" onclick="toggleSection('ctx')">
+            <div class="section-hd-left">
+              <span class="section-icon">📎</span>
+              <div>
+                <div class="section-title">Context / background</div>
+                <div class="section-desc">Relevant information the model needs to know</div>
+              </div>
+            </div>
+            <button class="section-toggle" id="toggleCtx">+ add</button>
+          </div>
+          <div class="section-body" id="bodyCtx">
+            <textarea id="context" rows="3" placeholder="The codebase uses TypeScript, React 18, and tRPC. The team follows conventional commits and prefers functional components over class components."></textarea>
+          </div>
+        </div>
+
+        <!-- Examples -->
+        <div class="section-block optional" id="blockEx">
+          <div class="section-hd" onclick="toggleSection('ex')">
+            <div class="section-hd-left">
+              <span class="section-icon">💡</span>
+              <div>
+                <div class="section-title">Few-shot examples</div>
+                <div class="section-desc">Input/output pairs that teach the format</div>
+              </div>
+            </div>
+            <button class="section-toggle" id="toggleEx">+ add</button>
+          </div>
+          <div class="section-body" id="bodyEx">
+            <div class="examples-list" id="examplesList"></div>
+            <button class="btn-add-ex" id="btnAddExample">+ add example pair</button>
+          </div>
+        </div>
+
+        <!-- Output format -->
+        <div class="section-block optional" id="blockOut">
+          <div class="section-hd" onclick="toggleSection('out')">
+            <div class="section-hd-left">
+              <span class="section-icon">📐</span>
+              <div>
+                <div class="section-title">Output format</div>
+                <div class="section-desc">Specify structure, length, format of the response</div>
+              </div>
+            </div>
+            <button class="section-toggle" id="toggleOut">+ add</button>
+          </div>
+          <div class="section-body" id="bodyOut">
+            <textarea id="outputFormat" rows="3" placeholder='Respond with a JSON object with this structure:&#10;{&#10;  "severity": "critical" | "major" | "minor",&#10;  "issues": [{ "line": number, "message": string, "fix": string }],&#10;  "summary": string&#10;}'></textarea>
+          </div>
+        </div>
+
+        <!-- User message -->
+        <div class="section-block">
+          <div class="section-hd">
+            <div class="section-hd-left">
+              <span class="section-icon">💬</span>
+              <div>
+                <div class="section-title">User message</div>
+                <div class="section-desc">The actual task / input</div>
+              </div>
+            </div>
+          </div>
+          <div class="section-body open">
+            <textarea id="userMsg" rows="4" placeholder="Review this TypeScript function for issues:&#10;&#10;```typescript&#10;// paste code here&#10;```"></textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">compiled prompt</span>
+        <div class="panel-actions">
+          <div class="output-controls">
+            <button class="fmt-tab active" data-fmt="xml">XML tags</button>
+            <button class="fmt-tab" data-fmt="md">Markdown</button>
+            <button class="fmt-tab" data-fmt="plain">Plain</button>
+          </div>
+          <button class="btn-sm" id="btnCopy">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="token-badge">approx. <span id="tokenCount">0</span> tokens</div>
+        <div class="output-area" id="outputArea"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — prompt builder</span>
+    <span>XML · Markdown · Plain · all client-side</span>
+  </footer>
+</div>
+<script>
+let fmt = 'xml';
+const sections = { ctx: false, ex: false, out: false };
+
+function toggleSection(id) {
+  sections[id] = !sections[id];
+  const btn  = document.getElementById('toggle' + id.charAt(0).toUpperCase() + id.slice(1));
+  const body = document.getElementById('body'   + id.charAt(0).toUpperCase() + id.slice(1));
+  const block= document.getElementById('block'  + id.charAt(0).toUpperCase() + id.slice(1));
+  if (btn)  { btn.textContent = sections[id] ? '− remove' : '+ add'; btn.classList.toggle('on', sections[id]); }
+  if (body) { body.classList.toggle('open', sections[id]); }
+  if (block){ block.classList.toggle('enabled', sections[id]); }
+  render();
+}
+
+// Examples
+let examples = [];
+function addExample(inp='', out='') {
+  const id = Date.now();
+  examples.push({ id, inp, out });
+  renderExamples();
+  render();
+}
+function removeExample(id) {
+  examples = examples.filter(e => e.id !== id);
+  renderExamples();
+  render();
+}
+function renderExamples() {
+  const list = document.getElementById('examplesList');
+  list.innerHTML = examples.map(e => `
+    <div class="example-pair" data-id="${e.id}">
+      <button class="ex-del" onclick="removeExample(${e.id})">✕</button>
+      <div><div class="ex-label">Input</div><textarea placeholder="User input / question…" oninput="updateExample(${e.id},'inp',this.value)">${e.inp}</textarea></div>
+      <div><div class="ex-label">Expected output</div><textarea placeholder="Ideal response…" oninput="updateExample(${e.id},'out',this.value)">${e.out}</textarea></div>
+    </div>`).join('');
+}
+function updateExample(id, field, val) {
+  const e = examples.find(x => x.id === id);
+  if (e) e[field] = val;
+  render();
+}
+document.getElementById('btnAddExample').addEventListener('click', () => addExample());
+
+// ── Render ─────────────────────────────────────────────────────────
+function get(id) { return (document.getElementById(id)?.value || '').trim(); }
+
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function buildPlain() {
+  const parts = [];
+  const sys = get('system');
+  if (sys) parts.push('SYSTEM\n' + '─'.repeat(40) + '\n' + sys);
+  if (sections.ctx) { const c = get('context'); if (c) parts.push('CONTEXT\n' + '─'.repeat(40) + '\n' + c); }
+  if (sections.ex && examples.length) {
+    parts.push('EXAMPLES\n' + '─'.repeat(40) + '\n' +
+      examples.map((e,i) => `Example ${i+1}:\nInput: ${e.inp}\nOutput: ${e.out}`).join('\n\n'));
+  }
+  if (sections.out) { const o = get('outputFormat'); if (o) parts.push('OUTPUT FORMAT\n' + '─'.repeat(40) + '\n' + o); }
+  const u = get('userMsg');
+  if (u) parts.push('USER\n' + '─'.repeat(40) + '\n' + u);
+  return parts.join('\n\n');
+}
+
+function buildXml() {
+  const parts = [];
+  const sys = get('system');
+  if (sys) parts.push(`<system>\n${sys}\n</system>`);
+  if (sections.ctx) { const c = get('context'); if (c) parts.push(`<context>\n${c}\n</context>`); }
+  if (sections.ex && examples.length) {
+    const exHtml = examples.map((e,i) => `  <example index="${i+1}">\n    <input>${e.inp}</input>\n    <output>${e.out}</output>\n  </example>`).join('\n');
+    parts.push(`<examples>\n${exHtml}\n</examples>`);
+  }
+  if (sections.out) { const o = get('outputFormat'); if (o) parts.push(`<output_format>\n${o}\n</output_format>`); }
+  const u = get('userMsg');
+  if (u) parts.push(`<user>\n${u}\n</user>`);
+  return parts.join('\n\n');
+}
+
+function buildMd() {
+  const parts = [];
+  const sys = get('system');
+  if (sys) parts.push(`## System\n\n${sys}`);
+  if (sections.ctx) { const c = get('context'); if (c) parts.push(`## Context\n\n${c}`); }
+  if (sections.ex && examples.length) {
+    parts.push('## Examples\n\n' + examples.map((e,i) => `**Example ${i+1}**\n\n_Input:_\n${e.inp}\n\n_Output:_\n${e.out}`).join('\n\n---\n\n'));
+  }
+  if (sections.out) { const o = get('outputFormat'); if (o) parts.push(`## Output Format\n\n${o}`); }
+  const u = get('userMsg');
+  if (u) parts.push(`## User\n\n${u}`);
+  return parts.join('\n\n---\n\n');
+}
+
+function syntaxHighlight(raw) {
+  // XML tags in muted, content normal
+  return esc(raw)
+    .replace(/(&lt;\/?[\w_]+(?:\s[^&]*?)?&gt;)/g, '<span class="out-tag">$1</span>')
+    .replace(/(##[^\n]+)/g, '<span class="out-key">$1</span>');
+}
+
+function approxTokens(text) { return Math.round(text.length / 4); }
+
+function render() {
+  const raw = fmt === 'xml' ? buildXml() : fmt === 'md' ? buildMd() : buildPlain();
+  const outEl = document.getElementById('outputArea');
+  outEl.innerHTML = syntaxHighlight(raw);
+  document.getElementById('tokenCount').textContent = approxTokens(raw).toLocaleString();
+}
+
+// Events
+document.querySelectorAll('[data-fmt]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    fmt = btn.dataset.fmt;
+    document.querySelectorAll('[data-fmt]').forEach(b => b.classList.toggle('active', b===btn));
+    render();
+  });
+});
+
+['system','context','outputFormat','userMsg'].forEach(id => {
+  document.getElementById(id)?.addEventListener('input', render);
+});
+
+document.getElementById('btnCopy').addEventListener('click', function() {
+  const raw = fmt === 'xml' ? buildXml() : fmt === 'md' ? buildMd() : buildPlain();
+  navigator.clipboard.writeText(raw).then(() => {
+    this.textContent = 'copied!';
+    setTimeout(() => this.textContent = 'copy', 1500);
+  });
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  ['system','context','outputFormat','userMsg'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  examples = [];
+  renderExamples();
+  render();
+});
+
+document.getElementById('btnLoad').addEventListener('click', () => {
+  document.getElementById('system').value = 'You are an expert TypeScript and React engineer. You review code and provide precise, actionable feedback prioritising correctness, then performance, then readability.';
+  if (!sections.ctx) toggleSection('ctx');
+  document.getElementById('context').value = 'Stack: TypeScript 5, React 18, tRPC v11, Tailwind CSS. Follow conventional commits. Prefer functional components.';
+  if (!sections.out) toggleSection('out');
+  document.getElementById('outputFormat').value = 'Respond with JSON:\n{\n  "issues": [\n    { "severity": "critical"|"major"|"minor", "location": "string", "problem": "string", "fix": "string" }\n  ],\n  "verdict": "approve" | "request-changes"\n}';
+  if (!sections.ex) toggleSection('ex');
+  examples = [{ id:1, inp:'const x = items.map(i => { return i.value }).filter(Boolean)', out:'{"issues":[{"severity":"minor","location":"line 1","problem":"Arrow function body is verbose","fix":"const x = items.map(i => i.value).filter(Boolean)"}],"verdict":"approve"}' }];
+  renderExamples();
+  document.getElementById('userMsg').value = 'Review this component:\n\n```tsx\n// paste your code here\n```';
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
