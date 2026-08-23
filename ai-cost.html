@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Cost Calculator — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/ai-cost.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>AI cost calculator</span></span>
+    </div>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main class="single-panel">
+    <div class="panel cost-panel">
+      <div class="panel-header">
+        <span class="panel-title">cost estimator</span>
+        <div class="panel-actions">
+          <span class="panel-hint" id="priceDate">Prices current as of mid-2025</span>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <!-- Inputs -->
+        <div class="inputs-row">
+          <div class="input-group">
+            <label class="field-label" for="inputTokens">input tokens</label>
+            <input id="inputTokens" class="tool-input token-input" type="number" value="1000" min="0" />
+            <div class="input-presets">
+              <button class="preset" data-field="input" data-val="1000">1k</button>
+              <button class="preset" data-field="input" data-val="10000">10k</button>
+              <button class="preset" data-field="input" data-val="100000">100k</button>
+              <button class="preset" data-field="input" data-val="1000000">1M</button>
+            </div>
+          </div>
+          <div class="inputs-sep">×</div>
+          <div class="input-group">
+            <label class="field-label" for="outputTokens">output tokens</label>
+            <input id="outputTokens" class="tool-input token-input" type="number" value="500" min="0" />
+            <div class="input-presets">
+              <button class="preset" data-field="output" data-val="100">100</button>
+              <button class="preset" data-field="output" data-val="500">500</button>
+              <button class="preset" data-field="output" data-val="2000">2k</button>
+              <button class="preset" data-field="output" data-val="10000">10k</button>
+            </div>
+          </div>
+          <div class="inputs-sep">×</div>
+          <div class="input-group">
+            <label class="field-label" for="numCalls">API calls</label>
+            <input id="numCalls" class="tool-input token-input" type="number" value="1" min="1" />
+            <div class="input-presets">
+              <button class="preset" data-field="calls" data-val="1">1</button>
+              <button class="preset" data-field="calls" data-val="100">100</button>
+              <button class="preset" data-field="calls" data-val="1000">1k</button>
+              <button class="preset" data-field="calls" data-val="10000">10k</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Model table -->
+        <div class="cost-table-wrap">
+          <div class="cost-table-header">
+            <span>Model</span>
+            <span>Provider</span>
+            <span class="align-right">Input /1M</span>
+            <span class="align-right">Output /1M</span>
+            <span class="align-right">Per Call</span>
+            <span class="align-right">Total Cost</span>
+          </div>
+          <div id="costRows" class="cost-rows"></div>
+        </div>
+
+        <div class="cost-footer-note">
+          Prices are approximate and change frequently — verify at provider pricing pages before budgeting.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — AI cost calculator</span>
+    <span>client-side · no account · prices approximate</span>
+  </footer>
+</div>
+<script defer src="js/ai-cost.js"></script>
+</body>
+</html>
