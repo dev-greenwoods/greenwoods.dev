@@ -16,7 +16,7 @@
     <div class="cmd-box">
       <div class="cmd-search-row">
         <svg class="cmd-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cmdInput" type="text" placeholder="Search 32 tools…" autocomplete="off" spellcheck="false" />
+        <input id="cmdInput" type="text" placeholder="Search 39 tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -35,7 +35,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="cmd-trigger-text">Search tools…</span>
       <span class="trigger-shortcut">⌘K</span>
-      <span class="cmd-trigger-count">32 tools</span>
+      <span class="cmd-trigger-count">39 tools</span>
     </button>
   </nav>
 
@@ -54,11 +54,12 @@
 
     <!-- Category tabs -->
     <div class="cat-tabs">
-      <button class="cat-tab active" data-cat="all"><span class="cat-tab-dot"></span>All <span class="cat-count">32</span></button>
+      <button class="cat-tab active" data-cat="all"><span class="cat-tab-dot"></span>All <span class="cat-count">39</span></button>
       <button class="cat-tab" data-cat="encoding"><span class="cat-tab-dot"></span>Encoding <span class="cat-count">5</span></button>
-      <button class="cat-tab" data-cat="data"><span class="cat-tab-dot"></span>Data <span class="cat-count">17</span></button>
+      <button class="cat-tab" data-cat="data"><span class="cat-tab-dot"></span>Data <span class="cat-count">19</span></button>
       <button class="cat-tab" data-cat="time"><span class="cat-tab-dot"></span>Time <span class="cat-count">3</span></button>
       <button class="cat-tab" data-cat="text"><span class="cat-tab-dot"></span>Text <span class="cat-count">7</span></button>
+      <button class="cat-tab" data-cat="ai"><span class="cat-tab-dot"></span>AI <span class="cat-count">5</span></button>
     </div>
 
     <!-- Grid -->
@@ -233,13 +234,52 @@
           <div class="tc-desc">JS, Python, SQL, Shell, Regex, HTML, XML</div>
         </a>
 
+        <!-- DATA extras (previously unlisted) -->
+        <a href="/diff"   class="tool-card" data-cat="data">
+          <div class="tc-top"><div class="tc-icon">⟷</div><span class="tc-cat">data</span></div>
+          <div class="tc-name">Text Diff</div>
+          <div class="tc-desc">Myers algorithm, char-level inline diffs, context collapse</div>
+        </a>
+        <a href="/curl"   class="tool-card" data-cat="data">
+          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text">$_</span></div><span class="tc-cat">data</span></div>
+          <div class="tc-name">cURL Builder</div>
+          <div class="tc-desc">GUI for building curl commands — method, headers, auth, body</div>
+        </a>
+
+        <!-- AI -->
+        <a href="/token"       class="tool-card" data-cat="ai">
+          <div class="tc-top"><div class="tc-icon">🔢</div><span class="tc-cat">ai</span></div>
+          <div class="tc-name">Token Counter</div>
+          <div class="tc-desc">Exact token count for GPT-4, Claude, Gemini, Llama — context window bars</div>
+        </a>
+        <a href="/ai-cost"     class="tool-card" data-cat="ai">
+          <div class="tc-top"><div class="tc-icon">💰</div><span class="tc-cat">ai</span></div>
+          <div class="tc-name">AI Cost Calc</div>
+          <div class="tc-desc">Token × price across 16 models — OpenAI, Anthropic, Google, Groq</div>
+        </a>
+        <a href="/ai-response" class="tool-card" data-cat="ai">
+          <div class="tc-top"><div class="tc-icon">🔬</div><span class="tc-cat">ai</span></div>
+          <div class="tc-name">Response Inspector</div>
+          <div class="tc-desc">Paste raw API JSON — renders content blocks, tool calls, usage, cost</div>
+        </a>
+        <a href="/prompt"      class="tool-card" data-cat="ai">
+          <div class="tc-top"><div class="tc-icon">✍</div><span class="tc-cat">ai</span></div>
+          <div class="tc-name">Prompt Builder</div>
+          <div class="tc-desc">System · context · examples · format — export as XML, Markdown, or plain</div>
+        </a>
+        <a href="/context"     class="tool-card" data-cat="ai">
+          <div class="tc-top"><div class="tc-icon">📐</div><span class="tc-cat">ai</span></div>
+          <div class="tc-name">Context Planner</div>
+          <div class="tc-desc">Multi-slot token budgeter — see exactly what fits in each model's window</div>
+        </a>
+
       </div><!-- /tools-grid -->
     </div><!-- /grid-scroll -->
   </div><!-- /main-area -->
 
   <footer>
     <span><span class="logo-dot" style="display:inline-block;width:5px;height:5px;vertical-align:middle;margin-right:6px;animation:blink 2.2s infinite"></span>greenwoods.dev</span>
-    <span>⌘K to search · 32 tools · zero telemetry</span>
+    <span>⌘K to search · 39 tools · zero telemetry</span>
   </footer>
 
 </div><!-- /wrapper -->
@@ -269,6 +309,8 @@
     { name:'JSON → TypeScript',  icon:'TS', href:'/json-ts',           cat:'data',     desc:'Generate TypeScript interfaces from any JSON' },
     { name:'Markdown',           icon:'📄', href:'/markdown',          cat:'data',     desc:'Live preview with GFM — tables, tasks, code' },
     { name:'Lorem Ipsum',        icon:'📝', href:'/lorem',             cat:'data',     desc:'Placeholder text — paragraphs, sentences, or words' },
+    { name:'Text Diff',          icon:'⟷',  href:'/diff',              cat:'data',     desc:'Myers diff, char-level inline diffs, context collapse' },
+    { name:'cURL Builder',       icon:'$_', href:'/curl',              cat:'data',     desc:'GUI for curl commands — method, headers, auth, body' },
     { name:'Epoch Converter',    icon:'⏱', href:'/epoch',             cat:'time',     desc:'Unix timestamps ↔ dates. UTC, ISO, relative' },
     { name:'Base Converter',     icon:'0x', href:'/baseconv',          cat:'time',     desc:'Binary, octal, decimal, hex — any base 2–36' },
     { name:'CRON Parser',        icon:'⏰', href:'/cron',              cat:'time',     desc:'Parse cron to English, preview next 10 runs' },
@@ -279,6 +321,11 @@
     { name:'QR Generator',       icon:'▦',  href:'/qr',                cat:'text',     desc:'QR codes for URLs, WiFi, vCards and more' },
     { name:'chmod Calc',         icon:'🔒', href:'/chmod',             cat:'text',     desc:'Visual permission builder, octal ↔ symbolic' },
     { name:'String Escape',      icon:'✂',  href:'/escape',            cat:'text',     desc:'JS, Python, SQL, Shell, Regex, HTML, XML' },
+    { name:'Token Counter',      icon:'🔢', href:'/token',             cat:'ai',       desc:'Exact token count for GPT-4, Claude, Gemini, Llama' },
+    { name:'AI Cost Calc',       icon:'💰', href:'/ai-cost',           cat:'ai',       desc:'Token × price across 16 models — compare providers' },
+    { name:'Response Inspector', icon:'🔬', href:'/ai-response',       cat:'ai',       desc:'Paste raw API JSON — renders content blocks, tool calls, usage' },
+    { name:'Prompt Builder',     icon:'✍',  href:'/prompt',            cat:'ai',       desc:'System · context · examples · format — XML, MD, plain' },
+    { name:'Context Planner',    icon:'📐', href:'/context',           cat:'ai',       desc:'Multi-slot token budgeter, model context window fit' },
   ];
 
   // ── palette ──────────────────────────────────────────────────
