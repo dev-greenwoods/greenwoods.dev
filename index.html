@@ -11,7 +11,7 @@
 <body>
 <div class="wrapper">
 
-  <!-- ⌘K Palette -->
+  <!-- Palette -->
   <div class="cmd-backdrop" id="cmdBackdrop">
     <div class="cmd-box">
       <div class="cmd-search-row">
@@ -21,7 +21,7 @@
       </div>
       <div class="cmd-results" id="cmdResults"></div>
       <div class="cmd-footer">
-        <span class="cmd-hint"><span class="cmd-key">↑</span><span class="cmd-key">↓</span> navigate</span>
+        <span class="cmd-hint"><span class="cmd-key">↑</span><span class="cmd-key">↓</span></span>
         <span class="cmd-hint"><span class="cmd-key">↵</span> open</span>
         <span class="cmd-hint"><span class="cmd-key">ESC</span> close</span>
       </div>
@@ -31,7 +31,7 @@
   <!-- Nav -->
   <nav>
     <div class="logo"><span class="logo-dot"></span>greenwoods.dev</div>
-    <button class="cmd-trigger" id="cmdTrigger" aria-label="Search tools">
+    <button class="cmd-trigger" id="cmdTrigger">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="cmd-trigger-text">Search tools…</span>
       <span class="trigger-shortcut">⌘K</span>
@@ -39,313 +39,325 @@
     </button>
   </nav>
 
-  <!-- Tagline strip -->
-  <div class="tagline-strip">
-    <span class="tagline-text">Every dev tool you keep googling — <em>in one place</em></span>
-    <div class="tagline-chips">
-      <span class="chip chip-g">no signup</span>
-      <span class="chip chip-b">zero telemetry</span>
-      <span class="chip chip-r">runs in browser</span>
-    </div>
-  </div>
+  <!-- Body -->
+  <div class="app-body">
 
-  <!-- Main -->
-  <div class="main-area">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <p class="sidebar-tagline">Every dev tool you keep googling, in one place</p>
+      </div>
 
-    <!-- Category tabs -->
-    <div class="cat-tabs">
-      <button class="cat-tab active" data-cat="all"><span class="cat-tab-dot"></span>All <span class="cat-count">39</span></button>
-      <button class="cat-tab" data-cat="encoding"><span class="cat-tab-dot"></span>Encoding <span class="cat-count">5</span></button>
-      <button class="cat-tab" data-cat="data"><span class="cat-tab-dot"></span>Data <span class="cat-count">19</span></button>
-      <button class="cat-tab" data-cat="time"><span class="cat-tab-dot"></span>Time <span class="cat-count">3</span></button>
-      <button class="cat-tab" data-cat="text"><span class="cat-tab-dot"></span>Text <span class="cat-count">7</span></button>
-      <button class="cat-tab" data-cat="ai"><span class="cat-tab-dot"></span>AI <span class="cat-count">5</span></button>
-    </div>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <button class="nav-item active" data-cat="all">
+          <span class="nav-item-icon">⊞</span>
+          <span class="nav-item-label">All tools</span>
+          <span class="nav-item-count">39</span>
+        </button>
+        <button class="nav-item" data-cat="encoding">
+          <span class="nav-item-icon">📦</span>
+          <span class="nav-item-label">Encoding</span>
+          <span class="nav-item-count">5</span>
+        </button>
+        <button class="nav-item" data-cat="data">
+          <span class="nav-item-icon">🗄</span>
+          <span class="nav-item-label">Data</span>
+          <span class="nav-item-count">19</span>
+        </button>
+        <button class="nav-item" data-cat="time">
+          <span class="nav-item-icon">⏱</span>
+          <span class="nav-item-label">Time</span>
+          <span class="nav-item-count">3</span>
+        </button>
+        <button class="nav-item" data-cat="text">
+          <span class="nav-item-icon">✏</span>
+          <span class="nav-item-label">Text</span>
+          <span class="nav-item-count">7</span>
+        </button>
+        <button class="nav-item" data-cat="ai">
+          <span class="nav-item-icon">✦</span>
+          <span class="nav-item-label">AI · LLM</span>
+          <span class="nav-item-count">5</span>
+        </button>
+      </nav>
 
-    <!-- Grid -->
-    <div class="grid-scroll">
-      <div class="tools-grid" id="toolsGrid">
+      <div class="sidebar-footer">
+        <div class="sf-badge">No auth</div>
+        <div class="sf-badge">No telemetry</div>
+        <div class="sf-badge">Open source</div>
+      </div>
+    </aside>
 
-        <!-- ENCODING -->
-        <a href="/jwt"     class="tool-card" data-cat="encoding">
-          <div class="tc-top"><div class="tc-icon">🔐</div><span class="tc-cat">encoding</span></div>
-          <div class="tc-name">JWT Decoder</div>
-          <div class="tc-desc">Decode &amp; verify JWT tokens. HS, RS, ES, PS algorithms</div>
-        </a>
-        <a href="/base64"  class="tool-card" data-cat="encoding">
-          <div class="tc-top"><div class="tc-icon">📦</div><span class="tc-cat">encoding</span></div>
-          <div class="tc-name">Base64</div>
-          <div class="tc-desc">Encode/decode strings and files, URL-safe variant</div>
-        </a>
-        <a href="/url"     class="tool-card" data-cat="encoding">
-          <div class="tc-top"><div class="tc-icon">🔗</div><span class="tc-cat">encoding</span></div>
-          <div class="tc-name">URL Encoder</div>
-          <div class="tc-desc">Encode/decode URLs and query strings</div>
-        </a>
-        <a href="/entities" class="tool-card" data-cat="encoding">
-          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text">&amp;</span></div><span class="tc-cat">encoding</span></div>
-          <div class="tc-name">HTML Entities</div>
-          <div class="tc-desc">Encode and decode HTML entities, named and numeric</div>
-        </a>
-        <a href="/hash"    class="tool-card" data-cat="encoding">
-          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text">#</span></div><span class="tc-cat">encoding</span></div>
-          <div class="tc-name">Hash Generator</div>
-          <div class="tc-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512 — text or file</div>
-        </a>
+    <!-- Content -->
+    <div class="content" id="content">
 
-        <!-- DATA -->
-        <a href="/json"        class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text">{}</span></div><span class="tc-cat">data</span></div>
-          <div class="tc-name">JSON Formatter</div>
-          <div class="tc-desc">Pretty-print, minify, and validate JSON</div>
-        </a>
-        <a href="/csv"         class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">⊞</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">CSV → JSON</div>
-          <div class="tc-desc">Convert CSV to JSON with header detection</div>
-        </a>
-        <a href="/yaml"        class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">⇄</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">YAML ↔ JSON</div>
-          <div class="tc-desc">Convert between YAML and JSON instantly</div>
-        </a>
-        <a href="/semver"      class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">⚙</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">Semver Calc</div>
-          <div class="tc-desc">Bump versions, compare semvers, test ranges</div>
-        </a>
-        <a href="/http-status" class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">🌐</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">HTTP Status</div>
-          <div class="tc-desc">Searchable reference — all 63 HTTP status codes</div>
-        </a>
-        <a href="/sql-format"  class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">🗄</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">SQL Formatter</div>
-          <div class="tc-desc">Format messy SQL with indentation and highlighting</div>
-        </a>
-        <a href="/jwt-inspector" class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">🔑</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">JWT Inspector</div>
-          <div class="tc-desc">Decode header, payload, expiry — no secret needed</div>
-        </a>
-        <a href="/json-diff"   class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">⟷</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">JSON Diff</div>
-          <div class="tc-desc">Semantic diff — changed, added, removed paths</div>
-        </a>
-        <a href="/caseconv"    class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text">Aa</span></div><span class="tc-cat">data</span></div>
-          <div class="tc-name">Case Converter</div>
-          <div class="tc-desc">camelCase · snake_case · kebab-case · 8 more</div>
-        </a>
-        <a href="/env-diff"    class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">📋</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">.env Diff</div>
-          <div class="tc-desc">Compare .env files — added, removed, changed keys</div>
-        </a>
-        <a href="/csp"         class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">🛡</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">CSP Builder</div>
-          <div class="tc-desc">Build Content-Security-Policy with guided toggles</div>
-        </a>
-        <a href="/cidr"        class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">🔌</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">CIDR Calc</div>
-          <div class="tc-desc">Network address, broadcast, usable hosts, mask</div>
-        </a>
-        <a href="/unicode-inspector" class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">🔬</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">Unicode Inspector</div>
-          <div class="tc-desc">Reveal invisible chars, zero-width, bidi overrides</div>
-        </a>
-        <a href="/regex-explainer" class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">🔍</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">Regex Explainer</div>
-          <div class="tc-desc">Plain-English breakdown of every regex token</div>
-        </a>
-        <a href="/json-ts"     class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text" style="color:var(--c-data)">TS</span></div><span class="tc-cat">data</span></div>
-          <div class="tc-name">JSON → TypeScript</div>
-          <div class="tc-desc">Generate TypeScript interfaces from any JSON</div>
-        </a>
-        <a href="/markdown"    class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">📄</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">Markdown</div>
-          <div class="tc-desc">Live preview with GFM — tables, tasks, code</div>
-        </a>
-        <a href="/lorem"       class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">📝</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">Lorem Ipsum</div>
-          <div class="tc-desc">Placeholder text — paragraphs, sentences, or words</div>
-        </a>
+      <!-- ── ALL ───────────────────────────────────────────── -->
+      <section class="cat-section" data-section="all">
+        <div class="cat-hero cat-hero--all">
+          <div class="cat-hero-icon">⊞</div>
+          <div>
+            <h1 class="cat-hero-title">All Tools</h1>
+            <p class="cat-hero-sub">39 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
+          </div>
+        </div>
 
-        <!-- TIME -->
-        <a href="/epoch"    class="tool-card" data-cat="time">
-          <div class="tc-top"><div class="tc-icon">⏱</div><span class="tc-cat">time</span></div>
-          <div class="tc-name">Epoch Converter</div>
-          <div class="tc-desc">Unix timestamps ↔ dates. UTC, ISO, relative</div>
-        </a>
-        <a href="/baseconv" class="tool-card" data-cat="time">
-          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text">0x</span></div><span class="tc-cat">time</span></div>
-          <div class="tc-name">Base Converter</div>
-          <div class="tc-desc">Binary, octal, decimal, hex — any base 2–36</div>
-        </a>
-        <a href="/cron"     class="tool-card" data-cat="time">
-          <div class="tc-top"><div class="tc-icon">⏰</div><span class="tc-cat">time</span></div>
-          <div class="tc-name">CRON Parser</div>
-          <div class="tc-desc">Parse cron to English, preview next 10 runs</div>
-        </a>
+        <div class="mini-section">
+          <div class="mini-section-hd enc-color">📦 Encoding <span>5</span></div>
+          <div class="tools-list">
+            <a href="/jwt"      class="tl-card enc"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">JWT Decoder</div><div class="tl-desc">Decode & verify JWT tokens — HS, RS, ES, PS algorithms</div></div><span class="tl-arrow">→</span></a>
+            <a href="/base64"   class="tl-card enc"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Base64</div><div class="tl-desc">Encode/decode strings and files, URL-safe variant</div></div><span class="tl-arrow">→</span></a>
+            <a href="/url"      class="tl-card enc"><div class="tl-icon">🔗</div><div class="tl-body"><div class="tl-name">URL Encoder</div><div class="tl-desc">Encode/decode URLs and query strings</div></div><span class="tl-arrow">→</span></a>
+            <a href="/entities" class="tl-card enc"><div class="tl-icon">&amp;</div><div class="tl-body"><div class="tl-name">HTML Entities</div><div class="tl-desc">Encode and decode HTML entities, named and numeric</div></div><span class="tl-arrow">→</span></a>
+            <a href="/hash"     class="tl-card enc"><div class="tl-icon">#</div><div class="tl-body"><div class="tl-name">Hash Generator</div><div class="tl-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512</div></div><span class="tl-arrow">→</span></a>
+          </div>
+        </div>
 
-        <!-- TEXT -->
-        <a href="/regex"    class="tool-card" data-cat="text">
-          <div class="tc-top"><div class="tc-icon">📐</div><span class="tc-cat">text</span></div>
-          <div class="tc-name">Regex Tester</div>
-          <div class="tc-desc">Live matching with highlighted matches and groups</div>
-        </a>
-        <a href="/uuid"     class="tool-card" data-cat="text">
-          <div class="tc-top"><div class="tc-icon">🆔</div><span class="tc-cat">text</span></div>
-          <div class="tc-name">UUID Generator</div>
-          <div class="tc-desc">Generate v4 and v7 UUIDs in bulk</div>
-        </a>
-        <a href="/password" class="tool-card" data-cat="text">
-          <div class="tc-top"><div class="tc-icon">🔐</div><span class="tc-cat">text</span></div>
-          <div class="tc-name">Password Gen</div>
-          <div class="tc-desc">Cryptographically secure with entropy meter</div>
-        </a>
-        <a href="/color"    class="tool-card" data-cat="text">
-          <div class="tc-top"><div class="tc-icon">🎨</div><span class="tc-cat">text</span></div>
-          <div class="tc-name">Color Converter</div>
-          <div class="tc-desc">HEX ↔ RGB ↔ HSL ↔ CMYK + shade palette</div>
-        </a>
-        <a href="/qr"       class="tool-card" data-cat="text">
-          <div class="tc-top"><div class="tc-icon">▦</div><span class="tc-cat">text</span></div>
-          <div class="tc-name">QR Generator</div>
-          <div class="tc-desc">QR codes for URLs, WiFi, vCards and more</div>
-        </a>
-        <a href="/chmod"    class="tool-card" data-cat="text">
-          <div class="tc-top"><div class="tc-icon">🔒</div><span class="tc-cat">text</span></div>
-          <div class="tc-name">chmod Calc</div>
-          <div class="tc-desc">Visual permission builder, octal ↔ symbolic</div>
-        </a>
-        <a href="/escape"   class="tool-card" data-cat="text">
-          <div class="tc-top"><div class="tc-icon">✂</div><span class="tc-cat">text</span></div>
-          <div class="tc-name">String Escape</div>
-          <div class="tc-desc">JS, Python, SQL, Shell, Regex, HTML, XML</div>
-        </a>
+        <div class="mini-section">
+          <div class="mini-section-hd data-color">🗄 Data <span>19</span></div>
+          <div class="tools-list">
+            <a href="/json"              class="tl-card data"><div class="tl-icon">{}</div><div class="tl-body"><div class="tl-name">JSON Formatter</div><div class="tl-desc">Pretty-print, minify, and validate JSON</div></div><span class="tl-arrow">→</span></a>
+            <a href="/csv"               class="tl-card data"><div class="tl-icon">⊞</div><div class="tl-body"><div class="tl-name">CSV → JSON</div><div class="tl-desc">Convert CSV to JSON with header detection</div></div><span class="tl-arrow">→</span></a>
+            <a href="/yaml"              class="tl-card data"><div class="tl-icon">⇄</div><div class="tl-body"><div class="tl-name">YAML ↔ JSON</div><div class="tl-desc">Convert between YAML and JSON instantly</div></div><span class="tl-arrow">→</span></a>
+            <a href="/semver"            class="tl-card data"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Semver Calc</div><div class="tl-desc">Bump versions, compare, test ranges</div></div><span class="tl-arrow">→</span></a>
+            <a href="/http-status"       class="tl-card data"><div class="tl-icon">🌐</div><div class="tl-body"><div class="tl-name">HTTP Status</div><div class="tl-desc">All 63 HTTP status codes, searchable</div></div><span class="tl-arrow">→</span></a>
+            <a href="/sql-format"        class="tl-card data"><div class="tl-icon">🗄</div><div class="tl-body"><div class="tl-name">SQL Formatter</div><div class="tl-desc">Format messy SQL with indentation</div></div><span class="tl-arrow">→</span></a>
+            <a href="/jwt-inspector"     class="tl-card data"><div class="tl-icon">🔑</div><div class="tl-body"><div class="tl-name">JWT Inspector</div><div class="tl-desc">Decode header, payload, expiry</div></div><span class="tl-arrow">→</span></a>
+            <a href="/json-diff"         class="tl-card data"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">JSON Diff</div><div class="tl-desc">Semantic diff — changed, added, removed</div></div><span class="tl-arrow">→</span></a>
+            <a href="/caseconv"          class="tl-card data"><div class="tl-icon">Aa</div><div class="tl-body"><div class="tl-name">Case Converter</div><div class="tl-desc">camelCase · snake_case · kebab-case · 8 more</div></div><span class="tl-arrow">→</span></a>
+            <a href="/env-diff"          class="tl-card data"><div class="tl-icon">📋</div><div class="tl-body"><div class="tl-name">.env Diff</div><div class="tl-desc">Compare .env files — added, removed, changed</div></div><span class="tl-arrow">→</span></a>
+            <a href="/csp"               class="tl-card data"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">CSP Builder</div><div class="tl-desc">Build Content-Security-Policy headers</div></div><span class="tl-arrow">→</span></a>
+            <a href="/cidr"              class="tl-card data"><div class="tl-icon">🔌</div><div class="tl-body"><div class="tl-name">CIDR Calc</div><div class="tl-desc">Network address, broadcast, usable hosts</div></div><span class="tl-arrow">→</span></a>
+            <a href="/unicode-inspector" class="tl-card data"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Unicode Inspector</div><div class="tl-desc">Reveal invisible chars, zero-width, bidi</div></div><span class="tl-arrow">→</span></a>
+            <a href="/regex-explainer"   class="tl-card data"><div class="tl-icon">🔍</div><div class="tl-body"><div class="tl-name">Regex Explainer</div><div class="tl-desc">Plain-English breakdown of every token</div></div><span class="tl-arrow">→</span></a>
+            <a href="/json-ts"           class="tl-card data"><div class="tl-icon">TS</div><div class="tl-body"><div class="tl-name">JSON → TypeScript</div><div class="tl-desc">Generate TypeScript interfaces from JSON</div></div><span class="tl-arrow">→</span></a>
+            <a href="/markdown"          class="tl-card data"><div class="tl-icon">📄</div><div class="tl-body"><div class="tl-name">Markdown</div><div class="tl-desc">Live GFM preview — tables, tasks, code</div></div><span class="tl-arrow">→</span></a>
+            <a href="/lorem"             class="tl-card data"><div class="tl-icon">📝</div><div class="tl-body"><div class="tl-name">Lorem Ipsum</div><div class="tl-desc">Placeholder text — paragraphs or words</div></div><span class="tl-arrow">→</span></a>
+            <a href="/diff"              class="tl-card data"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">Text Diff</div><div class="tl-desc">Myers diff with char-level inline changes</div></div><span class="tl-arrow">→</span></a>
+            <a href="/curl"              class="tl-card data"><div class="tl-icon">$_</div><div class="tl-body"><div class="tl-name">cURL Builder</div><div class="tl-desc">GUI to build curl commands visually</div></div><span class="tl-arrow">→</span></a>
+          </div>
+        </div>
 
-        <!-- DATA extras (previously unlisted) -->
-        <a href="/diff"   class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon">⟷</div><span class="tc-cat">data</span></div>
-          <div class="tc-name">Text Diff</div>
-          <div class="tc-desc">Myers algorithm, char-level inline diffs, context collapse</div>
-        </a>
-        <a href="/curl"   class="tool-card" data-cat="data">
-          <div class="tc-top"><div class="tc-icon"><span class="tc-icon-text">$_</span></div><span class="tc-cat">data</span></div>
-          <div class="tc-name">cURL Builder</div>
-          <div class="tc-desc">GUI for building curl commands — method, headers, auth, body</div>
-        </a>
+        <div class="mini-section">
+          <div class="mini-section-hd time-color">⏱ Time <span>3</span></div>
+          <div class="tools-list">
+            <a href="/epoch"    class="tl-card time"><div class="tl-icon">⏱</div><div class="tl-body"><div class="tl-name">Epoch Converter</div><div class="tl-desc">Unix timestamps ↔ dates, UTC, ISO, relative</div></div><span class="tl-arrow">→</span></a>
+            <a href="/baseconv" class="tl-card time"><div class="tl-icon">0x</div><div class="tl-body"><div class="tl-name">Base Converter</div><div class="tl-desc">Binary, octal, decimal, hex — any base 2–36</div></div><span class="tl-arrow">→</span></a>
+            <a href="/cron"     class="tl-card time"><div class="tl-icon">⏰</div><div class="tl-body"><div class="tl-name">CRON Parser</div><div class="tl-desc">Parse cron to English, next 10 runs</div></div><span class="tl-arrow">→</span></a>
+          </div>
+        </div>
 
-        <!-- AI -->
-        <a href="/token"       class="tool-card" data-cat="ai">
-          <div class="tc-top"><div class="tc-icon">🔢</div><span class="tc-cat">ai</span></div>
-          <div class="tc-name">Token Counter</div>
-          <div class="tc-desc">Exact token count for GPT-4, Claude, Gemini, Llama — context window bars</div>
-        </a>
-        <a href="/ai-cost"     class="tool-card" data-cat="ai">
-          <div class="tc-top"><div class="tc-icon">💰</div><span class="tc-cat">ai</span></div>
-          <div class="tc-name">AI Cost Calc</div>
-          <div class="tc-desc">Token × price across 16 models — OpenAI, Anthropic, Google, Groq</div>
-        </a>
-        <a href="/ai-response" class="tool-card" data-cat="ai">
-          <div class="tc-top"><div class="tc-icon">🔬</div><span class="tc-cat">ai</span></div>
-          <div class="tc-name">Response Inspector</div>
-          <div class="tc-desc">Paste raw API JSON — renders content blocks, tool calls, usage, cost</div>
-        </a>
-        <a href="/prompt"      class="tool-card" data-cat="ai">
-          <div class="tc-top"><div class="tc-icon">✍</div><span class="tc-cat">ai</span></div>
-          <div class="tc-name">Prompt Builder</div>
-          <div class="tc-desc">System · context · examples · format — export as XML, Markdown, or plain</div>
-        </a>
-        <a href="/context"     class="tool-card" data-cat="ai">
-          <div class="tc-top"><div class="tc-icon">📐</div><span class="tc-cat">ai</span></div>
-          <div class="tc-name">Context Planner</div>
-          <div class="tc-desc">Multi-slot token budgeter — see exactly what fits in each model's window</div>
-        </a>
+        <div class="mini-section">
+          <div class="mini-section-hd text-color">✏ Text <span>7</span></div>
+          <div class="tools-list">
+            <a href="/regex"    class="tl-card text"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Regex Tester</div><div class="tl-desc">Live matching with highlighted groups</div></div><span class="tl-arrow">→</span></a>
+            <a href="/uuid"     class="tl-card text"><div class="tl-icon">🆔</div><div class="tl-body"><div class="tl-name">UUID Generator</div><div class="tl-desc">v4 and v7 UUIDs in bulk</div></div><span class="tl-arrow">→</span></a>
+            <a href="/password" class="tl-card text"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">Password Gen</div><div class="tl-desc">Cryptographically secure with entropy meter</div></div><span class="tl-arrow">→</span></a>
+            <a href="/color"    class="tl-card text"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Color Converter</div><div class="tl-desc">HEX ↔ RGB ↔ HSL ↔ CMYK + shade palette</div></div><span class="tl-arrow">→</span></a>
+            <a href="/qr"       class="tl-card text"><div class="tl-icon">▦</div><div class="tl-body"><div class="tl-name">QR Generator</div><div class="tl-desc">QR codes for URLs, WiFi, vCards</div></div><span class="tl-arrow">→</span></a>
+            <a href="/chmod"    class="tl-card text"><div class="tl-icon">🔒</div><div class="tl-body"><div class="tl-name">chmod Calc</div><div class="tl-desc">Visual permission builder, octal ↔ symbolic</div></div><span class="tl-arrow">→</span></a>
+            <a href="/escape"   class="tl-card text"><div class="tl-icon">✂</div><div class="tl-body"><div class="tl-name">String Escape</div><div class="tl-desc">JS, Python, SQL, Shell, Regex, HTML, XML</div></div><span class="tl-arrow">→</span></a>
+          </div>
+        </div>
 
-      </div><!-- /tools-grid -->
-    </div><!-- /grid-scroll -->
-  </div><!-- /main-area -->
+        <div class="mini-section">
+          <div class="mini-section-hd ai-color">✦ AI · LLM <span>5</span></div>
+          <div class="tools-list">
+            <a href="/token"       class="tl-card ai"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Exact token count for GPT-4, Claude, Gemini, Llama</div></div><span class="tl-arrow">→</span></a>
+            <a href="/ai-cost"     class="tl-card ai"><div class="tl-icon">💰</div><div class="tl-body"><div class="tl-name">AI Cost Calc</div><div class="tl-desc">Compare cost across 16 models — OpenAI, Anthropic, Google</div></div><span class="tl-arrow">→</span></a>
+            <a href="/ai-response" class="tl-card ai"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Response Inspector</div><div class="tl-desc">Renders content blocks, tool calls, usage, cost</div></div><span class="tl-arrow">→</span></a>
+            <a href="/prompt"      class="tl-card ai"><div class="tl-icon">✍</div><div class="tl-body"><div class="tl-name">Prompt Builder</div><div class="tl-desc">System · context · examples · format — XML, MD, plain</div></div><span class="tl-arrow">→</span></a>
+            <a href="/context"     class="tl-card ai"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Context Planner</div><div class="tl-desc">Token budgeter — see what fits in each model's window</div></div><span class="tl-arrow">→</span></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── ENCODING ──────────────────────────────────────── -->
+      <section class="cat-section" data-section="encoding" style="display:none">
+        <div class="cat-hero cat-hero--enc">
+          <div class="cat-hero-icon">📦</div>
+          <div>
+            <h1 class="cat-hero-title">Encoding</h1>
+            <p class="cat-hero-sub">5 tools — Base64, URL, HTML entities, hashing, JWT. Transform and verify encoded data without any server.</p>
+          </div>
+        </div>
+        <div class="tools-list tools-list--lg">
+          <a href="/jwt"      class="tl-card enc tl-lg"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">JWT Decoder</div><div class="tl-desc">Decode & verify JWT tokens. Supports HS256/384/512, RS256, ES256, PS256. Shows header, payload, expiry countdown.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/base64"   class="tl-card enc tl-lg"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Base64</div><div class="tl-desc">Encode/decode strings and files to Base64. URL-safe variant, line wrapping, charset options.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/url"      class="tl-card enc tl-lg"><div class="tl-icon">🔗</div><div class="tl-body"><div class="tl-name">URL Encoder</div><div class="tl-desc">Encode/decode URLs and individual query string components. Handles special characters, international URLs.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/entities" class="tl-card enc tl-lg"><div class="tl-icon">&amp;</div><div class="tl-body"><div class="tl-name">HTML Entities</div><div class="tl-desc">Encode and decode HTML entities. Named (&amp;amp;), decimal (&#38;), and hex (&#x26;) formats.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/hash"     class="tl-card enc tl-lg"><div class="tl-icon">#</div><div class="tl-body"><div class="tl-name">Hash Generator</div><div class="tl-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512. Works on text or any file. All hashing runs in the browser.</div></div><span class="tl-arrow">→</span></a>
+        </div>
+      </section>
+
+      <!-- ── DATA ─────────────────────────────────────────── -->
+      <section class="cat-section" data-section="data" style="display:none">
+        <div class="cat-hero cat-hero--data">
+          <div class="cat-hero-icon">🗄</div>
+          <div>
+            <h1 class="cat-hero-title">Data</h1>
+            <p class="cat-hero-sub">19 tools — JSON, YAML, SQL, CSV, regex, diffs and more. Format, convert, and inspect structured data instantly.</p>
+          </div>
+        </div>
+        <div class="tools-list tools-list--lg">
+          <a href="/json"              class="tl-card data tl-lg"><div class="tl-icon">{}</div><div class="tl-body"><div class="tl-name">JSON Formatter</div><div class="tl-desc">Pretty-print, minify, validate JSON. Syntax highlighted output with error reporting.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/yaml"              class="tl-card data tl-lg"><div class="tl-icon">⇄</div><div class="tl-body"><div class="tl-name">YAML ↔ JSON</div><div class="tl-desc">Convert between YAML and JSON instantly in both directions. Preserves comments in YAML mode.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/csv"               class="tl-card data tl-lg"><div class="tl-icon">⊞</div><div class="tl-body"><div class="tl-name">CSV → JSON</div><div class="tl-desc">Convert CSV to JSON with auto header detection and type coercion for numbers and booleans.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/json-diff"         class="tl-card data tl-lg"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">JSON Diff</div><div class="tl-desc">Semantic diff between two JSON objects. Shows changed, added, and removed paths clearly.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/diff"              class="tl-card data tl-lg"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">Text Diff</div><div class="tl-desc">Myers diff algorithm with char-level inline highlights, context collapsing, and copy as unified diff.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/sql-format"        class="tl-card data tl-lg"><div class="tl-icon">🗄</div><div class="tl-body"><div class="tl-name">SQL Formatter</div><div class="tl-desc">Format messy SQL with proper indentation, keyword capitalisation, and syntax highlighting.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/http-status"       class="tl-card data tl-lg"><div class="tl-icon">🌐</div><div class="tl-body"><div class="tl-name">HTTP Status Codes</div><div class="tl-desc">Searchable reference for all 63 HTTP status codes — meaning, typical use, RFC reference.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/jwt-inspector"     class="tl-card data tl-lg"><div class="tl-icon">🔑</div><div class="tl-body"><div class="tl-name">JWT Inspector</div><div class="tl-desc">Decode any JWT — header, payload, expiry countdown. No secret required, fully client-side.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/semver"            class="tl-card data tl-lg"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Semver Calculator</div><div class="tl-desc">Bump major/minor/patch, compare versions, test version range expressions.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/caseconv"          class="tl-card data tl-lg"><div class="tl-icon">Aa</div><div class="tl-body"><div class="tl-name">Case Converter</div><div class="tl-desc">camelCase · PascalCase · snake_case · kebab-case · CONSTANT_CASE · Title Case · 4 more.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/env-diff"          class="tl-card data tl-lg"><div class="tl-icon">📋</div><div class="tl-body"><div class="tl-name">.env Diff</div><div class="tl-desc">Compare two .env files side by side — shows added, removed, and changed keys at a glance.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/csp"               class="tl-card data tl-lg"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">CSP Builder</div><div class="tl-desc">Build Content-Security-Policy headers with guided toggles per directive.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/cidr"              class="tl-card data tl-lg"><div class="tl-icon">🔌</div><div class="tl-body"><div class="tl-name">CIDR Calculator</div><div class="tl-desc">Network address, broadcast address, usable host count, subnet mask from any CIDR notation.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/unicode-inspector" class="tl-card data tl-lg"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Unicode Inspector</div><div class="tl-desc">Reveal invisible characters, zero-width spaces, bidi overrides, and other hidden code points.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/regex-explainer"   class="tl-card data tl-lg"><div class="tl-icon">🔍</div><div class="tl-body"><div class="tl-name">Regex Explainer</div><div class="tl-desc">Plain-English breakdown of every token in a regex — groups, lookaheads, quantifiers, flags.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/json-ts"           class="tl-card data tl-lg"><div class="tl-icon">TS</div><div class="tl-body"><div class="tl-name">JSON → TypeScript</div><div class="tl-desc">Generate TypeScript interfaces and types from any JSON sample. Handles nested objects and arrays.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/markdown"          class="tl-card data tl-lg"><div class="tl-icon">📄</div><div class="tl-body"><div class="tl-name">Markdown Preview</div><div class="tl-desc">Live Markdown preview with GFM support — tables, task lists, fenced code, strikethrough.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/lorem"             class="tl-card data tl-lg"><div class="tl-icon">📝</div><div class="tl-body"><div class="tl-name">Lorem Ipsum</div><div class="tl-desc">Generate placeholder text by paragraphs, sentences, or word count.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/curl"              class="tl-card data tl-lg"><div class="tl-icon">$_</div><div class="tl-body"><div class="tl-name">cURL Builder</div><div class="tl-desc">Visual GUI to build curl commands — method, headers, auth, body, options.</div></div><span class="tl-arrow">→</span></a>
+        </div>
+      </section>
+
+      <!-- ── TIME ─────────────────────────────────────────── -->
+      <section class="cat-section" data-section="time" style="display:none">
+        <div class="cat-hero cat-hero--time">
+          <div class="cat-hero-icon">⏱</div>
+          <div>
+            <h1 class="cat-hero-title">Time</h1>
+            <p class="cat-hero-sub">3 tools — epoch conversion, base conversion, CRON parsing. Timestamp and number utilities for every day of debugging.</p>
+          </div>
+        </div>
+        <div class="tools-list tools-list--lg">
+          <a href="/epoch"    class="tl-card time tl-lg"><div class="tl-icon">⏱</div><div class="tl-body"><div class="tl-name">Epoch Converter</div><div class="tl-desc">Unix timestamps ↔ human-readable dates. Supports UTC, ISO 8601, and relative time. Works bidirectionally.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/baseconv" class="tl-card time tl-lg"><div class="tl-icon">0x</div><div class="tl-body"><div class="tl-name">Base Converter</div><div class="tl-desc">Convert numbers between binary, octal, decimal, hexadecimal, and any custom base from 2 to 36.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/cron"     class="tl-card time tl-lg"><div class="tl-icon">⏰</div><div class="tl-body"><div class="tl-name">CRON Parser</div><div class="tl-desc">Parse cron expressions to plain English. Preview the next 10 scheduled run times. Supports 5 and 6-field expressions.</div></div><span class="tl-arrow">→</span></a>
+        </div>
+      </section>
+
+      <!-- ── TEXT ─────────────────────────────────────────── -->
+      <section class="cat-section" data-section="text" style="display:none">
+        <div class="cat-hero cat-hero--text">
+          <div class="cat-hero-icon">✏</div>
+          <div>
+            <h1 class="cat-hero-title">Text</h1>
+            <p class="cat-hero-sub">7 tools — regex, UUIDs, passwords, colours, QR codes, permissions, string escaping. The dev staples.</p>
+          </div>
+        </div>
+        <div class="tools-list tools-list--lg">
+          <a href="/regex"    class="tl-card text tl-lg"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Regex Tester</div><div class="tl-desc">Live regex matching with highlighted matches and capture groups. Flags panel, match count, group inspector.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/uuid"     class="tl-card text tl-lg"><div class="tl-icon">🆔</div><div class="tl-body"><div class="tl-name">UUID Generator</div><div class="tl-desc">Generate v4 and v7 UUIDs in bulk. Format options: uppercase, braces, no-hyphens.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/password" class="tl-card text tl-lg"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">Password Generator</div><div class="tl-desc">Cryptographically secure passwords. Entropy meter, charset toggles, bulk generation.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/color"    class="tl-card text tl-lg"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Color Converter</div><div class="tl-desc">HEX ↔ RGB ↔ HSL ↔ CMYK conversion with shade palette generation and CSS output.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/qr"       class="tl-card text tl-lg"><div class="tl-icon">▦</div><div class="tl-body"><div class="tl-name">QR Generator</div><div class="tl-desc">Generate QR codes for URLs, WiFi credentials, vCards. Downloadable SVG and PNG.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/chmod"    class="tl-card text tl-lg"><div class="tl-icon">🔒</div><div class="tl-body"><div class="tl-name">chmod Calculator</div><div class="tl-desc">Visual permission builder with toggle switches. Bidirectional octal ↔ symbolic. Special bits: setuid, setgid, sticky.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/escape"   class="tl-card text tl-lg"><div class="tl-icon">✂</div><div class="tl-body"><div class="tl-name">String Escape</div><div class="tl-desc">Escape/unescape strings for JS, JSON, Python, SQL, Shell, Regex, HTML, and XML. Bidirectional.</div></div><span class="tl-arrow">→</span></a>
+        </div>
+      </section>
+
+      <!-- ── AI ───────────────────────────────────────────── -->
+      <section class="cat-section" data-section="ai" style="display:none">
+        <div class="cat-hero cat-hero--ai">
+          <div class="cat-hero-icon">✦</div>
+          <div>
+            <h1 class="cat-hero-title">AI · LLM</h1>
+            <p class="cat-hero-sub">5 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
+          </div>
+        </div>
+        <div class="tools-list tools-list--lg">
+          <a href="/token"       class="tl-card ai tl-lg"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Accurate token counts for GPT-4, Claude, Gemini, Llama using the actual cl100k_base tokenizer. Context window bars per model.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/ai-cost"     class="tl-card ai tl-lg"><div class="tl-icon">💰</div><div class="tl-body"><div class="tl-name">AI Cost Calculator</div><div class="tl-desc">Input × output tokens × API calls across 16 models. Compare cost between OpenAI, Anthropic, Google, Groq, and Mistral.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/ai-response" class="tl-card ai tl-lg"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Response Inspector</div><div class="tl-desc">Paste raw API JSON from Anthropic or OpenAI. Renders content blocks, tool calls, token usage, and estimated cost.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/prompt"      class="tl-card ai tl-lg"><div class="tl-icon">✍</div><div class="tl-body"><div class="tl-name">Prompt Builder</div><div class="tl-desc">Structured editor: system prompt, context, few-shot examples, output format. Exports as XML tags, Markdown, or plain text.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/context"     class="tl-card ai tl-lg"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Context Planner</div><div class="tl-desc">Multi-slot token budgeter. Paste files or text blocks, see total token count, and instantly know what fits in each model's window.</div></div><span class="tl-arrow">→</span></a>
+        </div>
+      </section>
+
+    </div><!-- /content -->
+  </div><!-- /app-body -->
 
   <footer>
-    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px;animation:blink 2.2s infinite"></span>greenwoods.dev</span>
-    <span>⌘K to search · 39 tools · zero telemetry</span>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>⌘K to search · 39 tools · zero telemetry · runs in your browser</span>
   </footer>
-
-</div><!-- /wrapper -->
+</div>
 
 <script>
-(function () {
+(function(){
+  // ── Navigation ────────────────────────────────────────────────
+  const navItems  = document.querySelectorAll('.nav-item');
+  const sections  = document.querySelectorAll('.cat-section');
+  const content   = document.getElementById('content');
+
+  navItems.forEach(btn => {
+    btn.addEventListener('click', () => {
+      navItems.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      sections.forEach(s => {
+        s.style.display = s.dataset.section === cat ? '' : 'none';
+      });
+      content.scrollTop = 0;
+    });
+  });
+
+  // ── Palette ───────────────────────────────────────────────────
   const TOOLS = [
-    { name:'JWT Decoder',        icon:'🔐', href:'/jwt',               cat:'encoding', desc:'Decode & verify JWT tokens. HS, RS, ES, PS algorithms' },
-    { name:'Base64',             icon:'📦', href:'/base64',            cat:'encoding', desc:'Encode/decode strings and files to Base64, URL-safe mode' },
-    { name:'URL Encoder',        icon:'🔗', href:'/url',               cat:'encoding', desc:'Encode/decode URLs and query strings' },
-    { name:'HTML Entities',      icon:'&',  href:'/entities',          cat:'encoding', desc:'Encode and decode HTML entities, named and numeric' },
-    { name:'Hash Generator',     icon:'#',  href:'/hash',              cat:'encoding', desc:'MD5, SHA-1, SHA-256, SHA-384, SHA-512 — text or file' },
-    { name:'JSON Formatter',     icon:'{}', href:'/json',              cat:'data',     desc:'Pretty-print, minify, and validate JSON payloads' },
-    { name:'CSV → JSON',         icon:'⊞',  href:'/csv',               cat:'data',     desc:'Convert CSV to JSON with header detection' },
-    { name:'YAML ↔ JSON',        icon:'⇄',  href:'/yaml',              cat:'data',     desc:'Convert between YAML and JSON instantly' },
-    { name:'Semver Calc',        icon:'⚙',  href:'/semver',            cat:'data',     desc:'Bump versions, compare semvers, test ranges' },
-    { name:'HTTP Status',        icon:'🌐', href:'/http-status',       cat:'data',     desc:'Searchable reference — all 63 HTTP status codes' },
-    { name:'SQL Formatter',      icon:'🗄', href:'/sql-format',        cat:'data',     desc:'Format messy SQL with indentation and highlighting' },
-    { name:'JWT Inspector',      icon:'🔑', href:'/jwt-inspector',     cat:'data',     desc:'Decode header, payload, expiry — no secret needed' },
-    { name:'JSON Diff',          icon:'⟷',  href:'/json-diff',         cat:'data',     desc:'Semantic diff — changed, added, removed paths' },
-    { name:'Case Converter',     icon:'Aa', href:'/caseconv',          cat:'data',     desc:'camelCase · snake_case · kebab-case · 8 more' },
-    { name:'.env Diff',          icon:'📋', href:'/env-diff',          cat:'data',     desc:'Compare .env files — added, removed, changed keys' },
-    { name:'CSP Builder',        icon:'🛡', href:'/csp',               cat:'data',     desc:'Build Content-Security-Policy with guided toggles' },
-    { name:'CIDR Calc',          icon:'🔌', href:'/cidr',              cat:'data',     desc:'Network address, broadcast, usable hosts, mask' },
-    { name:'Unicode Inspector',  icon:'🔬', href:'/unicode-inspector', cat:'data',     desc:'Reveal invisible chars, zero-width, bidi overrides' },
-    { name:'Regex Explainer',    icon:'🔍', href:'/regex-explainer',   cat:'data',     desc:'Plain-English breakdown of every regex token' },
-    { name:'JSON → TypeScript',  icon:'TS', href:'/json-ts',           cat:'data',     desc:'Generate TypeScript interfaces from any JSON' },
-    { name:'Markdown',           icon:'📄', href:'/markdown',          cat:'data',     desc:'Live preview with GFM — tables, tasks, code' },
-    { name:'Lorem Ipsum',        icon:'📝', href:'/lorem',             cat:'data',     desc:'Placeholder text — paragraphs, sentences, or words' },
-    { name:'Text Diff',          icon:'⟷',  href:'/diff',              cat:'data',     desc:'Myers diff, char-level inline diffs, context collapse' },
-    { name:'cURL Builder',       icon:'$_', href:'/curl',              cat:'data',     desc:'GUI for curl commands — method, headers, auth, body' },
-    { name:'Epoch Converter',    icon:'⏱', href:'/epoch',             cat:'time',     desc:'Unix timestamps ↔ dates. UTC, ISO, relative' },
-    { name:'Base Converter',     icon:'0x', href:'/baseconv',          cat:'time',     desc:'Binary, octal, decimal, hex — any base 2–36' },
-    { name:'CRON Parser',        icon:'⏰', href:'/cron',              cat:'time',     desc:'Parse cron to English, preview next 10 runs' },
-    { name:'Regex Tester',       icon:'📐', href:'/regex',             cat:'text',     desc:'Live matching with highlighted matches and groups' },
-    { name:'UUID Generator',     icon:'🆔', href:'/uuid',              cat:'text',     desc:'Generate v4 and v7 UUIDs in bulk' },
-    { name:'Password Gen',       icon:'🔐', href:'/password',          cat:'text',     desc:'Cryptographically secure with entropy meter' },
-    { name:'Color Converter',    icon:'🎨', href:'/color',             cat:'text',     desc:'HEX ↔ RGB ↔ HSL ↔ CMYK + shade palette' },
-    { name:'QR Generator',       icon:'▦',  href:'/qr',                cat:'text',     desc:'QR codes for URLs, WiFi, vCards and more' },
-    { name:'chmod Calc',         icon:'🔒', href:'/chmod',             cat:'text',     desc:'Visual permission builder, octal ↔ symbolic' },
-    { name:'String Escape',      icon:'✂',  href:'/escape',            cat:'text',     desc:'JS, Python, SQL, Shell, Regex, HTML, XML' },
-    { name:'Token Counter',      icon:'🔢', href:'/token',             cat:'ai',       desc:'Exact token count for GPT-4, Claude, Gemini, Llama' },
-    { name:'AI Cost Calc',       icon:'💰', href:'/ai-cost',           cat:'ai',       desc:'Token × price across 16 models — compare providers' },
-    { name:'Response Inspector', icon:'🔬', href:'/ai-response',       cat:'ai',       desc:'Paste raw API JSON — renders content blocks, tool calls, usage' },
-    { name:'Prompt Builder',     icon:'✍',  href:'/prompt',            cat:'ai',       desc:'System · context · examples · format — XML, MD, plain' },
-    { name:'Context Planner',    icon:'📐', href:'/context',           cat:'ai',       desc:'Multi-slot token budgeter, model context window fit' },
+    {name:'JWT Decoder',icon:'🔐',href:'/jwt',cat:'encoding',desc:'Decode & verify JWT tokens — HS, RS, ES, PS algorithms'},
+    {name:'Base64',icon:'📦',href:'/base64',cat:'encoding',desc:'Encode/decode strings and files, URL-safe variant'},
+    {name:'URL Encoder',icon:'🔗',href:'/url',cat:'encoding',desc:'Encode/decode URLs and query strings'},
+    {name:'HTML Entities',icon:'&',href:'/entities',cat:'encoding',desc:'Encode and decode HTML entities'},
+    {name:'Hash Generator',icon:'#',href:'/hash',cat:'encoding',desc:'MD5, SHA-1, SHA-256, SHA-384, SHA-512'},
+    {name:'JSON Formatter',icon:'{}',href:'/json',cat:'data',desc:'Pretty-print, minify, and validate JSON'},
+    {name:'CSV → JSON',icon:'⊞',href:'/csv',cat:'data',desc:'Convert CSV to JSON with header detection'},
+    {name:'YAML ↔ JSON',icon:'⇄',href:'/yaml',cat:'data',desc:'Convert between YAML and JSON instantly'},
+    {name:'Semver Calc',icon:'⚙',href:'/semver',cat:'data',desc:'Bump versions, compare, test ranges'},
+    {name:'HTTP Status',icon:'🌐',href:'/http-status',cat:'data',desc:'All 63 HTTP status codes, searchable'},
+    {name:'SQL Formatter',icon:'🗄',href:'/sql-format',cat:'data',desc:'Format messy SQL with indentation'},
+    {name:'JWT Inspector',icon:'🔑',href:'/jwt-inspector',cat:'data',desc:'Decode header, payload, expiry'},
+    {name:'JSON Diff',icon:'⟷',href:'/json-diff',cat:'data',desc:'Semantic diff — changed, added, removed'},
+    {name:'Case Converter',icon:'Aa',href:'/caseconv',cat:'data',desc:'camelCase · snake_case · kebab-case · 8 more'},
+    {name:'.env Diff',icon:'📋',href:'/env-diff',cat:'data',desc:'Compare .env files'},
+    {name:'CSP Builder',icon:'🛡',href:'/csp',cat:'data',desc:'Build Content-Security-Policy headers'},
+    {name:'CIDR Calc',icon:'🔌',href:'/cidr',cat:'data',desc:'Network address, broadcast, usable hosts'},
+    {name:'Unicode Inspector',icon:'🔬',href:'/unicode-inspector',cat:'data',desc:'Reveal invisible chars, zero-width, bidi'},
+    {name:'Regex Explainer',icon:'🔍',href:'/regex-explainer',cat:'data',desc:'Plain-English breakdown of every regex token'},
+    {name:'JSON → TypeScript',icon:'TS',href:'/json-ts',cat:'data',desc:'Generate TypeScript interfaces from JSON'},
+    {name:'Markdown',icon:'📄',href:'/markdown',cat:'data',desc:'Live GFM preview'},
+    {name:'Lorem Ipsum',icon:'📝',href:'/lorem',cat:'data',desc:'Placeholder text generator'},
+    {name:'Text Diff',icon:'⟷',href:'/diff',cat:'data',desc:'Myers diff with char-level highlights'},
+    {name:'cURL Builder',icon:'$_',href:'/curl',cat:'data',desc:'GUI to build curl commands'},
+    {name:'Epoch Converter',icon:'⏱',href:'/epoch',cat:'time',desc:'Unix timestamps ↔ dates'},
+    {name:'Base Converter',icon:'0x',href:'/baseconv',cat:'time',desc:'Binary, octal, decimal, hex'},
+    {name:'CRON Parser',icon:'⏰',href:'/cron',cat:'time',desc:'Parse cron to English, next 10 runs'},
+    {name:'Regex Tester',icon:'📐',href:'/regex',cat:'text',desc:'Live matching with highlighted groups'},
+    {name:'UUID Generator',icon:'🆔',href:'/uuid',cat:'text',desc:'v4 and v7 UUIDs in bulk'},
+    {name:'Password Gen',icon:'🔐',href:'/password',cat:'text',desc:'Cryptographically secure passwords'},
+    {name:'Color Converter',icon:'🎨',href:'/color',cat:'text',desc:'HEX ↔ RGB ↔ HSL ↔ CMYK'},
+    {name:'QR Generator',icon:'▦',href:'/qr',cat:'text',desc:'QR codes for URLs, WiFi, vCards'},
+    {name:'chmod Calc',icon:'🔒',href:'/chmod',cat:'text',desc:'Visual permission builder'},
+    {name:'String Escape',icon:'✂',href:'/escape',cat:'text',desc:'JS, Python, SQL, Shell, Regex, HTML, XML'},
+    {name:'Token Counter',icon:'🔢',href:'/token',cat:'ai',desc:'Token count for GPT-4, Claude, Gemini, Llama'},
+    {name:'AI Cost Calc',icon:'💰',href:'/ai-cost',cat:'ai',desc:'Compare cost across 16 models'},
+    {name:'Response Inspector',icon:'🔬',href:'/ai-response',cat:'ai',desc:'Renders content blocks, tool calls, usage'},
+    {name:'Prompt Builder',icon:'✍',href:'/prompt',cat:'ai',desc:'System · context · examples · format'},
+    {name:'Context Planner',icon:'📐',href:'/context',cat:'ai',desc:'Token budgeter for model context windows'},
   ];
 
-  // ── palette ──────────────────────────────────────────────────
-  let filtered = TOOLS.slice(), fi = 0;
-  const backdrop = document.getElementById('cmdBackdrop');
-  const inp      = document.getElementById('cmdInput');
-  const res      = document.getElementById('cmdResults');
+  let filtered=TOOLS.slice(),fi=0;
+  const backdrop=document.getElementById('cmdBackdrop');
+  const inp=document.getElementById('cmdInput');
+  const res=document.getElementById('cmdResults');
 
-  function open() {
-    backdrop.classList.add('open');
-    inp.value = '';
-    draw(TOOLS);
-    setTimeout(() => inp.focus(), 30);
-  }
-  function close() { backdrop.classList.remove('open'); }
+  function open(){backdrop.classList.add('open');inp.value='';draw(TOOLS);setTimeout(()=>inp.focus(),30);}
+  function close(){backdrop.classList.remove('open');}
 
-  function draw(tools) {
-    filtered = tools; fi = 0;
-    if (!tools.length) { res.innerHTML = '<div class="cmd-no-results">No tools match</div>'; return; }
-    res.innerHTML = tools.map((t, i) => `
+  function draw(tools){
+    filtered=tools;fi=0;
+    if(!tools.length){res.innerHTML='<div class="cmd-no-results">No tools match</div>';return;}
+    res.innerHTML=tools.map((t,i)=>`
       <a class="cmd-item${i===0?' focused':''}" href="${t.href}" data-cat="${t.cat}">
         <span class="cmd-item-icon">${t.icon}</span>
         <span class="cmd-item-body">
@@ -356,55 +368,43 @@
       </a>`).join('');
   }
 
-  function hl(s) {
-    const q = inp.value;
-    if (!q) return s;
+  function hl(s){
+    const q=inp.value;if(!q)return s;
     return s.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi'),
-      '<mark style="background:rgba(0,255,159,.2);color:var(--accent);border-radius:2px">$1</mark>');
+      '<mark style="background:rgba(5,150,105,.15);color:#059669;border-radius:2px">$1</mark>');
   }
 
-  function move(d) {
-    if (!filtered.length) return;
-    const items = res.querySelectorAll('.cmd-item');
+  function move(d){
+    if(!filtered.length)return;
+    const items=res.querySelectorAll('.cmd-item');
     items[fi]?.classList.remove('focused');
-    fi = (fi + d + filtered.length) % filtered.length;
+    fi=(fi+d+filtered.length)%filtered.length;
     items[fi]?.classList.add('focused');
-    items[fi]?.scrollIntoView({ block: 'nearest' });
+    items[fi]?.scrollIntoView({block:'nearest'});
   }
 
-  function search(q) {
-    if (!q.trim()) { draw(TOOLS); return; }
-    const lq = q.toLowerCase();
-    draw(TOOLS.map(t => {
-      const n = t.name.toLowerCase(), de = t.desc.toLowerCase(), c = t.cat;
-      const s = n.startsWith(lq)?100 : n.includes(lq)?80 : de.includes(lq)?50 : c.includes(lq)?30 : 0;
-      return { t, s };
-    }).filter(x => x.s > 0).sort((a,b) => b.s - a.s).map(x => x.t));
+  function search(q){
+    if(!q.trim()){draw(TOOLS);return;}
+    const lq=q.toLowerCase();
+    draw(TOOLS.map(t=>{
+      const n=t.name.toLowerCase(),de=t.desc.toLowerCase(),c=t.cat;
+      const s=n.startsWith(lq)?100:n.includes(lq)?80:de.includes(lq)?50:c.includes(lq)?30:0;
+      return{t,s};
+    }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.t));
   }
 
-  document.getElementById('cmdTrigger').addEventListener('click', open);
-  backdrop.addEventListener('click', e => { if (e.target === backdrop) close(); });
-  inp.addEventListener('input', () => search(inp.value));
-  inp.addEventListener('keydown', e => {
-    if (e.key === 'ArrowDown')  { e.preventDefault(); move(1); }
-    else if (e.key === 'ArrowUp')   { e.preventDefault(); move(-1); }
-    else if (e.key === 'Enter') { const t = filtered[fi]; if (t) location.href = t.href; }
-    else if (e.key === 'Escape') close();
+  document.getElementById('cmdTrigger').addEventListener('click',open);
+  backdrop.addEventListener('click',e=>{if(e.target===backdrop)close();});
+  inp.addEventListener('input',()=>search(inp.value));
+  inp.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'){e.preventDefault();move(1);}
+    else if(e.key==='ArrowUp'){e.preventDefault();move(-1);}
+    else if(e.key==='Enter'){const t=filtered[fi];if(t)location.href=t.href;}
+    else if(e.key==='Escape')close();
   });
-  document.addEventListener('keydown', e => {
-    if ((e.metaKey||e.ctrlKey) && e.key==='k') { e.preventDefault(); backdrop.classList.contains('open') ? close() : open(); }
-    if (e.key === 'Escape' && backdrop.classList.contains('open')) close();
-  });
-
-  // ── category filter ───────────────────────────────────────────
-  const cards = document.querySelectorAll('.tool-card');
-  document.querySelectorAll('.cat-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.dataset.cat;
-      cards.forEach(c => { c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none'; });
-    });
+  document.addEventListener('keydown',e=>{
+    if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();backdrop.classList.contains('open')?close():open();}
+    if(e.key==='Escape'&&backdrop.classList.contains('open'))close();
   });
 })();
 </script>
