@@ -1,4 +1,4 @@
-.ai-badge { color: var(--accent); border-color: rgba(0,255,159,.3); background: rgba(0,255,159,.06); }
+.ai-badge { color: var(--accent); border-color: rgba(5,150,105,.3); background: rgba(5,150,105,.08); }
 
 main.single-panel { overflow-y: auto; }
 .cost-panel .panel-body { gap: 20px; }

@@ -11,7 +11,7 @@ main.three-panel { height: calc(100vh - 49px - 45px); }
   flex-shrink: 0;
 }
 
-.sum-added   { color: #3fb950; }
+.sum-added   { color: var(--accent); }
 .sum-removed { color: var(--accent3); }
 .sum-changed { color: var(--warn); }
 .sum-same    { color: var(--muted); }
@@ -72,15 +72,15 @@ main.three-panel { height: calc(100vh - 49px - 45px); }
   align-items: center;
 }
 
-.diff-line--add  { background: rgba(63,185,80,0.08); }
-.diff-line--add  .diff-sign { color: #3fb950; }
-.diff-line--add  .diff-gutter { color: #3fb950; opacity: 0.6; }
-.diff-line--add  .diff-text { color: #b8f5c7; }
+.diff-line--add  { background: rgba(5,150,105,0.07); }
+.diff-line--add  .diff-sign { color: var(--accent); }
+.diff-line--add  .diff-gutter { color: var(--accent); opacity: 0.6; }
+.diff-line--add  .diff-text { color: var(--text); }
 
-.diff-line--del  { background: rgba(255,77,109,0.08); }
+.diff-line--del  { background: rgba(220,38,38,0.07); }
 .diff-line--del  .diff-sign { color: var(--accent3); }
 .diff-line--del  .diff-gutter { color: var(--accent3); opacity: 0.6; }
-.diff-line--del  .diff-text { color: #ffc2cd; }
+.diff-line--del  .diff-text { color: var(--accent3); }
 
 .diff-line--eq   { }
 .diff-line--eq   .diff-sign { color: var(--border); }

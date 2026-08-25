@@ -175,7 +175,7 @@ main.single-panel {
 }
 
 .toggle input:checked + .slider {
-  background: rgba(0,255,159,0.15);
+  background: rgba(5,150,105,0.1);
   border-color: var(--accent);
 }
 
