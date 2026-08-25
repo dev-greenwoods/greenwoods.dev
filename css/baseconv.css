@@ -34,7 +34,7 @@
 }
 
 .info-section {
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;

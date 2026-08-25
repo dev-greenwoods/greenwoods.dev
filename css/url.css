@@ -1,16 +1,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0a0a0f;
-  --surface: #11111a;
-  --surface2: #16161f;
-  --border: #1e1e2e;
-  --dim: #2a2a3e;
-  --accent: #00ff9f;
-  --accent2: #00b8ff;
-  --accent3: #ff4d6d;
-  --text: #e0e0f0;
-  --muted: #555577;
+  --bg: var(--bg);
+  --surface: var(--surface);
+  --surface2: var(--sf2);
+  --border: var(--border);
+  --dim: var(--dim);
+  --accent: var(--accent);
+  --accent2: var(--accent2);
+  --accent3: var(--accent3);
+  --text: var(--text);
+  --muted: var(--muted);
 }
 
 html, body {
@@ -189,7 +189,7 @@ main {
 .url-textarea {
   flex: 1;
   min-height: 260px;
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
@@ -232,7 +232,7 @@ main {
 .output-block {
   flex: 1;
   padding: 18px;
-  background: var(--surface2);
+  background: var(--sf2);
   overflow: auto;
 }
 

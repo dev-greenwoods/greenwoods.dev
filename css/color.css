@@ -3,7 +3,7 @@
   height: 24px;
   border-radius: 4px;
   border: 1px solid var(--border);
-  background: #00ff9f;
+  background: var(--accent);
   transition: background 0.2s;
 }
 
@@ -78,7 +78,7 @@
   gap: 12px;
   padding: 10px 14px;
   border-bottom: 1px solid var(--border);
-  background: var(--surface2);
+  background: var(--sf2);
   font-size: 0.78rem;
   animation: fadeIn 0.2s ease;
 }
@@ -137,7 +137,7 @@
   opacity: 0;
   transition: opacity 0.15s;
   white-space: nowrap;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.07);
   padding: 2px 4px;
   border-radius: 2px;
 }

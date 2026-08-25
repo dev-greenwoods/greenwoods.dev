@@ -18,7 +18,7 @@
 }
 
 .human-readable {
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 14px 18px;
@@ -56,7 +56,7 @@
   flex-direction: column;
   gap: 0;
   flex: 1;
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;

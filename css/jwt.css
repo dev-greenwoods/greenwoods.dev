@@ -1,20 +1,20 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #0a0a0f;
-  --surface: #11111a;
-  --surface2: #16161f;
-  --border: #1e1e2e;
-  --dim: #2a2a3e;
-  --accent: #00ff9f;
-  --accent2: #00b8ff;
-  --accent3: #ff4d6d;
-  --warn: #ffd166;
-  --text: #e0e0f0;
-  --muted: #555577;
+  --bg: var(--bg);
+  --surface: var(--surface);
+  --surface2: var(--sf2);
+  --border: var(--border);
+  --dim: var(--dim);
+  --accent: var(--accent);
+  --accent2: var(--accent2);
+  --accent3: var(--accent3);
+  --warn: var(--warn);
+  --text: var(--text);
+  --muted: var(--muted);
   --header-h: #ff79c6;
-  --payload-h: #00b8ff;
-  --sig-h: #ff4d6d;
+  --payload-h: var(--accent2);
+  --sig-h: var(--accent3);
 }
 
 html, body {
@@ -179,7 +179,7 @@ main {
 .jwt-textarea {
   flex: 1;
   min-height: 160px;
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 14px;
@@ -203,7 +203,7 @@ main {
 
 .jwt-display {
   min-height: 100px;
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--border);
   border-radius: 6px;
   padding: 14px;
@@ -219,7 +219,7 @@ main {
 .jwt-dot { color: var(--muted); }
 
 .verify-block {
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;
@@ -411,7 +411,7 @@ main {
 
 .part-body {
   padding: 14px;
-  background: var(--surface2);
+  background: var(--sf2);
 }
 
 .claims {
@@ -471,7 +471,7 @@ main {
   flex-wrap: wrap;
   padding: 10px 14px;
   border-top: 1px solid var(--border);
-  background: var(--surface2);
+  background: var(--sf2);
   font-size: 0.68rem;
 }
 

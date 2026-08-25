@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>cURL Builder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/curl.css" />
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>curl builder</span></span>
+    </div>
+    <div class="nav-badge">command generator</div>
+  </nav>
+
+  <main>
+    <!-- Left: Form -->
+    <div class="panel" style="overflow-y:auto">
+      <div class="panel-header">
+        <span class="panel-title">request</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnReset">reset</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <!-- Method + URL -->
+        <div class="field-group">
+          <span class="field-label">method &amp; URL</span>
+          <div class="url-row">
+            <select id="method" class="method-select">
+              <option>GET</option><option>POST</option><option>PUT</option>
+              <option>PATCH</option><option>DELETE</option><option>HEAD</option><option>OPTIONS</option>
+            </select>
+            <input id="url" class="tool-input url-input" type="text" placeholder="https://api.example.com/v1/users" spellcheck="false" />
+          </div>
+        </div>
+
+        <!-- Headers -->
+        <div class="field-group">
+          <div class="row" style="justify-content:space-between">
+            <span class="field-label">headers</span>
+            <button class="btn-sm" id="addHeader">+ add</button>
+          </div>
+          <div id="headersList" class="kv-list"></div>
+        </div>
+
+        <!-- Query Params -->
+        <div class="field-group">
+          <div class="row" style="justify-content:space-between">
+            <span class="field-label">query params</span>
+            <button class="btn-sm" id="addParam">+ add</button>
+          </div>
+          <div id="paramsList" class="kv-list"></div>
+        </div>
+
+        <!-- Auth -->
+        <div class="field-group">
+          <span class="field-label">authentication</span>
+          <div class="row" style="flex-wrap:wrap;gap:6px">
+            <button class="tab active" data-auth="none">none</button>
+            <button class="tab" data-auth="basic">basic</button>
+            <button class="tab" data-auth="bearer">bearer</button>
+            <button class="tab" data-auth="apikey">api key</button>
+          </div>
+          <div id="authFields"></div>
+        </div>
+
+        <!-- Body -->
+        <div class="field-group" id="bodyGroup">
+          <span class="field-label">body</span>
+          <div class="row" style="flex-wrap:wrap;gap:6px">
+            <button class="tab active" data-body="none">none</button>
+            <button class="tab" data-body="json">JSON</button>
+            <button class="tab" data-body="form">form</button>
+            <button class="tab" data-body="raw">raw</button>
+          </div>
+          <div id="bodyFields"></div>
+        </div>
+
+        <!-- Options -->
+        <div class="field-group">
+          <span class="field-label">options</span>
+          <div class="options-checks">
+            <label class="opt"><input type="checkbox" id="optVerbose" /> <span>-v verbose</span></label>
+            <label class="opt"><input type="checkbox" id="optFollow" checked /> <span>-L follow redirects</span></label>
+            <label class="opt"><input type="checkbox" id="optInsecure" /> <span>-k insecure (skip TLS)</span></label>
+            <label class="opt"><input type="checkbox" id="optSilent" /> <span>-s silent</span></label>
+            <label class="opt"><input type="checkbox" id="optHead" /> <span>-I HEAD only</span></label>
+            <label class="opt"><input type="checkbox" id="optCompressed" checked /> <span>--compressed</span></label>
+          </div>
+          <div class="row" style="gap:8px;margin-top:6px">
+            <span class="field-label" style="width:80px">timeout (s)</span>
+            <input id="optTimeout" class="tool-input" type="number" value="" placeholder="none" style="width:80px;min-height:auto;padding:5px 8px;font-size:0.75rem" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: Output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">curl command</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnOneliner">one-line</button>
+          <button class="btn-sm active" id="btnMultiline">multiline</button>
+          <button class="btn-sm" id="btnCopy">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="curlOutput" class="curl-output"></div>
+
+        <!-- Parsed breakdown -->
+        <div class="field-group">
+          <span class="field-label">breakdown</span>
+          <div id="breakdown" class="breakdown"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — curl builder</span>
+    <span>generates valid curl · all client-side</span>
+  </footer>
+</div>
+<script defer src="js/curl.js"></script>
+</body>
+</html>

@@ -6,7 +6,7 @@
 .entity-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 
 .entity-item {
-  background: var(--surface2);
+  background: var(--sf2);
   border: 1px solid var(--border);
   border-radius: 5px;
   padding: 8px;
