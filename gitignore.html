@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>gitignore Generator — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 6px;
+    }
+
+    .stack-btn {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 8px; cursor: pointer; transition: .13s;
+      font-family: 'JetBrains Mono', monospace; font-size: .68rem;
+      color: var(--muted); text-align: left; box-shadow: var(--sh-sm);
+    }
+    .stack-btn:hover { border-color: var(--dim); color: var(--text); }
+    .stack-btn.active {
+      border-color: var(--c-enc); color: var(--c-enc);
+      background: rgba(5,150,105,.07);
+    }
+    .stack-btn .sb-icon { font-size: 1rem; flex-shrink: 0; }
+    .stack-btn .sb-check {
+      margin-left: auto; width: 14px; height: 14px;
+      border-radius: 3px; border: 1.5px solid var(--dim);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .55rem; flex-shrink: 0; transition: .13s;
+    }
+    .stack-btn.active .sb-check {
+      background: var(--c-enc); border-color: var(--c-enc); color: #fff;
+    }
+
+    .selected-chips {
+      display: flex; flex-wrap: wrap; gap: 5px;
+      min-height: 28px;
+    }
+    .chip-tag {
+      display: flex; align-items: center; gap: 5px;
+      font-size: .62rem; padding: 3px 8px; border-radius: 20px;
+      background: rgba(5,150,105,.1); color: var(--c-enc);
+      border: 1px solid rgba(5,150,105,.25);
+    }
+    .chip-tag button {
+      background: none; border: none; color: inherit;
+      cursor: pointer; padding: 0; font-size: .7rem; line-height: 1;
+    }
+
+    .section-label {
+      font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--faint); margin-bottom: 6px; font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>gitignore generator</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge">generator</div>
+  </nav>
+
+  <main>
+    <!-- Left: picker -->
+    <div class="panel" style="overflow-y:auto">
+      <div class="panel-header">
+        <span class="panel-title">select your stack</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnClearAll">clear all</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <div>
+          <div class="section-label">Selected</div>
+          <div class="selected-chips" id="selectedChips">
+            <span style="font-size:.65rem;color:var(--faint)">Nothing selected yet</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-label">Languages</div>
+          <div class="stack-grid" id="langGrid"></div>
+        </div>
+
+        <div>
+          <div class="section-label">Frameworks & Tools</div>
+          <div class="stack-grid" id="fwGrid"></div>
+        </div>
+
+        <div>
+          <div class="section-label">Editors & IDEs</div>
+          <div class="stack-grid" id="editorGrid"></div>
+        </div>
+
+        <div>
+          <div class="section-label">OS & Environment</div>
+          <div class="stack-grid" id="osGrid"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right: output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">.gitignore</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnCopy">copy</button>
+          <button class="btn-sm" id="btnDownload">download</button>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0">
+        <div id="output" style="flex:1;overflow-y:auto;padding:16px;font-size:.72rem;line-height:1.8;color:var(--sub);white-space:pre;font-family:'JetBrains Mono',monospace">
+          <span style="color:var(--faint)">← Select items from your stack to generate a .gitignore</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — gitignore generator</span>
+    <span>client-side · no server · covers 40+ stacks</span>
+  </footer>
+</div>
+<script>
+const STACKS = {
+  langs: [
+    { id:'node',   icon:'⬡', label:'Node.js',   content:`# Node\nnode_modules/\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n.npm\n.yarn-integrity\n.pnp.*\n.yarn/cache\n.yarn/unplugged\n.yarn/build-state.yml\n.yarn/install-state.gz\npackage-lock.json\nyarn.lock\n.env\n.env.local\n.env.*.local\n` },
+    { id:'python', icon:'🐍', label:'Python',    content:`# Python\n__pycache__/\n*.py[cod]\n*$py.class\n*.so\n.Python\nbuild/\ndevelop-eggs/\ndist/\ndownloads/\neggs/\n.eggs/\nlib/\nlib64/\nparts/\nsdist/\nvar/\nwheels/\n*.egg-info/\n.installed.cfg\n*.egg\nPIPFILE.lock\n.venv\nvenv/\nenv/\n.env\n*.pyc\n.pytest_cache/\n.coverage\nhtmlcov/\n.mypy_cache/\n.ruff_cache/\n` },
+    { id:'go',     icon:'🐹', label:'Go',        content:`# Go\n*.exe\n*.exe~\n*.dll\n*.so\n*.dylib\n*.test\n*.out\ngo.sum\nvendor/\n` },
+    { id:'rust',   icon:'🦀', label:'Rust',      content:`# Rust\ntarget/\nCargo.lock\n**/*.rs.bk\n` },
+    { id:'java',   icon:'☕', label:'Java',      content:`# Java\n*.class\n*.log\n*.jar\n*.war\n*.nar\n*.ear\n*.zip\n*.tar.gz\n*.rar\nhs_err_pid*\n.mtj.tmp/\ntarget/\n` },
+    { id:'ruby',   icon:'💎', label:'Ruby',      content:`# Ruby\n*.gem\n*.rbc\n/.config\n/coverage/\n/InstalledFiles\n/pkg/\n/spec/reports/\n/spec/examples.txt\n/test/tmp/\n/test/version_tmp/\n/tmp/\n.byebug_history\n.bundle/\n/vendor/bundle\n/lib/bundler/man/\nGemfile.lock\n.ruby-version\n` },
+    { id:'php',    icon:'🐘', label:'PHP',       content:`# PHP\n/vendor/\n.env\n.env.*\ncomposer.lock\n*.log\n` },
+    { id:'swift',  icon:'🦅', label:'Swift',     content:`# Swift\n.build/\n.swiftpm/\nPackage.resolved\n*.xcodeproj/xcuserdata/\n*.xcworkspace/xcuserdata/\n` },
+    { id:'kotlin', icon:'🟣', label:'Kotlin',    content:`# Kotlin\n*.class\n*.log\ntarget/\n.gradle/\nbuild/\n` },
+    { id:'dart',   icon:'🎯', label:'Dart',      content:`# Dart\n.dart_tool/\n.packages\nbuild/\npubspec.lock\n` },
+  ],
+  frameworks: [
+    { id:'react',    icon:'⚛', label:'React',       content:`# React\nbuild/\n.env.local\n.env.development.local\n.env.test.local\n.env.production.local\n` },
+    { id:'nextjs',   icon:'▲', label:'Next.js',     content:`# Next.js\n.next/\nout/\n.vercel\nnext-env.d.ts\n` },
+    { id:'vue',      icon:'🟢', label:'Vue',         content:`# Vue\ndist/\n.nuxt/\n.output/\n` },
+    { id:'angular',  icon:'🔴', label:'Angular',    content:`# Angular\ndist/\n.angular/\n` },
+    { id:'svelte',   icon:'🔶', label:'Svelte',     content:`# Svelte\n.svelte-kit/\nbuild/\n` },
+    { id:'django',   icon:'🟩', label:'Django',     content:`# Django\n*.log\nlocal_settings.py\ndb.sqlite3\ndb.sqlite3-journal\nmedia/\nstaticfiles/\n` },
+    { id:'rails',    icon:'💎', label:'Rails',      content:`# Rails\n*.rbc\ncapybara-*.html\n.rspec\n/log\n/tmp\n/db/*.sqlite3\n/db/*.sqlite3-journal\n/db/*.sqlite3-shm\n/db/*.sqlite3-wal\n/public/system\n/coverage/\n/spec/tmp\n` },
+    { id:'laravel',  icon:'🔴', label:'Laravel',    content:`# Laravel\n/vendor/\n/node_modules/\n.env\n.env.*\n!.env.example\n/public/hot\n/public/storage\n/storage/*.key\n` },
+    { id:'flutter',  icon:'🎯', label:'Flutter',    content:`# Flutter\n.dart_tool/\n.flutter-plugins\n.flutter-plugins-dependencies\n*.iml\n*.log\nbuild/\n` },
+    { id:'docker',   icon:'🐳', label:'Docker',     content:`# Docker\n.dockerignore\ndocker-compose.override.yml\n` },
+    { id:'terraform',icon:'🏗', label:'Terraform',  content:`# Terraform\n.terraform/\n*.tfstate\n*.tfstate.backup\n*.tfplan\n.terraform.lock.hcl\n*.tfvars\n!example.tfvars\n` },
+  ],
+  editors: [
+    { id:'vscode',   icon:'🟦', label:'VS Code',    content:`# VS Code\n.vscode/\n!.vscode/settings.json\n!.vscode/tasks.json\n!.vscode/launch.json\n!.vscode/extensions.json\n*.code-workspace\n.history/\n` },
+    { id:'idea',     icon:'🟣', label:'IntelliJ',   content:`# IntelliJ IDEA\n.idea/\n*.iml\n*.iws\n*.ipr\nout/\n` },
+    { id:'vim',      icon:'🟢', label:'Vim',        content:`# Vim\n[._]*.s[a-v][a-z]\n!*.svg\n[._]*.sw[a-p]\n[._]s[a-rt-v][a-z]\n[._]ss[a-gi-z]\n[._]sw[a-p]\nSession.vim\nNetrwTreeListing\n.netrwhist\n*~\ntags\n[._]*.un~\n` },
+    { id:'emacs',    icon:'🟣', label:'Emacs',      content:`# Emacs\n*~\n\\#*\\#\n/.emacs.desktop\n/.emacs.desktop.lock\n*.elc\nauto-save-list\ntramp\n.\\#*\n` },
+    { id:'sublime',  icon:'🟠', label:'Sublime',    content:`# Sublime Text\n*.tmlanguage.cache\n*.tmPreferences.cache\n*.stTheme.cache\n*.sublime-workspace\n*.sublime-project\n` },
+    { id:'xcode',    icon:'🟦', label:'Xcode',      content:`# Xcode\nxcuserdata/\n*.xcscmblueprint\n*.xccheckout\nbuild/\nDerivedData/\n*.moved-aside\n*.pbxuser\n!default.pbxuser\n*.mode1v3\n!default.mode1v3\n*.mode2v3\n!default.mode2v3\n*.perspectivev3\n!default.perspectivev3\n` },
+  ],
+  os: [
+    { id:'macos',    icon:'🍎', label:'macOS',      content:`# macOS\n.DS_Store\n.AppleDouble\n.LSOverride\nIcon\n._*\n.DocumentRevisions-V100\n.fseventsd\n.Spotlight-V100\n.TemporaryItems\n.Trashes\n.VolumeIcon.icns\n.com.apple.timemachine.donotpresent\n.AppleDB\n.AppleDesktop\nNetwork Trash Folder\nTemporary Items\n.apdisk\n` },
+    { id:'windows',  icon:'🪟', label:'Windows',    content:`# Windows\nThumbs.db\nThumbs.db:encryptable\nehthumbs.db\nehthumbs_vista.db\n*.stackdump\n[Dd]esktop.ini\n$RECYCLE.BIN/\n*.cab\n*.msi\n*.msix\n*.msm\n*.msp\n*.lnk\n` },
+    { id:'linux',    icon:'🐧', label:'Linux',      content:`# Linux\n*~\n.fuse_hidden*\n.directory\n.Trash-*\n.nfs*\n` },
+    { id:'logs',     icon:'📋', label:'Logs',       content:`# Logs\nlogs/\n*.log\nnpm-debug.log*\npnpm-debug.log*\nyarn-debug.log*\n` },
+    { id:'envfiles', icon:'🔑', label:'.env files', content:`# Environment\n.env\n.env.*\n!.env.example\n!.env.sample\n*.local\n` },
+    { id:'coverage', icon:'📊', label:'Coverage',   content:`# Test coverage\ncoverage/\n.coverage\nhtmlcov/\n.nyc_output/\nlcov.info\n` },
+  ]
+};
+
+const selected = new Set();
+
+function renderGrid(gridId, items) {
+  const el = document.getElementById(gridId);
+  el.innerHTML = items.map(s => `
+    <button class="stack-btn ${selected.has(s.id)?'active':''}" data-id="${s.id}" onclick="toggle('${s.id}')">
+      <span class="sb-icon">${s.icon}</span>
+      <span>${s.label}</span>
+      <span class="sb-check">${selected.has(s.id)?'✓':''}</span>
+    </button>`).join('');
+}
+
+function renderChips() {
+  const el = document.getElementById('selectedChips');
+  if (!selected.size) {
+    el.innerHTML = '<span style="font-size:.65rem;color:var(--faint)">Nothing selected yet</span>';
+    return;
+  }
+  const allItems = [...STACKS.langs, ...STACKS.frameworks, ...STACKS.editors, ...STACKS.os];
+  el.innerHTML = [...selected].map(id => {
+    const item = allItems.find(i => i.id === id);
+    return `<span class="chip-tag">${item?.icon} ${item?.label}<button onclick="toggle('${id}')">✕</button></span>`;
+  }).join('');
+}
+
+function generate() {
+  const allItems = [...STACKS.langs, ...STACKS.frameworks, ...STACKS.editors, ...STACKS.os];
+  if (!selected.size) {
+    document.getElementById('output').innerHTML = '<span style="color:var(--faint)">← Select items from your stack to generate a .gitignore</span>';
+    return;
+  }
+
+  const sections = [];
+  for (const id of selected) {
+    const item = allItems.find(i => i.id === id);
+    if (item) sections.push(item.content.trimEnd());
+  }
+
+  const result = sections.join('\n\n');
+  const el = document.getElementById('output');
+  el.textContent = result;
+  // Style comments
+  el.innerHTML = result
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(# .+)/g, '<span style="color:var(--faint)">$1</span>');
+}
+
+function toggle(id) {
+  if (selected.has(id)) selected.delete(id);
+  else selected.add(id);
+  renderAll();
+  generate();
+}
+
+function renderAll() {
+  renderGrid('langGrid',   STACKS.langs);
+  renderGrid('fwGrid',     STACKS.frameworks);
+  renderGrid('editorGrid', STACKS.editors);
+  renderGrid('osGrid',     STACKS.os);
+  renderChips();
+}
+
+document.getElementById('btnClearAll').addEventListener('click', () => {
+  selected.clear();
+  renderAll();
+  generate();
+});
+
+document.getElementById('btnCopy').addEventListener('click', function() {
+  const text = document.getElementById('output').textContent;
+  if (!text || !selected.size) return;
+  navigator.clipboard.writeText(text).then(() => {
+    this.textContent = 'copied!';
+    setTimeout(() => this.textContent = 'copy', 1500);
+  });
+});
+
+document.getElementById('btnDownload').addEventListener('click', () => {
+  const text = document.getElementById('output').textContent;
+  if (!text || !selected.size) return;
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = '.gitignore';
+  a.click();
+});
+
+renderAll();
+</script>
+</body>
+</html>

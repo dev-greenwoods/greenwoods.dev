@@ -1,0 +1,41 @@
+.lorem-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.lorem-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  min-width: 100px;
+}
+
+.lorem-output {
+  flex: 1;
+  background: var(--sf2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 0.78rem;
+  line-height: 1.8;
+  overflow-y: auto;
+  color: var(--sub);
+}
+
+.lorem-output::-webkit-scrollbar { width: 4px; }
+.lorem-output::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+
+.lorem-output p { margin-bottom: 12px; }
+.lorem-output p:last-child { margin-bottom: 0; }
+
+.lorem-stats {
+  font-size: 0.62rem;
+  color: var(--faint);
+  flex-shrink: 0;
+  display: flex;
+  gap: 16px;
+}
