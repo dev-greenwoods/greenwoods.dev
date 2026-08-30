@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image → Base64 — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    .drop-zone {
+      flex: 1; min-height: 200px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 14px;
+      border: 2px dashed var(--border); border-radius: 10px;
+      background: var(--sf2); cursor: pointer;
+      transition: border-color .14s, background .14s;
+      text-align: center; padding: 32px;
+    }
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: var(--c-enc);
+      background: rgba(5,150,105,.04);
+    }
+    .drop-icon { font-size: 2.5rem; opacity: .5; }
+    .drop-text { font-size: .74rem; color: var(--muted); line-height: 1.6; }
+    .drop-text strong { color: var(--text); }
+    .drop-hint { font-size: .62rem; color: var(--faint); }
+
+    .file-input { display: none; }
+
+    .img-preview-box {
+      display: none; flex-direction: column; align-items: center; gap: 12px;
+      padding: 16px; background: var(--sf2); border: 1.5px solid var(--border);
+      border-radius: 10px; flex-shrink: 0;
+    }
+    .img-preview-box img { max-height: 160px; max-width: 100%; border-radius: 6px; object-fit: contain; box-shadow: var(--sh-md); }
+    .img-meta { font-size: .62rem; color: var(--muted); display: flex; gap: 16px; }
+    .img-meta span strong { color: var(--text); }
+
+    .output-group { display: flex; flex-direction: column; gap: 4px; }
+    .output-label {
+      font-size: .6rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--faint); display: flex; align-items: center; justify-content: space-between;
+    }
+    .output-val {
+      background: var(--sf2); border: 1.5px solid var(--border); border-radius: 7px;
+      padding: 10px 12px; font-size: .68rem; color: var(--sub); line-height: 1.5;
+      word-break: break-all; max-height: 80px; overflow-y: auto;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .output-val::-webkit-scrollbar { width: 3px; }
+    .output-val::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>image → base64</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge">encoding</div>
+  </nav>
+
+  <main>
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">image input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <input type="file" id="fileInput" class="file-input" accept="image/*" />
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-icon">🖼</div>
+          <div class="drop-text"><strong>Drop an image here</strong><br>or click to browse</div>
+          <div class="drop-hint">PNG, JPG, GIF, WebP, SVG, AVIF — any image format</div>
+        </div>
+
+        <div class="img-preview-box" id="previewBox">
+          <img id="previewImg" src="" alt="Preview" />
+          <div class="img-meta">
+            <span><strong id="metaName">—</strong></span>
+            <span>Size: <strong id="metaSize">—</strong></span>
+            <span>Type: <strong id="metaType">—</strong></span>
+            <span>Dims: <strong id="metaDims">—</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">outputs</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnCopyAll">copy all</button>
+        </div>
+      </div>
+      <div class="panel-body" id="outputsPanel">
+        <div class="empty-state">
+          <div class="empty-icon">🖼</div>
+          <div>Drop an image to see outputs</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — image → base64</span>
+    <span>all processing in your browser · nothing uploaded</span>
+  </footer>
+</div>
+<script>
+const dropZone  = document.getElementById('dropZone');
+const fileInput = document.getElementById('fileInput');
+const previewBox= document.getElementById('previewBox');
+const previewImg= document.getElementById('previewImg');
+const outputsPanel = document.getElementById('outputsPanel');
+
+function fmtSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/1024/1024).toFixed(2) + ' MB';
+}
+
+function processFile(file) {
+  if (!file || !file.type.startsWith('image/')) {
+    alert('Please select an image file.');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    const dataUri  = e.target.result;
+    const base64   = dataUri.split(',')[1];
+    const mimeType = file.type;
+
+    // Preview
+    previewImg.src = dataUri;
+    previewBox.style.display = 'flex';
+    dropZone.style.display = 'none';
+    document.getElementById('metaName').textContent = file.name;
+    document.getElementById('metaSize').textContent = fmtSize(file.size);
+    document.getElementById('metaType').textContent = mimeType;
+
+    // Get image dimensions
+    const img = new Image();
+    img.onload = () => {
+      document.getElementById('metaDims').textContent = `${img.naturalWidth}×${img.naturalHeight}`;
+    };
+    img.src = dataUri;
+
+    // Outputs
+    const outputs = [
+      { label: 'Data URI', value: dataUri },
+      { label: 'Base64 only', value: base64 },
+      { label: '<img> tag', value: `<img src="${dataUri}" alt="" />` },
+      { label: 'CSS background-image', value: `background-image: url('${dataUri}');` },
+      { label: 'CSS background shorthand', value: `background: url('${dataUri}') no-repeat center/cover;` },
+      { label: 'Markdown', value: `![Image](${dataUri})` },
+    ];
+
+    outputsPanel.innerHTML = outputs.map(o => `
+      <div class="output-group">
+        <div class="output-label">
+          <span>${o.label}</span>
+          <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(o.value)})">copy</button>
+        </div>
+        <div class="output-val">${o.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').slice(0, 300)}${o.value.length > 300 ? '…' : ''}</div>
+      </div>`).join('');
+  };
+  reader.readAsDataURL(file);
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 1500);
+  });
+}
+
+dropZone.addEventListener('click', () => fileInput.click());
+fileInput.addEventListener('change', e => processFile(e.target.files[0]));
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('dragover');
+  processFile(e.dataTransfer.files[0]);
+});
+
+document.getElementById('btnClear').addEventListener('click', () => {
+  fileInput.value = '';
+  previewBox.style.display = 'none';
+  dropZone.style.display = 'flex';
+  outputsPanel.innerHTML = '<div class="empty-state"><div class="empty-icon">🖼</div><div>Drop an image to see outputs</div></div>';
+});
+
+document.getElementById('btnCopyAll').addEventListener('click', function() {
+  const vals = [...document.querySelectorAll('.output-val')].map(el => el.textContent).join('\n\n');
+  if (!vals.trim()) return;
+  navigator.clipboard.writeText(vals).then(() => {
+    this.textContent = 'copied!';
+    setTimeout(() => this.textContent = 'copy all', 1500);
+  });
+});
+</script>
+</body>
+</html>

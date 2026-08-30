@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contrast Checker — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    main.single-panel { overflow-y: auto; }
+    .contrast-body { max-width: 680px; margin: 0 auto; gap: 20px; }
+
+    .color-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .color-picker-group {
+      display: flex; flex-direction: column; gap: 8px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 14px; box-shadow: var(--sh-sm);
+    }
+
+    .color-swatch-row { display: flex; align-items: center; gap: 10px; }
+    .color-swatch {
+      width: 44px; height: 44px; border-radius: 8px;
+      border: 2px solid var(--border); cursor: pointer;
+      flex-shrink: 0; transition: transform .12s;
+      overflow: hidden; position: relative;
+    }
+    .color-swatch:hover { transform: scale(1.05); }
+    .color-swatch input[type=color] {
+      position: absolute; inset: -4px; width: calc(100% + 8px); height: calc(100% + 8px);
+      opacity: 0; cursor: pointer; border: none; padding: 0;
+    }
+
+    .color-hex-input {
+      flex: 1; font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+      font-weight: 700; background: var(--sf2); border: 1.5px solid var(--border);
+      border-radius: 7px; padding: 8px 12px; color: var(--text); outline: none;
+      letter-spacing: .06em; transition: border-color .14s;
+    }
+    .color-hex-input:focus { border-color: var(--c-enc); }
+
+    .color-rgb { font-size: .62rem; color: var(--faint); margin-top: 2px; }
+
+    /* Preview */
+    .preview-box {
+      border-radius: 10px; padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 12px;
+      border: 1.5px solid var(--border); box-shadow: var(--sh-sm);
+    }
+    .preview-large { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; }
+    .preview-normal { font-size: .85rem; line-height: 1.7; }
+    .preview-small  { font-size: .68rem; line-height: 1.6; }
+    .preview-ui { display: flex; gap: 10px; margin-top: 4px; }
+    .preview-btn {
+      font-family: 'JetBrains Mono', monospace; font-size: .68rem;
+      padding: 6px 14px; border-radius: 6px; cursor: default;
+      font-weight: 600; border: 1.5px solid currentColor; opacity: .9;
+    }
+    .preview-badge { font-size: .58rem; padding: 3px 9px; border-radius: 20px; border: 1px solid currentColor; }
+
+    /* Ratio display */
+    .ratio-card {
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 10px; overflow: hidden; box-shadow: var(--sh-sm);
+    }
+    .ratio-hero {
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px; gap: 10px; border-bottom: 1px solid var(--border);
+    }
+    .ratio-num { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: -.03em; color: var(--text); }
+    .ratio-label { font-size: .7rem; color: var(--muted); }
+
+    .wcag-table { width: 100%; border-collapse: collapse; }
+    .wcag-table tr { border-bottom: 1px solid var(--border); }
+    .wcag-table tr:last-child { border-bottom: none; }
+    .wcag-table td { padding: 11px 16px; font-size: .72rem; }
+    .wcag-table td:first-child  { color: var(--sub); font-weight: 500; }
+    .wcag-table td:nth-child(2) { color: var(--muted); font-size: .65rem; }
+    .wcag-table td:last-child   { text-align: right; }
+
+    .pass { display: inline-flex; align-items: center; gap: 5px; color: #16a34a; font-weight: 700; font-size: .72rem; }
+    .fail { display: inline-flex; align-items: center; gap: 5px; color: #dc2626; font-weight: 700; font-size: .72rem; }
+    .pass::before { content: '✓'; }
+    .fail::before { content: '✗'; }
+
+    .quick-colors { display: flex; flex-wrap: wrap; gap: 6px; }
+    .qc-pair {
+      display: flex; align-items: center; gap: 0; border-radius: 6px;
+      overflow: hidden; cursor: pointer; border: 1.5px solid var(--border);
+      box-shadow: var(--sh-sm); transition: transform .12s;
+    }
+    .qc-pair:hover { transform: translateY(-1px); }
+    .qc-fg, .qc-bg { width: 22px; height: 22px; }
+    .qc-label { font-size: .58rem; padding: 0 7px; color: var(--muted); background: var(--surface); white-space: nowrap; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>contrast checker</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge">WCAG · a11y</div>
+  </nav>
+
+  <main class="single-panel">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">contrast checker</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSwap">⇄ swap</button>
+        </div>
+      </div>
+      <div class="panel-body contrast-body">
+
+        <!-- Color pickers -->
+        <div class="color-inputs">
+          <div class="color-picker-group">
+            <div class="field-label">Foreground (text)</div>
+            <div class="color-swatch-row">
+              <div class="color-swatch" id="fgSwatch">
+                <input type="color" id="fgPicker" value="#111827" />
+              </div>
+              <input type="text" class="color-hex-input" id="fgHex" value="#111827" maxlength="7" spellcheck="false" />
+            </div>
+            <div class="color-rgb" id="fgRgb"></div>
+          </div>
+          <div class="color-picker-group">
+            <div class="field-label">Background</div>
+            <div class="color-swatch-row">
+              <div class="color-swatch" id="bgSwatch">
+                <input type="color" id="bgPicker" value="#ffffff" />
+              </div>
+              <input type="text" class="color-hex-input" id="bgHex" value="#ffffff" maxlength="7" spellcheck="false" />
+            </div>
+            <div class="color-rgb" id="bgRgb"></div>
+          </div>
+        </div>
+
+        <!-- Preview -->
+        <div class="preview-box" id="previewBox">
+          <div class="preview-large" id="prevLarge">The quick brown fox</div>
+          <div class="preview-normal" id="prevNormal">Normal body text at 16px. This is what most of your content looks like. Good contrast makes it readable for everyone, including users with visual impairments.</div>
+          <div class="preview-small"  id="prevSmall">Small text at 11px — captions, labels, fine print. This size needs higher contrast ratios to meet WCAG AA.</div>
+          <div class="preview-ui">
+            <span class="preview-btn" id="prevBtn">Button</span>
+            <span class="preview-badge" id="prevBadge">Badge</span>
+          </div>
+        </div>
+
+        <!-- Ratio + WCAG results -->
+        <div class="ratio-card">
+          <div class="ratio-hero">
+            <div>
+              <div class="ratio-num" id="ratioNum">—</div>
+              <div class="ratio-label">contrast ratio</div>
+            </div>
+          </div>
+          <table class="wcag-table" id="wcagTable">
+            <tr><td>AA — Normal text</td><td>≥ 4.5:1</td><td id="aa-normal">—</td></tr>
+            <tr><td>AA — Large text</td><td>≥ 3.0:1  (18pt+ or 14pt bold)</td><td id="aa-large">—</td></tr>
+            <tr><td>AA — UI components</td><td>≥ 3.0:1</td><td id="aa-ui">—</td></tr>
+            <tr><td>AAA — Normal text</td><td>≥ 7.0:1</td><td id="aaa-normal">—</td></tr>
+            <tr><td>AAA — Large text</td><td>≥ 4.5:1</td><td id="aaa-large">—</td></tr>
+          </table>
+        </div>
+
+        <!-- Quick palettes -->
+        <div class="field-group">
+          <div class="field-label">Quick combinations</div>
+          <div class="quick-colors" id="quickColors"></div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — contrast checker</span>
+    <span>WCAG 2.1 AA &amp; AAA · all client-side</span>
+  </footer>
+</div>
+<script>
+// ── Color math ──────────────────────────────────────────────────
+function hexToRgb(hex) {
+  hex = hex.replace('#','');
+  if (hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+  const n = parseInt(hex, 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+
+function luminance({ r, g, b }) {
+  const c = [r,g,b].map(v => {
+    v /= 255;
+    return v <= 0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055, 2.4);
+  });
+  return 0.2126*c[0] + 0.7152*c[1] + 0.0722*c[2];
+}
+
+function contrastRatio(fg, bg) {
+  const l1 = luminance(hexToRgb(fg));
+  const l2 = luminance(hexToRgb(bg));
+  const lighter = Math.max(l1,l2), darker = Math.min(l1,l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+function isValidHex(hex) { return /^#[0-9a-fA-F]{6}$/.test(hex); }
+
+// ── Render ──────────────────────────────────────────────────────
+let fg = '#111827', bg = '#ffffff';
+
+function update() {
+  if (!isValidHex(fg) || !isValidHex(bg)) return;
+
+  // Swatches
+  document.getElementById('fgSwatch').style.background = fg;
+  document.getElementById('bgSwatch').style.background = bg;
+  document.getElementById('fgPicker').value = fg;
+  document.getElementById('bgPicker').value = bg;
+
+  // RGB labels
+  const fRgb = hexToRgb(fg), bRgb = hexToRgb(bg);
+  document.getElementById('fgRgb').textContent = `rgb(${fRgb.r}, ${fRgb.g}, ${fRgb.b})`;
+  document.getElementById('bgRgb').textContent = `rgb(${bRgb.r}, ${bRgb.g}, ${bRgb.b})`;
+
+  // Preview
+  ['prevLarge','prevNormal','prevSmall','prevBtn','prevBadge'].forEach(id => {
+    document.getElementById(id).style.color = fg;
+  });
+  document.getElementById('previewBox').style.background = bg;
+
+  // Contrast ratio
+  const ratio = contrastRatio(fg, bg);
+  document.getElementById('ratioNum').textContent = ratio.toFixed(2) + ':1';
+
+  const pass = r => `<span class="pass">Pass</span>`;
+  const fail = r => `<span class="fail">Fail</span>`;
+  const check = (needed) => ratio >= needed ? pass() : fail();
+
+  document.getElementById('aa-normal').innerHTML  = check(4.5);
+  document.getElementById('aa-large').innerHTML   = check(3.0);
+  document.getElementById('aa-ui').innerHTML      = check(3.0);
+  document.getElementById('aaa-normal').innerHTML = check(7.0);
+  document.getElementById('aaa-large').innerHTML  = check(4.5);
+}
+
+// ── Quick palettes ──────────────────────────────────────────────
+const PAIRS = [
+  { fg:'#111827', bg:'#ffffff', label:'Black/White' },
+  { fg:'#ffffff', bg:'#111827', label:'White/Black' },
+  { fg:'#1d4ed8', bg:'#eff6ff', label:'Blue' },
+  { fg:'#065f46', bg:'#ecfdf5', label:'Green' },
+  { fg:'#92400e', bg:'#fef3c7', label:'Amber' },
+  { fg:'#991b1b', bg:'#fef2f2', label:'Red' },
+  { fg:'#4c1d95', bg:'#f5f3ff', label:'Purple' },
+  { fg:'#1f2937', bg:'#f9fafb', label:'Gray' },
+  { fg:'#ffffff', bg:'#2563eb', label:'Btn Blue' },
+  { fg:'#ffffff', bg:'#059669', label:'Btn Green' },
+  { fg:'#ffffff', bg:'#dc2626', label:'Btn Red' },
+  { fg:'#111827', bg:'#fbbf24', label:'Warning' },
+];
+
+const quickEl = document.getElementById('quickColors');
+quickEl.innerHTML = PAIRS.map(p => `
+  <div class="qc-pair" title="${p.label}: ${p.fg} on ${p.bg}" onclick="setColors('${p.fg}','${p.bg}')">
+    <div class="qc-fg" style="background:${p.fg}"></div>
+    <div class="qc-bg" style="background:${p.bg}"></div>
+    <span class="qc-label">${p.label}</span>
+  </div>`).join('');
+
+function setColors(f, b) {
+  fg = f; bg = b;
+  document.getElementById('fgHex').value = f;
+  document.getElementById('bgHex').value = b;
+  update();
+}
+
+// ── Events ──────────────────────────────────────────────────────
+document.getElementById('fgPicker').addEventListener('input', e => {
+  fg = e.target.value;
+  document.getElementById('fgHex').value = fg;
+  update();
+});
+document.getElementById('bgPicker').addEventListener('input', e => {
+  bg = e.target.value;
+  document.getElementById('bgHex').value = bg;
+  update();
+});
+document.getElementById('fgHex').addEventListener('input', e => {
+  const v = e.target.value.startsWith('#') ? e.target.value : '#' + e.target.value;
+  if (isValidHex(v)) { fg = v; update(); }
+});
+document.getElementById('bgHex').addEventListener('input', e => {
+  const v = e.target.value.startsWith('#') ? e.target.value : '#' + e.target.value;
+  if (isValidHex(v)) { bg = v; update(); }
+});
+document.getElementById('btnSwap').addEventListener('click', () => {
+  [fg, bg] = [bg, fg];
+  document.getElementById('fgHex').value = fg;
+  document.getElementById('bgHex').value = bg;
+  update();
+});
+
+update();
+</script>
+</body>
+</html>

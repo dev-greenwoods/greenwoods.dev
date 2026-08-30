@@ -17,7 +17,7 @@
     <div class="cmd-box">
       <div class="cmd-search-row">
         <svg class="cmd-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cmdInput" type="text" placeholder="Search 40 tools…" autocomplete="off" spellcheck="false" />
+        <input id="cmdInput" type="text" placeholder="Search 43 tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -37,7 +37,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="cmd-trigger-text">Search tools…</span>
       <span class="trigger-shortcut">⌘K</span>
-      <span class="cmd-trigger-count">40 tools</span>
+      <span class="cmd-trigger-count">43 tools</span>
     </button>
   </nav>
 
@@ -104,18 +104,20 @@
         </div>
 
         <div class="mini-section">
-          <div class="mini-section-hd enc-color">📦 Encoding <span>5</span></div>
+          <div class="mini-section-hd enc-color">📦 Encoding <span>7</span></div>
           <div class="tools-list">
             <a href="/jwt"      class="tl-card enc"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">JWT Decoder</div><div class="tl-desc">Decode & verify JWT tokens — HS, RS, ES, PS algorithms</div></div><span class="tl-arrow">→</span></a>
             <a href="/base64"   class="tl-card enc"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Base64</div><div class="tl-desc">Encode/decode strings and files, URL-safe variant</div></div><span class="tl-arrow">→</span></a>
             <a href="/url"      class="tl-card enc"><div class="tl-icon">🔗</div><div class="tl-body"><div class="tl-name">URL Encoder</div><div class="tl-desc">Encode/decode URLs and query strings</div></div><span class="tl-arrow">→</span></a>
             <a href="/entities" class="tl-card enc"><div class="tl-icon">&amp;</div><div class="tl-body"><div class="tl-name">HTML Entities</div><div class="tl-desc">Encode and decode HTML entities, named and numeric</div></div><span class="tl-arrow">→</span></a>
+            <a href="/img64"    class="tl-card enc"><div class="tl-icon">🖼</div><div class="tl-body"><div class="tl-name">Image → Base64</div><div class="tl-desc">Drag &amp; drop image → data URI, img tag, CSS background</div></div><span class="tl-arrow">→</span></a>
+            <a href="/contrast" class="tl-card enc"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Contrast Checker</div><div class="tl-desc">WCAG AA/AAA contrast ratios between two colours</div></div><span class="tl-arrow">→</span></a>
             <a href="/hash"     class="tl-card enc"><div class="tl-icon">#</div><div class="tl-body"><div class="tl-name">Hash Generator</div><div class="tl-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512</div></div><span class="tl-arrow">→</span></a>
           </div>
         </div>
 
         <div class="mini-section">
-          <div class="mini-section-hd data-color">🗄 Data <span>19</span></div>
+          <div class="mini-section-hd data-color">🗄 Data <span>20</span></div>
           <div class="tools-list">
             <a href="/json"              class="tl-card data"><div class="tl-icon">{}</div><div class="tl-body"><div class="tl-name">JSON Formatter</div><div class="tl-desc">Pretty-print, minify, and validate JSON</div></div><span class="tl-arrow">→</span></a>
             <a href="/csv"               class="tl-card data"><div class="tl-icon">⊞</div><div class="tl-body"><div class="tl-name">CSV → JSON</div><div class="tl-desc">Convert CSV to JSON with header detection</div></div><span class="tl-arrow">→</span></a>
@@ -135,6 +137,7 @@
             <a href="/markdown"          class="tl-card data"><div class="tl-icon">📄</div><div class="tl-body"><div class="tl-name">Markdown</div><div class="tl-desc">Live GFM preview — tables, tasks, code</div></div><span class="tl-arrow">→</span></a>
             <a href="/lorem"             class="tl-card data"><div class="tl-icon">📝</div><div class="tl-body"><div class="tl-name">Lorem Ipsum</div><div class="tl-desc">Placeholder text — paragraphs or words</div></div><span class="tl-arrow">→</span></a>
             <a href="/diff"              class="tl-card data"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">Text Diff</div><div class="tl-desc">Myers diff with char-level inline changes</div></div><span class="tl-arrow">→</span></a>
+            <a href="/ports" class="tl-card data"><div class="tl-icon">🔌</div><div class="tl-body"><div class="tl-name">Port Reference</div><div class="tl-desc">Searchable table of 180 well-known ports</div></div><span class="tl-arrow">→</span></a>
             <a href="/curl"              class="tl-card data"><div class="tl-icon">$_</div><div class="tl-body"><div class="tl-name">cURL Builder</div><div class="tl-desc">GUI to build curl commands visually</div></div><span class="tl-arrow">→</span></a>
           </div>
         </div>
@@ -284,7 +287,7 @@
 
   <footer>
     <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
-    <span>⌘K to search · 40 tools · zero telemetry · runs in your browser</span>
+    <span>⌘K to search · 43 tools · zero telemetry · runs in your browser</span>
   </footer>
 </div>
 

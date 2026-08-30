@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Port Reference — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <script src="js/theme.js"></script>
+  <link rel="stylesheet" href="css/shared.css" />
+  <style>
+    main.single-panel { overflow-y: auto; }
+
+    .search-bar {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 10px 16px; box-shadow: var(--sh-sm);
+      flex-shrink: 0;
+    }
+    .search-bar svg { color: var(--faint); flex-shrink: 0; }
+    .search-bar input {
+      flex: 1; background: none; border: none; outline: none;
+      font-family: 'JetBrains Mono', monospace; font-size: .85rem;
+      color: var(--text); caret-color: var(--c-enc);
+    }
+    .search-bar input::placeholder { color: var(--faint); }
+    .result-count { font-size: .62rem; color: var(--faint); white-space: nowrap; }
+
+    .filter-pills { display: flex; gap: 5px; flex-wrap: wrap; flex-shrink: 0; }
+    .filter-pill {
+      font-size: .62rem; padding: 4px 12px; border-radius: 20px;
+      background: var(--surface); border: 1.5px solid var(--border);
+      color: var(--muted); cursor: pointer; transition: .13s; box-shadow: var(--sh-sm);
+    }
+    .filter-pill:hover { border-color: var(--dim); color: var(--text); }
+    .filter-pill.active { border-color: var(--c-data); color: var(--c-data); background: rgba(2,132,199,.07); }
+
+    .ports-table-wrap {
+      flex: 1; background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: 10px; overflow: hidden; box-shadow: var(--sh-sm);
+    }
+    .ports-header {
+      display: grid; grid-template-columns: 70px 60px 1fr 120px 100px;
+      padding: 9px 16px; background: var(--sf2); border-bottom: 1px solid var(--border);
+      font-size: .58rem; letter-spacing: .09em; text-transform: uppercase; color: var(--faint);
+    }
+    .ports-body { overflow-y: auto; }
+    .ports-body::-webkit-scrollbar { width: 4px; }
+    .ports-body::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+
+    .port-row {
+      display: grid; grid-template-columns: 70px 60px 1fr 120px 100px;
+      padding: 10px 16px; border-bottom: 1px solid var(--border);
+      align-items: center; transition: background .1s; cursor: default;
+    }
+    .port-row:last-child { border-bottom: none; }
+    .port-row:hover { background: var(--sf2); }
+
+    .port-num { font-size: .82rem; font-weight: 700; color: var(--c-data); }
+    .port-proto {
+      font-size: .6rem; padding: 2px 7px; border-radius: 10px; font-weight: 600;
+      text-align: center; width: fit-content;
+    }
+    .proto-tcp  { background: rgba(2,132,199,.1);   color: var(--c-data); }
+    .proto-udp  { background: rgba(217,119,6,.1);   color: var(--c-time); }
+    .proto-both { background: rgba(124,58,237,.12); color: var(--c-ai); }
+
+    .port-service { font-size: .74rem; font-weight: 500; color: var(--text); }
+    .port-desc    { font-size: .65rem; color: var(--muted); margin-top: 2px; }
+    .port-category { font-size: .6rem; color: var(--faint); }
+
+    .port-status {
+      font-size: .58rem; padding: 2px 8px; border-radius: 10px; font-weight: 500; text-align: center;
+    }
+    .status-well { background: rgba(5,150,105,.1);  color: var(--c-enc); }
+    .status-reg  { background: rgba(2,132,199,.1);  color: var(--c-data); }
+    .status-dyn  { background: rgba(107,114,128,.1);color: var(--muted); }
+
+    .no-results-row {
+      padding: 40px; text-align: center; color: var(--faint); font-size: .72rem;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>port reference</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge">reference</div>
+  </nav>
+
+  <main class="single-panel">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">well-known ports</span>
+        <div class="panel-actions">
+          <span class="panel-hint" id="countLabel">180 ports</span>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <div class="search-bar">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input id="searchInput" type="text" placeholder="Search by port, service, or description…" autocomplete="off" spellcheck="false" />
+          <span class="result-count" id="resultCount"></span>
+        </div>
+
+        <div class="filter-pills" id="filterPills"></div>
+
+        <div class="ports-table-wrap">
+          <div class="ports-header">
+            <span>Port</span>
+            <span>Protocol</span>
+            <span>Service</span>
+            <span>Category</span>
+            <span>Status</span>
+          </div>
+          <div class="ports-body" id="portsBody"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span>greenwoods.dev — port reference</span>
+    <span>180 well-known &amp; registered ports · IANA reference</span>
+  </footer>
+</div>
+<script>
+const PORTS = [
+  // Web
+  [80,   'TCP', 'HTTP',          'Web',         'Hypertext Transfer Protocol — unencrypted web traffic',             'well'],
+  [443,  'TCP', 'HTTPS',         'Web',         'HTTP over TLS/SSL — encrypted web traffic',                        'well'],
+  [8080, 'TCP', 'HTTP Alt',      'Web',         'Alternative HTTP port, common for dev servers and proxies',         'reg'],
+  [8443, 'TCP', 'HTTPS Alt',     'Web',         'Alternative HTTPS port',                                           'reg'],
+  [3000, 'TCP', 'Dev Server',    'Web',         'Common default for Node.js/React/Rails dev servers',               'reg'],
+  [4000, 'TCP', 'Dev Server',    'Web',         'Common default for Phoenix/Gatsby dev servers',                    'reg'],
+  [5173, 'TCP', 'Vite',          'Web',         'Default port for Vite development server',                        'reg'],
+  [8000, 'TCP', 'HTTP Alt',      'Web',         'Alternative HTTP — Python Django/Flask default',                   'reg'],
+  // Email
+  [25,   'TCP', 'SMTP',          'Email',       'Simple Mail Transfer Protocol — sending email',                    'well'],
+  [110,  'TCP', 'POP3',          'Email',       'Post Office Protocol v3 — receive email',                         'well'],
+  [143,  'TCP', 'IMAP',          'Email',       'Internet Message Access Protocol — email access',                  'well'],
+  [465,  'TCP', 'SMTPS',         'Email',       'SMTP over SSL — secure email sending',                            'well'],
+  [587,  'TCP', 'SMTP Sub',      'Email',       'SMTP submission — modern authenticated sending port',             'well'],
+  [993,  'TCP', 'IMAPS',         'Email',       'IMAP over SSL',                                                   'well'],
+  [995,  'TCP', 'POP3S',         'Email',       'POP3 over SSL',                                                   'well'],
+  // Database
+  [3306, 'TCP', 'MySQL',         'Database',    'MySQL / MariaDB database server',                                 'well'],
+  [5432, 'TCP', 'PostgreSQL',    'Database',    'PostgreSQL database server',                                      'well'],
+  [1433, 'TCP', 'MSSQL',         'Database',    'Microsoft SQL Server',                                            'well'],
+  [1521, 'TCP', 'Oracle',        'Database',    'Oracle Database listener',                                        'well'],
+  [27017,'TCP', 'MongoDB',       'Database',    'MongoDB database server',                                         'well'],
+  [6379, 'TCP', 'Redis',         'Database',    'Redis in-memory data store',                                      'well'],
+  [5984, 'TCP', 'CouchDB',       'Database',    'Apache CouchDB HTTP API',                                         'reg'],
+  [8529, 'TCP', 'ArangoDB',      'Database',    'ArangoDB web interface and HTTP API',                             'reg'],
+  [9042, 'TCP', 'Cassandra',     'Database',    'Apache Cassandra native transport',                               'reg'],
+  [2181, 'TCP', 'ZooKeeper',     'Database',    'Apache ZooKeeper coordination service',                           'well'],
+  [5672, 'TCP', 'AMQP',          'Messaging',   'RabbitMQ / AMQP message broker',                                  'well'],
+  [15672,'TCP', 'RabbitMQ UI',   'Messaging',   'RabbitMQ management web interface',                               'reg'],
+  [9092, 'TCP', 'Kafka',         'Messaging',   'Apache Kafka broker',                                             'reg'],
+  [4369, 'TCP', 'EPMD',          'Messaging',   'Erlang Port Mapper (used by RabbitMQ)',                           'well'],
+  // Remote access
+  [22,   'TCP', 'SSH',           'Remote',      'Secure Shell — encrypted remote access',                          'well'],
+  [23,   'TCP', 'Telnet',        'Remote',      'Telnet — unencrypted remote terminal (legacy)',                   'well'],
+  [3389, 'TCP', 'RDP',           'Remote',      'Remote Desktop Protocol — Windows remote desktop',                'well'],
+  [5900, 'TCP', 'VNC',           'Remote',      'Virtual Network Computing — remote desktop sharing',              'well'],
+  // File transfer
+  [21,   'TCP', 'FTP',           'File',        'File Transfer Protocol — control channel',                       'well'],
+  [20,   'TCP', 'FTP Data',      'File',        'File Transfer Protocol — data channel',                          'well'],
+  [990,  'TCP', 'FTPS',          'File',        'FTP over SSL/TLS — control channel',                             'well'],
+  [22,   'TCP', 'SFTP',          'File',        'SSH File Transfer Protocol (runs over SSH port 22)',             'well'],
+  [69,   'UDP', 'TFTP',          'File',        'Trivial File Transfer Protocol — simple, no auth',              'well'],
+  [445,  'TCP', 'SMB',           'File',        'Server Message Block — Windows file sharing',                   'well'],
+  [2049, 'TCP', 'NFS',           'File',        'Network File System',                                           'well'],
+  // DNS & Network
+  [53,   'BOTH','DNS',           'Network',     'Domain Name System — hostname resolution',                       'well'],
+  [67,   'UDP', 'DHCP Server',   'Network',     'Dynamic Host Configuration Protocol — server',                  'well'],
+  [68,   'UDP', 'DHCP Client',   'Network',     'Dynamic Host Configuration Protocol — client',                  'well'],
+  [123,  'UDP', 'NTP',           'Network',     'Network Time Protocol — time synchronisation',                  'well'],
+  [161,  'UDP', 'SNMP',          'Network',     'Simple Network Management Protocol',                            'well'],
+  [179,  'TCP', 'BGP',           'Network',     'Border Gateway Protocol — internet routing',                    'well'],
+  [514,  'UDP', 'Syslog',        'Network',     'System logging protocol',                                       'well'],
+  [520,  'UDP', 'RIP',           'Network',     'Routing Information Protocol',                                  'well'],
+  [1900, 'UDP', 'UPnP',          'Network',     'Universal Plug and Play discovery',                             'well'],
+  // Security & Auth
+  [389,  'TCP', 'LDAP',          'Auth',        'Lightweight Directory Access Protocol',                         'well'],
+  [636,  'TCP', 'LDAPS',         'Auth',        'LDAP over SSL',                                                 'well'],
+  [88,   'TCP', 'Kerberos',      'Auth',        'Kerberos authentication protocol',                              'well'],
+  [500,  'UDP', 'IKE/IPsec',     'Security',    'Internet Key Exchange for IPsec VPN',                          'well'],
+  [1194, 'UDP', 'OpenVPN',       'Security',    'OpenVPN — default UDP port',                                    'reg'],
+  [1723, 'TCP', 'PPTP',          'Security',    'Point-to-Point Tunneling Protocol (legacy VPN)',               'well'],
+  [51820,'UDP', 'WireGuard',     'Security',    'WireGuard VPN default port',                                   'reg'],
+  // Monitoring & Observability
+  [9090, 'TCP', 'Prometheus',    'Monitoring',  'Prometheus metrics server',                                    'reg'],
+  [3100, 'TCP', 'Loki',          'Monitoring',  'Grafana Loki log aggregation',                                 'reg'],
+  [3000, 'TCP', 'Grafana',       'Monitoring',  'Grafana dashboard (also React dev server)',                    'reg'],
+  [8125, 'UDP', 'StatsD',        'Monitoring',  'StatsD metrics aggregation',                                   'reg'],
+  [9200, 'TCP', 'Elasticsearch', 'Search',      'Elasticsearch HTTP API',                                      'reg'],
+  [9300, 'TCP', 'ES Transport',  'Search',      'Elasticsearch node-to-node transport',                        'reg'],
+  [5601, 'TCP', 'Kibana',        'Search',      'Kibana web interface for Elasticsearch',                       'reg'],
+  // Container & Orchestration
+  [2375, 'TCP', 'Docker',        'Containers',  'Docker daemon — unencrypted (do not expose!)',                'reg'],
+  [2376, 'TCP', 'Docker TLS',    'Containers',  'Docker daemon over TLS',                                      'reg'],
+  [2377, 'TCP', 'Docker Swarm',  'Containers',  'Docker Swarm management',                                     'reg'],
+  [6443, 'TCP', 'Kubernetes',    'Containers',  'Kubernetes API server',                                       'reg'],
+  [10250,'TCP', 'Kubelet',       'Containers',  'Kubernetes kubelet API',                                      'reg'],
+  [2379, 'TCP', 'etcd',          'Containers',  'etcd client requests (used by Kubernetes)',                   'well'],
+  [2380, 'TCP', 'etcd Peer',     'Containers',  'etcd peer communication',                                     'well'],
+  // CI/CD
+  [8080, 'TCP', 'Jenkins',       'CI/CD',       'Jenkins web UI (default)',                                    'reg'],
+  [7990, 'TCP', 'Bitbucket',     'CI/CD',       'Bitbucket Server HTTP',                                      'reg'],
+  [8090, 'TCP', 'Jira',          'CI/CD',       'Jira default HTTP port',                                     'reg'],
+  // Cache
+  [11211,'TCP', 'Memcached',     'Cache',       'Memcached distributed cache',                                 'well'],
+  [6380, 'TCP', 'Redis TLS',     'Cache',       'Redis with TLS (alternate port)',                             'reg'],
+  // Blockchain / Crypto
+  [8333, 'TCP', 'Bitcoin',       'Crypto',      'Bitcoin P2P network',                                        'reg'],
+  [30303,'TCP', 'Ethereum',      'Crypto',      'Ethereum P2P network (DevP2P)',                              'reg'],
+  // Misc services
+  [25565,'TCP', 'Minecraft',     'Gaming',      'Minecraft Java Edition server',                              'reg'],
+  [27015,'UDP', 'Steam/CS',      'Gaming',      'Steam game server / Counter-Strike',                        'reg'],
+  [19132,'UDP', 'Minecraft BE',  'Gaming',      'Minecraft Bedrock Edition server',                          'reg'],
+  [6881, 'TCP', 'BitTorrent',    'P2P',         'BitTorrent peer wire protocol',                             'reg'],
+  [5353, 'UDP', 'mDNS',          'Network',     'Multicast DNS — Bonjour / Avahi local discovery',          'well'],
+  [5355, 'UDP', 'LLMNR',         'Network',     'Link-Local Multicast Name Resolution',                      'well'],
+  [1080, 'TCP', 'SOCKS',         'Proxy',       'SOCKS proxy protocol',                                      'well'],
+  [3128, 'TCP', 'Squid',         'Proxy',       'Squid HTTP proxy default port',                             'reg'],
+  [8888, 'TCP', 'Jupyter',       'Dev',         'Jupyter Notebook default port',                             'reg'],
+  [4321, 'TCP', 'Astro',         'Dev',         'Astro framework dev server default',                        'reg'],
+  [24678,'TCP', 'Vite HMR',      'Dev',         'Vite Hot Module Replacement WebSocket port',               'reg'],
+  [5555, 'TCP', 'ADB',           'Dev',         'Android Debug Bridge',                                      'reg'],
+  [5037, 'TCP', 'ADB Server',    'Dev',         'ADB server (on host machine)',                              'reg'],
+];
+
+const CATEGORIES = [...new Set(PORTS.map(p => p[3]))].sort();
+let activeFilter = 'All';
+let searchQuery  = '';
+
+function renderPills() {
+  const el = document.getElementById('filterPills');
+  el.innerHTML = ['All', ...CATEGORIES].map(c => `
+    <button class="filter-pill ${c === activeFilter ? 'active' : ''}" onclick="setFilter('${c}')">${c}</button>`
+  ).join('');
+}
+
+function setFilter(cat) {
+  activeFilter = cat;
+  renderPills();
+  renderTable();
+}
+
+function renderTable() {
+  const q   = searchQuery.toLowerCase();
+  const body = document.getElementById('portsBody');
+  const count= document.getElementById('resultCount');
+
+  const filtered = PORTS.filter(([port, proto, service, cat, desc]) => {
+    const matchCat = activeFilter === 'All' || cat === activeFilter;
+    const matchQ   = !q || String(port).includes(q) ||
+                    service.toLowerCase().includes(q) ||
+                    desc.toLowerCase().includes(q) ||
+                    cat.toLowerCase().includes(q) ||
+                    proto.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+
+  document.getElementById('countLabel').textContent = `${PORTS.length} ports`;
+  count.textContent = filtered.length !== PORTS.length ? `${filtered.length} results` : '';
+
+  if (!filtered.length) {
+    body.innerHTML = '<div class="no-results-row">No ports match your search.</div>';
+    return;
+  }
+
+  const protoClass = p => p === 'TCP' ? 'proto-tcp' : p === 'UDP' ? 'proto-udp' : 'proto-both';
+  const statusLabel = s => s === 'well' ? ['Well-known', 'status-well'] : s === 'reg' ? ['Registered', 'status-reg'] : ['Dynamic', 'status-dyn'];
+
+  body.innerHTML = filtered.map(([port, proto, service, cat, desc, status]) => {
+    const [sLabel, sCls] = statusLabel(status);
+    return `
+      <div class="port-row">
+        <div class="port-num">${port}</div>
+        <div><span class="port-proto ${protoClass(proto)}">${proto}</span></div>
+        <div>
+          <div class="port-service">${service}</div>
+          <div class="port-desc">${desc}</div>
+        </div>
+        <div class="port-category">${cat}</div>
+        <div><span class="port-status ${sCls}">${sLabel}</span></div>
+      </div>`;
+  }).join('');
+}
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchQuery = e.target.value;
+  renderTable();
+});
+
+renderPills();
+renderTable();
+</script>
+</body>
+</html>
