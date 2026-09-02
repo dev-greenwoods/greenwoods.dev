@@ -1,0 +1,148 @@
+:root {
+  --tok-a: rgba(16,185,129,.18);
+  --tok-b: rgba(59,130,246,.18);
+  --tok-c: rgba(245,158,11,.18);
+  --tok-d: rgba(239,68,68,.16);
+  --tok-e: rgba(139,92,246,.14);
+  --tok-f: rgba(236,72,153,.14);
+  --tok-g: rgba(20,184,166,.16);
+  --tok-h: rgba(249,115,22,.16);
+}
+
+.ai-badge { border-color: rgba(124,58,237,.3) !important; color: #7c3aed !important; }
+
+/* Stats bar */
+.stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  flex-shrink: 0;
+}
+.stat-item { display: flex; flex-direction: column; align-items: center; flex: 1; gap: 2px; }
+.stat-value { font-size: 1.05rem; font-weight: 700; color: var(--text); line-height: 1; }
+.stat-value.accent { color: var(--ai); }
+.stat-label { font-size: 0.58rem; color: var(--faint); text-transform: uppercase; letter-spacing: 0.08em; }
+.stat-sep { width: 1px; height: 32px; background: var(--border); flex-shrink: 0; }
+
+/* Status */
+.tokenizer-status {
+  font-size: 0.62rem;
+  color: var(--faint);
+  padding: 4px 2px;
+  flex-shrink: 0;
+}
+.tokenizer-status.ready { color: var(--accent); }
+.tokenizer-status.approx { color: var(--warn); }
+
+/* Token viz */
+.tok-viz {
+  flex: 1;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 0.82rem;
+  line-height: 1.9;
+  word-break: break-word;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+.tok-viz::-webkit-scrollbar { width: 4px; }
+.tok-viz::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+
+.tok-span {
+  border-radius: 3px;
+  padding: 1px 0;
+  cursor: default;
+  position: relative;
+  transition: filter 0.1s;
+}
+.tok-span:hover { filter: brightness(1.15); outline: 1.5px solid rgba(0,0,0,0.12); }
+.tok-span[data-id]::after {
+  content: attr(data-id);
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.55rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+.tok-span:hover::after { opacity: 1; }
+
+/* Colors per index mod 8 */
+.tok-c0 { background: var(--tok-a); }
+.tok-c1 { background: var(--tok-b); }
+.tok-c2 { background: var(--tok-c); }
+.tok-c3 { background: var(--tok-d); }
+.tok-c4 { background: var(--tok-e); }
+.tok-c5 { background: var(--tok-f); }
+.tok-c6 { background: var(--tok-g); }
+.tok-c7 { background: var(--tok-h); }
+
+/* Token IDs view */
+.tok-ids {
+  flex: 1;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-content: flex-start;
+}
+.tok-ids::-webkit-scrollbar { width: 4px; }
+.tok-ids::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+
+.tok-id-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 7px;
+  border-radius: 5px;
+  min-width: 40px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+.tok-id-chip .chip-id { font-size: 0.62rem; color: var(--muted); line-height: 1; }
+.tok-id-chip .chip-txt {
+  font-size: 0.7rem;
+  color: var(--text);
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1;
+}
+.tok-id-chip.tok-c0 { border-color: rgba(16,185,129,.4); }
+.tok-id-chip.tok-c1 { border-color: rgba(59,130,246,.4); }
+.tok-id-chip.tok-c2 { border-color: rgba(245,158,11,.4); }
+.tok-id-chip.tok-c3 { border-color: rgba(239,68,68,.3); }
+.tok-id-chip.tok-c4 { border-color: rgba(139,92,246,.3); }
+.tok-id-chip.tok-c5 { border-color: rgba(236,72,153,.3); }
+.tok-id-chip.tok-c6 { border-color: rgba(20,184,166,.3); }
+.tok-id-chip.tok-c7 { border-color: rgba(249,115,22,.3); }
+
+/* Legend */
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.6rem; color: var(--muted); }
+.leg-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
