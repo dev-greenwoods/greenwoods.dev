@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool Schema Builder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/tool-schema.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>tool schema builder</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: Builder -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">function definition</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnExample">example</button>
+          <button class="btn-sm" id="btnReset">reset</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <div class="field-group">
+          <label class="field-label">Function name</label>
+          <input id="fnName" class="tool-input" type="text" placeholder="get_weather" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Description <span class="field-hint">(tell the model what this does)</span></label>
+          <textarea id="fnDesc" class="tool-input" style="min-height:64px;resize:vertical"
+            placeholder="Get current weather data for a given city."></textarea>
+        </div>
+
+        <div class="params-section">
+          <div class="params-hd">
+            <span class="field-label">Parameters</span>
+            <button class="btn-sm" id="btnAddParam">+ add param</button>
+          </div>
+          <div id="paramList" class="param-list"></div>
+          <div id="noParams" class="no-params">No parameters yet — click "+ add param"</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: Output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">generated schema</span>
+        <div class="panel-actions">
+          <button class="tab active" id="tabOAI" data-fmt="openai">OpenAI</button>
+          <button class="tab" id="tabAnt" data-fmt="anthropic">Anthropic</button>
+          <button class="tab" id="tabGem" data-fmt="gemini">Gemini</button>
+          <button class="copy-btn" id="btnCopy">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="output-block" id="outputBlock" style="flex:1">
+          <pre id="outputPre"></pre>
+        </div>
+        <div class="schema-meta" id="schemaMeta"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Generates valid tool definitions for OpenAI, Anthropic & Gemini APIs</span>
+  </footer>
+</div>
+<script src="js/tool-schema.js"></script>
+</body>
+</html>
