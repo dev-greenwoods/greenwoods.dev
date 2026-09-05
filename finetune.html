@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fine-tune Formatter — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/finetune.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>fine-tune formatter</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: examples builder -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">training examples</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">load sample</button>
+          <button class="btn-sm" id="btnAddEx">+ add example</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field-group" style="flex-shrink:0">
+          <label class="field-label">System prompt <span style="color:var(--faint);text-transform:none;font-size:0.56rem;font-weight:400">(optional — applied to all examples)</span></label>
+          <textarea id="globalSystem" class="tool-input" style="min-height:52px;resize:vertical"
+            placeholder="You are a helpful assistant…"></textarea>
+        </div>
+
+        <div id="exList" class="ex-list"></div>
+
+        <div class="dataset-stats" id="datasetStats">
+          <span id="dsExCount">0 examples</span>
+          <span class="ds-sep">·</span>
+          <span id="dsTurns">0 turns</span>
+          <span class="ds-sep">·</span>
+          <span id="dsTokens">~0 tokens total</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: JSONL output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">jsonl output</span>
+        <div class="panel-actions">
+          <button class="tab active" data-fmt="openai">OpenAI</button>
+          <button class="tab" data-fmt="alpaca">Alpaca</button>
+          <button class="tab" data-fmt="sharegpt">ShareGPT</button>
+          <button class="copy-btn" id="btnCopyJson">copy</button>
+          <button class="btn-sm" id="btnDownload">↓ .jsonl</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="output-block" style="flex:1">
+          <pre id="jsonlOutput"></pre>
+        </div>
+        <div class="output-meta" id="outputMeta"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Build fine-tuning datasets in OpenAI, Alpaca, and ShareGPT formats · zero telemetry</span>
+  </footer>
+</div>
+<script src="js/finetune.js"></script>
+</body>
+</html>
