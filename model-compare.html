@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Model Compare — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/model-compare.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>model compare</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main class="single-panel">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">llm model specs</span>
+        <div class="panel-actions">
+          <div class="filter-group" id="filterGroup">
+            <button class="filter-btn active" data-provider="all">All</button>
+            <button class="filter-btn" data-provider="OpenAI">OpenAI</button>
+            <button class="filter-btn" data-provider="Anthropic">Anthropic</button>
+            <button class="filter-btn" data-provider="Google">Google</button>
+            <button class="filter-btn" data-provider="Meta">Meta / Open</button>
+            <button class="filter-btn" data-provider="Mistral">Mistral</button>
+          </div>
+          <span class="panel-hint" id="modelCount"></span>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:0;overflow:auto">
+        <table class="model-table" id="modelTable">
+          <thead>
+            <tr>
+              <th class="sortable" data-col="name">Model <span class="sort-icon">↕</span></th>
+              <th class="sortable" data-col="provider">Provider <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="context">Context <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="output">Max Out <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="inputCost">Input $/1M <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="outputCost">Output $/1M <span class="sort-icon">↕</span></th>
+              <th class="center-col">Vision</th>
+              <th class="center-col">Tools</th>
+              <th class="center-col">Streaming</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody id="modelTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Pricing approximate — verify on provider docs · last updated 2025</span>
+  </footer>
+</div>
+<script src="js/model-compare.js"></script>
+</body>
+</html>
