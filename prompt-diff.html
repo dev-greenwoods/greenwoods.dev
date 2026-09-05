@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prompt Diff — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/prompt-diff.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>prompt diff</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main class="three-panel">
+    <!-- LEFT -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">version A</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSampleA">sample</button>
+          <button class="btn-sm" id="btnClearA">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="inputA" class="tool-input" style="flex:1" spellcheck="false"
+          placeholder="Paste your original prompt here…"></textarea>
+        <div class="ver-stats" id="statsA">0 tokens · 0 words</div>
+      </div>
+    </div>
+
+    <!-- MIDDLE: diff output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">diff</span>
+        <div class="panel-actions">
+          <button class="tab active" data-mode="word">word</button>
+          <button class="tab" data-mode="line">line</button>
+          <button class="copy-btn" id="btnCopy">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="diff-stats" id="diffStats" style="display:none">
+          <span class="ds-add" id="dsAdd">+0</span>
+          <span class="ds-rem" id="dsRem">−0</span>
+          <span class="ds-sim" id="dsSim">100% similar</span>
+        </div>
+        <div class="diff-output output-block" id="diffOutput" style="flex:1">
+          <div class="empty-state">
+            <div class="empty-icon">⟷</div>
+            <div>Paste prompts in both panels to see the diff</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">version B</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSampleB">sample</button>
+          <button class="btn-sm" id="btnClearB">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="inputB" class="tool-input" style="flex:1" spellcheck="false"
+          placeholder="Paste your revised prompt here…"></textarea>
+        <div class="ver-stats" id="statsB">0 tokens · 0 words</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Word-level and line-level diff — spot prompt changes instantly</span>
+  </footer>
+</div>
+<script src="js/prompt-diff.js"></script>
+</body>
+</html>
