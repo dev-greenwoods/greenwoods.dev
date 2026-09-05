@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tokenizer Visualizer — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/tokenizer.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>tokenizer visualizer</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: Input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">input text</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="stats-bar" id="statsBar">
+          <div class="stat-item"><span id="statTokens" class="stat-value accent">0</span><span class="stat-label">tokens</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat-item"><span id="statChars" class="stat-value">0</span><span class="stat-label">chars</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat-item"><span id="statWords" class="stat-value">0</span><span class="stat-label">words</span></div>
+          <div class="stat-sep"></div>
+          <div class="stat-item"><span id="statRatio" class="stat-value">—</span><span class="stat-label">chars/tok</span></div>
+        </div>
+        <textarea id="inputArea" class="tool-input" style="flex:1;min-height:220px"
+          placeholder="Paste any text — code, prompts, prose — to see how it tokenizes…"
+          spellcheck="false"></textarea>
+        <div class="tokenizer-status" id="tokStatus">Loading tokenizer…</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Visualization -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">token visualization</span>
+        <div class="panel-actions">
+          <button class="tab active" id="tabViz" data-mode="viz">colored spans</button>
+          <button class="tab" id="tabIds" data-mode="ids">token IDs</button>
+        </div>
+      </div>
+      <div class="panel-body" id="vizPanel">
+        <div class="empty-state" id="emptyState">
+          <div class="empty-icon">🔢</div>
+          <div>Type or paste text to see token boundaries</div>
+          <div style="font-size:0.65rem;color:var(--faint)">Each color = one token from the cl100k_base vocab</div>
+        </div>
+        <!-- colored spans view -->
+        <div id="vizTokens" class="tok-viz" style="display:none"></div>
+        <!-- token IDs view -->
+        <div id="vizIds" class="tok-ids" style="display:none"></div>
+
+        <div class="legend-row" id="legendRow" style="display:none">
+          <div class="legend-item"><span class="leg-swatch" style="background:var(--tok-a)"></span>common word</div>
+          <div class="legend-item"><span class="leg-swatch" style="background:var(--tok-b)"></span>subword/suffix</div>
+          <div class="legend-item"><span class="leg-swatch" style="background:var(--tok-c)"></span>number</div>
+          <div class="legend-item"><span class="leg-swatch" style="background:var(--tok-d)"></span>punctuation</div>
+          <div class="legend-item"><span class="leg-swatch" style="background:var(--tok-e)"></span>whitespace</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Tokenizer uses cl100k_base (GPT-4 / Claude) — all processing client-side</span>
+  </footer>
+</div>
+<script type="module" src="js/tokenizer.js"></script>
+</body>
+</html>
