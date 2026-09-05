@@ -17,7 +17,7 @@
     <div class="cmd-box">
       <div class="cmd-search-row">
         <svg class="cmd-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cmdInput" type="text" placeholder="Search 43 tools…" autocomplete="off" spellcheck="false" />
+        <input id="cmdInput" type="text" placeholder="Search 48 tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -37,7 +37,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="cmd-trigger-text">Search tools…</span>
       <span class="trigger-shortcut">⌘K</span>
-      <span class="cmd-trigger-count">43 tools</span>
+      <span class="cmd-trigger-count">48 tools</span>
     </button>
   </nav>
 
@@ -54,7 +54,7 @@
         <button class="nav-item active" data-cat="all">
           <span class="nav-item-icon">⊞</span>
           <span class="nav-item-label">All tools</span>
-          <span class="nav-item-count">39</span>
+          <span class="nav-item-count">44</span>
         </button>
         <button class="nav-item" data-cat="encoding">
           <span class="nav-item-icon">📦</span>
@@ -79,7 +79,7 @@
         <button class="nav-item" data-cat="ai">
           <span class="nav-item-icon">✦</span>
           <span class="nav-item-label">AI · LLM</span>
-          <span class="nav-item-count">5</span>
+          <span class="nav-item-count">10</span>
         </button>
       </nav>
 
@@ -99,7 +99,7 @@
           <div class="cat-hero-icon">⊞</div>
           <div>
             <h1 class="cat-hero-title">All Tools</h1>
-            <p class="cat-hero-sub">39 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
+            <p class="cat-hero-sub">48 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
           </div>
         </div>
 
@@ -166,13 +166,18 @@
         </div>
 
         <div class="mini-section">
-          <div class="mini-section-hd ai-color">✦ AI · LLM <span>5</span></div>
+          <div class="mini-section-hd ai-color">✦ AI · LLM <span>10</span></div>
           <div class="tools-list">
             <a href="/token"       class="tl-card ai"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Exact token count for GPT-4, Claude, Gemini, Llama</div></div><span class="tl-arrow">→</span></a>
             <a href="/ai-cost"     class="tl-card ai"><div class="tl-icon">💰</div><div class="tl-body"><div class="tl-name">AI Cost Calc</div><div class="tl-desc">Compare cost across 16 models — OpenAI, Anthropic, Google</div></div><span class="tl-arrow">→</span></a>
             <a href="/ai-response" class="tl-card ai"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Response Inspector</div><div class="tl-desc">Renders content blocks, tool calls, usage, cost</div></div><span class="tl-arrow">→</span></a>
             <a href="/prompt"      class="tl-card ai"><div class="tl-icon">✍</div><div class="tl-body"><div class="tl-name">Prompt Builder</div><div class="tl-desc">System · context · examples · format — XML, MD, plain</div></div><span class="tl-arrow">→</span></a>
             <a href="/context"     class="tl-card ai"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Context Planner</div><div class="tl-desc">Token budgeter — see what fits in each model's window</div></div><span class="tl-arrow">→</span></a>
+            <a href="/tokenizer"    class="tl-card ai"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Tokenizer Visualizer</div><div class="tl-desc">Color-coded token spans — see exactly how models tokenize your text</div></div><span class="tl-arrow">→</span></a>
+            <a href="/tool-schema"  class="tl-card ai"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool Schema Builder</div><div class="tl-desc">Visual builder for OpenAI / Anthropic / Gemini function calling JSON</div></div><span class="tl-arrow">→</span></a>
+            <a href="/rag-chunk"    class="tl-card ai"><div class="tl-icon">🧩</div><div class="tl-body"><div class="tl-name">RAG Chunker</div><div class="tl-desc">Split text into RAG-ready chunks — by tokens, sentences, or paragraphs</div></div><span class="tl-arrow">→</span></a>
+            <a href="/model-compare" class="tl-card ai"><div class="tl-icon">📊</div><div class="tl-body"><div class="tl-name">Model Compare</div><div class="tl-desc">Sortable spec table — context window, pricing, capabilities for 23+ LLMs</div></div><span class="tl-arrow">→</span></a>
+            <a href="/llm-request"  class="tl-card ai"><div class="tl-icon">⚡</div><div class="tl-body"><div class="tl-name">API Request Builder</div><div class="tl-desc">Generate cURL, Python, JS code for OpenAI, Anthropic & Google AI</div></div><span class="tl-arrow">→</span></a>
           </div>
         </div>
       </section>
@@ -270,7 +275,7 @@
           <div class="cat-hero-icon">✦</div>
           <div>
             <h1 class="cat-hero-title">AI · LLM</h1>
-            <p class="cat-hero-sub">5 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
+            <p class="cat-hero-sub">10 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
           </div>
         </div>
         <div class="tools-list tools-list--lg">
@@ -279,6 +284,11 @@
           <a href="/ai-response" class="tl-card ai tl-lg"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Response Inspector</div><div class="tl-desc">Paste raw API JSON from Anthropic or OpenAI. Renders content blocks, tool calls, token usage, and estimated cost.</div></div><span class="tl-arrow">→</span></a>
           <a href="/prompt"      class="tl-card ai tl-lg"><div class="tl-icon">✍</div><div class="tl-body"><div class="tl-name">Prompt Builder</div><div class="tl-desc">Structured editor: system prompt, context, few-shot examples, output format. Exports as XML tags, Markdown, or plain text.</div></div><span class="tl-arrow">→</span></a>
           <a href="/context"     class="tl-card ai tl-lg"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Context Planner</div><div class="tl-desc">Multi-slot token budgeter. Paste files or text blocks, see total token count, and instantly know what fits in each model's window.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/tokenizer"    class="tl-card ai tl-lg"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Tokenizer Visualizer</div><div class="tl-desc">Color-coded token spans with hover-to-inspect IDs. See exactly where token boundaries fall in your text using the cl100k_base vocabulary.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/tool-schema"  class="tl-card ai tl-lg"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool Schema Builder</div><div class="tl-desc">Visual GUI to build function calling JSON for OpenAI, Anthropic, and Gemini. Add params, set types, mark required — outputs valid schema instantly.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/rag-chunk"    class="tl-card ai tl-lg"><div class="tl-icon">🧩</div><div class="tl-body"><div class="tl-name">RAG Chunker</div><div class="tl-desc">Split documents into retrieval-ready chunks by token count, sentence count, or paragraph. Configurable overlap, per-chunk token display, bulk JSON export.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/model-compare" class="tl-card ai tl-lg"><div class="tl-icon">📊</div><div class="tl-body"><div class="tl-name">Model Compare</div><div class="tl-desc">Sortable spec table for 23+ models across OpenAI, Anthropic, Google, Meta, and Mistral. Compare context window, pricing, vision, and tool use.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/llm-request"  class="tl-card ai tl-lg"><div class="tl-icon">⚡</div><div class="tl-body"><div class="tl-name">API Request Builder</div><div class="tl-desc">Build complete API requests visually — pick provider, model, messages, and params. Outputs ready-to-run cURL, Python SDK, and JavaScript SDK code.</div></div><span class="tl-arrow">→</span></a>
         </div>
       </section>
 
@@ -287,7 +297,7 @@
 
   <footer>
     <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
-    <span>⌘K to search · 43 tools · zero telemetry · runs in your browser</span>
+    <span>⌘K to search · 48 tools · zero telemetry · runs in your browser</span>
   </footer>
 </div>
 
@@ -351,6 +361,11 @@
     {name:'Response Inspector',icon:'🔬',href:'/ai-response',cat:'ai',desc:'Renders content blocks, tool calls, usage'},
     {name:'Prompt Builder',icon:'✍',href:'/prompt',cat:'ai',desc:'System · context · examples · format'},
     {name:'Context Planner',icon:'📐',href:'/context',cat:'ai',desc:'Token budgeter for model context windows'},
+    {name:'Tokenizer Visualizer',icon:'🎨',href:'/tokenizer',cat:'ai',desc:'Color-coded token spans — see how models tokenize text'},
+    {name:'Tool Schema Builder',icon:'⚙',href:'/tool-schema',cat:'ai',desc:'Visual builder for OpenAI/Anthropic/Gemini function calling JSON'},
+    {name:'RAG Chunker',icon:'🧩',href:'/rag-chunk',cat:'ai',desc:'Chunk text into RAG-ready pieces with token counts'},
+    {name:'Model Compare',icon:'📊',href:'/model-compare',cat:'ai',desc:'Sortable spec table for 23+ LLMs across 5 providers'},
+    {name:'API Request Builder',icon:'⚡',href:'/llm-request',cat:'ai',desc:'Generate cURL, Python, JS code for OpenAI, Anthropic, Google'},
   ];
 
   let filtered=TOOLS.slice(),fi=0;
