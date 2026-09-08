@@ -1,0 +1,64 @@
+.ai-badge { border-color: rgba(124,58,237,.3) !important; color: #7c3aed !important; }
+
+.upload-label { cursor: pointer; }
+
+.jl-stats { display: flex; gap: 6px; flex-shrink: 0; align-items: center; }
+.stat-badge {
+  font-size: 0.6rem; font-weight: 600; padding: 3px 9px; border-radius: 5px;
+  border: 1.5px solid var(--border); color: var(--muted); background: var(--surface2);
+}
+.stat-badge.valid   { border-color: rgba(5,150,105,.4); color: #059669; background: rgba(5,150,105,.07); }
+.stat-badge.invalid { border-color: rgba(220,38,38,.4); color: #dc2626; background: rgba(220,38,38,.07); }
+
+.jl-filter {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  padding: 4px 9px; background: var(--surface2); border: 1.5px solid var(--border);
+  border-radius: 7px; color: var(--text); outline: none; width: 150px; transition: .14s;
+}
+.jl-filter:focus { border-color: var(--ai); }
+
+/* Records */
+.jl-record {
+  background: var(--surface2); border: 1.5px solid var(--border); border-radius: 8px;
+  overflow: hidden; flex-shrink: 0; animation: fadeIn .1s ease;
+}
+.jl-record:hover { border-color: var(--dim); }
+.jl-record.error-record { border-color: rgba(220,38,38,.4); }
+
+.jl-rec-hd {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 10px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.jl-line-num { font-size: 0.6rem; color: var(--faint); }
+.jl-keys { font-size: 0.6rem; color: var(--muted); display: flex; gap: 4px; flex-wrap: wrap; }
+.jl-key-chip {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 3px;
+  padding: 1px 5px; font-size: 0.58rem; color: var(--muted);
+}
+.jl-copy {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.57rem; padding: 2px 7px;
+  background: transparent; border: 1px solid var(--border); color: var(--faint);
+  border-radius: 4px; cursor: pointer; transition: .14s;
+}
+.jl-copy:hover { border-color: var(--accent); color: var(--accent); }
+
+.jl-rec-body { padding: 10px 12px; }
+.jl-rec-body pre {
+  font-size: 0.7rem; line-height: 1.55; white-space: pre-wrap; word-break: break-word;
+  color: var(--text); margin: 0;
+}
+.jl-error-msg { font-size: 0.65rem; color: #dc2626; padding: 8px 12px; }
+
+/* Compact */
+.jl-compact-row {
+  font-size: 0.68rem; line-height: 1.7; white-space: nowrap; overflow: hidden;
+  text-overflow: ellipsis; padding: 5px 10px;
+  border-bottom: 1px solid var(--border); color: var(--text);
+  display: flex; gap: 10px; cursor: default;
+}
+.jl-compact-row:hover { background: var(--surface2); }
+.jl-compact-row:last-child { border-bottom: none; }
+.jl-cn { color: var(--faint); flex-shrink: 0; width: 32px; }
+
+/* Syntax */
+.jk { color: #059669; } .js { color: #0284c7; } .jn { color: #d97706; } .jb { color: #7c3aed; } .jnull { color: #6b7280; }
