@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sampling Visualizer — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/sampling.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>sampling visualizer</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: controls -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">sampling parameters</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnScenario">change scenario</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <div class="scenario-label" id="scenarioLabel">Scenario: completing "The weather today is…"</div>
+
+        <div class="ctrl-group">
+          <div class="ctrl-hd">
+            <span class="ctrl-label">Temperature <span class="ctrl-val" id="tempVal">1.0</span></span>
+            <span class="ctrl-hint">scales logits before softmax</span>
+          </div>
+          <input type="range" id="tempSlider" min="0.01" max="3" step="0.01" value="1.0" class="sv-slider" />
+          <div class="ctrl-presets">
+            <button class="preset-btn" data-t="0.01">0 (greedy)</button>
+            <button class="preset-btn" data-t="0.3">0.3</button>
+            <button class="preset-btn" data-t="0.7">0.7</button>
+            <button class="preset-btn active" data-t="1.0">1.0</button>
+            <button class="preset-btn" data-t="1.5">1.5</button>
+            <button class="preset-btn" data-t="2.5">2.5</button>
+          </div>
+        </div>
+
+        <div class="ctrl-group">
+          <div class="ctrl-hd">
+            <span class="ctrl-label">Top-p (nucleus) <span class="ctrl-val" id="topPVal">1.0</span></span>
+            <span class="ctrl-hint">keep tokens until cumulative prob ≥ p</span>
+          </div>
+          <input type="range" id="topPSlider" min="0.01" max="1" step="0.01" value="1.0" class="sv-slider" />
+          <div class="ctrl-presets">
+            <button class="preset-btn" data-p="0.5">0.5</button>
+            <button class="preset-btn" data-p="0.8">0.8</button>
+            <button class="preset-btn" data-p="0.9">0.9</button>
+            <button class="preset-btn" data-p="0.95">0.95</button>
+            <button class="preset-btn active" data-p="1.0">1.0 (off)</button>
+          </div>
+        </div>
+
+        <div class="ctrl-group">
+          <div class="ctrl-hd">
+            <span class="ctrl-label">Top-k <span class="ctrl-val" id="topKVal">off</span></span>
+            <span class="ctrl-hint">keep only top k tokens (0 = disabled)</span>
+          </div>
+          <input type="range" id="topKSlider" min="0" max="20" step="1" value="0" class="sv-slider" />
+        </div>
+
+        <div class="explain-box" id="explainBox"></div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: chart -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">token probability distribution</span>
+        <div class="panel-actions">
+          <div class="legend">
+            <span class="leg-dot leg-active"></span>sampled
+            <span class="leg-dot leg-filtered" style="margin-left:10px"></span>filtered out
+          </div>
+        </div>
+      </div>
+      <div class="panel-body" style="padding:16px 0">
+        <canvas id="chart" style="width:100%;flex:1"></canvas>
+        <div class="chart-footer" id="chartFooter"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Interactive visualization of LLM temperature, top-p, and top-k sampling</span>
+  </footer>
+</div>
+<script src="js/sampling.js"></script>
+</body>
+</html>
