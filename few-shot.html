@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Few-shot Builder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/few-shot.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>few-shot builder</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: examples -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">few-shot examples</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnAdd">+ add example</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="field-group" style="flex-shrink:0">
+          <label class="field-label">Task description</label>
+          <textarea id="taskDesc" class="tool-input" style="min-height:52px;resize:vertical"
+            placeholder="Classify the sentiment of a movie review as positive, negative, or neutral."></textarea>
+        </div>
+
+        <div id="exList" class="ex-list"></div>
+
+        <div class="field-group" style="flex-shrink:0">
+          <label class="field-label">Test input <span style="color:var(--faint);text-transform:none;font-size:0.56rem;font-weight:400">(the actual query to append)</span></label>
+          <textarea id="testInput" class="tool-input" style="min-height:44px;resize:vertical"
+            placeholder="This film had stunning visuals but a weak plot…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: output formats -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">formatted output</span>
+        <div class="panel-actions">
+          <button class="tab active" data-fmt="messages">messages</button>
+          <button class="tab" data-fmt="xml">XML tags</button>
+          <button class="tab" data-fmt="markdown">Markdown</button>
+          <button class="tab" data-fmt="plain">plain text</button>
+          <button class="copy-btn" id="btnCopy">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="output-block" style="flex:1">
+          <pre id="fewOutput"></pre>
+        </div>
+        <div class="output-meta" id="fewMeta"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Build few-shot prompts in messages, XML, Markdown, or plain text format</span>
+  </footer>
+</div>
+<script src="js/few-shot.js"></script>
+</body>
+</html>
