@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JSONL Viewer — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/jsonl.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>jsonl viewer</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">jsonl input</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+          <label class="btn-sm upload-label">
+            upload file
+            <input type="file" id="fileInput" accept=".jsonl,.ndjson,.json" style="display:none" />
+          </label>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="inputArea" class="tool-input" style="flex:1" spellcheck="false"
+          placeholder='Paste JSONL here — one JSON object per line&#10;{"role":"user","content":"Hello"}&#10;{"role":"assistant","content":"Hi there!"}'></textarea>
+        <div class="jl-stats" id="jlStats">
+          <span id="jlTotal" class="stat-badge">0 lines</span>
+          <span id="jlValid" class="stat-badge valid">0 valid</span>
+          <span id="jlInvalid" class="stat-badge invalid" style="display:none">0 errors</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: parsed records -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">parsed records</span>
+        <div class="panel-actions">
+          <input id="filterInput" class="jl-filter" type="text" placeholder="filter records…" />
+          <button class="tab active" data-view="pretty">pretty</button>
+          <button class="tab" data-view="compact">compact</button>
+        </div>
+      </div>
+      <div class="panel-body" id="recordsPanel">
+        <div class="empty-state">
+          <div class="empty-icon">📄</div>
+          <div>Paste JSONL to inspect records</div>
+          <div style="font-size:.65rem;color:var(--faint)">One JSON object per line</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Parse and inspect JSONL datasets — fine-tuning data, LLM logs, ndjson · zero telemetry</span>
+  </footer>
+</div>
+<script src="js/jsonl.js"></script>
+</body>
+</html>
