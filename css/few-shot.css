@@ -1,0 +1,47 @@
+.ai-badge { border-color: rgba(124,58,237,.3) !important; color: #7c3aed !important; }
+
+.ex-list { display: flex; flex-direction: column; gap: 8px; flex: 1; overflow-y: auto; min-height: 80px; }
+.ex-list::-webkit-scrollbar { width: 4px; }
+.ex-list::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+
+.fs-card {
+  background: var(--surface2); border: 1.5px solid var(--border); border-radius: 9px;
+  overflow: hidden; flex-shrink: 0; animation: fadeIn .15s ease;
+}
+.fs-card:hover { border-color: var(--dim); }
+
+.fs-hd {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 10px; background: var(--surface); border-bottom: 1px solid var(--border);
+}
+.fs-num { font-size: 0.6rem; font-weight: 600; color: var(--ai); background: rgba(124,58,237,.1); border-radius: 4px; padding: 2px 7px; }
+
+.fs-body { display: grid; grid-template-columns: 1fr 1fr; }
+
+.fs-col { display: flex; flex-direction: column; }
+.fs-col:first-child { border-right: 1px solid var(--border); }
+
+.fs-col-label {
+  font-size: 0.57rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 5px 10px; border-bottom: 1px solid var(--border);
+}
+.fs-col:first-child .fs-col-label { color: #0284c7; background: rgba(2,132,199,.05); }
+.fs-col:last-child  .fs-col-label { color: var(--ai);  background: rgba(124,58,237,.05); }
+
+.fs-col textarea {
+  flex: 1; border: none; outline: none; background: transparent;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text);
+  padding: 8px 10px; resize: none; min-height: 60px; line-height: 1.55;
+}
+
+.btn-rm-s {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.57rem; padding: 2px 7px;
+  background: transparent; border: 1px solid var(--border); color: var(--faint);
+  border-radius: 4px; cursor: pointer; transition: .14s;
+}
+.btn-rm-s:hover { border-color: var(--accent3); color: var(--accent3); }
+
+.output-block pre { font-size: 0.72rem; line-height: 1.6; white-space: pre; overflow-x: auto; color: var(--text); }
+.output-block pre::-webkit-scrollbar { height: 4px; }
+.output-block pre::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+.output-meta { font-size: 0.62rem; color: var(--faint); flex-shrink: 0; }
