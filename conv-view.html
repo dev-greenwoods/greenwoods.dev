@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversation Viewer — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/shared.css" />
+  <link rel="stylesheet" href="css/conv-view.css" />
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>conversation viewer</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: raw JSON input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">raw api json</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnOAI">openai sample</button>
+          <button class="btn-sm" id="btnAnt">anthropic sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="inputArea" class="tool-input" style="flex:1" spellcheck="false"
+          placeholder="Paste an API request, response, or messages array…"></textarea>
+        <div class="parse-error" id="parseError" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: chat render -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">conversation</span>
+        <div class="panel-actions">
+          <div class="cv-meta-row" id="cvMeta"></div>
+        </div>
+      </div>
+      <div class="panel-body" id="chatPanel">
+        <div class="empty-state">
+          <div class="empty-icon">💬</div>
+          <div>Paste an API request or response to render the conversation</div>
+          <div style="font-size:.65rem;color:var(--faint)">Supports OpenAI & Anthropic formats</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Render raw API JSON as a readable conversation — OpenAI and Anthropic formats</span>
+  </footer>
+</div>
+<script src="js/conv-view.js"></script>
+</body>
+</html>
