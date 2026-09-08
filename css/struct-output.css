@@ -1,0 +1,53 @@
+.ai-badge { border-color: rgba(124,58,237,.3) !important; color: #7c3aed !important; }
+.field-hint { font-size: 0.56rem; color: var(--faint); font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+.params-section { display: flex; flex-direction: column; gap: 8px; }
+.params-hd { display: flex; align-items: center; justify-content: space-between; }
+
+.field-list { display: flex; flex-direction: column; gap: 6px; }
+
+.so-field-card {
+  background: var(--surface2); border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 10px 12px; display: flex; flex-direction: column; gap: 8px;
+  animation: fadeIn .15s ease;
+}
+.so-field-card:hover { border-color: var(--dim); }
+
+.sof-row { display: flex; gap: 8px; align-items: center; }
+.sof-field { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.sof-field label { font-size: 0.58rem; color: var(--faint); text-transform: uppercase; letter-spacing: 0.07em; }
+.sof-field input, .sof-field select {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  padding: 5px 8px; background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: 6px; color: var(--text); outline: none; transition: border-color .14s; width: 100%;
+}
+.sof-field input:focus, .sof-field select:focus { border-color: var(--ai); }
+.sof-field input[type=text].desc-in { font-size: 0.68rem; }
+
+.sof-req {
+  display: flex; align-items: center; gap: 5px; font-size: 0.6rem; color: var(--muted);
+  cursor: pointer; flex-shrink: 0; white-space: nowrap;
+}
+.sof-req input[type=checkbox] { accent-color: var(--ai); cursor: pointer; }
+
+.sof-rm {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; padding: 3px 7px;
+  background: transparent; border: 1px solid var(--border); color: var(--faint);
+  border-radius: 5px; cursor: pointer; transition: .14s; flex-shrink: 0;
+}
+.sof-rm:hover { border-color: var(--accent3); color: var(--accent3); }
+
+.schema-opts { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.opt-item {
+  display: flex; align-items: center; gap: 8px; font-size: 0.68rem; color: var(--muted); cursor: pointer;
+}
+.opt-item input[type=checkbox] { accent-color: var(--ai); cursor: pointer; }
+
+.output-block pre { font-size: 0.72rem; line-height: 1.6; white-space: pre; overflow-x: auto; }
+.output-block pre::-webkit-scrollbar { height: 4px; }
+.output-block pre::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+
+.j-key  { color: #059669; }
+.j-str  { color: #0284c7; }
+.j-num  { color: #d97706; }
+.j-bool { color: #7c3aed; }
