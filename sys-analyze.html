@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>System Prompt Analyzer — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/shared.css"/>
+  <link rel="stylesheet" href="css/sys-analyze.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>system prompt analyzer</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">system prompt</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <textarea id="inputArea" class="tool-input" style="flex:1" spellcheck="false"
+          placeholder="Paste your system prompt here to analyze its structure, token count, and potential issues…"></textarea>
+      </div>
+    </div>
+
+    <!-- RIGHT: analysis -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">analysis</span>
+      </div>
+      <div class="panel-body" id="analysisPanel">
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <div>Paste a system prompt to analyze it</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Analyze system prompts for structure, tokens, and potential issues · all client-side</span>
+  </footer>
+</div>
+<script src="js/sys-analyze.js"></script>
+</body>
+</html>
