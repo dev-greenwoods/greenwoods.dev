@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Prompt Template Engine — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/shared.css"/>
+  <link rel="stylesheet" href="css/prompt-tmpl.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>prompt template engine</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main class="three-panel">
+    <!-- LEFT: template -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">template</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="tmpl-hint">Use <code>{{variable_name}}</code> for placeholders. Variables are auto-detected.</div>
+        <textarea id="tmplInput" class="tool-input" style="flex:1" spellcheck="false"
+          placeholder="You are a {{role}} assistant specializing in {{domain}}.&#10;&#10;Your task is to {{task}}.&#10;&#10;Tone: {{tone}}&#10;Format: {{output_format}}"></textarea>
+        <div class="tmpl-stats" id="tmplStats">0 variables detected</div>
+      </div>
+    </div>
+
+    <!-- MIDDLE: variable inputs -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">variables</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnClearVars">clear all</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div id="varList" class="var-list">
+          <div class="empty-state" style="min-height:100px">
+            <div class="empty-icon">⚙</div>
+            <div>Detected variables will appear here</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: filled output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">filled prompt</span>
+        <div class="panel-actions">
+          <button class="copy-btn" id="btnCopy">copy</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="output-block" id="outputBlock" style="flex:1">
+          <div id="outputPre" class="tmpl-preview"></div>
+        </div>
+        <div class="tmpl-footer" id="tmplFooter"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Fill {{variables}} in prompt templates — zero telemetry, all client-side</span>
+  </footer>
+</div>
+<script src="js/prompt-tmpl.js"></script>
+</body>
+</html>
