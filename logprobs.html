@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Logprobs Viewer — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/shared.css"/>
+  <link rel="stylesheet" href="css/logprobs.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>logprobs viewer</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: JSON input -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">openai logprobs json</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnClear">clear</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="lp-hint">Paste the <code>logprobs</code> object from an OpenAI response with <code>"logprobs": true</code>. Token confidence is shown as a color heatmap.</div>
+        <textarea id="inputArea" class="tool-input" style="flex:1" spellcheck="false"
+          placeholder='{"content":[{"token":"Hello","logprob":-0.01,"top_logprobs":[...]},...]}'></textarea>
+        <div class="parse-err" id="parseErr" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: heatmap -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">token confidence heatmap</span>
+        <div class="panel-actions">
+          <div class="lp-legend">
+            <span class="leg-swatch" style="background:var(--lp-hi)"></span>high
+            <span class="leg-swatch" style="margin-left:8px;background:var(--lp-md)"></span>med
+            <span class="leg-swatch" style="margin-left:8px;background:var(--lp-lo)"></span>low
+          </div>
+        </div>
+      </div>
+      <div class="panel-body" id="heatPanel">
+        <div class="empty-state">
+          <div class="empty-icon">🌡</div>
+          <div>Paste logprobs JSON to see token confidence</div>
+          <div style="font-size:.65rem;color:var(--faint)">Green = high confidence · Red = uncertain</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Visualize OpenAI logprobs as a token confidence heatmap · all client-side</span>
+  </footer>
+</div>
+<script src="js/logprobs.js"></script>
+</body>
+</html>
