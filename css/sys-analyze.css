@@ -1,0 +1,38 @@
+.ai-badge{border-color:rgba(124,58,237,.3)!important;color:#7c3aed!important}
+
+/* Stat grid */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;flex-shrink:0}
+.stat-tile{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;padding:10px 12px;display:flex;flex-direction:column;gap:3px}
+.stat-tile-val{font-size:1.1rem;font-weight:700;color:var(--text)}
+.stat-tile-lbl{font-size:.57rem;color:var(--faint);text-transform:uppercase;letter-spacing:.07em}
+
+/* Section blocks */
+.an-section{background:var(--surface2);border:1.5px solid var(--border);border-radius:9px;overflow:hidden;flex-shrink:0}
+.an-section-hd{padding:8px 13px;border-bottom:1px solid var(--border);font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);display:flex;align-items:center;gap:7px}
+.an-section-body{padding:10px 13px;display:flex;flex-direction:column;gap:6px}
+
+/* Issue items */
+.issue-item{display:flex;gap:9px;align-items:flex-start;font-size:.7rem;line-height:1.5}
+.issue-icon{flex-shrink:0;font-size:.85rem;margin-top:1px}
+.issue-text{color:var(--sub)}
+.issue-text strong{color:var(--text)}
+.issue-warn .issue-icon{color:#f59e0b}
+.issue-info .issue-icon{color:#3b82f6}
+.issue-ok   .issue-icon{color:#10b981}
+.issue-bad  .issue-icon{color:#ef4444}
+
+/* Structure list */
+.struct-item{display:flex;align-items:center;gap:8px;font-size:.7rem;padding:5px 0;border-bottom:1px solid var(--border)}
+.struct-item:last-child{border-bottom:none}
+.struct-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.struct-name{color:var(--muted);flex:1}
+.struct-count{color:var(--faint);font-size:.62rem}
+
+/* Score */
+.score-bar-wrap{height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.score-bar{height:100%;border-radius:4px;transition:width .4s ease}
+.score-label{display:flex;justify-content:space-between;font-size:.62rem;color:var(--muted)}
+
+/* Suggestions */
+.suggestion{font-size:.7rem;line-height:1.6;color:var(--sub);padding:6px 10px;background:var(--surface);border-radius:6px;border-left:3px solid var(--ai)}
+.suggestion strong{color:var(--text)}
