@@ -1,0 +1,38 @@
+:root{--lp-hi:rgba(5,150,105,.55);--lp-md:rgba(245,158,11,.5);--lp-lo:rgba(220,38,38,.45)}
+.ai-badge{border-color:rgba(124,58,237,.3)!important;color:#7c3aed!important}
+.lp-hint{font-size:.65rem;color:var(--muted);background:var(--surface2);border:1.5px solid var(--border);border-radius:7px;padding:8px 12px;flex-shrink:0;line-height:1.5}
+.lp-hint code{background:rgba(124,58,237,.1);color:var(--ai);border-radius:3px;padding:1px 5px}
+.parse-err{font-size:.65rem;color:#dc2626;padding:7px 10px;background:rgba(220,38,38,.07);border:1px solid rgba(220,38,38,.25);border-radius:6px;flex-shrink:0}
+.lp-legend{display:flex;align-items:center;gap:5px;font-size:.6rem;color:var(--muted)}
+.leg-swatch{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+/* Heatmap */
+.lp-text{line-height:2.2;font-size:.82rem;word-break:break-word;white-space:pre-wrap;flex:1;padding:4px}
+
+.lp-tok{
+  display:inline;border-radius:3px;padding:2px 1px;
+  cursor:pointer;position:relative;transition:filter .1s;
+}
+.lp-tok:hover{filter:brightness(1.2);outline:1.5px solid rgba(0,0,0,.15)}
+.lp-tok:hover .lp-tooltip{display:block}
+
+.lp-tooltip{
+  display:none;position:absolute;bottom:calc(100% + 6px);left:50%;
+  transform:translateX(-50%);background:var(--text);color:var(--bg);
+  font-size:.58rem;padding:5px 9px;border-radius:6px;white-space:nowrap;
+  z-index:20;pointer-events:none;line-height:1.5;
+  box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+.lp-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--text)}
+
+.lp-altlist{margin-top:4px;border-top:1px solid rgba(255,255,255,.15);padding-top:3px}
+.lp-alt{display:flex;justify-content:space-between;gap:8px;font-size:.56rem}
+.lp-alt-tok{color:rgba(255,255,255,.8)}
+.lp-alt-prob{color:rgba(255,255,255,.5)}
+
+/* Stats */
+.lp-stats{display:flex;gap:14px;flex-wrap:wrap;flex-shrink:0;padding:4px 0}
+.lp-stat{display:flex;flex-direction:column;gap:2px}
+.lp-stat-val{font-size:.9rem;font-weight:700;color:var(--text)}
+.lp-stat-lbl{font-size:.57rem;color:var(--faint);text-transform:uppercase;letter-spacing:.07em}
