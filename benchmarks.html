@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>LLM Benchmarks — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/shared.css"/>
+  <link rel="stylesheet" href="css/benchmarks.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>llm benchmarks</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main class="single-panel">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">llm benchmark scores</span>
+        <div class="panel-actions">
+          <div class="filter-group" id="filterGroup">
+            <button class="filter-btn active" data-prov="all">All</button>
+            <button class="filter-btn" data-prov="OpenAI">OpenAI</button>
+            <button class="filter-btn" data-prov="Anthropic">Anthropic</button>
+            <button class="filter-btn" data-prov="Google">Google</button>
+            <button class="filter-btn" data-prov="Meta">Meta/Open</button>
+          </div>
+          <span class="panel-hint" id="modelCount"></span>
+        </div>
+      </div>
+
+      <!-- Benchmark legend -->
+      <div class="bench-legend">
+        <div class="bl-item"><span class="bl-name">MMLU</span><span class="bl-desc">Massive Multitask Language Understanding — knowledge across 57 subjects</span></div>
+        <div class="bl-item"><span class="bl-name">HumanEval</span><span class="bl-desc">Python code generation pass@1</span></div>
+        <div class="bl-item"><span class="bl-name">MATH</span><span class="bl-desc">Competition-level math problem solving</span></div>
+        <div class="bl-item"><span class="bl-name">GPQA</span><span class="bl-desc">Graduate-level science questions (PhD-hard)</span></div>
+        <div class="bl-item"><span class="bl-name">MMMU</span><span class="bl-desc">Multimodal understanding across disciplines</span></div>
+      </div>
+
+      <div class="panel-body" style="padding:0;overflow:auto">
+        <table class="bm-table" id="bmTable">
+          <thead>
+            <tr>
+              <th class="sortable" data-col="name">Model <span class="sort-icon">↕</span></th>
+              <th class="sortable" data-col="provider">Provider <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="mmlu">MMLU <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="humaneval">HumanEval <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="math">MATH <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="gpqa">GPQA <span class="sort-icon">↕</span></th>
+              <th class="sortable num-col" data-col="mmmu">MMMU <span class="sort-icon">↕</span></th>
+              <th class="num-col">Avg</th>
+            </tr>
+          </thead>
+          <tbody id="bmTbody"></tbody>
+        </table>
+      </div>
+      <div class="bm-footer">Scores are approximate and sourced from published model cards and papers. Higher = better. — = not publicly reported.</div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Benchmark scores from published model cards · last updated 2025</span>
+  </footer>
+</div>
+<script src="js/benchmarks.js"></script>
+</body>
+</html>
