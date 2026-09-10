@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Prompt Library — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/shared.css"/>
+  <link rel="stylesheet" href="css/prompt-lib.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>prompt library</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main class="single-panel">
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">system prompt library</span>
+        <div class="panel-actions">
+          <input id="searchInput" class="lib-search" type="text" placeholder="search prompts…"/>
+          <span class="panel-hint" id="countHint"></span>
+        </div>
+      </div>
+
+      <!-- category filters -->
+      <div class="cat-bar" id="catBar"></div>
+
+      <div class="panel-body" style="padding:0;overflow:auto" id="libBody"></div>
+    </div>
+  </main>
+
+  <!-- Detail drawer -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-hd">
+      <div>
+        <div class="drawer-title" id="drawerTitle"></div>
+        <div class="drawer-cat" id="drawerCat"></div>
+      </div>
+      <div class="drawer-actions">
+        <button class="copy-btn" id="drawerCopy">copy</button>
+        <button class="btn-sm" id="drawerClose">✕</button>
+      </div>
+    </div>
+    <div class="drawer-desc" id="drawerDesc"></div>
+    <pre class="drawer-body" id="drawerBody"></pre>
+  </div>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Curated system prompts for common LLM use cases · click any card to copy</span>
+  </footer>
+</div>
+<script src="js/prompt-lib.js"></script>
+</body>
+</html>
