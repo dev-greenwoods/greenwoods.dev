@@ -17,7 +17,7 @@
     <div class="cmd-box">
       <div class="cmd-search-row">
         <svg class="cmd-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cmdInput" type="text" placeholder="Search 67 tools…" autocomplete="off" spellcheck="false" />
+        <input id="cmdInput" type="text" placeholder="Search 76 tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -37,7 +37,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="cmd-trigger-text">Search tools…</span>
       <span class="trigger-shortcut">⌘K</span>
-      <span class="cmd-trigger-count">67 tools</span>
+      <span class="cmd-trigger-count">76 tools</span>
     </button>
   </nav>
 
@@ -54,7 +54,7 @@
         <button class="nav-item active" data-cat="all">
           <span class="nav-item-icon">⊞</span>
           <span class="nav-item-label">All tools</span>
-          <span class="nav-item-count">67</span>
+          <span class="nav-item-count">76</span>
         </button>
         <button class="nav-item" data-cat="encoding">
           <span class="nav-item-icon">📦</span>
@@ -79,7 +79,7 @@
         <button class="nav-item" data-cat="ai">
           <span class="nav-item-icon">✦</span>
           <span class="nav-item-label">AI · LLM</span>
-          <span class="nav-item-count">29</span>
+          <span class="nav-item-count">38</span>
         </button>
       </nav>
 
@@ -99,7 +99,7 @@
           <div class="cat-hero-icon">⊞</div>
           <div>
             <h1 class="cat-hero-title">All Tools</h1>
-            <p class="cat-hero-sub">67 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
+            <p class="cat-hero-sub">76 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
           </div>
         </div>
 
@@ -166,7 +166,7 @@
         </div>
 
         <div class="mini-section">
-          <div class="mini-section-hd ai-color">✦ AI · LLM <span>29</span></div>
+          <div class="mini-section-hd ai-color">✦ AI · LLM <span>38</span></div>
           <div class="tools-list">
             <a href="/token"       class="tl-card ai"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Exact token count for GPT-4, Claude, Gemini, Llama</div></div><span class="tl-arrow">→</span></a>
             <a href="/ai-cost"     class="tl-card ai"><div class="tl-icon">💰</div><div class="tl-body"><div class="tl-name">AI Cost Calc</div><div class="tl-desc">Compare cost across 16 models — OpenAI, Anthropic, Google</div></div><span class="tl-arrow">→</span></a>
@@ -197,6 +197,15 @@
             <a href="/injection"     class="tl-card ai"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">Prompt Injection Scanner</div><div class="tl-desc">Heuristic scan for override, exfiltration, delimiter, and jailbreak signals</div></div><span class="tl-arrow">→</span></a>
             <a href="/pii"           class="tl-card ai"><div class="tl-icon">◌</div><div class="tl-body"><div class="tl-name">PII Redactor</div><div class="tl-desc">Replace emails, phones, API keys, JWTs, IPs, and URLs with placeholders</div></div><span class="tl-arrow">→</span></a>
             <a href="/stream"        class="tl-card ai"><div class="tl-icon">∿</div><div class="tl-body"><div class="tl-name">Streaming Response Inspector</div><div class="tl-desc">Parse SSE events and reconstruct content, tool calls, and usage</div></div><span class="tl-arrow">→</span></a>
+            <a href="/retry"          class="tl-card ai"><div class="tl-icon">↻</div><div class="tl-body"><div class="tl-name">Retry &amp; Backoff Simulator</div><div class="tl-desc">Model exponential retry schedules with caps and jitter</div></div><span class="tl-arrow">→</span></a>
+            <a href="/errors"         class="tl-card ai"><div class="tl-icon">⚠</div><div class="tl-body"><div class="tl-name">LLM Error Decoder</div><div class="tl-desc">Classify provider errors and get actionable fixes</div></div><span class="tl-arrow">→</span></a>
+            <a href="/contract"       class="tl-card ai"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">Response Contract Tester</div><div class="tl-desc">Check response JSON against required paths and types</div></div><span class="tl-arrow">→</span></a>
+            <a href="/compact"        class="tl-card ai"><div class="tl-icon">≡</div><div class="tl-body"><div class="tl-name">Conversation Compactor</div><div class="tl-desc">Create deterministic role-aware conversation summaries</div></div><span class="tl-arrow">→</span></a>
+            <a href="/dedupe"         class="tl-card ai"><div class="tl-icon">⧉</div><div class="tl-body"><div class="tl-name">Context Deduplicator</div><div class="tl-desc">Find exact and near-duplicate context blocks</div></div><span class="tl-arrow">→</span></a>
+            <a href="/roles"          class="tl-card ai"><div class="tl-icon">◉</div><div class="tl-body"><div class="tl-name">Message Role Visualizer</div><div class="tl-desc">Normalize provider messages into a role timeline</div></div><span class="tl-arrow">→</span></a>
+            <a href="/trace"          class="tl-card ai"><div class="tl-icon">⌁</div><div class="tl-body"><div class="tl-name">Agent Trace Viewer</div><div class="tl-desc">Inspect JSONL steps, timings, failures, and tool events</div></div><span class="tl-arrow">→</span></a>
+            <a href="/loop"           class="tl-card ai"><div class="tl-icon">∞</div><div class="tl-body"><div class="tl-name">Agent Loop Detector</div><div class="tl-desc">Spot repeated calls, cycles, and tool bursts</div></div><span class="tl-arrow">→</span></a>
+            <a href="/selection"      class="tl-card ai"><div class="tl-icon">◎</div><div class="tl-body"><div class="tl-name">Tool Selection Evaluator</div><div class="tl-desc">Score expected, missing, wrong, and unknown tools</div></div><span class="tl-arrow">→</span></a>
           </div>
         </div>
       </section>
@@ -294,7 +303,7 @@
           <div class="cat-hero-icon">✦</div>
           <div>
             <h1 class="cat-hero-title">AI · LLM</h1>
-            <p class="cat-hero-sub">29 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
+            <p class="cat-hero-sub">38 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
           </div>
         </div>
         <div class="tools-list tools-list--lg">
@@ -327,6 +336,15 @@
           <a href="/injection"     class="tl-card ai tl-lg"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">Prompt Injection Scanner</div><div class="tl-desc">Local heuristic scanner for instruction overrides, delimiter attacks, exfiltration requests, and jailbreak language with a risk score.</div></div><span class="tl-arrow">→</span></a>
           <a href="/pii"           class="tl-card ai tl-lg"><div class="tl-icon">◌</div><div class="tl-body"><div class="tl-name">PII Redactor</div><div class="tl-desc">Detect and replace emails, phones, API keys, JWTs, IP addresses, and URLs with typed placeholders and counts.</div></div><span class="tl-arrow">→</span></a>
           <a href="/stream"        class="tl-card ai tl-lg"><div class="tl-icon">∿</div><div class="tl-body"><div class="tl-name">Streaming Response Inspector</div><div class="tl-desc">Parse SSE data lines, [DONE], content and tool-call deltas, plus usage metadata from common LLM stream formats.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/retry"          class="tl-card ai tl-lg"><div class="tl-icon">↻</div><div class="tl-body"><div class="tl-name">Retry &amp; Backoff Simulator</div><div class="tl-desc">Model exponential retry schedules with caps, jitter, elapsed wait, and copyable output.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/errors"         class="tl-card ai tl-lg"><div class="tl-icon">⚠</div><div class="tl-body"><div class="tl-name">LLM Error Decoder</div><div class="tl-desc">Classify common provider errors, extract status and code, and suggest practical fixes.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/contract"       class="tl-card ai tl-lg"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">Response Contract Tester</div><div class="tl-desc">Validate required paths, primitive types, enums, and forbidden fields in JSON responses.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/compact"        class="tl-card ai tl-lg"><div class="tl-icon">≡</div><div class="tl-body"><div class="tl-name">Conversation Compactor</div><div class="tl-desc">Estimate tokens and produce deterministic summaries of roles, decisions, TODOs, and questions.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/dedupe"         class="tl-card ai tl-lg"><div class="tl-icon">⧉</div><div class="tl-body"><div class="tl-name">Context Deduplicator</div><div class="tl-desc">Detect exact and near-duplicate blocks with normalized similarity and savings estimates.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/roles"          class="tl-card ai tl-lg"><div class="tl-icon">◉</div><div class="tl-body"><div class="tl-name">Message Role Visualizer</div><div class="tl-desc">Normalize OpenAI, Anthropic, and Gemini-style messages into a colored timeline with token counts.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/trace"          class="tl-card ai tl-lg"><div class="tl-icon">⌁</div><div class="tl-body"><div class="tl-name">Agent Trace Viewer</div><div class="tl-desc">Render JSONL agent events with step order, durations, failures, tool calls, and model events.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/loop"           class="tl-card ai tl-lg"><div class="tl-icon">∞</div><div class="tl-body"><div class="tl-name">Agent Loop Detector</div><div class="tl-desc">Find repeated identical calls, alternating cycles, and excessive same-tool use in traces.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/selection"      class="tl-card ai tl-lg"><div class="tl-icon">◎</div><div class="tl-body"><div class="tl-name">Tool Selection Evaluator</div><div class="tl-desc">Score JSONL cases for exact selection and report missing, wrong, or unknown tools.</div></div><span class="tl-arrow">→</span></a>
         </div>
       </section>
 
@@ -335,7 +353,7 @@
 
   <footer>
     <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
-    <span>⌘K to search · 67 tools · zero telemetry · runs in your browser</span>
+    <span>⌘K to search · 76 tools · zero telemetry · runs in your browser</span>
   </footer>
 </div>
 
@@ -427,6 +445,15 @@
     {name:'Prompt Injection Scanner',icon:'🛡',href:'/injection',cat:'ai',desc:'Heuristic scan for prompt injection signals, locally'},
     {name:'PII Redactor',icon:'◌',href:'/pii',cat:'ai',desc:'Replace common PII and secrets with typed placeholders'},
     {name:'Streaming Response Inspector',icon:'∿',href:'/stream',cat:'ai',desc:'Parse SSE and reconstruct content, tool calls, and usage'},
+    {name:'Retry & Backoff Simulator',icon:'↻',href:'/retry',cat:'ai',desc:'Model exponential retry schedules with caps and jitter'},
+    {name:'LLM Error Decoder',icon:'⚠',href:'/errors',cat:'ai',desc:'Classify provider errors and suggest fixes'},
+    {name:'Response Contract Tester',icon:'✓',href:'/contract',cat:'ai',desc:'Validate response JSON against a simple contract'},
+    {name:'Conversation Compactor',icon:'≡',href:'/compact',cat:'ai',desc:'Summarize roles, decisions, TODOs, and questions'},
+    {name:'Context Deduplicator',icon:'⧉',href:'/dedupe',cat:'ai',desc:'Detect exact and near-duplicate context blocks'},
+    {name:'Message Role Visualizer',icon:'◉',href:'/roles',cat:'ai',desc:'Render normalized provider message roles'},
+    {name:'Agent Trace Viewer',icon:'⌁',href:'/trace',cat:'ai',desc:'Render agent JSONL timeline and failures'},
+    {name:'Agent Loop Detector',icon:'∞',href:'/loop',cat:'ai',desc:'Detect repeated calls and tool cycles'},
+    {name:'Tool Selection Evaluator',icon:'◎',href:'/selection',cat:'ai',desc:'Score expected versus selected tools'},
   ];
 
   let filtered=TOOLS.slice(),fi=0;
