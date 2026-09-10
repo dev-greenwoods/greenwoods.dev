@@ -1,0 +1,46 @@
+.ai-badge{border-color:rgba(124,58,237,.3)!important;color:#7c3aed!important}
+.lib-search{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:5px 10px;background:var(--surface2);border:1.5px solid var(--border);border-radius:7px;color:var(--text);outline:none;width:180px;transition:.14s}
+.lib-search:focus{border-color:var(--ai)}
+.cat-bar{display:flex;gap:5px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--border);flex-shrink:0}
+.cat-btn{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:3px 10px;background:var(--surface2);border:1.5px solid var(--border);color:var(--muted);border-radius:6px;cursor:pointer;transition:.14s;white-space:nowrap}
+.cat-btn:hover{color:var(--text);border-color:var(--dim)}
+.cat-btn.active{border-color:var(--ai);color:var(--ai);background:rgba(124,58,237,.08)}
+
+/* Grid */
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:16px}
+.lib-card{background:var(--surface2);border:1.5px solid var(--border);border-radius:10px;padding:14px;cursor:pointer;transition:.14s;display:flex;flex-direction:column;gap:8px}
+.lib-card:hover{border-color:var(--ai);transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,58,237,.1)}
+.lib-card-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.lib-card-icon{font-size:1.2rem;flex-shrink:0}
+.lib-cat-badge{font-size:.55rem;padding:2px 7px;border-radius:4px;font-weight:500;border:1px solid;white-space:nowrap}
+.lib-card-name{font-size:.8rem;font-weight:700;color:var(--text);line-height:1.3}
+.lib-card-desc{font-size:.67rem;color:var(--muted);line-height:1.5}
+.lib-card-preview{font-size:.62rem;color:var(--faint);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-family:'JetBrains Mono',monospace;background:var(--surface);border-radius:5px;padding:6px 8px}
+.lib-card-footer{display:flex;align-items:center;justify-content:space-between}
+.lib-tok-count{font-size:.58rem;color:var(--faint)}
+.lib-copy-hint{font-size:.58rem;color:var(--ai);opacity:0;transition:opacity .14s}
+.lib-card:hover .lib-copy-hint{opacity:1}
+
+/* Drawer */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40;display:none;backdrop-filter:blur(2px)}
+.drawer-overlay.open{display:block}
+.drawer{position:fixed;right:0;top:0;bottom:0;width:min(560px,100vw);background:var(--bg);border-left:1.5px solid var(--border);z-index:50;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column;overflow:hidden}
+.drawer.open{transform:translateX(0)}
+.drawer-hd{display:flex;align-items:flex-start;justify-content:space-between;padding:20px;border-bottom:1px solid var(--border);flex-shrink:0;gap:12px}
+.drawer-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+.drawer-title{font-size:.95rem;font-weight:700;color:var(--text);line-height:1.3}
+.drawer-cat{font-size:.6rem;color:var(--faint);margin-top:3px}
+.drawer-desc{font-size:.7rem;color:var(--muted);padding:12px 20px;line-height:1.6;flex-shrink:0;border-bottom:1px solid var(--border)}
+.drawer-body{flex:1;overflow-y:auto;padding:16px 20px;font-size:.74rem;line-height:1.7;color:var(--text);white-space:pre-wrap;word-break:break-word;margin:0}
+.drawer-body::-webkit-scrollbar{width:4px}
+.drawer-body::-webkit-scrollbar-thumb{background:var(--dim);border-radius:4px}
+
+/* Cat colors */
+.cat-coding   {color:#10b981;border-color:rgba(16,185,129,.35);background:rgba(16,185,129,.07)}
+.cat-writing  {color:#3b82f6;border-color:rgba(59,130,246,.35);background:rgba(59,130,246,.07)}
+.cat-analysis {color:#f59e0b;border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.07)}
+.cat-customer {color:#ec4899;border-color:rgba(236,72,153,.35);background:rgba(236,72,153,.07)}
+.cat-data     {color:#06b6d4;border-color:rgba(6,182,212,.35);background:rgba(6,182,212,.07)}
+.cat-creative {color:#8b5cf6;border-color:rgba(139,92,246,.35);background:rgba(139,92,246,.07)}
+.cat-productivity{color:#f97316;border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.07)}
+.cat-research {color:#84cc16;border-color:rgba(132,204,22,.35);background:rgba(132,204,22,.07)}
