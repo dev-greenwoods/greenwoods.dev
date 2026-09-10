@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>LLM Eval Harness — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/shared.css"/>
+  <link rel="stylesheet" href="css/eval.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body><div class="wrapper">
+  <nav><div class="nav-left"><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><span class="breadcrumb">/ <span>LLM eval harness</span></span></div><button class="theme-toggle" title="Toggle theme">☾</button><div class="nav-badge ai-badge">AI · LLM</div></nav>
+  <main class="three-panel">
+    <div class="panel"><div class="panel-header"><span class="panel-title">JSONL test cases</span><div class="panel-actions"><button class="btn-sm" id="sample">sample</button><button class="btn-sm" id="clear">clear</button></div></div><div class="panel-body"><div class="hint">One JSON object per line with <code>input</code>, <code>expected</code>, and <code>actual</code>.</div><textarea id="cases" class="tool-input" spellcheck="false" placeholder='{"input":"2 + 2","expected":"4","actual":"4"}'></textarea></div></div>
+    <div class="panel"><div class="panel-header"><span class="panel-title">scoring</span></div><div class="panel-body"><div class="field-group"><label class="field-label" for="mode">match strategy</label><select id="mode" class="tool-input"><option value="exact">Exact match</option><option value="contains">Contains</option><option value="regex">Regular expression</option><option value="json">JSON validity</option></select></div><div id="summary" class="summary empty">Run a case set to see scores.</div><div id="errors"></div></div></div>
+    <div class="panel"><div class="panel-header"><span class="panel-title">case results</span><button class="copy-btn" id="copy">copy report</button></div><div class="panel-body"><div id="results" class="results"><div class="empty-state"><div class="empty-icon">✓</div><div>Results will appear here</div></div></div></div></div>
+  </main>
+  <footer><span>greenwoods.dev — LLM eval harness</span><span>local-only · JSONL in, deterministic checks out</span></footer>
+</div><script src="js/eval.js"></script></body>
+</html>

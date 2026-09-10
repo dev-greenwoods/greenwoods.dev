@@ -17,7 +17,7 @@
     <div class="cmd-box">
       <div class="cmd-search-row">
         <svg class="cmd-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cmdInput" type="text" placeholder="Search 61 tools…" autocomplete="off" spellcheck="false" />
+        <input id="cmdInput" type="text" placeholder="Search 67 tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -37,7 +37,7 @@
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
       <span class="cmd-trigger-text">Search tools…</span>
       <span class="trigger-shortcut">⌘K</span>
-      <span class="cmd-trigger-count">61 tools</span>
+      <span class="cmd-trigger-count">67 tools</span>
     </button>
   </nav>
 
@@ -54,7 +54,7 @@
         <button class="nav-item active" data-cat="all">
           <span class="nav-item-icon">⊞</span>
           <span class="nav-item-label">All tools</span>
-          <span class="nav-item-count">61</span>
+          <span class="nav-item-count">67</span>
         </button>
         <button class="nav-item" data-cat="encoding">
           <span class="nav-item-icon">📦</span>
@@ -79,7 +79,7 @@
         <button class="nav-item" data-cat="ai">
           <span class="nav-item-icon">✦</span>
           <span class="nav-item-label">AI · LLM</span>
-          <span class="nav-item-count">23</span>
+          <span class="nav-item-count">29</span>
         </button>
       </nav>
 
@@ -99,7 +99,7 @@
           <div class="cat-hero-icon">⊞</div>
           <div>
             <h1 class="cat-hero-title">All Tools</h1>
-            <p class="cat-hero-sub">61 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
+            <p class="cat-hero-sub">67 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
           </div>
         </div>
 
@@ -166,7 +166,7 @@
         </div>
 
         <div class="mini-section">
-          <div class="mini-section-hd ai-color">✦ AI · LLM <span>23</span></div>
+          <div class="mini-section-hd ai-color">✦ AI · LLM <span>29</span></div>
           <div class="tools-list">
             <a href="/token"       class="tl-card ai"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Exact token count for GPT-4, Claude, Gemini, Llama</div></div><span class="tl-arrow">→</span></a>
             <a href="/ai-cost"     class="tl-card ai"><div class="tl-icon">💰</div><div class="tl-body"><div class="tl-name">AI Cost Calc</div><div class="tl-desc">Compare cost across 16 models — OpenAI, Anthropic, Google</div></div><span class="tl-arrow">→</span></a>
@@ -191,6 +191,12 @@
             <a href="/prompt-lib"     class="tl-card ai"><div class="tl-icon">📚</div><div class="tl-body"><div class="tl-name">Prompt Library</div><div class="tl-desc">32 curated system prompts across 8 categories — searchable, one-click copy</div></div><span class="tl-arrow">→</span></a>
             <a href="/batch"          class="tl-card ai"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Batch Request Builder</div><div class="tl-desc">Build OpenAI Batch API JSONL files — 50% cost reduction</div></div><span class="tl-arrow">→</span></a>
             <a href="/benchmarks"     class="tl-card ai"><div class="tl-icon">🏆</div><div class="tl-body"><div class="tl-name">LLM Benchmarks</div><div class="tl-desc">Sortable MMLU, HumanEval, MATH, GPQA scores for 20+ models</div></div><span class="tl-arrow">→</span></a>
+            <a href="/eval"          class="tl-card ai"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">LLM Eval Harness</div><div class="tl-desc">Score JSONL test cases with exact, contains, regex, or JSON checks</div></div><span class="tl-arrow">→</span></a>
+            <a href="/tool-call"     class="tl-card ai"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool-Call Debugger</div><div class="tl-desc">Detect and validate OpenAI, Anthropic, and Gemini tool calls</div></div><span class="tl-arrow">→</span></a>
+            <a href="/context-opt"   class="tl-card ai"><div class="tl-icon">▤</div><div class="tl-body"><div class="tl-name">Context Window Optimizer</div><div class="tl-desc">Prioritize, trim, and pack context blocks into a token budget</div></div><span class="tl-arrow">→</span></a>
+            <a href="/injection"     class="tl-card ai"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">Prompt Injection Scanner</div><div class="tl-desc">Heuristic scan for override, exfiltration, delimiter, and jailbreak signals</div></div><span class="tl-arrow">→</span></a>
+            <a href="/pii"           class="tl-card ai"><div class="tl-icon">◌</div><div class="tl-body"><div class="tl-name">PII Redactor</div><div class="tl-desc">Replace emails, phones, API keys, JWTs, IPs, and URLs with placeholders</div></div><span class="tl-arrow">→</span></a>
+            <a href="/stream"        class="tl-card ai"><div class="tl-icon">∿</div><div class="tl-body"><div class="tl-name">Streaming Response Inspector</div><div class="tl-desc">Parse SSE events and reconstruct content, tool calls, and usage</div></div><span class="tl-arrow">→</span></a>
           </div>
         </div>
       </section>
@@ -201,7 +207,7 @@
           <div class="cat-hero-icon">📦</div>
           <div>
             <h1 class="cat-hero-title">Encoding</h1>
-            <p class="cat-hero-sub">5 tools — Base64, URL, HTML entities, hashing, JWT. Transform and verify encoded data without any server.</p>
+            <p class="cat-hero-sub">7 tools — Base64, URL, HTML entities, hashing, JWT, images, and contrast. Transform and verify encoded data without any server.</p>
           </div>
         </div>
         <div class="tools-list tools-list--lg">
@@ -219,7 +225,7 @@
           <div class="cat-hero-icon">🗄</div>
           <div>
             <h1 class="cat-hero-title">Data</h1>
-            <p class="cat-hero-sub">19 tools — JSON, YAML, SQL, CSV, regex, diffs and more. Format, convert, and inspect structured data instantly.</p>
+            <p class="cat-hero-sub">20 tools — JSON, YAML, SQL, CSV, regex, diffs and more. Format, convert, and inspect structured data instantly.</p>
           </div>
         </div>
         <div class="tools-list tools-list--lg">
@@ -267,7 +273,7 @@
           <div class="cat-hero-icon">✏</div>
           <div>
             <h1 class="cat-hero-title">Text</h1>
-            <p class="cat-hero-sub">7 tools — regex, UUIDs, passwords, colours, QR codes, permissions, string escaping. The dev staples.</p>
+            <p class="cat-hero-sub">8 tools — regex, UUIDs, passwords, colours, QR codes, permissions, string escaping, and gitignore files. The dev staples.</p>
           </div>
         </div>
         <div class="tools-list tools-list--lg">
@@ -288,7 +294,7 @@
           <div class="cat-hero-icon">✦</div>
           <div>
             <h1 class="cat-hero-title">AI · LLM</h1>
-            <p class="cat-hero-sub">23 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
+            <p class="cat-hero-sub">29 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
           </div>
         </div>
         <div class="tools-list tools-list--lg">
@@ -315,6 +321,12 @@
           <a href="/prompt-lib"     class="tl-card ai tl-lg"><div class="tl-icon">📚</div><div class="tl-body"><div class="tl-name">Prompt Library</div><div class="tl-desc">32 battle-tested system prompts across Coding, Writing, Analysis, Customer, Data, Creative, Productivity, and Research. Searchable and filterable — click to copy.</div></div><span class="tl-arrow">→</span></a>
           <a href="/batch"          class="tl-card ai tl-lg"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Batch Request Builder</div><div class="tl-desc">Build OpenAI Batch API JSONL files visually. Add multiple requests, set shared params, assign custom IDs, and download a ready-to-submit batch file at 50% cost.</div></div><span class="tl-arrow">→</span></a>
           <a href="/benchmarks"     class="tl-card ai tl-lg"><div class="tl-icon">🏆</div><div class="tl-body"><div class="tl-name">LLM Benchmarks</div><div class="tl-desc">Sortable table of MMLU, HumanEval, MATH, GPQA, and MMMU scores for 20+ models. Filter by provider, sort by any benchmark, compare at a glance.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/eval"          class="tl-card ai tl-lg"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">LLM Eval Harness</div><div class="tl-desc">Paste JSONL test cases with expected and actual values, then score them using exact match, contains, regular expression, or JSON validity checks.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/tool-call"     class="tl-card ai tl-lg"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool-Call Debugger</div><div class="tl-desc">Paste raw model JSON and detect, validate, pretty-print, and copy tool calls from OpenAI, Anthropic, or Gemini-style responses.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/context-opt"   class="tl-card ai tl-lg"><div class="tl-icon">▤</div><div class="tl-body"><div class="tl-name">Context Window Optimizer</div><div class="tl-desc">Assign labels and priorities to context blocks, estimate tokens, and pack the highest-value text into a fixed budget.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/injection"     class="tl-card ai tl-lg"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">Prompt Injection Scanner</div><div class="tl-desc">Local heuristic scanner for instruction overrides, delimiter attacks, exfiltration requests, and jailbreak language with a risk score.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/pii"           class="tl-card ai tl-lg"><div class="tl-icon">◌</div><div class="tl-body"><div class="tl-name">PII Redactor</div><div class="tl-desc">Detect and replace emails, phones, API keys, JWTs, IP addresses, and URLs with typed placeholders and counts.</div></div><span class="tl-arrow">→</span></a>
+          <a href="/stream"        class="tl-card ai tl-lg"><div class="tl-icon">∿</div><div class="tl-body"><div class="tl-name">Streaming Response Inspector</div><div class="tl-desc">Parse SSE data lines, [DONE], content and tool-call deltas, plus usage metadata from common LLM stream formats.</div></div><span class="tl-arrow">→</span></a>
         </div>
       </section>
 
@@ -323,7 +335,7 @@
 
   <footer>
     <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
-    <span>⌘K to search · 61 tools · zero telemetry · runs in your browser</span>
+    <span>⌘K to search · 67 tools · zero telemetry · runs in your browser</span>
   </footer>
 </div>
 
@@ -409,6 +421,12 @@
     {name:'Prompt Library',icon:'📚',href:'/prompt-lib',cat:'ai',desc:'32 curated system prompts across 8 categories'},
     {name:'Batch Request Builder',icon:'📦',href:'/batch',cat:'ai',desc:'Build OpenAI Batch API JSONL files with 50% cost savings'},
     {name:'LLM Benchmarks',icon:'🏆',href:'/benchmarks',cat:'ai',desc:'Sortable MMLU, HumanEval, MATH, GPQA scores for 20+ models'},
+    {name:'LLM Eval Harness',icon:'✓',href:'/eval',cat:'ai',desc:'Score JSONL cases with exact, contains, regex, or JSON validity'},
+    {name:'Tool-Call Debugger',icon:'⚙',href:'/tool-call',cat:'ai',desc:'Detect and validate OpenAI, Anthropic, and Gemini tool calls'},
+    {name:'Context Window Optimizer',icon:'▤',href:'/context-opt',cat:'ai',desc:'Prioritize, trim, and pack blocks into a token budget'},
+    {name:'Prompt Injection Scanner',icon:'🛡',href:'/injection',cat:'ai',desc:'Heuristic scan for prompt injection signals, locally'},
+    {name:'PII Redactor',icon:'◌',href:'/pii',cat:'ai',desc:'Replace common PII and secrets with typed placeholders'},
+    {name:'Streaming Response Inspector',icon:'∿',href:'/stream',cat:'ai',desc:'Parse SSE and reconstruct content, tool calls, and usage'},
   ];
 
   let filtered=TOOLS.slice(),fi=0;
