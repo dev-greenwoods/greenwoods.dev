@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Batch Request Builder — greenwoods.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/shared.css"/>
+  <link rel="stylesheet" href="css/batch.css"/>
+  <script src="js/theme.js"></script>
+</head>
+<body>
+<div class="wrapper">
+  <nav>
+    <div class="nav-left">
+      <a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a>
+      <span class="breadcrumb">/ <span>batch request builder</span></span>
+    </div>
+    <button class="theme-toggle" title="Toggle theme">☾</button>
+    <div class="nav-badge ai-badge">AI · LLM</div>
+  </nav>
+
+  <main>
+    <!-- LEFT: builder -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">batch config</span>
+        <div class="panel-actions">
+          <button class="btn-sm" id="btnSample">sample</button>
+          <button class="btn-sm" id="btnAddReq">+ add request</button>
+        </div>
+      </div>
+      <div class="panel-body">
+
+        <!-- Shared params -->
+        <div class="shared-params">
+          <div class="field-group" style="flex:2">
+            <label class="field-label">Model (all requests)</label>
+            <select id="modelSel" class="tool-input" style="min-height:auto;padding:5px 9px">
+              <option>gpt-4o</option>
+              <option>gpt-4o-mini</option>
+              <option>gpt-4.1</option>
+              <option>gpt-4.1-mini</option>
+              <option>o3-mini</option>
+            </select>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label class="field-label">Max tokens</label>
+            <input id="maxTok" class="tool-input" type="number" value="1024" style="min-height:auto;padding:5px 9px"/>
+          </div>
+          <div class="field-group" style="flex:1">
+            <label class="field-label">Temperature</label>
+            <input id="tempIn" class="tool-input" type="number" value="0.7" step="0.1" min="0" max="2" style="min-height:auto;padding:5px 9px"/>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">System prompt <span style="color:var(--faint);text-transform:none;font-size:.56rem;font-weight:400">(optional — shared across all requests)</span></label>
+          <textarea id="systemPrompt" class="tool-input" style="min-height:48px;resize:vertical" placeholder="You are a helpful assistant…"></textarea>
+        </div>
+
+        <div id="reqList" class="req-list"></div>
+
+        <div class="batch-stats" id="batchStats">0 requests · ~0 tokens</div>
+      </div>
+    </div>
+
+    <!-- RIGHT: JSONL output -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title">batch jsonl</span>
+        <div class="panel-actions">
+          <button class="copy-btn" id="btnCopy">copy</button>
+          <button class="btn-sm" id="btnDownload">↓ .jsonl</button>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="batch-info">
+          OpenAI Batch API processes requests asynchronously at 50% cost. Each line is one <code>/v1/chat/completions</code> request with a custom ID.
+        </div>
+        <div class="output-block" style="flex:1">
+          <pre id="batchOutput"></pre>
+        </div>
+        <div class="output-meta" id="batchMeta"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
+    <span>Build OpenAI Batch API JSONL files — 50% cheaper than sync requests</span>
+  </footer>
+</div>
+<script src="js/batch.js"></script>
+</body>
+</html>
