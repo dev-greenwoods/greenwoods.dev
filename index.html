@@ -54,17 +54,17 @@
         <button class="nav-item active" data-cat="all">
           <span class="nav-item-icon">⊞</span>
           <span class="nav-item-label">All tools</span>
-          <span class="nav-item-count">57</span>
+          <span class="nav-item-count">61</span>
         </button>
         <button class="nav-item" data-cat="encoding">
           <span class="nav-item-icon">📦</span>
           <span class="nav-item-label">Encoding</span>
-          <span class="nav-item-count">5</span>
+          <span class="nav-item-count">7</span>
         </button>
         <button class="nav-item" data-cat="data">
           <span class="nav-item-icon">🗄</span>
           <span class="nav-item-label">Data</span>
-          <span class="nav-item-count">19</span>
+          <span class="nav-item-count">20</span>
         </button>
         <button class="nav-item" data-cat="time">
           <span class="nav-item-icon">⏱</span>
@@ -74,7 +74,7 @@
         <button class="nav-item" data-cat="text">
           <span class="nav-item-icon">✏</span>
           <span class="nav-item-label">Text</span>
-          <span class="nav-item-count">7</span>
+          <span class="nav-item-count">8</span>
         </button>
         <button class="nav-item" data-cat="ai">
           <span class="nav-item-icon">✦</span>
@@ -350,8 +350,10 @@
   const TOOLS = [
     {name:'JWT Decoder',icon:'🔐',href:'/jwt',cat:'encoding',desc:'Decode & verify JWT tokens — HS, RS, ES, PS algorithms'},
     {name:'Base64',icon:'📦',href:'/base64',cat:'encoding',desc:'Encode/decode strings and files, URL-safe variant'},
+    {name:'Image → Base64',icon:'🖼',href:'/img64',cat:'encoding',desc:'Convert images to data URIs, img tags, or CSS backgrounds'},
     {name:'URL Encoder',icon:'🔗',href:'/url',cat:'encoding',desc:'Encode/decode URLs and query strings'},
     {name:'HTML Entities',icon:'&',href:'/entities',cat:'encoding',desc:'Encode and decode HTML entities'},
+    {name:'Contrast Checker',icon:'🎨',href:'/contrast',cat:'encoding',desc:'Check WCAG AA/AAA contrast ratios between two colours'},
     {name:'Hash Generator',icon:'#',href:'/hash',cat:'encoding',desc:'MD5, SHA-1, SHA-256, SHA-384, SHA-512'},
     {name:'JSON Formatter',icon:'{}',href:'/json',cat:'data',desc:'Pretty-print, minify, and validate JSON'},
     {name:'CSV → JSON',icon:'⊞',href:'/csv',cat:'data',desc:'Convert CSV to JSON with header detection'},
@@ -371,6 +373,7 @@
     {name:'Markdown',icon:'📄',href:'/markdown',cat:'data',desc:'Live GFM preview'},
     {name:'Lorem Ipsum',icon:'📝',href:'/lorem',cat:'data',desc:'Placeholder text generator'},
     {name:'Text Diff',icon:'⟷',href:'/diff',cat:'data',desc:'Myers diff with char-level highlights'},
+    {name:'Port Reference',icon:'🔌',href:'/ports',cat:'data',desc:'Searchable table of 180 well-known ports'},
     {name:'cURL Builder',icon:'$_',href:'/curl',cat:'data',desc:'GUI to build curl commands'},
     {name:'Epoch Converter',icon:'⏱',href:'/epoch',cat:'time',desc:'Unix timestamps ↔ dates'},
     {name:'Base Converter',icon:'0x',href:'/baseconv',cat:'time',desc:'Binary, octal, decimal, hex'},
@@ -382,6 +385,7 @@
     {name:'QR Generator',icon:'▦',href:'/qr',cat:'text',desc:'QR codes for URLs, WiFi, vCards'},
     {name:'chmod Calc',icon:'🔒',href:'/chmod',cat:'text',desc:'Visual permission builder'},
     {name:'String Escape',icon:'✂',href:'/escape',cat:'text',desc:'JS, Python, SQL, Shell, Regex, HTML, XML'},
+    {name:'gitignore Generator',icon:'🙈',href:'/gitignore',cat:'text',desc:'Generate .gitignore files for languages, frameworks, and tools'},
     {name:'Token Counter',icon:'🔢',href:'/token',cat:'ai',desc:'Token count for GPT-4, Claude, Gemini, Llama'},
     {name:'AI Cost Calc',icon:'💰',href:'/ai-cost',cat:'ai',desc:'Compare cost across 16 models'},
     {name:'Response Inspector',icon:'🔬',href:'/ai-response',cat:'ai',desc:'Renders content blocks, tool calls, usage'},
