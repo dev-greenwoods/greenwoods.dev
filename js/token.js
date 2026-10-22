@@ -3,7 +3,12 @@ let encodeFunc = null;
 
 const statusEl = document.getElementById('tokenizerStatus');
 
-// Try to load gpt-tokenizer (accurate cl100k_base)
+function useApproximation() {
+  statusEl.textContent = 'Using approximation (~±5% from actual tokenizer)';
+  statusEl.className = 'tokenizer-note approx';
+  runCount();
+}
+
 import('https://esm.sh/gpt-tokenizer@2.1.2')
   .then(mod => {
     encodeFunc = mod.encode;
@@ -11,11 +16,7 @@ import('https://esm.sh/gpt-tokenizer@2.1.2')
     statusEl.className = 'tokenizer-note ready';
     runCount();
   })
-  .catch(() => {
-    statusEl.textContent = 'Using approximation (~±5% from actual tokenizer)';
-    statusEl.className = 'tokenizer-note approx';
-    runCount();
-  });
+  .catch(useApproximation);
 
 // ── Approximation fallback ─────────────────────────────────────────
 function approxTokenCount(text) {

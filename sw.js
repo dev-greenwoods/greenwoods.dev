@@ -1,10 +1,13 @@
-const CACHE_NAME = 'greenwoods-static-v1';
+const CACHE_NAME = 'greenwoods-static-v2';
 const APP_SHELL = [
   '/',
   '/css/index.css',
   '/js/theme.js',
   '/manifest.webmanifest',
-  '/assets/greenwoods-icon.svg'
+  '/assets/greenwoods-icon.svg',
+  '/assets/vendor/marked.min.js',
+  '/assets/vendor/js-yaml.min.js',
+  '/assets/vendor/qrcode.min.js'
 ];
 
 self.addEventListener('install', event => {

@@ -4,6 +4,9 @@ let decodeFunc = null;
 
 const tokStatus = document.getElementById('tokStatus');
 
+tokStatus.textContent = 'Using approximate tokens for visualization; token IDs are illustrative.';
+tokStatus.className = 'tokenizer-status approx';
+
 import('https://esm.sh/gpt-tokenizer@2.1.2')
   .then(mod => {
     encodeFunc = mod.encode;
@@ -12,11 +15,7 @@ import('https://esm.sh/gpt-tokenizer@2.1.2')
     tokStatus.className = 'tokenizer-status ready';
     run();
   })
-  .catch(() => {
-    tokStatus.textContent = 'Using approximation — install gpt-tokenizer for exact results';
-    tokStatus.className = 'tokenizer-status approx';
-    run();
-  });
+  .catch(run);
 
 // ── Fallback approximation ────────────────────────────────────────
 function approxTokens(text) {
