@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>greenwoods.dev — developer utilities</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <title>Greenwoods — LLM Developer Tools That Run Entirely in Your Browser</title>
+  <meta name="description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="stylesheet" href="css/index.css" />
   <script src="js/theme.js"></script>
 </head>
@@ -31,15 +32,124 @@
 
   <!-- Nav -->
   <nav>
-    <div class="logo"><span class="logo-dot"></span>greenwoods.dev</div>
-    <button class="theme-toggle" id="themeToggle" title="Toggle theme">☾</button>
+    <a class="logo" href="/"><span class="logo-dot"></span>greenwoods.dev</a>
+    <div class="site-nav-links">
+      <a href="#llm-tools">LLM Tools</a>
+      <a href="#classics">Classics</a>
+      <a href="#workflows">Workflows</a>
+      <a href="#about">About</a>
+      <a href="https://github.com/dev-greenwoods/greenwoods.dev" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
     <button class="cmd-trigger" id="cmdTrigger">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <span class="cmd-trigger-text">Search tools…</span>
+      <span class="cmd-trigger-text">Search tools...</span>
       <span class="trigger-shortcut">⌘K</span>
-      <span class="cmd-trigger-count">76 tools</span>
     </button>
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">☾</button>
   </nav>
+
+  <main class="positioning-home">
+    <section class="home-hero">
+      <div class="home-hero-top">
+        <a class="home-wordmark" href="/">greenwoods.dev</a>
+        <span class="home-trust">No auth <i>•</i> No telemetry <i>•</i> Open source</span>
+      </div>
+      <p class="eyebrow">76 TOOLS <i>•</i> 100% IN YOUR BROWSER</p>
+      <h1>Every tool you Google<br class="desktop-break" /> while building with AI.</h1>
+      <p class="hero-copy">Token counters, RAG chunkers, prompt diffs, agent debuggers — plus the JSON, encoding, and text tools you already use. Paste anything. Nothing leaves your tab.</p>
+      <div class="hero-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input id="heroSearch" type="search" placeholder="Search 76 tools... try &quot;token&quot; or &quot;chunk&quot;" autocomplete="off" spellcheck="false" autofocus aria-label="Search 76 tools" />
+        <span class="hero-key">⌘K</span>
+      </div>
+      <div class="hero-picks" aria-label="Popular tools">
+        <a href="/token">Token Counter</a>
+        <a href="/rag-chunk">RAG Chunker</a>
+        <a href="/prompt-diff">Prompt Diff</a>
+        <a href="/ai-cost">Cost Calculator</a>
+        <a href="/json">JSON Formatter</a>
+      </div>
+      <p class="hero-reassurance">No account. No API key. No upload.</p>
+    </section>
+
+    <div class="proof-bar" aria-label="Greenwoods facts">
+      <span><strong>0</strong> servers see your input</span>
+      <span><strong>38</strong> LLM tools</span>
+      <span><strong>76</strong> tools total</span>
+      <span>Open source — verify it yourself</span>
+    </div>
+
+    <section class="home-section llm-section" id="llm-tools">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">BUILT FOR THE WORK</p>
+          <h2>Start with the LLM tools</h2>
+          <p>The tools you cannot get from a classic toolbox. Model-agnostic, priced and counted for the models you actually use.</p>
+        </div>
+      </div>
+      <div class="featured-tools">
+        <a class="featured-card" href="/token"><span class="featured-number">01</span><strong>Token Counter</strong><span>Count tokens and estimate cost across models</span></a>
+        <a class="featured-card" href="/ai-cost"><span class="featured-number">02</span><strong>LLM Cost Calculator</strong><span>Compare what a call costs across models</span></a>
+        <a class="featured-card" href="/rag-chunk"><span class="featured-number">03</span><strong>RAG Chunker</strong><span>Split documents into retrieval-ready chunks</span></a>
+        <a class="featured-card" href="/context"><span class="featured-number">04</span><strong>Context Window Planner</strong><span>See what fits in each model's context</span></a>
+        <a class="featured-card" href="/prompt-diff"><span class="featured-number">05</span><strong>Prompt Diff</strong><span>Compare prompt versions side by side</span></a>
+        <a class="featured-card" href="/tool-schema"><span class="featured-number">06</span><strong>Tool / Function Schema Builder</strong><span>Build function calling schemas visually</span></a>
+        <a class="featured-card" href="/trace"><span class="featured-number">07</span><strong>Agent Trace Viewer</strong><span>Inspect agent events, tool calls, and failures</span></a>
+        <a class="featured-card" href="/injection"><span class="featured-number">08</span><strong>Prompt Injection Scanner</strong><span>Scan text locally for common attack signals</span></a>
+      </div>
+      <a class="section-link" href="/llm-tools">See all 38 LLM tools <span aria-hidden="true">→</span></a>
+    </section>
+
+    <section class="home-section workflows-section" id="workflows">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">FROM ONE TOOL TO THE NEXT</p>
+          <h2>Chain them. Still nothing leaves your browser.</h2>
+          <p>Most jobs take three tools, not one. Workflows carry your work from step to step in the page — no account, no saved data on a server.</p>
+        </div>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-card"><span class="workflow-number">01</span><h3>Ship a prompt</h3><p><a href="/compact">Compact conversation</a><span>→</span><a href="/token">Count tokens</a><span>→</span><a href="/ai-cost">Estimate cost</a></p><a class="workflow-start" href="/workflows/ship-a-prompt">Open workflow →</a></article>
+        <article class="workflow-card"><span class="workflow-number">02</span><h3>Build a RAG index</h3><p><a href="/escape">Clean text</a><span>→</span><a href="/rag-chunk">Chunk</a><span>→</span><a href="/rag-chunk">Inspect chunks</a><span>→</span><a href="/token">Count tokens</a></p><a class="workflow-start" href="/workflows/build-a-rag-index">Open workflow →</a></article>
+        <article class="workflow-card"><span class="workflow-number">03</span><h3>Debug an agent</h3><p><a href="/trace">Load trace</a><span>→</span><a href="/loop">Detect loops</a><span>→</span><a href="/prompt-diff">Diff the prompts</a></p><a class="workflow-start" href="/workflows/debug-an-agent">Open workflow →</a></article>
+      </div>
+    </section>
+
+    <section class="home-section classics-section" id="classics">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE DAILY TOOLBOX</p>
+          <h2>The classics, done right</h2>
+          <p>JSON, JWT, Base64, UUID, timestamps, diffs, and hashes — fast, private, and without the ads and pop-ups of the sites you use now.</p>
+        </div>
+      </div>
+      <div class="classic-categories">
+        <a href="/data-tools"><span>Data</span><strong>20 tools</strong><span aria-hidden="true">→</span></a>
+        <a href="/text-tools"><span>Text</span><strong>8 tools</strong><span aria-hidden="true">→</span></a>
+        <a href="/encoding-tools"><span>Encoding</span><strong>7 tools</strong><span aria-hidden="true">→</span></a>
+        <a href="/time-tools"><span>Time</span><strong>3 tools</strong><span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="home-section privacy-section">
+      <p class="eyebrow">PRIVATE BY ARCHITECTURE</p>
+      <h2>Your prompts are your product. We never see them.</h2>
+      <p>Every Greenwoods tool runs entirely in your browser. Your input is not uploaded, logged, or used for analytics. Do not take our word for it: open your network tab and watch, or read the source. That is the whole privacy policy, because the architecture makes a longer one unnecessary.</p>
+    </section>
+
+    <section class="home-section about-section" id="about">
+      <p class="eyebrow">OPEN SOURCE, BUILT IN THE OPEN</p>
+      <h2>Built by AI agents. Kept honest by being open source.</h2>
+      <p>Greenwoods was built by AI agents and is maintained in the open. Every tool's source is one click away — if a tool ever sent your data anywhere, you could see it.</p>
+      <a class="section-link" href="https://github.com/dev-greenwoods/greenwoods.dev" target="_blank" rel="noopener noreferrer">Read the source on GitHub <span aria-hidden="true">→</span></a>
+    </section>
+  </main>
+
+  <div class="directory-heading" id="browse-tools">
+    <p class="eyebrow">THE FULL TOOLBOX</p>
+    <h2>Browse all 76 tools</h2>
+    <p>Jump into a category or search any tool with ⌘K.</p>
+  </div>
 
   <!-- Body -->
   <div class="app-body">
@@ -98,12 +208,12 @@
         <div class="cat-hero cat-hero--all">
           <div class="cat-hero-icon">⊞</div>
           <div>
-            <h1 class="cat-hero-title">All Tools</h1>
+            <h2 class="cat-hero-title">All Tools</h2>
             <p class="cat-hero-sub">76 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
           </div>
         </div>
 
-        <div class="mini-section">
+        <div class="mini-section" id="classic-encoding">
           <div class="mini-section-hd enc-color">📦 Encoding <span>7</span></div>
           <div class="tools-list">
             <a href="/jwt"      class="tl-card enc"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">JWT Decoder</div><div class="tl-desc">Decode & verify JWT tokens — HS, RS, ES, PS algorithms</div></div><span class="tl-arrow">→</span></a>
@@ -116,7 +226,7 @@
           </div>
         </div>
 
-        <div class="mini-section">
+        <div class="mini-section" id="classic-data">
           <div class="mini-section-hd data-color">🗄 Data <span>20</span></div>
           <div class="tools-list">
             <a href="/json"              class="tl-card data"><div class="tl-icon">{}</div><div class="tl-body"><div class="tl-name">JSON Formatter</div><div class="tl-desc">Pretty-print, minify, and validate JSON</div></div><span class="tl-arrow">→</span></a>
@@ -142,7 +252,7 @@
           </div>
         </div>
 
-        <div class="mini-section">
+        <div class="mini-section" id="classic-time">
           <div class="mini-section-hd time-color">⏱ Time <span>3</span></div>
           <div class="tools-list">
             <a href="/epoch"    class="tl-card time"><div class="tl-icon">⏱</div><div class="tl-body"><div class="tl-name">Epoch Converter</div><div class="tl-desc">Unix timestamps ↔ dates, UTC, ISO, relative</div></div><span class="tl-arrow">→</span></a>
@@ -151,7 +261,7 @@
           </div>
         </div>
 
-        <div class="mini-section">
+        <div class="mini-section" id="classic-text">
           <div class="mini-section-hd text-color">✏ Text <span>8</span></div>
           <div class="tools-list">
             <a href="/regex"     class="tl-card text"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Regex Tester</div><div class="tl-desc">Live matching with highlighted groups</div></div><span class="tl-arrow">→</span></a>
@@ -165,7 +275,7 @@
           </div>
         </div>
 
-        <div class="mini-section">
+        <div class="mini-section" id="all-llm-tools">
           <div class="mini-section-hd ai-color">✦ AI · LLM <span>38</span></div>
           <div class="tools-list">
             <a href="/token"       class="tl-card ai"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Exact token count for GPT-4, Claude, Gemini, Llama</div></div><span class="tl-arrow">→</span></a>
@@ -215,7 +325,7 @@
         <div class="cat-hero cat-hero--enc">
           <div class="cat-hero-icon">📦</div>
           <div>
-            <h1 class="cat-hero-title">Encoding</h1>
+            <h2 class="cat-hero-title">Encoding</h2>
             <p class="cat-hero-sub">7 tools — Base64, URL, HTML entities, hashing, JWT, images, and contrast. Transform and verify encoded data without any server.</p>
           </div>
         </div>
@@ -233,7 +343,7 @@
         <div class="cat-hero cat-hero--data">
           <div class="cat-hero-icon">🗄</div>
           <div>
-            <h1 class="cat-hero-title">Data</h1>
+            <h2 class="cat-hero-title">Data</h2>
             <p class="cat-hero-sub">20 tools — JSON, YAML, SQL, CSV, regex, diffs and more. Format, convert, and inspect structured data instantly.</p>
           </div>
         </div>
@@ -265,7 +375,7 @@
         <div class="cat-hero cat-hero--time">
           <div class="cat-hero-icon">⏱</div>
           <div>
-            <h1 class="cat-hero-title">Time</h1>
+            <h2 class="cat-hero-title">Time</h2>
             <p class="cat-hero-sub">3 tools — epoch conversion, base conversion, CRON parsing. Timestamp and number utilities for every day of debugging.</p>
           </div>
         </div>
@@ -281,7 +391,7 @@
         <div class="cat-hero cat-hero--text">
           <div class="cat-hero-icon">✏</div>
           <div>
-            <h1 class="cat-hero-title">Text</h1>
+            <h2 class="cat-hero-title">Text</h2>
             <p class="cat-hero-sub">8 tools — regex, UUIDs, passwords, colours, QR codes, permissions, string escaping, and gitignore files. The dev staples.</p>
           </div>
         </div>
@@ -302,7 +412,7 @@
         <div class="cat-hero cat-hero--ai">
           <div class="cat-hero-icon">✦</div>
           <div>
-            <h1 class="cat-hero-title">AI · LLM</h1>
+            <h2 class="cat-hero-title">AI · LLM</h2>
             <p class="cat-hero-sub">38 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
           </div>
         </div>
@@ -353,7 +463,7 @@
 
   <footer>
     <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
-    <span>⌘K to search · 76 tools · zero telemetry · runs in your browser</span>
+    <span>76 tools · No auth · No telemetry · Open source · <a href="https://github.com/dev-greenwoods/greenwoods.dev" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/dev-greenwoods/greenwoods.dev/issues/new" target="_blank" rel="noopener noreferrer">Suggest a tool</a></span>
   </footer>
 </div>
 
@@ -461,7 +571,12 @@
   const inp=document.getElementById('cmdInput');
   const res=document.getElementById('cmdResults');
 
-  function open(){backdrop.classList.add('open');inp.value='';draw(TOOLS);setTimeout(()=>inp.focus(),30);}
+  function open(query=''){
+    backdrop.classList.add('open');
+    inp.value=query;
+    query?search(query):draw(TOOLS);
+    setTimeout(()=>inp.focus(),30);
+  }
   function close(){backdrop.classList.remove('open');}
 
   function draw(tools){
@@ -504,6 +619,9 @@
   }
 
   document.getElementById('cmdTrigger').addEventListener('click',open);
+  document.getElementById('heroSearch').addEventListener('input',e=>{
+    if(!backdrop.classList.contains('open'))open(e.currentTarget.value);
+  });
   backdrop.addEventListener('click',e=>{if(e.target===backdrop)close();});
   inp.addEventListener('input',()=>search(inp.value));
   inp.addEventListener('keydown',e=>{
@@ -518,5 +636,6 @@
   });
 })();
 </script>
+<script src="/js/pwa.js"></script>
 </body>
 </html>

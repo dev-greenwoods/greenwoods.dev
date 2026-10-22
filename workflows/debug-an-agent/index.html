@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Debug an Agent Workflow — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Inspect an agent trace, detect repeated tool calls, and compare the prompts involved — locally in your browser." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/css/shared.css" />
+  <link rel="stylesheet" href="/css/workflows.css" />
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="workflow-page">
+  <nav><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><a class="workflow-home" href="/llm-tools">LLM tools</a><button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button></nav>
+  <main>
+    <a class="workflow-back" href="/">← All tools</a>
+    <p class="workflow-eyebrow">WORKFLOW 03 · PRIVATE IN YOUR BROWSER</p>
+    <h1>Debug an agent</h1>
+    <p class="workflow-intro">Load a trace, check for repeated tool calls, then compare the prompts that may have caused them. Trace and prompt data stay in memory.</p>
+    <section class="workflow-step">
+      <h2><span>1</span> Load trace</h2>
+      <label for="trace-input">Paste JSONL tool events</label>
+      <textarea id="trace-input" placeholder='{"tool":"search","arguments":{"q":"docs"}}&#10;{"tool":"open","arguments":{"url":"docs"}}'></textarea>
+      <button class="workflow-action" id="load-trace">Load trace</button>
+      <p class="workflow-stat"><strong id="event-count">0</strong> events loaded</p>
+    </section>
+    <section class="workflow-step">
+      <h2><span>2</span> Detect loops</h2>
+      <button class="workflow-action" id="detect-loops">Detect repeated calls</button>
+      <div class="workflow-result" id="loop-results" aria-live="polite">Loop analysis will appear here.</div>
+    </section>
+    <section class="workflow-step">
+      <h2><span>3</span> Diff the prompts</h2>
+      <p class="workflow-help">Paste the two prompts used for the trace. Their content is compared locally and is not saved.</p>
+      <label for="prompt-before">Prompt before</label>
+      <textarea id="prompt-before" class="workflow-short" placeholder="Earlier system prompt..."></textarea>
+      <label for="prompt-after">Prompt after</label>
+      <textarea id="prompt-after" class="workflow-short" placeholder="Updated system prompt..."></textarea>
+      <button class="workflow-action" id="diff-prompts">Compare prompts</button>
+      <pre class="workflow-result" id="prompt-diff-result" aria-live="polite">Prompt differences will appear here.</pre>
+    </section>
+  </main>
+  <footer><a href="/workflows/build-a-rag-index">← Build a RAG index</a><span>Local-only workflow · no account · no upload</span><a href="/llm-tools">All LLM tools →</a></footer>
+</div>
+<script src="/js/workflows.js"></script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Retry &amp; Backoff Simulator — greenwoods.dev</title>
+  <title>Retry &amp; Backoff Simulator — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Use Retry &amp; Backoff Simulator in your browser. Model exponential retry schedules with caps, jitter, elapsed wait, and copyable output. Free and private — your input stays on your device." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/shared.css"><link rel="stylesheet" href="css/retry.css"><script src="js/theme.js"></script>
 </head>
 <body><div class="wrapper">
   <nav><div class="nav-left"><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><span class="breadcrumb">/ <span>retry simulator</span></span></div><button class="theme-toggle" title="Toggle theme">☾</button><div class="nav-badge ai-badge">AI · LLM</div></nav>
+  <h1 class="page-title">Retry &amp; Backoff Simulator</h1>
   <main class="single-panel"><div class="panel"><div class="panel-header"><span class="panel-title">retry &amp; backoff simulator</span><div class="panel-actions"><button class="btn-sm" id="sample">sample</button><button class="btn-sm" id="clear">clear</button></div></div><div class="panel-body">
     <div class="form-grid"><label>max retries<input id="retries" class="tool-input" type="number" min="0" max="50" value="5"></label><label>base delay (ms)<input id="base" class="tool-input" type="number" min="0" value="250"></label><label>cap (ms)<input id="cap" class="tool-input" type="number" min="0" value="8000"></label><label>jitter mode<select id="jitter" class="tool-input"><option value="none">none</option><option value="full">full (random)</option><option value="equal">equal (half + random half)</option></select></label></div>
     <div id="summary" class="stats-bar"></div><div id="chart" class="bars"></div><div class="table-wrap"><table><thead><tr><th>attempt</th><th>delay</th><th>elapsed</th><th>formula</th></tr></thead><tbody id="rows"></tbody></table></div>
     <div class="panel-actions"><button class="btn-primary" id="copy">copy schedule</button><span id="status" class="panel-hint"></span></div>
   </div></div></main>
   <footer><span>greenwoods.dev — retry &amp; backoff simulator</span><span>deterministic inputs · client-side only</span></footer>
-</div><script defer src="js/retry.js"></script></body></html>
+<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/token">Token Counter</a><a href="/ai-cost">AI Cost Calculator</a><a href="/ai-response">Response Inspector</a><a href="/prompt">Prompt Builder</a></div></section>
+
+</div><script defer src="js/retry.js"></script><script src="/js/pwa.js"></script>
+</body></html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build a RAG Index Workflow — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Clean text, split it into RAG chunks, inspect chunk boundaries, and estimate tokens locally in your browser." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/css/shared.css" />
+  <link rel="stylesheet" href="/css/workflows.css" />
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="workflow-page">
+  <nav><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><a class="workflow-home" href="/llm-tools">LLM tools</a><button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button></nav>
+  <main>
+    <a class="workflow-back" href="/">← All tools</a>
+    <p class="workflow-eyebrow">WORKFLOW 02 · PRIVATE IN YOUR BROWSER</p>
+    <h1>Build a RAG index</h1>
+    <p class="workflow-intro">Clean source text, chunk it, inspect each piece, and estimate token counts. All processing stays in this page.</p>
+    <section class="workflow-step">
+      <h2><span>1</span> Clean text</h2>
+      <label for="rag-source">Paste source text</label>
+      <textarea id="rag-source" placeholder="Paste a document, notes, or extracted content..."></textarea>
+      <button class="workflow-action" id="clean-text">Clean whitespace</button>
+      <pre class="workflow-result" id="clean-result" aria-live="polite">Cleaned text will appear here.</pre>
+    </section>
+    <section class="workflow-step">
+      <h2><span>2</span> Chunk and inspect</h2>
+      <label for="chunk-size">Approximate chunk size in tokens</label>
+      <input id="chunk-size" type="number" min="32" max="4096" value="512" />
+      <button class="workflow-action" id="make-chunks">Create chunks</button>
+      <div class="workflow-chunks" id="chunk-results" aria-live="polite">Chunks will appear here.</div>
+    </section>
+    <section class="workflow-step">
+      <h2><span>3</span> Count tokens</h2>
+      <p class="workflow-help">Chunks use cl100k_base when its tokenizer is available and a character-based estimate offline.</p>
+      <p class="workflow-stat"><strong id="rag-token-count">0</strong> estimated tokens across <strong id="rag-chunk-count">0</strong> chunks</p>
+      <a class="workflow-tool-link" href="/rag-chunk">Open RAG Chunker →</a>
+    </section>
+  </main>
+  <footer><a href="/workflows/ship-a-prompt">← Ship a prompt</a><span>Local-only workflow · no account · no upload</span><a href="/workflows/debug-an-agent">Next: Debug an agent →</a></footer>
+</div>
+<script src="/js/workflows.js"></script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

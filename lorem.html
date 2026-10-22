@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lorem Ipsum — greenwoods.dev</title>
+  <title>Lorem Ipsum — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Use Lorem Ipsum in your browser. Generate placeholder text by paragraphs, sentences, or word count. Free and private — your input stays on your device." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/shared.css" />
@@ -29,6 +32,7 @@
     <div id="statBadge" class="nav-badge">0 words</div>
     <button class="theme-toggle" title="Toggle theme">☾</button>
   </nav>
+  <h1 class="page-title">Lorem Ipsum</h1>
 
   <main>
     <div class="panel">
@@ -86,6 +90,8 @@
     <span>greenwoods.dev — lorem ipsum</span>
     <span>all generation happens in your browser · no data sent to server</span>
   </footer>
+<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/json">JSON Formatter</a><a href="/csv">CSV → JSON</a><a href="/yaml">YAML ↔ JSON</a><a href="/semver">Semver Calculator</a></div></section>
+
 </div>
 <script>
 const WORDS = 'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat duis aute irure reprehenderit voluptate velit esse cillum eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt culpa qui officia deserunt mollit anim id est laborum viverra justo integer vitae accumsan interdum dui ligula volutpat pellentesque habitant morbi tristique senectus netus malesuada fames turpis egestas nam eget dui vel quam elementum pulvinar etiam rhoncus maecenas pharetra convallis posuere morbi leo urna.'.split(' ');
@@ -169,5 +175,6 @@ function copyOutput() {
 
 window.addEventListener('DOMContentLoaded', () => { generate(); });
 </script>
+<script src="/js/pwa.js"></script>
 </body>
 </html>

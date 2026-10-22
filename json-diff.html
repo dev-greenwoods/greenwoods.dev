@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JSON Diff — greenwoods.dev</title>
+  <title>JSON Diff — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Use JSON Diff in your browser. Semantic diff between two JSON objects. Shows changed, added, and removed paths clearly. Free and private — your input stays on your device." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="description" content="Semantic JSON diff — compare two JSON objects and see exactly what changed, was added, or was removed at every path." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
@@ -22,6 +25,7 @@
     <button class="theme-toggle" title="Toggle theme">☾</button>
     <div class="nav-badge">diff</div>
   </nav>
+  <h1 class="page-title">JSON Diff</h1>
 
   <main style="display:block; overflow:hidden;">
   <div style="display:flex; flex-direction:column; height:100%; overflow:hidden;">
@@ -71,8 +75,11 @@
     <span>greenwoods.dev — json diff</span>
     <span>semantic diff · all processing in browser · no data sent</span>
   </footer>
+<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/json">JSON Formatter</a><a href="/csv">CSV → JSON</a><a href="/yaml">YAML ↔ JSON</a><a href="/semver">Semver Calculator</a></div></section>
+
 
 </div>
 <script defer src="js/json-diff.js"></script>
+<script src="/js/pwa.js"></script>
 </body>
 </html>

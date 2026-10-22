@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ship a Prompt Workflow — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Compact a conversation, estimate its token count, and compare prompt cost locally in your browser." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="stylesheet" href="/css/shared.css" />
+  <link rel="stylesheet" href="/css/workflows.css" />
+  <script src="/js/theme.js"></script>
+</head>
+<body>
+<div class="workflow-page">
+  <nav><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><a class="workflow-home" href="/llm-tools">LLM tools</a><button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button></nav>
+  <main>
+    <a class="workflow-back" href="/">← All tools</a>
+    <p class="workflow-eyebrow">WORKFLOW 01 · PRIVATE IN YOUR BROWSER</p>
+    <h1>Ship a prompt</h1>
+    <p class="workflow-intro">Compact a conversation, count its tokens, then estimate the cost. State passes between steps in this page only.</p>
+    <section class="workflow-step">
+      <h2><span>1</span> Compact conversation</h2>
+      <label for="conversation">Paste conversation text or messages</label>
+      <textarea id="conversation" placeholder="user: We need to ship an LLM feature...&#10;assistant: Let's compare the options..."></textarea>
+      <button class="workflow-action" id="compact">Compact conversation</button>
+      <pre class="workflow-result" id="compact-result" aria-live="polite">Your compacted prompt will appear here.</pre>
+    </section>
+    <section class="workflow-step">
+      <h2><span>2</span> Count tokens</h2>
+      <p class="workflow-help">Counts use cl100k_base when its tokenizer is available and a character-based estimate offline.</p>
+      <div class="workflow-stat"><strong id="token-count">0</strong> estimated input tokens</div>
+      <a class="workflow-tool-link" href="/token">Open Token Counter →</a>
+    </section>
+    <section class="workflow-step">
+      <h2><span>3</span> Estimate cost</h2>
+      <label for="workflow-model">Model pricing</label>
+      <select id="workflow-model">
+        <option value="0.15,0.60">GPT-4o mini — $0.15 / $0.60 per 1M tokens</option>
+        <option value="5,20">GPT-4o — $5 / $20 per 1M tokens</option>
+        <option value="3,15">Claude Sonnet 4 — $3 / $15 per 1M tokens</option>
+        <option value="0.15,0.60">Gemini 2.5 Flash — $0.15 / $0.60 per 1M tokens</option>
+      </select>
+      <label for="workflow-output-tokens">Estimated output tokens</label>
+      <input id="workflow-output-tokens" type="number" min="0" value="512" />
+      <p class="workflow-stat">Estimated input + output cost per call: <strong id="estimated-cost">$0.0000</strong></p>
+      <a class="workflow-tool-link" href="/ai-cost">Compare model prices →</a>
+    </section>
+  </main>
+  <footer><span>Local-only workflow · no account · no upload</span><a href="/workflows/build-a-rag-index">Next: Build a RAG index →</a></footer>
+</div>
+<script src="/js/workflows.js"></script>
+<script src="/js/pwa.js"></script>
+</body>
+</html>

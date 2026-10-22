@@ -1,0 +1,18 @@
+{
+  "name": "Greenwoods — LLM Developer Tools",
+  "short_name": "Greenwoods",
+  "description": "Private, browser-based tools for building with LLMs.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f8f5",
+  "theme_color": "#0B3D2E",
+  "icons": [
+    {
+      "src": "/assets/greenwoods-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

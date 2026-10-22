@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regex Tester — greenwoods.dev</title>
+  <title>Regex Tester — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Use Regex Tester in your browser. Live regex matching with highlighted matches and capture groups. Flags panel, match count, group inspector. Free and private — your input stays on your device." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/shared.css" />
@@ -21,6 +24,7 @@
     <div id="matchCount" class="nav-badge">0 matches</div>
     <button class="theme-toggle" title="Toggle theme">☾</button>
   </nav>
+  <h1 class="page-title">Regex Tester</h1>
 
   <main>
     <div class="panel">
@@ -83,8 +87,11 @@
     <span>greenwoods.dev — regex tester</span>
     <span>all matching happens in your browser · no data sent to server</span>
   </footer>
+<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/uuid">UUID Generator</a><a href="/password">Password Generator</a><a href="/color">Color Converter</a><a href="/qr">QR Generator</a></div></section>
+
 
 </div>
 <script defer src="js/regex.js"></script>
+<script src="/js/pwa.js"></script>
 </body>
 </html>

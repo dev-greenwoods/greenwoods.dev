@@ -95,6 +95,52 @@ nav {
   font-weight: 500;
 }
 
+.page-title {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 12px 28px;
+  color: var(--text);
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: -0.03em;
+}
+
+.related-tools {
+  width: min(100% - 40px, 1120px);
+  margin: 26px auto 34px;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.related-tools h2 {
+  margin: 0 0 12px;
+  font-family: 'Syne', sans-serif;
+  font-size: .95rem;
+}
+
+.related-tools-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.related-tools-list a {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--sub);
+  font-size: .72rem;
+  text-decoration: none;
+}
+
+.related-tools-list a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
 /* ── LAYOUT ──────────────────────────────────────────────────── */
 main {
   flex: 1;

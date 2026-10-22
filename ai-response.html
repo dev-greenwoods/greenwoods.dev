@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Response Inspector — greenwoods.dev</title>
+  <title>Response Inspector — Free, Private, In Your Browser | Greenwoods</title>
+  <meta name="description" content="Use Response Inspector in your browser. Paste raw API JSON from Anthropic or OpenAI. Renders content blocks, tool calls, token usage, and estimated cost. Free and private — your input stays on your device." />
+  <meta name="theme-color" content="#0B3D2E" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/shared.css" />
@@ -96,6 +99,7 @@
     <button class="theme-toggle" title="Toggle theme">☾</button>
     <div class="nav-badge ai-badge">AI · LLM</div>
   </nav>
+  <h1 class="page-title">Response Inspector</h1>
 
   <main>
     <div class="panel">
@@ -137,6 +141,8 @@
     <span>greenwoods.dev — AI response inspector</span>
     <span>OpenAI &amp; Anthropic formats · client-side · nothing stored</span>
   </footer>
+<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/token">Token Counter</a><a href="/ai-cost">AI Cost Calculator</a><a href="/prompt">Prompt Builder</a><a href="/context">Context Planner</a></div></section>
+
 </div>
 <script>
 // ── Pricing (per 1M tokens) ────────────────────────────────────────
@@ -370,5 +376,6 @@ document.getElementById('btnClear').addEventListener('click', () => {
   inspect();
 });
 </script>
+<script src="/js/pwa.js"></script>
 </body>
 </html>
