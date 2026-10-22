@@ -21,8 +21,10 @@
     <div class="panel"><div class="panel-header"><span class="panel-title">scoring</span></div><div class="panel-body"><div class="field-group"><label class="field-label" for="mode">match strategy</label><select id="mode" class="tool-input"><option value="exact">Exact match</option><option value="contains">Contains</option><option value="regex">Regular expression</option><option value="json">JSON validity</option></select></div><div id="summary" class="summary empty">Run a case set to see scores.</div><div id="errors"></div></div></div>
     <div class="panel"><div class="panel-header"><span class="panel-title">case results</span><button class="copy-btn" id="copy">copy report</button></div><div class="panel-body"><div id="results" class="results"><div class="empty-state"><div class="empty-icon">✓</div><div>Results will appear here</div></div></div></div></div>
   </main>
-  <footer><span>greenwoods.dev — LLM eval harness</span><span>local-only · JSONL in, deterministic checks out</span></footer>
+  <section class="tool-details" aria-label="About this tool"><article><h2>What LLM Eval Harness does</h2><p>Paste JSONL test cases with expected and actual values, then score them using exact match, contains, regular expression, or JSON validity checks.</p></article><article><h2>How it works locally</h2><p>Your input is processed in this browser tab and is not sent to a Greenwoods API. Some tools load their tokenizer or format library while online; the entered content stays on your device.</p></article></section>
 <section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/token">Token Counter</a><a href="/ai-cost">AI Cost Calculator</a><a href="/ai-response">Response Inspector</a><a href="/prompt">Prompt Builder</a></div></section>
+<footer><span>greenwoods.dev — LLM eval harness</span><span>local-only · JSONL in, deterministic checks out</span></footer>
+
 
 </div><script src="js/eval.js"></script><script src="/js/pwa.js"></script>
 </body>
