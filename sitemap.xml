@@ -28,6 +28,18 @@
     <loc>https://greenwoods.dev/workflows/debug-an-agent</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/tasks/context-window-overflow</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/tasks/debug-rag-retrieval</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/tasks/validate-llm-output</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/build-log</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/ai-cost</loc>
   </url>
   <url>
@@ -50,6 +62,9 @@
   </url>
   <url>
     <loc>https://greenwoods.dev/chmod</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/chunk-overlap</loc>
   </url>
   <url>
     <loc>https://greenwoods.dev/cidr</loc>
@@ -95,6 +110,9 @@
   </url>
   <url>
     <loc>https://greenwoods.dev/diff</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/embedding-similarity</loc>
   </url>
   <url>
     <loc>https://greenwoods.dev/entities</loc>
@@ -157,6 +175,9 @@
     <loc>https://greenwoods.dev/jwt</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/latency-cost-log</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/llm-request</loc>
   </url>
   <url>
@@ -173,6 +194,9 @@
   </url>
   <url>
     <loc>https://greenwoods.dev/mcp-config</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/message-role-converter</loc>
   </url>
   <url>
     <loc>https://greenwoods.dev/model-compare</loc>
@@ -194,6 +218,9 @@
   </url>
   <url>
     <loc>https://greenwoods.dev/prompt-tmpl</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/prompt-versions</loc>
   </url>
   <url>
     <loc>https://greenwoods.dev/prompt</loc>
@@ -220,6 +247,9 @@
     <loc>https://greenwoods.dev/roles</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/sampling-playground</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/sampling</loc>
   </url>
   <url>
@@ -232,6 +262,9 @@
     <loc>https://greenwoods.dev/sql-format</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/sse-inspector</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/stream</loc>
   </url>
   <url>
@@ -241,7 +274,13 @@
     <loc>https://greenwoods.dev/sys-analyze</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/system-prompt-self-test</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/token</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/tokenizer-diff</loc>
   </url>
   <url>
     <loc>https://greenwoods.dev/tokenizer</loc>

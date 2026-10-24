@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>How to Validate LLM Output — greenwoods.dev</title>
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/workflows.css" />
+<meta name="description" content="Check generated JSON and response contracts locally with schema validation and focused test cases." />
+  <link rel="canonical" href="https://greenwoods.dev/tasks/validate-llm-output" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="How to Validate LLM Output — greenwoods.dev" />
+  <meta property="og:description" content="Check generated JSON and response contracts locally with schema validation and focused test cases." />
+  <meta property="og:url" content="https://greenwoods.dev/tasks/validate-llm-output" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Validate LLM Output — greenwoods.dev" />
+  <meta name="twitter:description" content="Check generated JSON and response contracts locally with schema validation and focused test cases." />
+</head>
+<body>
+<div class="workflow-page">
+  <nav><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><a class="workflow-home" href="/llm-tools">LLM tools</a><button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button></nav>
+  <main>
+    <a class="workflow-back" href="/">← All tools</a>
+    <p class="workflow-eyebrow">TASK GUIDE · OUTPUT VALIDATION</p>
+    <h1>How to validate LLM output</h1>
+    <p class="workflow-intro">Define the output contract before reviewing generated responses. Local checks catch malformed or structurally invalid data, but cannot prove semantic correctness.</p>
+    <article class="workflow-step"><h2><span>1</span> Define the expected shape</h2><p>Build a schema with the <a class="workflow-tool-link" href="/struct-output">Structured Output Builder</a> and check a sample using the <a class="workflow-tool-link" href="/response-validator">LLM Response Validator</a>.</p></article>
+    <article class="workflow-step"><h2><span>2</span> Validate the response contract</h2><p>Use the <a class="workflow-tool-link" href="/contract">Response Contract Tester</a> to test required paths, types, allowed values, and forbidden fields.</p></article>
+    <article class="workflow-step"><h2><span>3</span> Cover representative cases</h2><p>Compare expected and actual outputs with the <a class="workflow-tool-link" href="/eval">LLM Eval Harness</a>. Include empty, boundary, malformed, and adversarial examples relevant to your application.</p></article>
+    <p class="workflow-help">Treat validation as one layer of defense; validate again in your application before trusting model output.</p>
+  </main>
+  <footer><a href="/">greenwoods.dev</a><span>No auth · No telemetry · Open source · <a href="https://github.com/dev-greenwoods/greenwoods.dev/blob/main/LICENSE">Licensed under AGPL-3.0</a></span></footer>
+</div>
+<script src="../js/pwa.js"></script>
+</body>
+</html>

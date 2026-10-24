@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>How to Debug RAG Retrieval — greenwoods.dev</title>
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/workflows.css" />
+<meta name="description" content="Inspect chunk boundaries, overlap, and embedding similarity while debugging a retrieval-augmented generation pipeline." />
+  <link rel="canonical" href="https://greenwoods.dev/tasks/debug-rag-retrieval" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="How to Debug RAG Retrieval — greenwoods.dev" />
+  <meta property="og:description" content="Inspect chunk boundaries, overlap, and embedding similarity while debugging a retrieval-augmented generation pipeline." />
+  <meta property="og:url" content="https://greenwoods.dev/tasks/debug-rag-retrieval" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Debug RAG Retrieval — greenwoods.dev" />
+  <meta name="twitter:description" content="Inspect chunk boundaries, overlap, and embedding similarity while debugging a retrieval-augmented generation pipeline." />
+</head>
+<body>
+<div class="workflow-page">
+  <nav><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><a class="workflow-home" href="/llm-tools">LLM tools</a><button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button></nav>
+  <main>
+    <a class="workflow-back" href="/">← All tools</a>
+    <p class="workflow-eyebrow">TASK GUIDE · RETRIEVAL</p>
+    <h1>How to debug RAG retrieval</h1>
+    <p class="workflow-intro">Separate chunking problems from representation and ranking questions. The local tools below help inspect data; they do not measure production retrieval quality.</p>
+    <article class="workflow-step"><h2><span>1</span> Inspect the chunk boundaries</h2><p>Paste a sample document into the <a class="workflow-tool-link" href="/rag-chunk">RAG Chunker</a> to compare split strategies, then use the <a class="workflow-tool-link" href="/chunk-overlap">Chunk Overlap Simulator</a> to see repeated text.</p></article>
+    <article class="workflow-step"><h2><span>2</span> Compare sample vectors</h2><p>Use the <a class="workflow-tool-link" href="/embedding-similarity">Embedding Similarity Explorer</a> to calculate cosine similarity on pasted vectors. Similarity alone is not a relevance judgment.</p></article>
+    <article class="workflow-step"><h2><span>3</span> Review your test cases</h2><p>Use the <a class="workflow-tool-link" href="/eval">LLM Eval Harness</a> to score known expected outputs. Add representative queries and relevant documents to your actual retrieval evaluation.</p></article>
+    <p class="workflow-help">Do not paste confidential documents or production embeddings into URLs you plan to share.</p>
+  </main>
+  <footer><a href="/">greenwoods.dev</a><span>No auth · No telemetry · Open source · <a href="https://github.com/dev-greenwoods/greenwoods.dev/blob/main/LICENSE">Licensed under AGPL-3.0</a></span></footer>
+</div>
+<script src="../js/pwa.js"></script>
+</body>
+</html>

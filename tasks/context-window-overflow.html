@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Why Is My Context Window Overflowing? — greenwoods.dev</title>
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/workflows.css" />
+<meta name="description" content="Find oversized and repeated context, estimate token use, and prioritize what to trim with browser-only tools." />
+  <link rel="canonical" href="https://greenwoods.dev/tasks/context-window-overflow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Why Is My Context Window Overflowing? — greenwoods.dev" />
+  <meta property="og:description" content="Find oversized and repeated context, estimate token use, and prioritize what to trim with browser-only tools." />
+  <meta property="og:url" content="https://greenwoods.dev/tasks/context-window-overflow" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Is My Context Window Overflowing? — greenwoods.dev" />
+  <meta name="twitter:description" content="Find oversized and repeated context, estimate token use, and prioritize what to trim with browser-only tools." />
+</head>
+<body>
+<div class="workflow-page">
+  <nav><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><a class="workflow-home" href="/llm-tools">LLM tools</a><button class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">☾</button></nav>
+  <main>
+    <a class="workflow-back" href="/">← All tools</a>
+    <p class="workflow-eyebrow">TASK GUIDE · CONTEXT</p>
+    <h1>Why is my context window overflowing?</h1>
+    <p class="workflow-intro">Measure the prompt, find repeated or oversized blocks, then make deliberate cuts. These steps estimate locally; tokenizer and provider accounting can differ.</p>
+    <article class="workflow-step"><h2><span>1</span> Count the full prompt</h2><p>Use the <a class="workflow-tool-link" href="/token">Token Counter</a> for a quick estimate, or <a class="workflow-tool-link" href="/context">Context Window Planner</a> to compare blocks against a model limit.</p></article>
+    <article class="workflow-step"><h2><span>2</span> Find redundant context</h2><p>Compare blocks with the <a class="workflow-tool-link" href="/dedupe">Context Deduplicator</a> and review repeated text using the <a class="workflow-tool-link" href="/chunk-overlap">Chunk Overlap Simulator</a>.</p></article>
+    <article class="workflow-step"><h2><span>3</span> Prioritize what stays</h2><p>Use the <a class="workflow-tool-link" href="/context-opt">Context Window Optimizer</a> to prioritize blocks and fit the highest-value context into a budget.</p></article>
+    <p class="workflow-help">Avoid pasting secrets into links or shared devices. Tool data stays in this browser unless you explicitly share a generated URL.</p>
+  </main>
+  <footer><a href="/">greenwoods.dev</a><span>No auth · No telemetry · Open source · <a href="https://github.com/dev-greenwoods/greenwoods.dev/blob/main/LICENSE">Licensed under AGPL-3.0</a></span></footer>
+</div>
+<script src="../js/pwa.js"></script>
+</body>
+</html>

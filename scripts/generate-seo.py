@@ -17,6 +17,12 @@ WORKFLOWS = (
     "workflows/build-a-rag-index",
     "workflows/debug-an-agent",
 )
+TASK_PAGES = (
+    ("tasks/context-window-overflow.html", "/tasks/context-window-overflow"),
+    ("tasks/debug-rag-retrieval.html", "/tasks/debug-rag-retrieval"),
+    ("tasks/validate-llm-output.html", "/tasks/validate-llm-output"),
+)
+STATIC_PAGES = (("build-log.html", "/build-log"),)
 
 
 class PageMetadata(HTMLParser):
@@ -168,6 +174,8 @@ def indexable_pages(tool_data):
     pages = [(ROOT / "index.html", "/")]
     pages.extend((ROOT / f"{hub}.html", f"/{hub}") for hub in HUBS)
     pages.extend((ROOT / f"{workflow}/index.html", f"/{workflow}") for workflow in WORKFLOWS)
+    pages.extend((ROOT / path, route) for path, route in TASK_PAGES)
+    pages.extend((ROOT / path, route) for path, route in STATIC_PAGES)
     pages.extend((path, f"/{path.stem}") for path, _ in tool_data)
     return pages
 
@@ -175,6 +183,7 @@ def indexable_pages(tool_data):
 def update_metadata(tool_data):
     OG_DIR.mkdir(parents=True, exist_ok=True)
     tool_paths = {path for path, _ in tool_data}
+    static_page_paths = {ROOT / path for path, _ in (*TASK_PAGES, *STATIC_PAGES)}
     for path, route in indexable_pages(tool_data):
         source = path.read_text(encoding="utf-8")
         parser = parse_page(path)
@@ -192,13 +201,13 @@ def update_metadata(tool_data):
             render_og_card(image_path, parser.page_title, description)
             image_url = f"{BASE_URL}/assets/og/{path.stem}.png"
         elif path.name == "llm-tools.html":
-            description = "Browse 43 LLM Tools for token counting, prompt design, RAG, and agent debugging. Nothing leaves your tab."
+            description = "Browse 52 LLM Tools for token counting, prompt design, RAG, and agent debugging. Nothing leaves your tab."
             image_url = None
         elif path == ROOT / "index.html":
             image_url = f"{BASE_URL}/assets/og/home.png"
             render_og_card(OG_DIR / "home.png", "LLM Developer Tools", description)
         else:
-            if description and "Nothing leaves your tab." not in description:
+            if path not in static_page_paths and description and "Nothing leaves your tab." not in description:
                 description = f"{description.rstrip('. ')}. Nothing leaves your tab."
             image_url = None
 

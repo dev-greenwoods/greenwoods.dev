@@ -9,15 +9,15 @@
   <link rel="stylesheet" href="css/index.css" />
   <script src="js/theme.js"></script>
   <script src="js/legacy-routes.js"></script>
-        <meta name="description" content="81 free developer tools, 43 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+        <meta name="description" content="90 free developer tools, 52 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
   <link rel="canonical" href="https://greenwoods.dev/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Greenwoods — LLM Developer Tools That Run Entirely in Your Browser" />
-  <meta property="og:description" content="81 free developer tools, 43 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <meta property="og:description" content="90 free developer tools, 52 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
   <meta property="og:url" content="https://greenwoods.dev/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Greenwoods — LLM Developer Tools That Run Entirely in Your Browser" />
-  <meta name="twitter:description" content="81 free developer tools, 43 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <meta name="twitter:description" content="90 free developer tools, 52 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
   <meta property="og:image" content="https://greenwoods.dev/assets/og/home.png" />
   <meta name="twitter:image" content="https://greenwoods.dev/assets/og/home.png" />
 </head>
@@ -29,7 +29,7 @@
     <div class="cmd-box">
       <div class="cmd-search-row">
         <svg class="cmd-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cmdInput" type="text" placeholder="Search 81 tools…" autocomplete="off" spellcheck="false" />
+        <input id="cmdInput" type="text" placeholder="Search 90 tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -65,12 +65,12 @@
         <a class="home-wordmark" href="/">greenwoods.dev</a>
         <span class="home-trust">No auth <i>•</i> No telemetry <i>•</i> Open source</span>
       </div>
-      <p class="eyebrow">81 TOOLS <i>•</i> 100% IN YOUR BROWSER</p>
+      <p class="eyebrow">90 TOOLS <i>•</i> 100% IN YOUR BROWSER</p>
       <h1>Every tool you Google<br class="desktop-break" /> while building with AI.</h1>
       <p class="hero-copy">Token counters, RAG chunkers, prompt diffs, agent debuggers — plus the JSON, encoding, and text tools you already use. Paste anything. Nothing leaves your tab.</p>
       <div class="hero-search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="heroSearch" type="search" placeholder="Search 81 tools... try &quot;token&quot; or &quot;chunk&quot;" autocomplete="off" spellcheck="false" autofocus aria-label="Search 81 tools" />
+        <input id="heroSearch" type="search" placeholder="Search 90 tools... try &quot;token&quot; or &quot;chunk&quot;" autocomplete="off" spellcheck="false" autofocus aria-label="Search 90 tools" />
         <span class="hero-key">⌘K</span>
       </div>
       <div class="hero-picks" aria-label="Popular tools">
@@ -80,13 +80,18 @@
         <a href="/ai-cost">Cost Calculator</a>
         <a href="/json">JSON Formatter</a>
       </div>
+      <section class="home-retention" aria-label="Your tools">
+        <div><h2>Recently used</h2><p>Stored only in this browser</p><div id="recent-tools" class="retention-list"></div></div>
+        <div><h2>Favorites</h2><p>Stored only in this browser</p><div id="favorite-tools" class="retention-list"></div></div>
+        <p id="retention-status" class="retention-status" role="status"></p>
+      </section>
       <p class="hero-reassurance">No account. No API key. No upload.</p>
     </section>
 
     <div class="proof-bar" aria-label="Greenwoods facts">
       <span><strong>0</strong> servers see your input</span>
-      <span><strong>43</strong> LLM tools</span>
-      <span><strong>81</strong> tools total</span>
+      <span><strong>52</strong> LLM tools</span>
+      <span><strong>90</strong> tools total</span>
       <span>Open source — verify it yourself</span>
     </div>
 
@@ -108,7 +113,7 @@
         <a class="featured-card" href="/trace"><span class="featured-number">07</span><strong>Agent Trace Viewer</strong><span>Inspect agent events, tool calls, and failures</span></a>
         <a class="featured-card" href="/injection"><span class="featured-number">08</span><strong>Prompt Injection Scanner</strong><span>Scan text locally for common attack signals</span></a>
       </div>
-      <a class="section-link" href="/llm-tools">See all 43 LLM tools <span aria-hidden="true">→</span></a>
+      <a class="section-link" href="/llm-tools">See all 52 LLM tools <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="home-section workflows-section" id="workflows">
@@ -124,6 +129,7 @@
         <article class="workflow-card"><span class="workflow-number">02</span><h3>Build a RAG index</h3><p><a href="/escape">Clean text</a><span>→</span><a href="/rag-chunk">Chunk</a><span>→</span><a href="/rag-chunk">Inspect chunks</a><span>→</span><a href="/token">Count tokens</a></p><a class="workflow-start" href="/workflows/build-a-rag-index">Open workflow →</a></article>
         <article class="workflow-card"><span class="workflow-number">03</span><h3>Debug an agent</h3><p><a href="/trace">Load trace</a><span>→</span><a href="/loop">Detect loops</a><span>→</span><a href="/prompt-diff">Diff the prompts</a></p><a class="workflow-start" href="/workflows/debug-an-agent">Open workflow →</a></article>
       </div>
+      <p class="workflow-task-links"><strong>Common tasks:</strong> <a href="/tasks/context-window-overflow">Why is my context window overflowing?</a> · <a href="/tasks/debug-rag-retrieval">Debug RAG retrieval</a> · <a href="/tasks/validate-llm-output">Validate LLM output</a></p>
     </section>
 
     <section class="home-section classics-section" id="classics">
@@ -158,7 +164,7 @@
 
   <div class="directory-heading" id="browse-tools">
     <p class="eyebrow">THE FULL TOOLBOX</p>
-    <h2>Browse all <span id="directory-count">81</span> tools</h2>
+    <h2>Browse all <span id="directory-count">90</span> tools</h2>
     <p>Jump into a category or search any tool with ⌘K.</p>
   </div>
 
@@ -179,7 +185,7 @@
 
   <footer>
     <span id="footer-facts"></span>
-    <span><a href="https://github.com/dev-greenwoods/greenwoods.dev/issues/new" target="_blank" rel="noopener noreferrer">Suggest a tool</a> · <a href="https://github.com/dev-greenwoods/greenwoods.dev" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/dev-greenwoods/greenwoods.dev/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Licensed under AGPL-3.0</a></span>
+    <span><a href="https://github.com/dev-greenwoods/greenwoods.dev/issues/new?template=tool_request.yml" target="_blank" rel="noopener noreferrer">Suggest a tool</a> · <a href="/build-log">Build log</a> · <a href="/tasks/context-window-overflow">Task guides</a> · <a href="https://github.com/dev-greenwoods/greenwoods.dev" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/dev-greenwoods/greenwoods.dev/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">Licensed under AGPL-3.0</a></span>
   </footer>
 </div>
 
@@ -267,6 +273,15 @@
     {name:'Fine-tune Dataset Formatter',icon:'🗂',href:'/finetune-dataset',cat:'ai',desc:'Normalize chat roles, validate JSONL, and remove duplicate examples'},
     {name:'Tool-Call Payload Tester',icon:'⚙',href:'/tool-payload',cat:'ai',desc:'Validate function-call arguments against a JSON Schema'},
     {name:'MCP Config Validator',icon:'🔌',href:'/mcp-config',cat:'ai',desc:'Statically validate MCP server configuration without running commands'},
+    {name:'SSE Stream Inspector',icon:'∿',href:'/sse-inspector',cat:'ai',desc:'Reconstruct pasted SSE deltas and inspect event timing when timestamps exist'},
+    {name:'Tokenizer Diff',icon:'⟷',href:'/tokenizer-diff',cat:'ai',desc:'Compare repeatable local token-count heuristics side by side'},
+    {name:'Embedding Similarity Explorer',icon:'📊',href:'/embedding-similarity',cat:'ai',desc:'Compare pasted vectors with a cosine similarity matrix and projection'},
+    {name:'Chunk Overlap Simulator',icon:'🧩',href:'/chunk-overlap',cat:'ai',desc:'Preview chunk size, overlap, and repeated text cost on a document'},
+    {name:'Prompt Version Manager',icon:'🗂',href:'/prompt-versions',cat:'ai',desc:'Save, restore, and compare prompt versions in this browser'},
+    {name:'System-Prompt Leak Self-Test',icon:'🛡',href:'/system-prompt-self-test',cat:'ai',desc:'Run heuristic leak-pattern checks and a prompt-design checklist'},
+    {name:'Latency & Cost Log Analyzer',icon:'📈',href:'/latency-cost-log',cat:'ai',desc:'Aggregate call latency, tokens, and estimated cost from local logs'},
+    {name:'Message Role Converter',icon:'⇄',href:'/message-role-converter',cat:'ai',desc:'Convert text-only OpenAI, Anthropic, and Gemini message arrays'},
+    {name:'Sampling Parameter Playground',icon:'🎲',href:'/sampling-playground',cat:'ai',desc:'Explore temperature, top-p, and penalties on example logits'},
   ];
 
   const CATEGORIES = [
@@ -435,5 +450,6 @@
 })();
 </script>
 <script src="/js/pwa.js"></script>
+<script src="/js/tool-retention.js"></script>
 </body>
 </html>

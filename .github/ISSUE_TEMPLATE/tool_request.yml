@@ -1,0 +1,26 @@
+name: Suggest a tool
+description: Propose a browser-only tool for Greenwoods
+title: "[Tool request]: "
+body:
+  - type: textarea
+    id: job
+    attributes:
+      label: What job are you trying to do?
+      description: Describe the task you want to complete.
+      placeholder: I need to...
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: What example input should the tool handle?
+      description: Include a small, non-sensitive sample and the expected result.
+    validations:
+      required: true
+  - type: textarea
+    id: browser-only
+    attributes:
+      label: Why must this work entirely in your browser?
+      description: Explain what makes local, no-upload processing important for this use case.
+    validations:
+      required: true
