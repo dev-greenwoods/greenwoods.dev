@@ -120,6 +120,7 @@ function clearAll() {
   currentJSON = '';
   document.getElementById('jsonOutput').innerHTML = `<div class="empty-state"><div class="empty-icon">{ }</div><div>JSON output will appear here</div></div>`;
   document.getElementById('statBadge').textContent = '0 rows';
+  document.getElementById('statusText').textContent = 'Paste CSV to convert.';
 }
 
 function loadSample() {

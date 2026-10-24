@@ -24,7 +24,7 @@ const DEFS = {
       let out = s
         .replace(/\\/g, '\\\\')
         .replace(/\0/g, '\\0')
-        .replace(/\b/g, '\\b')
+        .replace(/\x08/g, '\\b')
         .replace(/\f/g, '\\f')
         .replace(/\r/g, '\\r')
         .replace(/\t/g, '\\t')
@@ -87,7 +87,7 @@ const DEFS = {
       return s
         .replace(/\\/g, '\\\\')
         .replace(/\0/g, '\\0')
-        .replace(/\b/g, '\\b')
+        .replace(/\x08/g, '\\b')
         .replace(/\f/g, '\\f')
         .replace(/\r/g, '\\r')
         .replace(/\t/g, '\\t')

@@ -95,18 +95,23 @@ function renderModels(baseTokens) {
       ? `<span class="model-pct pct-over">exceeds ctx</span>`
       : `<span class="model-pct ${pctClass(pct)}">${pct.toFixed(1)}%</span>`;
 
+    const estimated = m.factor !== 1;
     html += `
       <div class="model-row">
         <div>
           <div class="model-name">${m.name}</div>
           <div class="model-provider">${fmt(m.ctx)} ctx</div>
         </div>
-        <div class="model-tokens">${baseTokens ? fmt(tokens) : '—'}</div>
+        <div class="model-tokens">${baseTokens ? (estimated ? '~' : '') + fmt(tokens) : '—'}</div>
         <div class="model-bar-wrap">
           <div class="model-bar ${barClass(pct)}" style="width:${Math.min(pct,100)}%"></div>
         </div>
         ${pctDisplay}
       </div>`;
+  }
+
+  if (baseTokens) {
+    html += `<div class="tokenizer-note" style="text-align:left">~ = estimated count for non-OpenAI models: the cl100k count scaled by a typical per-family factor, not the provider's own tokenizer. OpenAI counts are exact (cl100k_base).</div>`;
   }
 
   modelCards.innerHTML = html;

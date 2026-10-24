@@ -50,7 +50,10 @@ function handleInput() {
     }
   } catch (e) {
     currentOutput = '';
-    outputBlock.innerHTML = `<div class="error-msg">${escapeHtml(e.message)}</div>`;
+    const friendly = mode === 'decode'
+      ? 'That is not valid Base64 — check for missing padding or invalid characters.'
+      : 'Could not encode that input — check for unsupported characters.';
+    outputBlock.innerHTML = `<div class="error-msg">${friendly}</div>`;
     setStatus('Error — check input format.');
   }
 }

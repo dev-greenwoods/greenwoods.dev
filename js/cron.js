@@ -1,4 +1,4 @@
-function expandRange(part, min, max, names) {
+function expandRange(part, min, max, names, field) {
   if (part === '*') return null; // means "all"
   const values = new Set();
 
@@ -6,30 +6,38 @@ function expandRange(part, min, max, names) {
     let step = 1;
     if (seg.includes('/')) {
       const [range, s] = seg.split('/');
-      step = parseInt(s);
+      if (!/^\d+$/.test(s) || parseInt(s, 10) < 1) {
+        throw new Error(`${field}: invalid step "${s}" (step must be a positive whole number)`);
+      }
+      step = parseInt(s, 10);
       seg = range;
     }
     let lo = min, hi = max;
     if (seg !== '*') {
       const dash = seg.indexOf('-');
       if (dash > 0) {
-        lo = parsePart(seg.slice(0, dash), names, min);
-        hi = parsePart(seg.slice(dash + 1), names, min);
+        lo = parsePart(seg.slice(0, dash), names, min, field);
+        hi = parsePart(seg.slice(dash + 1), names, min, field);
+        if (lo > hi) throw new Error(`${field}: range start ${lo} is greater than range end ${hi}`);
       } else {
-        lo = hi = parsePart(seg, names, min);
+        lo = hi = parsePart(seg, names, min, field);
       }
+    }
+    if (lo < min || hi > max) {
+      throw new Error(`${field}: value ${lo === hi ? lo : lo + '–' + hi} is out of range (${min}–${max})`);
     }
     for (let i = lo; i <= hi; i += step) values.add(i);
   });
   return [...values].sort((a, b) => a - b);
 }
 
-function parsePart(s, names, offset) {
+function parsePart(s, names, offset, field) {
   if (names) {
-    const idx = names.findIndex(n => n.toLowerCase() === s.toLowerCase());
+    const idx = names.findIndex(n => n.toLowerCase() === String(s).toLowerCase());
     if (idx >= 0) return idx + offset;
   }
-  return parseInt(s);
+  if (!/^\d+$/.test(s)) throw new Error(`${field}: invalid value "${s}"`);
+  return parseInt(s, 10);
 }
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -41,11 +49,11 @@ function parseCronExpr(expr) {
 
   const [min, hr, dom, mon, dow] = parts;
   return {
-    minute:  expandRange(min, 0, 59),
-    hour:    expandRange(hr,  0, 23),
-    dom:     expandRange(dom, 1, 31),
-    month:   expandRange(mon, 1, 12, MONTHS),
-    dow:     expandRange(dow, 0,  7, DAYS),
+    minute:  expandRange(min, 0, 59, null,   'Minute'),
+    hour:    expandRange(hr,  0, 23, null,   'Hour'),
+    dom:     expandRange(dom, 1, 31, null,   'Day of month'),
+    month:   expandRange(mon, 1, 12, MONTHS, 'Month'),
+    dow:     expandRange(dow, 0,  7, DAYS,   'Day of week'),
   };
 }
 

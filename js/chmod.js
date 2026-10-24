@@ -134,14 +134,24 @@ document.getElementById('chkSuid').addEventListener('change',   e => { state.sui
 document.getElementById('chkSgid').addEventListener('change',   e => { state.sgid   = e.target.checked; render(); });
 document.getElementById('chkSticky').addEventListener('change', e => { state.sticky = e.target.checked; render(); });
 
+function setOctalMsg(text) {
+  const msg = document.getElementById('octalMsg');
+  if (!msg) return;
+  msg.textContent = text || '';
+  msg.classList.toggle('hidden', !text);
+}
+
 document.getElementById('octalInput').addEventListener('input', e => {
-  if (parseOctal(e.target.value)) render();
+  const v = e.target.value;
+  if (parseOctal(v)) { setOctalMsg(''); render(); }
+  else if (v.trim()) setOctalMsg('Invalid octal — use digits 0–7 only, e.g. 755 or 0644.');
+  else setOctalMsg('');
 });
 
 // Don't overwrite input while user is typing; only parse on blur/enter
 document.getElementById('octalInput').addEventListener('blur', e => {
-  if (!parseOctal(e.target.value)) render(); // restore valid value
-  else render();
+  if (!parseOctal(e.target.value)) { setOctalMsg(''); render(); } // restore valid value
+  else { setOctalMsg(''); render(); }
 });
 
 document.getElementById('symbolicInput').addEventListener('input', e => {

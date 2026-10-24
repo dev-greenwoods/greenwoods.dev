@@ -68,4 +68,7 @@
     try { await navigator.clipboard.writeText(JSON.stringify(previewMessages, null, 2)); }
     catch (error) { summary.innerHTML = `<div class="error-msg">Could not copy preview: ${escape(error.message)}</div>`; }
   });
+  // Process the prefilled default on load so the first Check click (and the
+  // initial view) reflects the input the user already sees.
+  check();
 })();

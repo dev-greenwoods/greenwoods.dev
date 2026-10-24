@@ -155,6 +155,7 @@ function clearTs() {
 function clearDate() {
   document.getElementById('dateInput').value = '';
   document.getElementById('dateOutput').classList.add('hidden');
+  document.getElementById('dateError').classList.add('hidden');
   document.getElementById('quickInput').value = '';
   document.getElementById('quickOutput').classList.add('hidden');
 }

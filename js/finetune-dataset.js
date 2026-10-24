@@ -125,6 +125,10 @@
     });
     reader.readAsText(file);
   });
+  // Process the prefilled example on load so the initial view matches the
+  // input the user already sees (the placeholder example is the default).
+  if (!source.value && source.placeholder) source.value = source.placeholder;
+  if (source.value.trim()) format();
   document.getElementById('download').addEventListener('click', () => {
     if (!valid.length) {
       report.innerHTML = '<div class="error-msg">There are no valid records to download.</div>';

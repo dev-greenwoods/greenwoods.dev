@@ -69,6 +69,7 @@ function clearAll() {
   currentOutput = '';
   document.getElementById('inputError').classList.add('hidden');
   document.getElementById('yamlOutput').innerHTML = `<div class="empty-state"><div class="empty-icon">⇄</div><div>Output will appear here</div></div>`;
+  document.getElementById('statusText').textContent = mode === 'yaml-json' ? 'Paste YAML or JSON to convert.' : 'Paste JSON to convert.';
 }
 
 function loadSample() {

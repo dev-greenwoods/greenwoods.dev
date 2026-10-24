@@ -1,8 +1,9 @@
 // ── Tokenizer ─────────────────────────────────────────────────────
 let encodeFunc = null;
+let decodeFunc = null;
 
 import('https://esm.sh/gpt-tokenizer@2.1.2')
-  .then(mod => { encodeFunc = mod.encode; run(); })
+  .then(mod => { encodeFunc = mod.encode; decodeFunc = mod.decode; run(); })
   .catch(() => run());
 
 function countTokens(text) {
@@ -101,11 +102,11 @@ function chunkByTokens(text, size, ovlp) {
 }
 
 function decodeTokenSlice(ids) {
-  // Decode IDs back to string
-  try {
-    // We don't have direct decode, so we approximate by splitting text
-    return `[${ids.length} tokens]`;
-  } catch { return ''; }
+  // Decode token IDs back to the original text using the tokenizer's decoder.
+  // If decoding is unavailable this throws, and chunkByTokens falls back to
+  // the word-based approximation — it must never emit placeholder text.
+  if (decodeFunc) return decodeFunc(ids);
+  throw new Error('Tokenizer decode unavailable');
 }
 
 function chunkByTokensApprox(text, size, ovlp) {

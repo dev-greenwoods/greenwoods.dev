@@ -4,7 +4,7 @@ const MODELS = [
   // OpenAI
   { name:'GPT-4o',          id:'gpt-4o',                provider:'OpenAI',    context:128_000,  output:16_384,  inputCost:2.50,   outputCost:10.00,  vision:true,  tools:true,  streaming:true, note:'Flagship multimodal model' },
   { name:'GPT-4o mini',     id:'gpt-4o-mini',            provider:'OpenAI',    context:128_000,  output:16_384,  inputCost:0.15,   outputCost:0.60,   vision:true,  tools:true,  streaming:true, note:'Cost-efficient, fast' },
-  { name:'o3',              id:'o3',                     provider:'OpenAI',    context:200_000,  output:100_000, inputCost:10.00,  outputCost:40.00,  vision:true,  tools:true,  streaming:true, note:'Best reasoning, slow' },
+  { name:'o3',              id:'o3',                     provider:'OpenAI',    context:200_000,  output:100_000, inputCost:2.00,   outputCost:8.00,   vision:true,  tools:true,  streaming:true, note:'Best reasoning, slow' },
   { name:'o3-mini',         id:'o3-mini',                provider:'OpenAI',    context:200_000,  output:65_536,  inputCost:1.10,   outputCost:4.40,   vision:false, tools:true,  streaming:true, note:'Fast reasoning' },
   { name:'o4-mini',         id:'o4-mini',                provider:'OpenAI',    context:200_000,  output:100_000, inputCost:1.10,   outputCost:4.40,   vision:true,  tools:true,  streaming:true, note:'Compact reasoning + vision' },
   { name:'GPT-4.1',         id:'gpt-4.1',                provider:'OpenAI',    context:1_047_576,output:32_768,  inputCost:2.00,   outputCost:8.00,   vision:true,  tools:true,  streaming:true, note:'1M context window' },
@@ -13,10 +13,10 @@ const MODELS = [
   { name:'Claude Opus 4',   id:'claude-opus-4',          provider:'Anthropic', context:200_000,  output:32_000,  inputCost:15.00,  outputCost:75.00,  vision:true,  tools:true,  streaming:true, note:'Most capable Claude' },
   { name:'Claude Sonnet 4', id:'claude-sonnet-4',        provider:'Anthropic', context:200_000,  output:16_000,  inputCost:3.00,   outputCost:15.00,  vision:true,  tools:true,  streaming:true, note:'Best perf/cost balance' },
   { name:'Claude Sonnet 4.5',id:'claude-sonnet-4-5',     provider:'Anthropic', context:200_000,  output:16_000,  inputCost:3.00,   outputCost:15.00,  vision:true,  tools:true,  streaming:true, note:'Latest Sonnet iteration' },
-  { name:'Claude Haiku 4.5',id:'claude-haiku-4-5',       provider:'Anthropic', context:200_000,  output:8_096,   inputCost:0.80,   outputCost:4.00,   vision:true,  tools:true,  streaming:true, note:'Ultra-fast, very cheap' },
+  { name:'Claude Haiku 4.5',id:'claude-haiku-4-5',       provider:'Anthropic', context:200_000,  output:8_096,   inputCost:1.00,   outputCost:5.00,   vision:true,  tools:true,  streaming:true, note:'Ultra-fast, very cheap' },
   // Google
   { name:'Gemini 2.5 Pro',  id:'gemini-2.5-pro',         provider:'Google',    context:1_048_576,output:65_536,  inputCost:1.25,   outputCost:10.00,  vision:true,  tools:true,  streaming:true, note:'1M ctx, best Google model' },
-  { name:'Gemini 2.5 Flash',id:'gemini-2.5-flash',       provider:'Google',    context:1_048_576,output:65_536,  inputCost:0.15,   outputCost:0.60,   vision:true,  tools:true,  streaming:true, note:'Fast, huge context' },
+  { name:'Gemini 2.5 Flash',id:'gemini-2.5-flash',       provider:'Google',    context:1_048_576,output:65_536,  inputCost:0.30,   outputCost:2.50,   vision:true,  tools:true,  streaming:true, note:'Fast, huge context' },
   { name:'Gemini 2.0 Flash',id:'gemini-2.0-flash',       provider:'Google',    context:1_048_576,output:8_192,   inputCost:0.10,   outputCost:0.40,   vision:true,  tools:true,  streaming:true, note:'Budget multimodal' },
   // Meta / Open
   { name:'Llama 3.3 70B',   id:'llama-3.3-70b',          provider:'Meta',      context:128_000,  output:32_768,  inputCost:0.59,   outputCost:0.79,   vision:false, tools:true,  streaming:true, note:'Best open-weight model' },

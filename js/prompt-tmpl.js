@@ -116,4 +116,12 @@ document.getElementById('btnSample').addEventListener('click', () => {
   renderOutput();
 });
 
-renderOutput();
+// Initialise from the default template on load so its variables are detected
+// before the user types (the template shown in the placeholder is the default).
+if (!tmplInput.value && tmplInput.placeholder) tmplInput.value = tmplInput.placeholder;
+{
+  const names = detectVars(tmplInput.value);
+  tmplStats.textContent = `${names.length} variable${names.length !== 1 ? 's' : ''} detected`;
+  renderVars(names);
+  renderOutput();
+}

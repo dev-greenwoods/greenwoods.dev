@@ -135,6 +135,7 @@ const fileInput = document.getElementById('fileInput');
 const previewBox= document.getElementById('previewBox');
 const previewImg= document.getElementById('previewImg');
 const outputsPanel = document.getElementById('outputsPanel');
+let currentOutputs = [];
 
 function fmtSize(bytes) {
   if (bytes < 1024) return bytes + ' B';
@@ -179,14 +180,22 @@ function processFile(file) {
       { label: 'Markdown', value: `![Image](${dataUri})` },
     ];
 
-    outputsPanel.innerHTML = outputs.map(o => `
+    currentOutputs = outputs.map(o => o.value);
+    outputsPanel.innerHTML = outputs.map((o, i) => `
       <div class="output-group">
         <div class="output-label">
           <span>${o.label}</span>
-          <button class="copy-btn" onclick="copyText(this, ${JSON.stringify(o.value)})">copy</button>
+          <button class="copy-btn" data-copy-idx="${i}">copy</button>
         </div>
         <div class="output-val">${o.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').slice(0, 300)}${o.value.length > 300 ? '…' : ''}</div>
       </div>`).join('');
+    // Wire copy buttons by index. The values must never be inlined into an
+    // onclick attribute: a JSON-quoted value ends the attribute at its first
+    // double quote, which corrupted these buttons (label read '")">copy')
+    // and swallowed the following output groups.
+    outputsPanel.querySelectorAll('[data-copy-idx]').forEach(btn => {
+      btn.addEventListener('click', () => copyText(btn, currentOutputs[Number(btn.dataset.copyIdx)]));
+    });
   };
   reader.readAsDataURL(file);
 }
@@ -211,6 +220,7 @@ dropZone.addEventListener('drop', e => {
 
 document.getElementById('btnClear').addEventListener('click', () => {
   fileInput.value = '';
+  currentOutputs = [];
   previewBox.style.display = 'none';
   dropZone.style.display = 'flex';
   outputsPanel.innerHTML = '<div class="empty-state"><div class="empty-icon">🖼</div><div>Drop an image to see outputs</div></div>';

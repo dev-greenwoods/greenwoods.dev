@@ -298,7 +298,7 @@ function generateHeader() {
     return;
   }
 
-  outEl.innerHTML = `<div class="header-name">Content-Security-Policy</div><div class="header-val">${highlight(escHtml(header))}</div>`;
+  outEl.innerHTML = `<div class="header-name">Content-Security-Policy</div><div class="header-val">${highlight(header)}</div>`;
   metaEl.innerHTML = `<div class="meta-tag">&lt;meta http-equiv="Content-Security-Policy" content="${escHtml(header)}"&gt;</div>`;
 
   // Warnings
@@ -338,11 +338,23 @@ function analyzePolicy(parts) {
   return warns;
 }
 
-function highlight(h) {
-  return h
-    .replace(/([a-z-]+?)(?=\s)/g, '<span class="csp-dir">$1</span>')
-    .replace(/(&#x27;[^;]*?&#x27;)/g, '<span class="csp-kw">$1</span>')
-    .replace(/;/g, '<span class="csp-sep">;</span>');
+function highlight(header) {
+  // Build highlighted HTML from the RAW header, escaping each piece as it is
+  // wrapped. The previous version ran its ';' replacement over the escaped
+  // string, which also rewrote the ';' inside the &#x27; quote entities and
+  // corrupted the display (e.g. default-src ';self';) even though the copied
+  // header was correct.
+  return header.split('; ').map(part => {
+    const sp = part.indexOf(' ');
+    const dir = sp === -1 ? part : part.slice(0, sp);
+    const rest = sp === -1 ? '' : part.slice(sp + 1);
+    const restHtml = rest
+      ? ' ' + rest.split(' ').map(tok =>
+          /^'[^']*'$/.test(tok) ? `<span class="csp-kw">${escHtml(tok)}</span>` : escHtml(tok)
+        ).join(' ')
+      : '';
+    return `<span class="csp-dir">${escHtml(dir)}</span>${restHtml}`;
+  }).join('<span class="csp-sep">;</span> ');
 }
 
 function escHtml(s) {
