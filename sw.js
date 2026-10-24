@@ -1,4 +1,4 @@
-const CACHE_NAME = 'greenwoods-static-v2';
+const CACHE_NAME = 'greenwoods-static-v3';
 const APP_SHELL = [
   '/',
   '/css/index.css',
@@ -42,18 +42,23 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
   if (request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.startsWith('/api/')) return;
 
+  // Network-first: a cache-first handler served stale tool code forever
+  // whenever CACHE_NAME was not bumped, because unversioned file names
+  // never changed. Fresh code wins when online; the cache is only the
+  // offline fallback, so a deploy reaches returning visitors without a
+  // version bump (the v3 bump below still clears the old v2 cache).
   event.respondWith(
-    caches.match(request).then(cached => {
-      if (cached) return cached;
-      return fetch(request).then(response => {
-        if (response.ok && response.type === 'basic' && !url.search) {
-          const cacheWrite = caches.open(CACHE_NAME).then(cache => cache.put(request, response.clone()));
-          event.waitUntil(cacheWrite.catch(error => {
-            console.error('Greenwoods could not cache an offline resource.', error);
-          }));
-        }
-        return response;
-      }).catch(error => {
+    fetch(request).then(response => {
+      if (response.ok && response.type === 'basic' && !url.search) {
+        const cacheWrite = caches.open(CACHE_NAME).then(cache => cache.put(request, response.clone()));
+        event.waitUntil(cacheWrite.catch(error => {
+          console.error('Greenwoods could not cache an offline resource.', error);
+        }));
+      }
+      return response;
+    }).catch(error => {
+      return caches.match(request).then(cached => {
+        if (cached) return cached;
         if (request.mode === 'navigate') {
           return caches.match('/').then(fallback => {
             if (fallback) return fallback;
