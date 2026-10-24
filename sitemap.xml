@@ -61,6 +61,9 @@
     <loc>https://greenwoods.dev/compact</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/context-fit</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/context-opt</loc>
   </url>
   <url>
@@ -115,6 +118,9 @@
     <loc>https://greenwoods.dev/few-shot</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/finetune-dataset</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/finetune</loc>
   </url>
   <url>
@@ -166,6 +172,9 @@
     <loc>https://greenwoods.dev/markdown</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/mcp-config</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/model-compare</loc>
   </url>
   <url>
@@ -202,6 +211,9 @@
     <loc>https://greenwoods.dev/regex</loc>
   </url>
   <url>
+    <loc>https://greenwoods.dev/response-validator</loc>
+  </url>
+  <url>
     <loc>https://greenwoods.dev/retry</loc>
   </url>
   <url>
@@ -236,6 +248,9 @@
   </url>
   <url>
     <loc>https://greenwoods.dev/tool-call</loc>
+  </url>
+  <url>
+    <loc>https://greenwoods.dev/tool-payload</loc>
   </url>
   <url>
     <loc>https://greenwoods.dev/tool-schema</loc>

@@ -9,15 +9,15 @@
   <link rel="stylesheet" href="css/index.css" />
   <script src="js/theme.js"></script>
   <script src="js/legacy-routes.js"></script>
-        <meta name="description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+        <meta name="description" content="81 free developer tools, 43 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
   <link rel="canonical" href="https://greenwoods.dev/" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Greenwoods — LLM Developer Tools That Run Entirely in Your Browser" />
-  <meta property="og:description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <meta property="og:description" content="81 free developer tools, 43 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
   <meta property="og:url" content="https://greenwoods.dev/" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Greenwoods — LLM Developer Tools That Run Entirely in Your Browser" />
-  <meta name="twitter:description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <meta name="twitter:description" content="81 free developer tools, 43 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
   <meta property="og:image" content="https://greenwoods.dev/assets/og/home.png" />
   <meta name="twitter:image" content="https://greenwoods.dev/assets/og/home.png" />
 </head>
@@ -29,7 +29,7 @@
     <div class="cmd-box">
       <div class="cmd-search-row">
         <svg class="cmd-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="cmdInput" type="text" placeholder="Search 76 tools…" autocomplete="off" spellcheck="false" />
+        <input id="cmdInput" type="text" placeholder="Search 81 tools…" autocomplete="off" spellcheck="false" />
         <span class="cmd-shortcut-hint">ESC</span>
       </div>
       <div class="cmd-results" id="cmdResults"></div>
@@ -65,12 +65,12 @@
         <a class="home-wordmark" href="/">greenwoods.dev</a>
         <span class="home-trust">No auth <i>•</i> No telemetry <i>•</i> Open source</span>
       </div>
-      <p class="eyebrow">76 TOOLS <i>•</i> 100% IN YOUR BROWSER</p>
+      <p class="eyebrow">81 TOOLS <i>•</i> 100% IN YOUR BROWSER</p>
       <h1>Every tool you Google<br class="desktop-break" /> while building with AI.</h1>
       <p class="hero-copy">Token counters, RAG chunkers, prompt diffs, agent debuggers — plus the JSON, encoding, and text tools you already use. Paste anything. Nothing leaves your tab.</p>
       <div class="hero-search">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="heroSearch" type="search" placeholder="Search 76 tools... try &quot;token&quot; or &quot;chunk&quot;" autocomplete="off" spellcheck="false" autofocus aria-label="Search 76 tools" />
+        <input id="heroSearch" type="search" placeholder="Search 81 tools... try &quot;token&quot; or &quot;chunk&quot;" autocomplete="off" spellcheck="false" autofocus aria-label="Search 81 tools" />
         <span class="hero-key">⌘K</span>
       </div>
       <div class="hero-picks" aria-label="Popular tools">
@@ -85,8 +85,8 @@
 
     <div class="proof-bar" aria-label="Greenwoods facts">
       <span><strong>0</strong> servers see your input</span>
-      <span><strong>38</strong> LLM tools</span>
-      <span><strong>76</strong> tools total</span>
+      <span><strong>43</strong> LLM tools</span>
+      <span><strong>81</strong> tools total</span>
       <span>Open source — verify it yourself</span>
     </div>
 
@@ -108,7 +108,7 @@
         <a class="featured-card" href="/trace"><span class="featured-number">07</span><strong>Agent Trace Viewer</strong><span>Inspect agent events, tool calls, and failures</span></a>
         <a class="featured-card" href="/injection"><span class="featured-number">08</span><strong>Prompt Injection Scanner</strong><span>Scan text locally for common attack signals</span></a>
       </div>
-      <a class="section-link" href="/llm-tools">See all 38 LLM tools <span aria-hidden="true">→</span></a>
+      <a class="section-link" href="/llm-tools">See all 43 LLM tools <span aria-hidden="true">→</span></a>
     </section>
 
     <section class="home-section workflows-section" id="workflows">
@@ -158,7 +158,7 @@
 
   <div class="directory-heading" id="browse-tools">
     <p class="eyebrow">THE FULL TOOLBOX</p>
-    <h2>Browse all <span id="directory-count">76</span> tools</h2>
+    <h2>Browse all <span id="directory-count">81</span> tools</h2>
     <p>Jump into a category or search any tool with ⌘K.</p>
   </div>
 
@@ -262,6 +262,11 @@
     {name:'Agent Trace Viewer',icon:'⌁',href:'/trace',cat:'ai',desc:'Render agent JSONL timeline and failures'},
     {name:'Agent Loop Detector',icon:'∞',href:'/loop',cat:'ai',desc:'Detect repeated calls and tool cycles'},
     {name:'Tool Selection Evaluator',icon:'◎',href:'/selection',cat:'ai',desc:'Score expected versus selected tools'},
+    {name:'LLM Response Validator',icon:'✓',href:'/response-validator',cat:'ai',desc:'Validate generated JSON against a schema and pinpoint failing paths'},
+    {name:'Context Fit Checker',icon:'📐',href:'/context-fit',cat:'ai',desc:'Estimate per-message tokens and preview what fits your context limit'},
+    {name:'Fine-tune Dataset Formatter',icon:'🗂',href:'/finetune-dataset',cat:'ai',desc:'Normalize chat roles, validate JSONL, and remove duplicate examples'},
+    {name:'Tool-Call Payload Tester',icon:'⚙',href:'/tool-payload',cat:'ai',desc:'Validate function-call arguments against a JSON Schema'},
+    {name:'MCP Config Validator',icon:'🔌',href:'/mcp-config',cat:'ai',desc:'Statically validate MCP server configuration without running commands'},
   ];
 
   const CATEGORIES = [

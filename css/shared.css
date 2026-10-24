@@ -106,6 +106,25 @@ nav {
   letter-spacing: -0.03em;
 }
 
+.share-state {
+  width: min(100% - 56px, 1224px);
+  margin: 0 auto 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+.share-state-status,
+.share-state p {
+  color: var(--muted);
+  font-size: .67rem;
+}
+
+.share-state p {
+  flex-basis: 100%;
+}
+
 .related-tools {
   width: min(100% - 40px, 1120px);
   margin: 26px auto 34px;
@@ -414,6 +433,7 @@ footer {
 
 @media (max-width: 768px) {
   nav { padding: 0 16px; }
+  .share-state { width: calc(100% - 32px); }
   main { grid-template-columns: 1fr !important; height: auto; }
   .panel { border-right: none; border-bottom: 1px solid var(--border); min-height: 340px; }
   footer { padding: 0 16px; flex-direction: column; height: auto; padding: 10px 16px; gap: 4px; text-align: center; }

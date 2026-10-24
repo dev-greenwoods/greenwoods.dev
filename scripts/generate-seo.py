@@ -156,7 +156,7 @@ def replace_tags(source, metadata):
         flags=re.IGNORECASE,
     )
     insertion = (
-        f'  <meta name="description" content="{html_attr(metadata["description"])}" />\n'
+        f'<meta name="description" content="{html_attr(metadata["description"])}" />\n'
         f'  {metadata_tags(metadata["title"], metadata["description"], metadata["canonical"], metadata.get("image"))}\n'
     )
     if "</head>" not in source:
@@ -192,7 +192,7 @@ def update_metadata(tool_data):
             render_og_card(image_path, parser.page_title, description)
             image_url = f"{BASE_URL}/assets/og/{path.stem}.png"
         elif path.name == "llm-tools.html":
-            description = "Browse 38 LLM Tools for token counting, prompt design, RAG, and agent debugging. Nothing leaves your tab."
+            description = "Browse 43 LLM Tools for token counting, prompt design, RAG, and agent debugging. Nothing leaves your tab."
             image_url = None
         elif path == ROOT / "index.html":
             image_url = f"{BASE_URL}/assets/og/home.png"
