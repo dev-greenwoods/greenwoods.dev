@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#0B3D2E" />
+  <title>Page Not Found | Greenwoods</title>
+  <link rel="stylesheet" href="/css/404.css" />
+</head>
+<body>
+  <main class="not-found">
+    <a class="not-found-logo" href="/">greenwoods.dev</a>
+    <p class="not-found-code">404 · PAGE NOT FOUND</p>
+    <h1>That tool took a wrong turn.</h1>
+    <p class="not-found-copy">Search the browser-based tools, or jump back into one of the most-used LLM tools.</p>
+    <form action="/" method="get" role="search">
+      <label class="visually-hidden" for="tool-search">Search tools</label>
+      <input id="tool-search" name="q" type="search" placeholder="Search tools… (⌘K)" autocomplete="off" />
+      <button type="submit">Search</button>
+    </form>
+    <section aria-labelledby="featured-heading">
+      <h2 id="featured-heading">Popular LLM tools</h2>
+      <div class="not-found-tools">
+        <a href="/token">Token Counter <span>Count tokens across models</span></a>
+        <a href="/ai-cost">Cost Calculator <span>Compare model pricing</span></a>
+        <a href="/rag-chunk">RAG Chunker <span>Split text into retrieval chunks</span></a>
+        <a href="/context">Context Planner <span>Plan a model's context budget</span></a>
+        <a href="/prompt-diff">Prompt Diff <span>Compare prompt versions</span></a>
+        <a href="/tool-schema">Schema Builder <span>Build function calling schemas</span></a>
+        <a href="/trace">Agent Trace Viewer <span>Inspect agent events and failures</span></a>
+        <a href="/injection">Prompt Injection Scanner <span>Scan text locally</span></a>
+      </div>
+    </section>
+    <a class="not-found-home" href="/">Back to Greenwoods home →</a>
+  </main>
+  <script>
+    document.addEventListener('keydown', event => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        document.getElementById('tool-search').focus();
+      }
+    });
+  </script>
+</body>
+</html>

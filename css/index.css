@@ -136,7 +136,7 @@ nav{
 /* Mini section headers (All view) */
 .mini-section{padding:0 28px 20px;}
 .mini-section-hd{
-  font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  font-size:.62rem;font-weight:700;letter-spacing:.08em;
   padding:7px 0;margin-bottom:8px;
   display:flex;align-items:center;gap:8px;
   border-bottom:1px solid var(--border);

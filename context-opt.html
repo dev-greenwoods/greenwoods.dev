@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Context Window Optimizer — Free, Private, In Your Browser | Greenwoods</title>
-  <meta name="description" content="Use Context Window Optimizer in your browser. Assign labels and priorities to context blocks, estimate tokens, and pack the highest-value text into a fixed budget. Free and private — your input stays on your device." />
   <meta name="theme-color" content="#0B3D2E" />
-  <link rel="manifest" href="/manifest.webmanifest" /><link rel="stylesheet" href="css/shared.css"/><link rel="stylesheet" href="css/context-opt.css"/><script src="js/theme.js"></script></head>
-<body><div class="wrapper"><nav><div class="nav-left"><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><span class="breadcrumb">/ <span>context window optimizer</span></span></div><button class="theme-toggle" title="Toggle theme">☾</button><div class="nav-badge ai-badge">AI · LLM</div></nav>
+  <link rel="manifest" href="/manifest.webmanifest" /><link rel="stylesheet" href="css/shared.css"/><link rel="stylesheet" href="css/context-opt.css"/><script src="js/theme.js"></script>        <meta name="description" content="Use Context Window Optimizer in your browser. Assign labels and priorities to context blocks, estimate tokens, and pack the highest-value text into a fixed budget. Nothing leaves your tab." />
+  <link rel="canonical" href="https://greenwoods.dev/context-opt" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Context Window Optimizer — Free, Private, In Your Browser | Greenwoods" />
+  <meta property="og:description" content="Use Context Window Optimizer in your browser. Assign labels and priorities to context blocks, estimate tokens, and pack the highest-value text into a fixed budget. Nothing leaves your tab." />
+  <meta property="og:url" content="https://greenwoods.dev/context-opt" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Context Window Optimizer — Free, Private, In Your Browser | Greenwoods" />
+  <meta name="twitter:description" content="Use Context Window Optimizer in your browser. Assign labels and priorities to context blocks, estimate tokens, and pack the highest-value text into a fixed budget. Nothing leaves your tab." />
+  <meta property="og:image" content="https://greenwoods.dev/assets/og/context-opt.png" />
+  <meta name="twitter:image" content="https://greenwoods.dev/assets/og/context-opt.png" />
+</head>
+<body><div class="wrapper"><nav><div class="nav-left"><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><span class="breadcrumb">/ <span>context window optimizer</span></span></div><button class="theme-toggle" title="Toggle theme">☾</button><div class="nav-badge ai-badge">LLM Tools</div></nav>
   <h1 class="page-title">Context Window Optimizer</h1>
 <main class="three-panel"><div class="panel"><div class="panel-header"><span class="panel-title">context blocks</span><div class="panel-actions"><button class="btn-sm" id="add">+ block</button><button class="btn-sm" id="sample">sample</button></div></div><div class="panel-body"><div class="hint">Blocks are sorted by priority (high first) and packed into the budget. Approximation: 4 characters ≈ 1 token.</div><div id="blocks" class="blocks"></div></div></div>
 <div class="panel"><div class="panel-header"><span class="panel-title">budget</span></div><div class="panel-body"><div class="field-group"><label class="field-label" for="budget">token budget</label><input id="budget" class="tool-input" type="number" min="1" value="1200"/></div><div id="stats" class="stats"></div><div class="hint">Packing favors high-priority blocks. A final block may be trimmed to fit exactly.</div></div></div>
 <div class="panel"><div class="panel-header"><span class="panel-title">packed context</span><button class="copy-btn" id="copy">copy</button></div><div class="panel-body"><div id="packed" class="output-block"><div class="empty-state"><div class="empty-icon">▤</div><div>Add context blocks to pack them</div></div></div></div></div></main><section class="tool-details" aria-label="About this tool"><article><h2>What Context Window Optimizer does</h2><p>Assign labels and priorities to context blocks, estimate tokens, and pack the highest-value text into a fixed budget.</p></article><article><h2>How it works locally</h2><p>Your input is processed in this browser tab and is not sent to a Greenwoods API. Some tools load their tokenizer or format library while online; the entered content stays on your device.</p></article></section>
-<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/token">Token Counter</a><a href="/ai-cost">AI Cost Calculator</a><a href="/ai-response">Response Inspector</a><a href="/prompt">Prompt Builder</a></div></section>
+<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/token">Token Counter</a><a href="/ai-cost">AI Cost Calculator</a><a href="/ai-response">Response Inspector</a></div></section>
 <footer><span>greenwoods.dev — context window optimizer</span><span>approximate tokens · client-side · nothing stored</span></footer>
 
 </div><script src="js/context-opt.js"></script><script src="/js/pwa.js"></script>

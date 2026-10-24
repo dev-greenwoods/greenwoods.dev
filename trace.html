@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent Trace Viewer — Free, Private, In Your Browser | Greenwoods</title>
-  <meta name="description" content="Use Agent Trace Viewer in your browser. Render JSONL agent events with step order, durations, failures, tool calls, and model events. Free and private — your input stays on your device." />
   <meta name="theme-color" content="#0B3D2E" />
-  <link rel="manifest" href="/manifest.webmanifest" /><link rel="stylesheet" href="css/shared.css"><link rel="stylesheet" href="css/trace.css"><script src="js/theme.js"></script></head>
-<body><div class="wrapper"><nav><div class="nav-left"><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><span class="breadcrumb">/ <span>agent trace viewer</span></span></div><button class="theme-toggle" title="Toggle theme">☾</button><div class="nav-badge ai-badge">AI · LLM</div></nav>
+  <link rel="manifest" href="/manifest.webmanifest" /><link rel="stylesheet" href="css/shared.css"><link rel="stylesheet" href="css/trace.css"><script src="js/theme.js"></script>        <meta name="description" content="Use Agent Trace Viewer in your browser. Render JSONL agent events with step order, durations, failures, tool calls, and model events. Nothing leaves your tab." />
+  <link rel="canonical" href="https://greenwoods.dev/trace" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Agent Trace Viewer — Free, Private, In Your Browser | Greenwoods" />
+  <meta property="og:description" content="Use Agent Trace Viewer in your browser. Render JSONL agent events with step order, durations, failures, tool calls, and model events. Nothing leaves your tab." />
+  <meta property="og:url" content="https://greenwoods.dev/trace" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agent Trace Viewer — Free, Private, In Your Browser | Greenwoods" />
+  <meta name="twitter:description" content="Use Agent Trace Viewer in your browser. Render JSONL agent events with step order, durations, failures, tool calls, and model events. Nothing leaves your tab." />
+  <meta property="og:image" content="https://greenwoods.dev/assets/og/trace.png" />
+  <meta name="twitter:image" content="https://greenwoods.dev/assets/og/trace.png" />
+</head>
+<body><div class="wrapper"><nav><div class="nav-left"><a href="/" class="logo"><span class="logo-dot"></span>greenwoods.dev</a><span class="breadcrumb">/ <span>agent trace viewer</span></span></div><button class="theme-toggle" title="Toggle theme">☾</button><div class="nav-badge ai-badge">LLM Tools</div></nav>
   <h1 class="page-title">Agent Trace Viewer</h1><main><div class="panel"><div class="panel-header"><span class="panel-title">JSONL events</span><div class="panel-actions"><button class="btn-sm" id="sample">sample</button><button class="btn-sm" id="clear">clear</button></div></div><div class="panel-body"><textarea id="input" class="tool-input" spellcheck="false" placeholder='{"step":1,"type":"tool","name":"search","status":"ok","timestamp":"2025-01-01T00:00:00Z"}'></textarea><button class="btn-primary" id="render">render trace</button></div></div><div class="panel"><div class="panel-header"><span class="panel-title">timeline &amp; summary</span></div><div class="panel-body"><div id="stats" class="stats-bar"></div><div id="timeline" class="timeline"><div class="empty-state"><div class="empty-icon">⌁</div><div>Paste events to render a trace</div></div></div></div></div></main><section class="tool-details" aria-label="About this tool"><article><h2>What Agent Trace Viewer does</h2><p>Render JSONL agent events with step order, durations, failures, tool calls, and model events.</p></article><article><h2>How it works locally</h2><p>Your input is processed in this browser tab and is not sent to a Greenwoods API. Some tools load their tokenizer or format library while online; the entered content stays on your device.</p></article></section>
-<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/token">Token Counter</a><a href="/ai-cost">AI Cost Calculator</a><a href="/ai-response">Response Inspector</a><a href="/prompt">Prompt Builder</a></div></section>
+<section class="tool-workflow"><h2>Workflow</h2><a href="/workflows/debug-an-agent">Debug an agent →</a></section>
+<section class="related-tools" aria-labelledby="related-heading"><h2 id="related-heading">Related tools</h2><div class="related-tools-list"><a href="/token">Token Counter</a><a href="/ai-cost">AI Cost Calculator</a><a href="/ai-response">Response Inspector</a></div></section>
 <footer><span>greenwoods.dev — agent trace viewer</span><span>steps · durations · failures · tools · models</span></footer>
 
 </div><script defer src="js/trace.js"></script><script src="/js/pwa.js"></script>

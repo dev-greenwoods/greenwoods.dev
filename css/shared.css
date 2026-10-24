@@ -115,6 +115,29 @@ nav {
   background: var(--surface);
 }
 
+.tool-workflow {
+  width: min(100% - 40px, 1120px);
+  margin: 26px auto 0;
+  padding: 18px 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.tool-workflow h2 {
+  margin: 0 0 10px;
+  font-family: 'Syne', sans-serif;
+  font-size: .95rem;
+}
+
+.tool-workflow a {
+  color: var(--accent);
+  font-size: .78rem;
+  text-decoration: none;
+}
+
+.tool-workflow a:hover { text-decoration: underline; }
+
 .tool-details {
   width: min(100% - 40px, 1120px);
   display: grid;

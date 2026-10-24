@@ -4,12 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Greenwoods — LLM Developer Tools That Run Entirely in Your Browser</title>
-  <meta name="description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
   <meta name="theme-color" content="#0B3D2E" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="stylesheet" href="css/index.css" />
   <script src="js/theme.js"></script>
   <script src="js/legacy-routes.js"></script>
+        <meta name="description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <link rel="canonical" href="https://greenwoods.dev/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Greenwoods — LLM Developer Tools That Run Entirely in Your Browser" />
+  <meta property="og:description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <meta property="og:url" content="https://greenwoods.dev/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Greenwoods — LLM Developer Tools That Run Entirely in Your Browser" />
+  <meta name="twitter:description" content="76 free developer tools, 38 built for LLM work: token counter, RAG chunker, prompt diff, cost calculator and more. No account, no upload — nothing leaves your browser." />
+  <meta property="og:image" content="https://greenwoods.dev/assets/og/home.png" />
+  <meta name="twitter:image" content="https://greenwoods.dev/assets/og/home.png" />
 </head>
 <body>
 <div class="wrapper">
@@ -148,346 +158,33 @@
 
   <div class="directory-heading" id="browse-tools">
     <p class="eyebrow">THE FULL TOOLBOX</p>
-    <h2>Browse all 76 tools</h2>
+    <h2>Browse all <span id="directory-count">76</span> tools</h2>
     <p>Jump into a category or search any tool with ⌘K.</p>
   </div>
 
-  <!-- Body -->
   <div class="app-body">
-
-    <!-- Sidebar -->
     <aside class="sidebar">
-      <div class="sidebar-brand">
-        <p class="sidebar-tagline">Every dev tool you keep googling, in one place</p>
-      </div>
-
-      <nav class="sidebar-nav" id="sidebarNav">
-        <button class="nav-item active" data-cat="all">
-          <span class="nav-item-icon">⊞</span>
-          <span class="nav-item-label">All tools</span>
-          <span class="nav-item-count">76</span>
-        </button>
-        <button class="nav-item" data-cat="encoding">
-          <span class="nav-item-icon">📦</span>
-          <span class="nav-item-label">Encoding</span>
-          <span class="nav-item-count">7</span>
-        </button>
-        <button class="nav-item" data-cat="data">
-          <span class="nav-item-icon">🗄</span>
-          <span class="nav-item-label">Data</span>
-          <span class="nav-item-count">20</span>
-        </button>
-        <button class="nav-item" data-cat="time">
-          <span class="nav-item-icon">⏱</span>
-          <span class="nav-item-label">Time</span>
-          <span class="nav-item-count">3</span>
-        </button>
-        <button class="nav-item" data-cat="text">
-          <span class="nav-item-icon">✏</span>
-          <span class="nav-item-label">Text</span>
-          <span class="nav-item-count">8</span>
-        </button>
-        <button class="nav-item" data-cat="ai">
-          <span class="nav-item-icon">✦</span>
-          <span class="nav-item-label">AI · LLM</span>
-          <span class="nav-item-count">38</span>
-        </button>
-      </nav>
-
+      <div class="sidebar-brand"><p class="sidebar-tagline">Private tools for LLM work.</p></div>
+      <nav class="sidebar-nav" id="sidebarNav" aria-label="Tool categories"></nav>
       <div class="sidebar-footer">
         <div class="sf-badge">No auth</div>
         <div class="sf-badge">No telemetry</div>
         <div class="sf-badge">Open source</div>
       </div>
     </aside>
-
-    <!-- Content -->
     <div class="content" id="content">
-
-      <!-- ── ALL ───────────────────────────────────────────── -->
-      <section class="cat-section" data-section="all">
-        <div class="cat-hero cat-hero--all">
-          <div class="cat-hero-icon">⊞</div>
-          <div>
-            <h2 class="cat-hero-title">All Tools</h2>
-            <p class="cat-hero-sub">76 browser-native utilities. Pick a category to explore, or ⌘K to search.</p>
-          </div>
-        </div>
-
-        <div class="mini-section" id="classic-encoding">
-          <div class="mini-section-hd enc-color">📦 Encoding <span>7</span></div>
-          <div class="tools-list">
-            <a href="/jwt"      class="tl-card enc"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">JWT Decoder</div><div class="tl-desc">Decode & verify JWT tokens — HS, RS, ES, PS algorithms</div></div><span class="tl-arrow">→</span></a>
-            <a href="/base64"   class="tl-card enc"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Base64</div><div class="tl-desc">Encode/decode strings and files, URL-safe variant</div></div><span class="tl-arrow">→</span></a>
-            <a href="/url"      class="tl-card enc"><div class="tl-icon">🔗</div><div class="tl-body"><div class="tl-name">URL Encoder</div><div class="tl-desc">Encode/decode URLs and query strings</div></div><span class="tl-arrow">→</span></a>
-            <a href="/entities" class="tl-card enc"><div class="tl-icon">&amp;</div><div class="tl-body"><div class="tl-name">HTML Entities</div><div class="tl-desc">Encode and decode HTML entities, named and numeric</div></div><span class="tl-arrow">→</span></a>
-            <a href="/img64"    class="tl-card enc"><div class="tl-icon">🖼</div><div class="tl-body"><div class="tl-name">Image → Base64</div><div class="tl-desc">Drag &amp; drop image → data URI, img tag, CSS background</div></div><span class="tl-arrow">→</span></a>
-            <a href="/contrast" class="tl-card enc"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Contrast Checker</div><div class="tl-desc">WCAG AA/AAA contrast ratios between two colours</div></div><span class="tl-arrow">→</span></a>
-            <a href="/hash"     class="tl-card enc"><div class="tl-icon">#</div><div class="tl-body"><div class="tl-name">Hash Generator</div><div class="tl-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512</div></div><span class="tl-arrow">→</span></a>
-          </div>
-        </div>
-
-        <div class="mini-section" id="classic-data">
-          <div class="mini-section-hd data-color">🗄 Data <span>20</span></div>
-          <div class="tools-list">
-            <a href="/json"              class="tl-card data"><div class="tl-icon">{}</div><div class="tl-body"><div class="tl-name">JSON Formatter</div><div class="tl-desc">Pretty-print, minify, and validate JSON</div></div><span class="tl-arrow">→</span></a>
-            <a href="/csv"               class="tl-card data"><div class="tl-icon">⊞</div><div class="tl-body"><div class="tl-name">CSV → JSON</div><div class="tl-desc">Convert CSV to JSON with header detection</div></div><span class="tl-arrow">→</span></a>
-            <a href="/yaml"              class="tl-card data"><div class="tl-icon">⇄</div><div class="tl-body"><div class="tl-name">YAML ↔ JSON</div><div class="tl-desc">Convert between YAML and JSON instantly</div></div><span class="tl-arrow">→</span></a>
-            <a href="/semver"            class="tl-card data"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Semver Calc</div><div class="tl-desc">Bump versions, compare, test ranges</div></div><span class="tl-arrow">→</span></a>
-            <a href="/http-status"       class="tl-card data"><div class="tl-icon">🌐</div><div class="tl-body"><div class="tl-name">HTTP Status</div><div class="tl-desc">All 63 HTTP status codes, searchable</div></div><span class="tl-arrow">→</span></a>
-            <a href="/sql-format"        class="tl-card data"><div class="tl-icon">🗄</div><div class="tl-body"><div class="tl-name">SQL Formatter</div><div class="tl-desc">Format messy SQL with indentation</div></div><span class="tl-arrow">→</span></a>
-            <a href="/jwt-inspector"     class="tl-card data"><div class="tl-icon">🔑</div><div class="tl-body"><div class="tl-name">JWT Inspector</div><div class="tl-desc">Decode header, payload, expiry</div></div><span class="tl-arrow">→</span></a>
-            <a href="/json-diff"         class="tl-card data"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">JSON Diff</div><div class="tl-desc">Semantic diff — changed, added, removed</div></div><span class="tl-arrow">→</span></a>
-            <a href="/caseconv"          class="tl-card data"><div class="tl-icon">Aa</div><div class="tl-body"><div class="tl-name">Case Converter</div><div class="tl-desc">camelCase · snake_case · kebab-case · 8 more</div></div><span class="tl-arrow">→</span></a>
-            <a href="/env-diff"          class="tl-card data"><div class="tl-icon">📋</div><div class="tl-body"><div class="tl-name">.env Diff</div><div class="tl-desc">Compare .env files — added, removed, changed</div></div><span class="tl-arrow">→</span></a>
-            <a href="/csp"               class="tl-card data"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">CSP Builder</div><div class="tl-desc">Build Content-Security-Policy headers</div></div><span class="tl-arrow">→</span></a>
-            <a href="/cidr"              class="tl-card data"><div class="tl-icon">🔌</div><div class="tl-body"><div class="tl-name">CIDR Calc</div><div class="tl-desc">Network address, broadcast, usable hosts</div></div><span class="tl-arrow">→</span></a>
-            <a href="/unicode-inspector" class="tl-card data"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Unicode Inspector</div><div class="tl-desc">Reveal invisible chars, zero-width, bidi</div></div><span class="tl-arrow">→</span></a>
-            <a href="/regex-explainer"   class="tl-card data"><div class="tl-icon">🔍</div><div class="tl-body"><div class="tl-name">Regex Explainer</div><div class="tl-desc">Plain-English breakdown of every token</div></div><span class="tl-arrow">→</span></a>
-            <a href="/json-ts"           class="tl-card data"><div class="tl-icon">TS</div><div class="tl-body"><div class="tl-name">JSON → TypeScript</div><div class="tl-desc">Generate TypeScript interfaces from JSON</div></div><span class="tl-arrow">→</span></a>
-            <a href="/markdown"          class="tl-card data"><div class="tl-icon">📄</div><div class="tl-body"><div class="tl-name">Markdown</div><div class="tl-desc">Live GFM preview — tables, tasks, code</div></div><span class="tl-arrow">→</span></a>
-            <a href="/lorem"             class="tl-card data"><div class="tl-icon">📝</div><div class="tl-body"><div class="tl-name">Lorem Ipsum</div><div class="tl-desc">Placeholder text — paragraphs or words</div></div><span class="tl-arrow">→</span></a>
-            <a href="/diff"              class="tl-card data"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">Text Diff</div><div class="tl-desc">Myers diff with char-level inline changes</div></div><span class="tl-arrow">→</span></a>
-            <a href="/ports" class="tl-card data"><div class="tl-icon">🔌</div><div class="tl-body"><div class="tl-name">Port Reference</div><div class="tl-desc">Searchable table of 180 well-known ports</div></div><span class="tl-arrow">→</span></a>
-            <a href="/curl"              class="tl-card data"><div class="tl-icon">$_</div><div class="tl-body"><div class="tl-name">cURL Builder</div><div class="tl-desc">GUI to build curl commands visually</div></div><span class="tl-arrow">→</span></a>
-          </div>
-        </div>
-
-        <div class="mini-section" id="classic-time">
-          <div class="mini-section-hd time-color">⏱ Time <span>3</span></div>
-          <div class="tools-list">
-            <a href="/epoch"    class="tl-card time"><div class="tl-icon">⏱</div><div class="tl-body"><div class="tl-name">Epoch Converter</div><div class="tl-desc">Unix timestamps ↔ dates, UTC, ISO, relative</div></div><span class="tl-arrow">→</span></a>
-            <a href="/baseconv" class="tl-card time"><div class="tl-icon">0x</div><div class="tl-body"><div class="tl-name">Base Converter</div><div class="tl-desc">Binary, octal, decimal, hex — any base 2–36</div></div><span class="tl-arrow">→</span></a>
-            <a href="/cron"     class="tl-card time"><div class="tl-icon">⏰</div><div class="tl-body"><div class="tl-name">CRON Parser</div><div class="tl-desc">Parse cron to English, next 10 runs</div></div><span class="tl-arrow">→</span></a>
-          </div>
-        </div>
-
-        <div class="mini-section" id="classic-text">
-          <div class="mini-section-hd text-color">✏ Text <span>8</span></div>
-          <div class="tools-list">
-            <a href="/regex"     class="tl-card text"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Regex Tester</div><div class="tl-desc">Live matching with highlighted groups</div></div><span class="tl-arrow">→</span></a>
-            <a href="/uuid"      class="tl-card text"><div class="tl-icon">🆔</div><div class="tl-body"><div class="tl-name">UUID Generator</div><div class="tl-desc">v4 and v7 UUIDs in bulk</div></div><span class="tl-arrow">→</span></a>
-            <a href="/password"  class="tl-card text"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">Password Gen</div><div class="tl-desc">Cryptographically secure with entropy meter</div></div><span class="tl-arrow">→</span></a>
-            <a href="/color"     class="tl-card text"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Color Converter</div><div class="tl-desc">HEX ↔ RGB ↔ HSL ↔ CMYK + shade palette</div></div><span class="tl-arrow">→</span></a>
-            <a href="/qr"        class="tl-card text"><div class="tl-icon">▦</div><div class="tl-body"><div class="tl-name">QR Generator</div><div class="tl-desc">QR codes for URLs, WiFi, vCards</div></div><span class="tl-arrow">→</span></a>
-            <a href="/chmod"     class="tl-card text"><div class="tl-icon">🔒</div><div class="tl-body"><div class="tl-name">chmod Calc</div><div class="tl-desc">Visual permission builder, octal ↔ symbolic</div></div><span class="tl-arrow">→</span></a>
-            <a href="/escape"    class="tl-card text"><div class="tl-icon">✂</div><div class="tl-body"><div class="tl-name">String Escape</div><div class="tl-desc">JS, Python, SQL, Shell, Regex, HTML, XML</div></div><span class="tl-arrow">→</span></a>
-            <a href="/gitignore" class="tl-card text"><div class="tl-icon">🙈</div><div class="tl-body"><div class="tl-name">gitignore Gen</div><div class="tl-desc">Generate .gitignore for 40+ languages, frameworks, editors</div></div><span class="tl-arrow">→</span></a>
-          </div>
-        </div>
-
-        <div class="mini-section" id="all-llm-tools">
-          <div class="mini-section-hd ai-color">✦ AI · LLM <span>38</span></div>
-          <div class="tools-list">
-            <a href="/token"       class="tl-card ai"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Exact token count for GPT-4, Claude, Gemini, Llama</div></div><span class="tl-arrow">→</span></a>
-            <a href="/ai-cost"     class="tl-card ai"><div class="tl-icon">💰</div><div class="tl-body"><div class="tl-name">AI Cost Calc</div><div class="tl-desc">Compare cost across 16 models — OpenAI, Anthropic, Google</div></div><span class="tl-arrow">→</span></a>
-            <a href="/ai-response" class="tl-card ai"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Response Inspector</div><div class="tl-desc">Renders content blocks, tool calls, usage, cost</div></div><span class="tl-arrow">→</span></a>
-            <a href="/prompt"      class="tl-card ai"><div class="tl-icon">✍</div><div class="tl-body"><div class="tl-name">Prompt Builder</div><div class="tl-desc">System · context · examples · format — XML, MD, plain</div></div><span class="tl-arrow">→</span></a>
-            <a href="/context"     class="tl-card ai"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Context Planner</div><div class="tl-desc">Token budgeter — see what fits in each model's window</div></div><span class="tl-arrow">→</span></a>
-            <a href="/tokenizer"    class="tl-card ai"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Tokenizer Visualizer</div><div class="tl-desc">Color-coded token spans — see exactly how models tokenize your text</div></div><span class="tl-arrow">→</span></a>
-            <a href="/tool-schema"  class="tl-card ai"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool Schema Builder</div><div class="tl-desc">Visual builder for OpenAI / Anthropic / Gemini function calling JSON</div></div><span class="tl-arrow">→</span></a>
-            <a href="/rag-chunk"    class="tl-card ai"><div class="tl-icon">🧩</div><div class="tl-body"><div class="tl-name">RAG Chunker</div><div class="tl-desc">Split text into RAG-ready chunks — by tokens, sentences, or paragraphs</div></div><span class="tl-arrow">→</span></a>
-            <a href="/model-compare" class="tl-card ai"><div class="tl-icon">📊</div><div class="tl-body"><div class="tl-name">Model Compare</div><div class="tl-desc">Sortable spec table — context window, pricing, capabilities for 23+ LLMs</div></div><span class="tl-arrow">→</span></a>
-            <a href="/llm-request"  class="tl-card ai"><div class="tl-icon">⚡</div><div class="tl-body"><div class="tl-name">API Request Builder</div><div class="tl-desc">Generate cURL, Python, JS code for OpenAI, Anthropic & Google AI</div></div><span class="tl-arrow">→</span></a>
-            <a href="/prompt-diff"    class="tl-card ai"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">Prompt Diff</div><div class="tl-desc">Side-by-side word and line diff between two prompt versions</div></div><span class="tl-arrow">→</span></a>
-            <a href="/finetune"       class="tl-card ai"><div class="tl-icon">🗂</div><div class="tl-body"><div class="tl-name">Fine-tune Formatter</div><div class="tl-desc">Build training datasets in OpenAI, Alpaca, and ShareGPT JSONL formats</div></div><span class="tl-arrow">→</span></a>
-            <a href="/struct-output"  class="tl-card ai"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Structured Output Builder</div><div class="tl-desc">Visual schema builder for OpenAI response_format — exports Pydantic and Zod too</div></div><span class="tl-arrow">→</span></a>
-            <a href="/sampling"       class="tl-card ai"><div class="tl-icon">🎲</div><div class="tl-body"><div class="tl-name">Sampling Visualizer</div><div class="tl-desc">Interactive chart showing how temperature, top-p, and top-k reshape token distributions</div></div><span class="tl-arrow">→</span></a>
-            <a href="/few-shot"       class="tl-card ai"><div class="tl-icon">✦</div><div class="tl-body"><div class="tl-name">Few-shot Builder</div><div class="tl-desc">Build few-shot examples and export in messages, XML, Markdown, or plain text</div></div><span class="tl-arrow">→</span></a>
-            <a href="/jsonl"          class="tl-card ai"><div class="tl-icon">📋</div><div class="tl-body"><div class="tl-name">JSONL Viewer</div><div class="tl-desc">Parse and inspect JSONL datasets with syntax highlighting and filtering</div></div><span class="tl-arrow">→</span></a>
-            <a href="/conv-view"      class="tl-card ai"><div class="tl-icon">💬</div><div class="tl-body"><div class="tl-name">Conversation Viewer</div><div class="tl-desc">Render raw API JSON as a readable chat UI — supports OpenAI and Anthropic formats</div></div><span class="tl-arrow">→</span></a>
-            <a href="/prompt-tmpl"   class="tl-card ai"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Prompt Template Engine</div><div class="tl-desc">Fill {{variable}} placeholders in prompt templates with a live form</div></div><span class="tl-arrow">→</span></a>
-            <a href="/logprobs"       class="tl-card ai"><div class="tl-icon">🌡</div><div class="tl-body"><div class="tl-name">Logprobs Viewer</div><div class="tl-desc">Heatmap visualization of OpenAI token confidence scores</div></div><span class="tl-arrow">→</span></a>
-            <a href="/sys-analyze"    class="tl-card ai"><div class="tl-icon">🔍</div><div class="tl-body"><div class="tl-name">System Prompt Analyzer</div><div class="tl-desc">Structural breakdown, token count, issues, and quality score</div></div><span class="tl-arrow">→</span></a>
-            <a href="/prompt-lib"     class="tl-card ai"><div class="tl-icon">📚</div><div class="tl-body"><div class="tl-name">Prompt Library</div><div class="tl-desc">32 curated system prompts across 8 categories — searchable, one-click copy</div></div><span class="tl-arrow">→</span></a>
-            <a href="/batch"          class="tl-card ai"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Batch Request Builder</div><div class="tl-desc">Build OpenAI Batch API JSONL files — 50% cost reduction</div></div><span class="tl-arrow">→</span></a>
-            <a href="/benchmarks"     class="tl-card ai"><div class="tl-icon">🏆</div><div class="tl-body"><div class="tl-name">LLM Benchmarks</div><div class="tl-desc">Sortable MMLU, HumanEval, MATH, GPQA scores for 20+ models</div></div><span class="tl-arrow">→</span></a>
-            <a href="/eval"          class="tl-card ai"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">LLM Eval Harness</div><div class="tl-desc">Score JSONL test cases with exact, contains, regex, or JSON checks</div></div><span class="tl-arrow">→</span></a>
-            <a href="/tool-call"     class="tl-card ai"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool-Call Debugger</div><div class="tl-desc">Detect and validate OpenAI, Anthropic, and Gemini tool calls</div></div><span class="tl-arrow">→</span></a>
-            <a href="/context-opt"   class="tl-card ai"><div class="tl-icon">▤</div><div class="tl-body"><div class="tl-name">Context Window Optimizer</div><div class="tl-desc">Prioritize, trim, and pack context blocks into a token budget</div></div><span class="tl-arrow">→</span></a>
-            <a href="/injection"     class="tl-card ai"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">Prompt Injection Scanner</div><div class="tl-desc">Heuristic scan for override, exfiltration, delimiter, and jailbreak signals</div></div><span class="tl-arrow">→</span></a>
-            <a href="/pii"           class="tl-card ai"><div class="tl-icon">◌</div><div class="tl-body"><div class="tl-name">PII Redactor</div><div class="tl-desc">Replace emails, phones, API keys, JWTs, IPs, and URLs with placeholders</div></div><span class="tl-arrow">→</span></a>
-            <a href="/stream"        class="tl-card ai"><div class="tl-icon">∿</div><div class="tl-body"><div class="tl-name">Streaming Response Inspector</div><div class="tl-desc">Parse SSE events and reconstruct content, tool calls, and usage</div></div><span class="tl-arrow">→</span></a>
-            <a href="/retry"          class="tl-card ai"><div class="tl-icon">↻</div><div class="tl-body"><div class="tl-name">Retry &amp; Backoff Simulator</div><div class="tl-desc">Model exponential retry schedules with caps and jitter</div></div><span class="tl-arrow">→</span></a>
-            <a href="/errors"         class="tl-card ai"><div class="tl-icon">⚠</div><div class="tl-body"><div class="tl-name">LLM Error Decoder</div><div class="tl-desc">Classify provider errors and get actionable fixes</div></div><span class="tl-arrow">→</span></a>
-            <a href="/contract"       class="tl-card ai"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">Response Contract Tester</div><div class="tl-desc">Check response JSON against required paths and types</div></div><span class="tl-arrow">→</span></a>
-            <a href="/compact"        class="tl-card ai"><div class="tl-icon">≡</div><div class="tl-body"><div class="tl-name">Conversation Compactor</div><div class="tl-desc">Create deterministic role-aware conversation summaries</div></div><span class="tl-arrow">→</span></a>
-            <a href="/dedupe"         class="tl-card ai"><div class="tl-icon">⧉</div><div class="tl-body"><div class="tl-name">Context Deduplicator</div><div class="tl-desc">Find exact and near-duplicate context blocks</div></div><span class="tl-arrow">→</span></a>
-            <a href="/roles"          class="tl-card ai"><div class="tl-icon">◉</div><div class="tl-body"><div class="tl-name">Message Role Visualizer</div><div class="tl-desc">Normalize provider messages into a role timeline</div></div><span class="tl-arrow">→</span></a>
-            <a href="/trace"          class="tl-card ai"><div class="tl-icon">⌁</div><div class="tl-body"><div class="tl-name">Agent Trace Viewer</div><div class="tl-desc">Inspect JSONL steps, timings, failures, and tool events</div></div><span class="tl-arrow">→</span></a>
-            <a href="/loop"           class="tl-card ai"><div class="tl-icon">∞</div><div class="tl-body"><div class="tl-name">Agent Loop Detector</div><div class="tl-desc">Spot repeated calls, cycles, and tool bursts</div></div><span class="tl-arrow">→</span></a>
-            <a href="/selection"      class="tl-card ai"><div class="tl-icon">◎</div><div class="tl-body"><div class="tl-name">Tool Selection Evaluator</div><div class="tl-desc">Score expected, missing, wrong, and unknown tools</div></div><span class="tl-arrow">→</span></a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ── ENCODING ──────────────────────────────────────── -->
-      <section class="cat-section" data-section="encoding" style="display:none">
-        <div class="cat-hero cat-hero--enc">
-          <div class="cat-hero-icon">📦</div>
-          <div>
-            <h2 class="cat-hero-title">Encoding</h2>
-            <p class="cat-hero-sub">7 tools — Base64, URL, HTML entities, hashing, JWT, images, and contrast. Transform and verify encoded data without any server.</p>
-          </div>
-        </div>
-        <div class="tools-list tools-list--lg">
-          <a href="/jwt"      class="tl-card enc tl-lg"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">JWT Decoder</div><div class="tl-desc">Decode & verify JWT tokens. Supports HS256/384/512, RS256, ES256, PS256. Shows header, payload, expiry countdown.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/base64"   class="tl-card enc tl-lg"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Base64</div><div class="tl-desc">Encode/decode strings and files to Base64. URL-safe variant, line wrapping, charset options.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/url"      class="tl-card enc tl-lg"><div class="tl-icon">🔗</div><div class="tl-body"><div class="tl-name">URL Encoder</div><div class="tl-desc">Encode/decode URLs and individual query string components. Handles special characters, international URLs.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/entities" class="tl-card enc tl-lg"><div class="tl-icon">&amp;</div><div class="tl-body"><div class="tl-name">HTML Entities</div><div class="tl-desc">Encode and decode HTML entities. Named (&amp;amp;), decimal (&#38;), and hex (&#x26;) formats.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/hash"     class="tl-card enc tl-lg"><div class="tl-icon">#</div><div class="tl-body"><div class="tl-name">Hash Generator</div><div class="tl-desc">MD5, SHA-1, SHA-256, SHA-384, SHA-512. Works on text or any file. All hashing runs in the browser.</div></div><span class="tl-arrow">→</span></a>
-        </div>
-      </section>
-
-      <!-- ── DATA ─────────────────────────────────────────── -->
-      <section class="cat-section" data-section="data" style="display:none">
-        <div class="cat-hero cat-hero--data">
-          <div class="cat-hero-icon">🗄</div>
-          <div>
-            <h2 class="cat-hero-title">Data</h2>
-            <p class="cat-hero-sub">20 tools — JSON, YAML, SQL, CSV, regex, diffs and more. Format, convert, and inspect structured data instantly.</p>
-          </div>
-        </div>
-        <div class="tools-list tools-list--lg">
-          <a href="/json"              class="tl-card data tl-lg"><div class="tl-icon">{}</div><div class="tl-body"><div class="tl-name">JSON Formatter</div><div class="tl-desc">Pretty-print, minify, validate JSON. Syntax highlighted output with error reporting.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/yaml"              class="tl-card data tl-lg"><div class="tl-icon">⇄</div><div class="tl-body"><div class="tl-name">YAML ↔ JSON</div><div class="tl-desc">Convert between YAML and JSON instantly in both directions. Preserves comments in YAML mode.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/csv"               class="tl-card data tl-lg"><div class="tl-icon">⊞</div><div class="tl-body"><div class="tl-name">CSV → JSON</div><div class="tl-desc">Convert CSV to JSON with auto header detection and type coercion for numbers and booleans.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/json-diff"         class="tl-card data tl-lg"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">JSON Diff</div><div class="tl-desc">Semantic diff between two JSON objects. Shows changed, added, and removed paths clearly.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/diff"              class="tl-card data tl-lg"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">Text Diff</div><div class="tl-desc">Myers diff algorithm with char-level inline highlights, context collapsing, and copy as unified diff.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/sql-format"        class="tl-card data tl-lg"><div class="tl-icon">🗄</div><div class="tl-body"><div class="tl-name">SQL Formatter</div><div class="tl-desc">Format messy SQL with proper indentation, keyword capitalisation, and syntax highlighting.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/http-status"       class="tl-card data tl-lg"><div class="tl-icon">🌐</div><div class="tl-body"><div class="tl-name">HTTP Status Codes</div><div class="tl-desc">Searchable reference for all 63 HTTP status codes — meaning, typical use, RFC reference.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/jwt-inspector"     class="tl-card data tl-lg"><div class="tl-icon">🔑</div><div class="tl-body"><div class="tl-name">JWT Inspector</div><div class="tl-desc">Decode any JWT — header, payload, expiry countdown. No secret required, fully client-side.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/semver"            class="tl-card data tl-lg"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Semver Calculator</div><div class="tl-desc">Bump major/minor/patch, compare versions, test version range expressions.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/caseconv"          class="tl-card data tl-lg"><div class="tl-icon">Aa</div><div class="tl-body"><div class="tl-name">Case Converter</div><div class="tl-desc">camelCase · PascalCase · snake_case · kebab-case · CONSTANT_CASE · Title Case · 4 more.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/env-diff"          class="tl-card data tl-lg"><div class="tl-icon">📋</div><div class="tl-body"><div class="tl-name">.env Diff</div><div class="tl-desc">Compare two .env files side by side — shows added, removed, and changed keys at a glance.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/csp"               class="tl-card data tl-lg"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">CSP Builder</div><div class="tl-desc">Build Content-Security-Policy headers with guided toggles per directive.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/cidr"              class="tl-card data tl-lg"><div class="tl-icon">🔌</div><div class="tl-body"><div class="tl-name">CIDR Calculator</div><div class="tl-desc">Network address, broadcast address, usable host count, subnet mask from any CIDR notation.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/unicode-inspector" class="tl-card data tl-lg"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Unicode Inspector</div><div class="tl-desc">Reveal invisible characters, zero-width spaces, bidi overrides, and other hidden code points.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/regex-explainer"   class="tl-card data tl-lg"><div class="tl-icon">🔍</div><div class="tl-body"><div class="tl-name">Regex Explainer</div><div class="tl-desc">Plain-English breakdown of every token in a regex — groups, lookaheads, quantifiers, flags.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/json-ts"           class="tl-card data tl-lg"><div class="tl-icon">TS</div><div class="tl-body"><div class="tl-name">JSON → TypeScript</div><div class="tl-desc">Generate TypeScript interfaces and types from any JSON sample. Handles nested objects and arrays.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/markdown"          class="tl-card data tl-lg"><div class="tl-icon">📄</div><div class="tl-body"><div class="tl-name">Markdown Preview</div><div class="tl-desc">Live Markdown preview with GFM support — tables, task lists, fenced code, strikethrough.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/lorem"             class="tl-card data tl-lg"><div class="tl-icon">📝</div><div class="tl-body"><div class="tl-name">Lorem Ipsum</div><div class="tl-desc">Generate placeholder text by paragraphs, sentences, or word count.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/curl"              class="tl-card data tl-lg"><div class="tl-icon">$_</div><div class="tl-body"><div class="tl-name">cURL Builder</div><div class="tl-desc">Visual GUI to build curl commands — method, headers, auth, body, options.</div></div><span class="tl-arrow">→</span></a>
-        </div>
-      </section>
-
-      <!-- ── TIME ─────────────────────────────────────────── -->
-      <section class="cat-section" data-section="time" style="display:none">
-        <div class="cat-hero cat-hero--time">
-          <div class="cat-hero-icon">⏱</div>
-          <div>
-            <h2 class="cat-hero-title">Time</h2>
-            <p class="cat-hero-sub">3 tools — epoch conversion, base conversion, CRON parsing. Timestamp and number utilities for every day of debugging.</p>
-          </div>
-        </div>
-        <div class="tools-list tools-list--lg">
-          <a href="/epoch"    class="tl-card time tl-lg"><div class="tl-icon">⏱</div><div class="tl-body"><div class="tl-name">Epoch Converter</div><div class="tl-desc">Unix timestamps ↔ human-readable dates. Supports UTC, ISO 8601, and relative time. Works bidirectionally.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/baseconv" class="tl-card time tl-lg"><div class="tl-icon">0x</div><div class="tl-body"><div class="tl-name">Base Converter</div><div class="tl-desc">Convert numbers between binary, octal, decimal, hexadecimal, and any custom base from 2 to 36.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/cron"     class="tl-card time tl-lg"><div class="tl-icon">⏰</div><div class="tl-body"><div class="tl-name">CRON Parser</div><div class="tl-desc">Parse cron expressions to plain English. Preview the next 10 scheduled run times. Supports 5 and 6-field expressions.</div></div><span class="tl-arrow">→</span></a>
-        </div>
-      </section>
-
-      <!-- ── TEXT ─────────────────────────────────────────── -->
-      <section class="cat-section" data-section="text" style="display:none">
-        <div class="cat-hero cat-hero--text">
-          <div class="cat-hero-icon">✏</div>
-          <div>
-            <h2 class="cat-hero-title">Text</h2>
-            <p class="cat-hero-sub">8 tools — regex, UUIDs, passwords, colours, QR codes, permissions, string escaping, and gitignore files. The dev staples.</p>
-          </div>
-        </div>
-        <div class="tools-list tools-list--lg">
-          <a href="/regex"    class="tl-card text tl-lg"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Regex Tester</div><div class="tl-desc">Live regex matching with highlighted matches and capture groups. Flags panel, match count, group inspector.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/uuid"     class="tl-card text tl-lg"><div class="tl-icon">🆔</div><div class="tl-body"><div class="tl-name">UUID Generator</div><div class="tl-desc">Generate v4 and v7 UUIDs in bulk. Format options: uppercase, braces, no-hyphens.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/password" class="tl-card text tl-lg"><div class="tl-icon">🔐</div><div class="tl-body"><div class="tl-name">Password Generator</div><div class="tl-desc">Cryptographically secure passwords. Entropy meter, charset toggles, bulk generation.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/color"    class="tl-card text tl-lg"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Color Converter</div><div class="tl-desc">HEX ↔ RGB ↔ HSL ↔ CMYK conversion with shade palette generation and CSS output.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/qr"       class="tl-card text tl-lg"><div class="tl-icon">▦</div><div class="tl-body"><div class="tl-name">QR Generator</div><div class="tl-desc">Generate QR codes for URLs, WiFi credentials, vCards. Downloadable SVG and PNG.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/chmod"    class="tl-card text tl-lg"><div class="tl-icon">🔒</div><div class="tl-body"><div class="tl-name">chmod Calculator</div><div class="tl-desc">Visual permission builder with toggle switches. Bidirectional octal ↔ symbolic. Special bits: setuid, setgid, sticky.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/gitignore" class="tl-card text tl-lg"><div class="tl-icon">🙈</div><div class="tl-body"><div class="tl-name">gitignore Generator</div><div class="tl-desc">Pick your stack — Node, Python, Go, Rust, React, Next.js, Docker, Terraform and 35 more. Generates a clean .gitignore instantly.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/escape"   class="tl-card text tl-lg"><div class="tl-icon">✂</div><div class="tl-body"><div class="tl-name">String Escape</div><div class="tl-desc">Escape/unescape strings for JS, JSON, Python, SQL, Shell, Regex, HTML, and XML. Bidirectional.</div></div><span class="tl-arrow">→</span></a>
-        </div>
-      </section>
-
-      <!-- ── AI ───────────────────────────────────────────── -->
-      <section class="cat-section" data-section="ai" style="display:none">
-        <div class="cat-hero cat-hero--ai">
-          <div class="cat-hero-icon">✦</div>
-          <div>
-            <h2 class="cat-hero-title">AI · LLM</h2>
-            <p class="cat-hero-sub">38 tools built for the AI era — token counting, cost estimation, prompt engineering, response debugging. Browser-native, zero telemetry.</p>
-          </div>
-        </div>
-        <div class="tools-list tools-list--lg">
-          <a href="/token"       class="tl-card ai tl-lg"><div class="tl-icon">🔢</div><div class="tl-body"><div class="tl-name">Token Counter</div><div class="tl-desc">Accurate token counts for GPT-4, Claude, Gemini, Llama using the actual cl100k_base tokenizer. Context window bars per model.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/ai-cost"     class="tl-card ai tl-lg"><div class="tl-icon">💰</div><div class="tl-body"><div class="tl-name">AI Cost Calculator</div><div class="tl-desc">Input × output tokens × API calls across 16 models. Compare cost between OpenAI, Anthropic, Google, Groq, and Mistral.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/ai-response" class="tl-card ai tl-lg"><div class="tl-icon">🔬</div><div class="tl-body"><div class="tl-name">Response Inspector</div><div class="tl-desc">Paste raw API JSON from Anthropic or OpenAI. Renders content blocks, tool calls, token usage, and estimated cost.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/prompt"      class="tl-card ai tl-lg"><div class="tl-icon">✍</div><div class="tl-body"><div class="tl-name">Prompt Builder</div><div class="tl-desc">Structured editor: system prompt, context, few-shot examples, output format. Exports as XML tags, Markdown, or plain text.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/context"     class="tl-card ai tl-lg"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Context Planner</div><div class="tl-desc">Multi-slot token budgeter. Paste files or text blocks, see total token count, and instantly know what fits in each model's window.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/tokenizer"    class="tl-card ai tl-lg"><div class="tl-icon">🎨</div><div class="tl-body"><div class="tl-name">Tokenizer Visualizer</div><div class="tl-desc">Color-coded token spans with hover-to-inspect IDs. See exactly where token boundaries fall in your text using the cl100k_base vocabulary.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/tool-schema"  class="tl-card ai tl-lg"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool Schema Builder</div><div class="tl-desc">Visual GUI to build function calling JSON for OpenAI, Anthropic, and Gemini. Add params, set types, mark required — outputs valid schema instantly.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/rag-chunk"    class="tl-card ai tl-lg"><div class="tl-icon">🧩</div><div class="tl-body"><div class="tl-name">RAG Chunker</div><div class="tl-desc">Split documents into retrieval-ready chunks by token count, sentence count, or paragraph. Configurable overlap, per-chunk token display, bulk JSON export.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/model-compare" class="tl-card ai tl-lg"><div class="tl-icon">📊</div><div class="tl-body"><div class="tl-name">Model Compare</div><div class="tl-desc">Sortable spec table for 23+ models across OpenAI, Anthropic, Google, Meta, and Mistral. Compare context window, pricing, vision, and tool use.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/llm-request"  class="tl-card ai tl-lg"><div class="tl-icon">⚡</div><div class="tl-body"><div class="tl-name">API Request Builder</div><div class="tl-desc">Build complete API requests visually — pick provider, model, messages, and params. Outputs ready-to-run cURL, Python SDK, and JavaScript SDK code.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/prompt-diff"    class="tl-card ai tl-lg"><div class="tl-icon">⟷</div><div class="tl-body"><div class="tl-name">Prompt Diff</div><div class="tl-desc">Word-level and line-level diff between two prompt versions. See additions, removals, and a similarity percentage at a glance.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/finetune"       class="tl-card ai tl-lg"><div class="tl-icon">🗂</div><div class="tl-body"><div class="tl-name">Fine-tune Formatter</div><div class="tl-desc">Build multi-turn training examples with a guided form, preview them, and export as JSONL in OpenAI chat, Alpaca, or ShareGPT format.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/struct-output"  class="tl-card ai tl-lg"><div class="tl-icon">📐</div><div class="tl-body"><div class="tl-name">Structured Output Builder</div><div class="tl-desc">Visual field editor for OpenAI structured outputs (response_format). Exports JSON Schema, Pydantic model, and Zod schema simultaneously.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/sampling"       class="tl-card ai tl-lg"><div class="tl-icon">🎲</div><div class="tl-body"><div class="tl-name">Sampling Visualizer</div><div class="tl-desc">Interactive canvas chart showing token probability distributions. Drag temperature, top-p, and top-k sliders to watch the distribution reshape live.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/few-shot"       class="tl-card ai tl-lg"><div class="tl-icon">✦</div><div class="tl-body"><div class="tl-name">Few-shot Builder</div><div class="tl-desc">Add input/output example pairs, write a task description, and export as an OpenAI messages array, XML tags (Claude-style), Markdown table, or plain text.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/jsonl"          class="tl-card ai tl-lg"><div class="tl-icon">📋</div><div class="tl-body"><div class="tl-name">JSONL Viewer</div><div class="tl-desc">Paste or upload JSONL — fine-tuning datasets, ndjson logs, or any newline-delimited JSON. Parsed records shown with syntax highlighting, filtering, and copy per line.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/conv-view"      class="tl-card ai tl-lg"><div class="tl-icon">💬</div><div class="tl-body"><div class="tl-name">Conversation Viewer</div><div class="tl-desc">Paste a raw API request, response, or messages array and see it rendered as a chat UI with avatars, token counts, and metadata chips.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/prompt-tmpl"   class="tl-card ai tl-lg"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Prompt Template Engine</div><div class="tl-desc">Write templates with {{variable}} placeholders, fill them via auto-generated form fields, and copy the completed prompt. Perfect for repeatable prompt patterns.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/logprobs"       class="tl-card ai tl-lg"><div class="tl-icon">🌡</div><div class="tl-body"><div class="tl-name">Logprobs Viewer</div><div class="tl-desc">Paste an OpenAI logprobs response and see every token colored green→red by confidence. Hover any token to see its top alternatives and exact probabilities.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/sys-analyze"    class="tl-card ai tl-lg"><div class="tl-icon">🔍</div><div class="tl-body"><div class="tl-name">System Prompt Analyzer</div><div class="tl-desc">Paste a system prompt and get token count, structural breakdown (role/task/format/rules), a quality score out of 100, detected issues, and improvement suggestions.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/prompt-lib"     class="tl-card ai tl-lg"><div class="tl-icon">📚</div><div class="tl-body"><div class="tl-name">Prompt Library</div><div class="tl-desc">32 battle-tested system prompts across Coding, Writing, Analysis, Customer, Data, Creative, Productivity, and Research. Searchable and filterable — click to copy.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/batch"          class="tl-card ai tl-lg"><div class="tl-icon">📦</div><div class="tl-body"><div class="tl-name">Batch Request Builder</div><div class="tl-desc">Build OpenAI Batch API JSONL files visually. Add multiple requests, set shared params, assign custom IDs, and download a ready-to-submit batch file at 50% cost.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/benchmarks"     class="tl-card ai tl-lg"><div class="tl-icon">🏆</div><div class="tl-body"><div class="tl-name">LLM Benchmarks</div><div class="tl-desc">Sortable table of MMLU, HumanEval, MATH, GPQA, and MMMU scores for 20+ models. Filter by provider, sort by any benchmark, compare at a glance.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/eval"          class="tl-card ai tl-lg"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">LLM Eval Harness</div><div class="tl-desc">Paste JSONL test cases with expected and actual values, then score them using exact match, contains, regular expression, or JSON validity checks.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/tool-call"     class="tl-card ai tl-lg"><div class="tl-icon">⚙</div><div class="tl-body"><div class="tl-name">Tool-Call Debugger</div><div class="tl-desc">Paste raw model JSON and detect, validate, pretty-print, and copy tool calls from OpenAI, Anthropic, or Gemini-style responses.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/context-opt"   class="tl-card ai tl-lg"><div class="tl-icon">▤</div><div class="tl-body"><div class="tl-name">Context Window Optimizer</div><div class="tl-desc">Assign labels and priorities to context blocks, estimate tokens, and pack the highest-value text into a fixed budget.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/injection"     class="tl-card ai tl-lg"><div class="tl-icon">🛡</div><div class="tl-body"><div class="tl-name">Prompt Injection Scanner</div><div class="tl-desc">Local heuristic scanner for instruction overrides, delimiter attacks, exfiltration requests, and jailbreak language with a risk score.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/pii"           class="tl-card ai tl-lg"><div class="tl-icon">◌</div><div class="tl-body"><div class="tl-name">PII Redactor</div><div class="tl-desc">Detect and replace emails, phones, API keys, JWTs, IP addresses, and URLs with typed placeholders and counts.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/stream"        class="tl-card ai tl-lg"><div class="tl-icon">∿</div><div class="tl-body"><div class="tl-name">Streaming Response Inspector</div><div class="tl-desc">Parse SSE data lines, [DONE], content and tool-call deltas, plus usage metadata from common LLM stream formats.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/retry"          class="tl-card ai tl-lg"><div class="tl-icon">↻</div><div class="tl-body"><div class="tl-name">Retry &amp; Backoff Simulator</div><div class="tl-desc">Model exponential retry schedules with caps, jitter, elapsed wait, and copyable output.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/errors"         class="tl-card ai tl-lg"><div class="tl-icon">⚠</div><div class="tl-body"><div class="tl-name">LLM Error Decoder</div><div class="tl-desc">Classify common provider errors, extract status and code, and suggest practical fixes.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/contract"       class="tl-card ai tl-lg"><div class="tl-icon">✓</div><div class="tl-body"><div class="tl-name">Response Contract Tester</div><div class="tl-desc">Validate required paths, primitive types, enums, and forbidden fields in JSON responses.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/compact"        class="tl-card ai tl-lg"><div class="tl-icon">≡</div><div class="tl-body"><div class="tl-name">Conversation Compactor</div><div class="tl-desc">Estimate tokens and produce deterministic summaries of roles, decisions, TODOs, and questions.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/dedupe"         class="tl-card ai tl-lg"><div class="tl-icon">⧉</div><div class="tl-body"><div class="tl-name">Context Deduplicator</div><div class="tl-desc">Detect exact and near-duplicate blocks with normalized similarity and savings estimates.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/roles"          class="tl-card ai tl-lg"><div class="tl-icon">◉</div><div class="tl-body"><div class="tl-name">Message Role Visualizer</div><div class="tl-desc">Normalize OpenAI, Anthropic, and Gemini-style messages into a colored timeline with token counts.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/trace"          class="tl-card ai tl-lg"><div class="tl-icon">⌁</div><div class="tl-body"><div class="tl-name">Agent Trace Viewer</div><div class="tl-desc">Render JSONL agent events with step order, durations, failures, tool calls, and model events.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/loop"           class="tl-card ai tl-lg"><div class="tl-icon">∞</div><div class="tl-body"><div class="tl-name">Agent Loop Detector</div><div class="tl-desc">Find repeated identical calls, alternating cycles, and excessive same-tool use in traces.</div></div><span class="tl-arrow">→</span></a>
-          <a href="/selection"      class="tl-card ai tl-lg"><div class="tl-icon">◎</div><div class="tl-body"><div class="tl-name">Tool Selection Evaluator</div><div class="tl-desc">Score JSONL cases for exact selection and report missing, wrong, or unknown tools.</div></div><span class="tl-arrow">→</span></a>
-        </div>
-      </section>
-
-    </div><!-- /content -->
-  </div><!-- /app-body -->
+      <div class="directory-groups" id="directoryGroups"></div>
+    </div>
+  </div>
 
   <footer>
-    <span><span class="logo-dot" style="display:inline-block;width:6px;height:6px;vertical-align:middle;margin-right:6px"></span>greenwoods.dev</span>
-    <span>76 tools · No auth · No telemetry · Open source · <a href="https://github.com/dev-greenwoods/greenwoods.dev" target="_blank" rel="noopener noreferrer">GitHub</a> · <a href="https://github.com/dev-greenwoods/greenwoods.dev/issues/new" target="_blank" rel="noopener noreferrer">Suggest a tool</a></span>
+    <span id="footer-facts"></span>
+    <span><a href="https://github.com/dev-greenwoods/greenwoods.dev/issues/new" target="_blank" rel="noopener noreferrer">Suggest a tool</a> · <a href="https://github.com/dev-greenwoods/greenwoods.dev" target="_blank" rel="noopener noreferrer">GitHub</a></span>
   </footer>
 </div>
 
 <script>
 (function(){
-  // ── Navigation ────────────────────────────────────────────────
-  const navItems  = document.querySelectorAll('.nav-item');
-  const sections  = document.querySelectorAll('.cat-section');
-  const content   = document.getElementById('content');
-
-  navItems.forEach(btn => {
-    btn.addEventListener('click', () => {
-      navItems.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.dataset.cat;
-      sections.forEach(s => {
-        s.style.display = s.dataset.section === cat ? '' : 'none';
-      });
-      content.scrollTop = 0;
-    });
-  });
-
-  // ── Palette ───────────────────────────────────────────────────
   const TOOLS = [
     {name:'JWT Decoder',icon:'🔐',href:'/jwt',cat:'encoding',desc:'Decode & verify JWT tokens — HS, RS, ES, PS algorithms'},
     {name:'Base64',icon:'📦',href:'/base64',cat:'encoding',desc:'Encode/decode strings and files, URL-safe variant'},
@@ -567,6 +264,99 @@
     {name:'Tool Selection Evaluator',icon:'◎',href:'/selection',cat:'ai',desc:'Score expected versus selected tools'},
   ];
 
+  const CATEGORIES = [
+    {id:'ai', label:'LLM Tools', icon:'✦', color:'ai-color'},
+    {id:'data', label:'Data', icon:'🗄', color:'data-color'},
+    {id:'text', label:'Text', icon:'✏', color:'text-color'},
+    {id:'encoding', label:'Encoding', icon:'📦', color:'enc-color'},
+    {id:'time', label:'Time', icon:'⏱', color:'time-color'}
+  ];
+  const CATEGORY_LABELS = Object.fromEntries(CATEGORIES.map(category => [category.id, category.label]));
+  const CATEGORY_ORDER = Object.fromEntries(CATEGORIES.map((category, index) => [category.id, index]));
+  TOOLS.sort((a, b) => CATEGORY_ORDER[a.cat] - CATEGORY_ORDER[b.cat]);
+
+  const nav = document.getElementById('sidebarNav');
+  const groups = document.getElementById('directoryGroups');
+  const navItems = [];
+  const sections = [];
+  const allButton = document.createElement('button');
+  allButton.className = 'nav-item active';
+  allButton.dataset.cat = 'all';
+  allButton.innerHTML = '<span class="nav-item-icon">⊞</span><span class="nav-item-label">All tools</span>';
+  const allCount = document.createElement('span');
+  allCount.className = 'nav-item-count';
+  allCount.textContent = String(TOOLS.length);
+  allButton.append(allCount);
+  nav.append(allButton);
+  navItems.push(allButton);
+
+  for (const category of CATEGORIES) {
+    const tools = TOOLS.filter(tool => tool.cat === category.id);
+    const button = document.createElement('button');
+    button.className = 'nav-item';
+    button.dataset.cat = category.id;
+    button.innerHTML = `<span class="nav-item-icon">${category.icon}</span><span class="nav-item-label">${category.label}</span>`;
+    const count = document.createElement('span');
+    count.className = 'nav-item-count';
+    count.textContent = String(tools.length);
+    button.append(count);
+    nav.append(button);
+    navItems.push(button);
+
+    const section = document.createElement('section');
+    section.className = 'mini-section';
+    section.dataset.section = category.id;
+    const heading = document.createElement('h3');
+    heading.className = `mini-section-hd ${category.color}`;
+    heading.append(document.createTextNode(`${category.icon} ${category.label} `));
+    const headingCount = document.createElement('span');
+    headingCount.textContent = String(tools.length);
+    heading.append(headingCount);
+    const list = document.createElement('div');
+    list.className = 'tools-list';
+
+    for (const tool of tools) {
+      const card = document.createElement('a');
+      card.href = tool.href;
+      card.className = `tl-card ${tool.cat}`;
+      const icon = document.createElement('div');
+      icon.className = 'tl-icon';
+      icon.textContent = tool.icon;
+      const body = document.createElement('div');
+      body.className = 'tl-body';
+      const name = document.createElement('div');
+      name.className = 'tl-name';
+      name.textContent = tool.name;
+      const description = document.createElement('div');
+      description.className = 'tl-desc';
+      description.textContent = tool.desc;
+      body.append(name, description);
+      const arrow = document.createElement('span');
+      arrow.className = 'tl-arrow';
+      arrow.textContent = '→';
+      card.append(icon, body, arrow);
+      list.append(card);
+    }
+
+    section.append(heading, list);
+    groups.append(section);
+    sections.push(section);
+  }
+
+  document.getElementById('directory-count').textContent = String(TOOLS.length);
+  document.getElementById('footer-facts').textContent =
+    `${TOOLS.length} tools · ${TOOLS.filter(tool => tool.cat === 'ai').length} for LLMs · zero telemetry · runs in your browser`;
+
+  const content = document.getElementById('content');
+  navItems.forEach(button => button.addEventListener('click', () => {
+    navItems.forEach(item => item.classList.toggle('active', item === button));
+    sections.forEach(section => {
+      section.hidden = button.dataset.cat !== 'all' && section.dataset.section !== button.dataset.cat;
+    });
+    content.scrollTop = 0;
+  }));
+
+  // ── Palette ───────────────────────────────────────────────────
   let filtered=TOOLS.slice(),fi=0;
   const backdrop=document.getElementById('cmdBackdrop');
   const inp=document.getElementById('cmdInput');
@@ -590,7 +380,7 @@
           <div class="cmd-item-name">${hl(t.name)}</div>
           <div class="cmd-item-desc">${t.desc}</div>
         </span>
-        <span class="cmd-item-cat">${t.cat}</span>
+        <span class="cmd-item-cat">${CATEGORY_LABELS[t.cat]}</span>
       </a>`).join('');
   }
 
@@ -619,7 +409,7 @@
     }).filter(x=>x.s>0).sort((a,b)=>b.s-a.s).map(x=>x.t));
   }
 
-  document.getElementById('cmdTrigger').addEventListener('click',open);
+  document.getElementById('cmdTrigger').addEventListener('click',() => open());
   document.getElementById('heroSearch').addEventListener('input',e=>{
     if(!backdrop.classList.contains('open'))open(e.currentTarget.value);
   });
@@ -635,6 +425,8 @@
     if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();backdrop.classList.contains('open')?close():open();}
     if(e.key==='Escape'&&backdrop.classList.contains('open'))close();
   });
+  const initialQuery = new URLSearchParams(location.search).get('q');
+  if (initialQuery) open(initialQuery);
 })();
 </script>
 <script src="/js/pwa.js"></script>
